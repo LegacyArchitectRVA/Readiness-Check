@@ -201,7 +201,7 @@
       '<div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:3px;color:#b8984e;margin-bottom:16px;text-transform:uppercase;">Ready to Close the Gaps?</div>'+
       '<div style="display:flex;flex-direction:column;gap:14px;align-items:center;">'+
       '<a href="https://buy.stripe.com/dRm5kw3n46D1f3O7Bs1Nu01" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);padding:14px 36px;border-radius:2px;text-decoration:none;text-transform:uppercase;">GET THE 7-PILLAR WORKBOOK \u2014 $37</a>'+
-      '<a href="https://cal.com/legacyarchitectrva/your-plan-for-the-first-72-hours" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;color:#c1b085;text-decoration:underline;text-transform:uppercase;">BOOK A FREE CONSULTATION</a></div></div>'+
+      '<a href="https://cal.com/legacyarchitectrva/the-blueprint-session" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;color:#c1b085;text-decoration:underline;text-transform:uppercase;">BOOK A FREE CONSULTATION</a></div></div>'+
 
       '<div style="text-align:center;border-top:1px solid #2a2218;padding-top:24px;">'+
       '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#6b5a38;">LEGACY ARCHITECT RVA</div>'+
