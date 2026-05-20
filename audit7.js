@@ -204,7 +204,7 @@
       '<a href="https://cal.com/legacyarchitectrva/the-blueprint-session" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;color:#c1b085;text-decoration:underline;text-transform:uppercase;">BOOK A FREE CONSULTATION</a></div></div>'+
 
       '<div style="text-align:center;border-top:1px solid #2a2218;padding-top:24px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#8d774a;">LEGACY ARCHITECT RVA</div>'+
+      '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#957d4c;">LEGACY ARCHITECT RVA</div>'+
       '<div style="font-family:Bodoni Moda,serif;font-size:12px;font-style:italic;color:#8a7e6a;margin-top:8px;">&ldquo;Order in Your Absence&rdquo;</div></div></div>';
   }
 
