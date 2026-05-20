@@ -71,16 +71,15 @@
     return h+'</div>';
   }
 
-  function naStyle(isNa){
-  return 'display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:44px;height:26px;padding:0 10px;flex-shrink:0;' +
-  'border:1px solid ' + (isNa ? '#ffd36a' : '#6b5a38') + ';' +
-  'border-radius:2px;cursor:pointer;' +
-  'background:' + (isNa ? 'rgba(255,211,106,0.18)' : 'rgba(255,255,255,0.03)') + ';' +
-  'box-shadow:' + (isNa ? 
-    '0 0 10px rgba(255,211,106,0.8),0 0 22px rgba(255,211,106,0.35)' 
-    : 'inset 0 0 0 1px rgba(255,255,255,0.04)') + ';' +
-  'transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;';
+ function naStyle(isNa){
+  return 'display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:42px;height:24px;padding:0 8px;flex-shrink:0;' +
+    'border:1px solid ' + (isNa ? '#c1b085' : '#7A6842') + ';' +
+    'border-radius:2px;cursor:pointer;' +
+    'background:' + (isNa ? 'rgba(193,176,133,0.08)' : 'transparent') + ';' +
+    'box-shadow:' + (isNa ? '0 0 12px rgba(193,176,133,0.6),0 0 24px rgba(193,176,133,0.25),inset 0 0 8px rgba(193,176,133,0.1)' : 'none') + ';' +
+    'transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;';
 }
+
 
   function pillarHTML(pi){
     var pl=P[pi], isP5=pi===4, isLast=pi===6, rows='';
