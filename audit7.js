@@ -3,13 +3,13 @@
   window.__laLoaded=true;
 
   var P=[
-    {n:'Digital Life',d:'Access and continuity for essential digital systems.',i:['PRIMARY EMAIL ACCESS','PASSWORD MANAGER','CLOUD STORAGE','2FA RECOVERY KEYS','SOCIAL MEDIA ACCESS','DIGITAL ARCHIVES']},
-    {n:'Financial & Assets',d:'Documentation of financial accounts, obligations, and payment systems.',i:['BANKING & CREDIT ACCESS','INVESTMENT & RETIREMENT ACCOUNTS','CRYPTOCURRENCY WALLETS & KEYS','AUTOMATED BILL PAYMENTS','TAX RETURNS & FINANCIAL RECORDS','DEBT & LOAN DOCUMENTATION']},
-    {n:'Household & Property',d:'Property records, access information, and household operations.',i:['PROPERTY DEEDS & TITLES','VEHICLE REGISTRATIONS','HOME MAINTENANCE RECORDS','UTILITY ACCOUNT ACCESS','PHYSICAL ASSET INVENTORY','STORAGE UNIT ACCESS']},
-    {n:'Health & Medical',d:'Medical history, directives, and emergency access information.',i:['HEALTH INSURANCE INFORMATION','MEDICAL RECORDS & HISTORY','PRESCRIPTION MEDICATIONS LIST','ADVANCE HEALTHCARE DIRECTIVE','ORGAN DONOR STATUS','EMERGENCY CONTACTS LIST']},
-    {n:'Legal & Estate',d:'Legal instruments, policy documentation, and estate planning records.',i:['LAST WILL & TESTAMENT','TRUST DOCUMENTATION','POWERS OF ATTORNEY','LIFE INSURANCE POLICIES','GUARDIANSHIP DESIGNATIONS','BUSINESS SUCCESSION PLAN']},
-    {n:'Business Continuity',d:'Operational documentation for business owners, including transition planning.',i:['BUSINESS ENTITY DOCUMENTS','BUSINESS BANKING ACCESS','OPERATING OR PARTNERSHIP AGREEMENTS','BUSINESS INSURANCE POLICIES','KEY VENDOR & CLIENT CONTACTS','BUSINESS CONTINUITY INSTRUCTIONS']},
-    {n:'Legacy & Wishes',d:'Personal statements, preferences, and messages for those left behind.',i:['PERSONAL LETTERS & MESSAGES','ETHICAL WILL STATEMENT','FUNERAL PREFERENCES','OBITUARY INFORMATION','HEIRLOOM STORIES','CHARITABLE GIVING WISHES']}
+    {n:'Digital Life',d:'Access and continuity for essential digital systems.',i:['PRIMARY EMAIL ACCESS','PASSWORD MANAGER','CLOUD STORAGE','2FA RECOVERY KEYS','SOCIAL MEDIA ACCESS','DIGITAL ARCHIV']},
+    {n:'Financial & Assets',d:'Documentation of financial accounts, obligations, and payment systems.',i:['BANKING & CREDIT ACCESS','INVESTMENT & RETIREMENT ACCOUNTS','CRYPTOCURRENCY WALLETS & KEYS']},
+    {n:'Household & Property',d:'Property records, access information, and household operations.',i:['PROPERTY DEEDS & TITLES','VEHICLE REGISTRATIONS','HOME MAINTENANCE RECORDS','UTILITY ACCOUNT AC']},
+    {n:'Health & Medical',d:'Medical history, directives, and emergency access information.',i:['HEALTH INSURANCE INFORMATION','MEDICAL RECORDS & HISTORY','PRESCRIPTION MEDICATIONS LIST','ADVANCE H']},
+    {n:'Legal & Estate',d:'Legal instruments, policy documentation, and estate planning records.',i:['LAST WILL & TESTAMENT','TRUST DOCUMENTATION','POWERS OF ATTORNEY','LIFE INSURANCE POLICIES','G']},
+    {n:'Business Continuity',d:'Operational documentation for business owners, including transition planning.',i:['BUSINESS ENTITY DOCUMENTS','BUSINESS BANKING ACCESS','OPERATING OR PARTNERSHIP AG']},
+    {n:'Legacy & Wishes',d:'Personal statements, preferences, and messages for those left behind.',i:['PERSONAL LETTERS & MESSAGES','ETHICAL WILL STATEMENT','FUNERAL PREFERENCES','OBITUARY INFORMA']},
   ];
 
   var ST=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
@@ -37,7 +37,7 @@
       border: f?'#c1b085': cnt>0?'rgba(193,176,133,'+(0.3+cnt*0.1).toFixed(1)+')':'#342a1c',
       shadow: cnt>0?'0 0 '+(8+cnt*4)+'px rgba(193,176,133,'+(0.15+cnt*0.05).toFixed(2)+')'+(f?',0 0 32px rgba(193,176,133,0.3)':''):'none',
       bg: 'rgba(193,176,133,'+(f?'0.06':'0.02')+')',
-      numColor: f?'#c1b085': cnt>0?'#b8984e':'#6b5a38',
+      numColor: f?'#c1b085': cnt>0?'#c1b085':'#6b5a38',
       numShadow: f?'0 0 16px rgba(193,176,133,0.5)':'none'
     };
   }
@@ -45,7 +45,7 @@
   function counterHTML(pi){
     var cnt=pillarChecked(pi), mx=pillarMax(pi), s=ctrStyles(cnt,mx);
     return '<div id="la-ctr-'+pi+'" style="display:flex;align-items:center;justify-content:center;margin-bottom:32px;">'+
-      '<div style="display:inline-flex;align-items:baseline;gap:8px;padding:14px 32px;border:1px solid '+s.border+';border-radius:2px;background:'+s.bg+';box-shadow:'+s.shadow+';transition:border-color 0.3s,box-shadow 0.4s,background 0.3s;">'+
+      '<div style="display:inline-flex;align-items:baseline;gap:8px;padding:14px 32px;border:1px solid '+s.border+';border-radius:2px;background:'+s.bg+';box-shadow:'+s.shadow+';transition:border-color 0.3s,box-shadow 0.3s,background 0.3s;">'+
       '<span id="la-ctr-num-'+pi+'" style="font-family:Cinzel,serif;font-size:29px;font-weight:700;color:'+s.numColor+';line-height:1;text-shadow:'+s.numShadow+';">'+cnt+'</span>'+
       '<span style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#8a7240;line-height:1;">of </span>'+
       '<span id="la-ctr-mx-'+pi+'" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#8a7240;line-height:1;">'+mx+'</span>'+
@@ -72,19 +72,22 @@
   }
 
   function naStyle(isNa){
-    return 'display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:42px;height:24px;padding:0 8px;flex-shrink:0;border:1px solid '+(isNa?'#c1b085':'#342a1c')+';border-radius:2px;cursor:pointer;background:'+(isNa?'rgba(193,176,133,0.08)':'transparent')+';box-shadow:'+(isNa?'0 0 12px rgba(193,176,133,0.5),0 0 24px rgba(193,176,133,0.2)':'none')+';transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;';
+    return 'display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:42px;height:24px;padding:0 8px;flex-shrink:0;border:1px solid '+(isNa?'#c1b085':'#342a1c')+';border-radius:2px;background:'+(isNa?'rgba(193,176,133,0.08)':'transparent')+';box-shadow:'+(isNa?'0 0 12px rgba(193,176,133,0.5),0 0 24px rgba(193,176,133,0.2)':'none')+';cursor:pointer;transition:border-color 0.3s,background 0.3s,box-shadow 0.3s;';
   }
 
   function pillarHTML(pi){
     var pl=P[pi], isP5=pi===4, isLast=pi===6, rows='';
     for(var ii=0;ii<6;ii++){
       var on=ST[pi][ii], isNa=NA[pi][ii], rowOpacity=isNa?'0.35':'1';
-      rows+='<div id="r'+pi+'-'+ii+'" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid '+(on?'rgba(193,176,133,0.12)':'transparent')+';border-radius:2px;background:'+(on?'rgba(193,176,133,0.03)':'transparent')+';opacity:'+rowOpacity+';transition:opacity 0.25s,border-color 0.2s,background 0.2s;">'+
+      rows+='<div id="r'+pi+'-'+ii+'" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid '+(on?'rgba(193,176,133,0.12)':'transparent')+';border-radius:2px;background:'+(on?'rgba(193,176,133,0.03)':'transparent')+';opacity:'+rowOpacity+';transition:border-color 0.3s,background 0.3s,opacity 0.3s;">'+
         '<div onclick="__la.t('+pi+','+ii+')" style="display:flex;align-items:center;gap:18px;flex:1;cursor:pointer;">'+
-        '<div id="sh'+pi+'-'+ii+'" style="width:24px;height:24px;flex-shrink:0;border:1px solid '+(on?'#c1b085':'#7A6842')+';border-radius:2px;display:flex;align-items:center;justify-content:center;box-shadow:'+(on?'0 0 12px rgba(193,176,133,0.6),0 0 24px rgba(193,176,133,0.25),inset 0 0 8px rgba(193,176,133,0.1)':'none')+';transition:border-color 0.2s,box-shadow 0.2s;">'+
-        '<svg id="mk'+pi+'-'+ii+'" width="14" height="11" viewBox="0 0 14 11" fill="none" style="opacity:'+(on?'1':'0')+';transform:'+(on?'scale(1)':'scale(0.6)')+';transition:opacity 0.2s,transform 0.2s;filter:drop-shadow(0 0 3px rgba(193,176,133,0.9));"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
-        '<div id="lb'+pi+'-'+ii+'" style="font-family:Cinzel,serif;font-size:17px;letter-spacing:2px;color:'+(on?'#c1b085':'#9a8d7a')+';'+(on?'text-shadow:0 0 12px rgba(193,176,133,0.3);':'')+'transition:color 0.2s,text-shadow 0.2s;">'+pl.i[ii]+'</div></div>'+
-        '<div id="na'+pi+'-'+ii+'" onclick="__la.na('+pi+','+ii+')" style="'+naStyle(isNa)+'"><span style="font-family:Cinzel,serif;font-size:10px;letter-spacing:1.5px;font-weight:700;color:'+(isNa?'#b8984e':'#4a3d28')+';line-height:1;transition:color 0.2s;">N/A</span></div></div>';
+        '<div id="sh'+pi+'-'+ii+'" style="width:24px;height:24px;flex-shrink:0;border:1px solid '+(on?'#c1b085':'#7A6842')+';border-radius:2px;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,box-shadow 0.3s;">'+
+        '<svg id="mk'+pi+'-'+ii+'" width="14" height="11" viewBox="0 0 14 11" fill="none" style="opacity:'+(on?'1':'0')+';transform:'+(on?'scale(1)':'scale(0.6)')+';transition:opacity 0.2s,transform 0.2s;"><path d="M1 6.5L5 10L13 1" stroke="#c1b085" stroke-width="1.5" fill="none"/></svg>'+
+        '</div>'+
+        '<div id="lb'+pi+'-'+ii+'" style="font-family:Cinzel,serif;font-size:17px;letter-spacing:2px;color:'+(on?'#c1b085':'#9a8d7a')+';'+(on?'text-shadow:0 0 12px rgba(193,176,133,0.3);':'')+'transition:color 0.3s,text-shadow 0.3s;">'+pl.i[ii]+'</div>'+
+        '</div>'+
+        '<div id="na'+pi+'-'+ii+'" onclick="__la.na('+pi+','+ii+')" style="'+naStyle(isNa)+'"><span style="font-family:Cinzel,serif;font-size:10px;letter-spacing:1.5px;font-weight:700;color:'+(isNa?'#b8984e':'#4a3d28')+';transition:color 0.3s;">N/A</span></div>'+
+      '</div>';
     }
 
     var gate='';
@@ -92,23 +95,26 @@
       gate='<div style="margin-top:36px;padding-top:32px;border-top:1px solid #2a2218;margin-bottom:52px;">'+
       '<div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:3px;color:#b8984e;margin-bottom:20px;">DO YOU OWN A BUSINESS?</div>'+
       '<div style="display:flex;gap:12px;">'+
-      '<button id="by" onclick="__la.by()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===true?'#c1b085':'#4a3d28')+';background:'+(OB===true?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===true?'#c1b085':'#8a7240')+';cursor:pointer;border-radius:1px;box-shadow:'+(OB===true?'0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)':'none')+';transition:all 0.25s;">YES</button>'+
-      '<button id="bn" onclick="__la.bn()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===false?'#c1b085':'#4a3d28')+';background:'+(OB===false?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===false?'#c1b085':'#8a7240')+';cursor:pointer;border-radius:1px;box-shadow:'+(OB===false?'0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)':'none')+';transition:all 0.25s;">NO</button></div>'+
-      '<div id="bh" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:'+(OB!==null?'#9a8d7a':'transparent')+';margin-top:14px;min-height:18px;">'+(OB===true?'All 7 pillars will be included in your analysis.':OB===false?'Your score will be calculated across 6 pillars.':'')+'</div></div>';
+      '<button id="by" onclick="__la.by()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===true?'#c1b085':'#4a3d28')+';border-radius:2px;background:'+(OB===true?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===true?'#c1b085':'#8a7240')+';cursor:pointer;transition:border-color 0.3s,background 0.3s,color 0.3s;">YES</button>'+
+      '<button id="bn" onclick="__la.bn()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===false?'#c1b085':'#4a3d28')+';border-radius:2px;background:'+(OB===false?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===false?'#c1b085':'#8a7240')+';cursor:pointer;transition:border-color 0.3s,background 0.3s,color 0.3s;">NO</button>'+
+      '</div>'+
+      '<div id="bh" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:'+(OB!==null?'#9a8d7a':'transparent')+';margin-top:14px;min-height:18px;transition:color 0.3s;">'+(OB===true?'All 7 pillars will be included in your analysis.':(OB===false?'Your score will be calculated across 6 pillars.':''))+'</div>'+
+      '</div>';
     }
 
     var nextBtn;
-    if(isP5){ nextBtn='<button onclick="__la.p5()" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);transition:box-shadow 0.3s,transform 0.15s;">CONTINUE</button>'; }
-    else if(isLast){ nextBtn='<button onclick="__la.go(\'R\')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);transition:box-shadow 0.3s,transform 0.15s;">SEE RESULTS</button>'; }
-    else { nextBtn='<button onclick="__la.go('+(pi+2)+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);transition:box-shadow 0.3s,transform 0.15s;">NEXT PILLAR</button>'; }
+    if(isP5){ nextBtn='<button onclick="__la.p5()" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;opacity:0.95;">CALCULATE</button>';
+    } else if(isLast){ nextBtn='<button onclick="__la.go(\'R\')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;opacity:0.95;">GET MY RESULTS</button>';
+    } else { nextBtn='<button onclick="__la.go('+(pi+2)+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;opacity:0.95;">NEXT PILLAR</button>';
+    }
 
     var backTarget=pi===1?1:(pi===6&&OB===false)?5:pi;
-    var backBtn=pi===0?'':'<button onclick="__la.go('+backTarget+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#6b5a38;background:none;border:none;cursor:pointer;text-transform:uppercase;padding:0;">BACK</button>';
+    var backBtn=pi===0?'':'<button onclick="__la.go('+backTarget+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#6b5a38;background:none;border:none;cursor:pointer;transition:color 0.3s;padding:0;">← BACK</button>';
 
     return prog(pi)+'<div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:5px;color:#b8984e;margin-bottom:10px;">PILLAR '+(pi+1)+' OF 7</div>'+
       '<div style="font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#c1b085;letter-spacing:2px;margin-bottom:12px;line-height:1.15;">'+pl.n.toUpperCase()+'</div>'+
       '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#a09484;line-height:1.6;margin-bottom:20px;">'+pl.d+'</div>'+
-      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div><div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:#6b5a38;">\u2726</div><div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div></div>'+
+      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div><div style="font-family:Bodoni Moda,serif;font-size:13px;font-style:italic;color:#8a7240;">Items to Document</div><div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div></div>'+
       counterHTML(pi)+'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:'+(isP5?'0':'52px')+';">'+rows+'</div>'+gate+
       '<div style="display:flex;justify-content:'+(pi===0?'flex-end':'space-between')+';align-items:center;">'+backBtn+nextBtn+'</div>';
   }
@@ -159,8 +165,8 @@
     var wn=weakest?weakest.name:'your most critical areas';
     var rec;
     if(percent>=86) rec='Your continuity planning is strong. A Life Manual would formalize everything into a single successor-ready system.';
-    else if(percent>=66) rec='You have solid foundations \u2014 but the remaining gaps could still create real confusion for your family.';
-    else if(percent>=46) rec='Your planning has real complexity creating hidden risk. The gaps you\u2019re carrying could cost your family dozens of hours and real money.';
+    else if(percent>=66) rec='You have solid foundations — but the remaining gaps could still create real confusion for your family.';
+    else if(percent>=46) rec='Your planning has real complexity creating hidden risk. The gaps you're carrying could cost your family dozens of hours and real money.';
     else rec='Your continuity gaps are significant. Without action, your family faces potentially weeks of confusion and costly decisions made in the dark.';
 
     var tc=tColor(tier);
@@ -178,7 +184,7 @@
       '<div style="font-family:Georgia,serif;font-size:12px;color:#c1b085;">'+totalChecked+' of '+totalMax+'</div></div></div>'+
       '<div style="margin-top:14px;font-family:Cinzel,serif;font-size:12px;font-weight:600;letter-spacing:2px;color:'+tc+';text-transform:uppercase;">'+tier+'</div></div>'+
 
-      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div><div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:#6b5a38;">\u2726</div><div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div></div>'+
+      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div><div style="font-family:Bodoni Moda,serif;font-size:13px;font-style:italic;color:#8a7240;">Performance Summary</div><div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div></div>'+
 
       '<div style="font-family:Cinzel,serif;font-size:12px;letter-spacing:4px;color:#b8984e;margin-bottom:20px;text-transform:uppercase;">Pillar Overview</div>'+
       pillarRows+
@@ -190,21 +196,21 @@
       '<div style="background:#13100c;border:1px solid #c1b085;border-radius:6px;padding:32px;margin-bottom:36px;text-align:center;">'+
       '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;color:#c1b085;margin-bottom:8px;text-transform:uppercase;">Unlock Your Full Breakdown</div>'+
       '<div style="font-family:Bodoni Moda,serif;font-size:15px;font-style:italic;color:#9a8d7a;margin-bottom:8px;">See exactly which items need attention in each pillar</div>'+
-      '<div style="font-family:Georgia,serif;font-size:13px;color:#6b5a38;margin-bottom:24px;">You have '+totalGaps+' uncovered items across '+pillarData.length+' pillars. We\u2019ll send the complete item-by-item report.</div>'+
+      '<div style="font-family:Georgia,serif;font-size:13px;color:#6b5a38;margin-bottom:24px;">You have '+totalGaps+' uncovered items across '+pillarData.length+' pillars. We'll send the complete breakdown to your email.</div>'+
       '<div style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto;">'+
-      '<input id="la-fn" type="text" placeholder="First name" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#d4c8b4;outline:none;">'+
-      '<input id="la-em" type="email" placeholder="Email address" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#d4c8b4;outline:none;">'+
-      '<button id="la-send" onclick="__la.send()" style="font-family:Cinzel,serif;font-size:14px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:14px 28px;border-radius:2px;margin-top:4px;">SEND MY FULL RESULTS</button>'+
+      '<input id="la-fn" type="text" placeholder="First name" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#fdfcfa;">'+
+      '<input id="la-em" type="email" placeholder="Email address" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#fdfcfa;">'+
+      '<button id="la-send" onclick="__la.send()" style="font-family:Cinzel,serif;font-size:14px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:12px 24px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;">SEND MY RESULTS</button>'+
       '<div id="la-msg" style="font-family:Georgia,serif;font-size:13px;color:#9a8d7a;min-height:20px;"></div></div></div>'+
 
       '<div style="text-align:center;margin-bottom:36px;">'+
       '<div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:3px;color:#b8984e;margin-bottom:16px;text-transform:uppercase;">Ready to Close the Gaps?</div>'+
       '<div style="display:flex;flex-direction:column;gap:14px;align-items:center;">'+
-      '<a href="https://buy.stripe.com/dRm5kw3n46D1f3O7Bs1Nu01" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);padding:14px 36px;border-radius:2px;text-decoration:none;text-transform:uppercase;">GET THE 7-PILLAR WORKBOOK \u2014 $37</a>'+
-      '<a href="https://cal.com/legacyarchitectrva/the-blueprint-session" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;color:#c1b085;text-decoration:underline;text-transform:uppercase;">BOOK A FREE CONSULTATION</a></div></div>'+
+      '<a href="https://buy.stripe.com/dRm5kw3n46D1f3O7Bs1Nu01" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);text-decoration:none;padding:14px 36px;border-radius:2px;transition:opacity 0.3s;opacity:0.95;">ORDER YOUR LIFE MANUAL</a>'+
+      '<a href="https://cal.com/legacyarchitectrva/the-blueprint-session" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;color:#c1b085;text-decoration:none;border:1px solid #c1b085;padding:12px 24px;border-radius:2px;transition:all 0.3s;opacity:0.95;">Schedule a Planning Session</a>'+
 
       '<div style="text-align:center;border-top:1px solid #2a2218;padding-top:24px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#6b5a38;">LEGACY ARCHITECT RVA</div>'+
+      '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#8d774a;">LEGACY ARCHITECT RVA</div>'+
       '<div style="font-family:Bodoni Moda,serif;font-size:12px;font-style:italic;color:#8a7e6a;margin-top:8px;">&ldquo;Order in Your Absence&rdquo;</div></div></div>';
   }
 
@@ -228,7 +234,7 @@
         method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({email:email,firstName:firstName,score:r.score,maxScore:r.maxScore,percent:r.percent,tier:r.tier,businessOwner:r.businessOwner,pillars:pillars,recommendation:r.recommendation})
       }).then(function(res){
-        if(res.ok){if(msg){msg.textContent='Results sent! Check your inbox.';msg.style.color='#4a7c59';}if(btn){btn.textContent='SENT \u2713';}}
+        if(res.ok){if(msg){msg.textContent='Results sent! Check your inbox.';msg.style.color='#4a7c59';}if(btn){btn.textContent='SENT ✓';}}
         else{if(msg){msg.textContent='Something went wrong. Please try again.';msg.style.color='#8b3a3a';}if(btn){btn.textContent='SEND MY RESULTS';btn.disabled=false;}}
       }).catch(function(){if(msg){msg.textContent='Connection error. Please try again.';msg.style.color='#8b3a3a';}if(btn){btn.textContent='SEND MY RESULTS';btn.disabled=false;}});
     },
@@ -273,14 +279,14 @@
     by:function(){
       OB=true;
       var y=document.getElementById('by'),n=document.getElementById('bn'),h=document.getElementById('bh');
-      if(y){y.style.borderColor='#c1b085';y.style.color='#c1b085';y.style.background='rgba(193,176,133,0.05)';y.style.boxShadow='0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)';}
+      if(y){y.style.borderColor='#c1b085';y.style.color='#c1b085';y.style.background='rgba(193,176,133,0.05)';y.style.boxShadow='0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.05)';}
       if(n){n.style.borderColor='#4a3d28';n.style.color='#8a7240';n.style.background='transparent';n.style.boxShadow='none';}
       if(h){h.textContent='All 7 pillars will be included in your analysis.';h.style.color='#9a8d7a';}
     },
     bn:function(){
       OB=false;
       var y=document.getElementById('by'),n=document.getElementById('bn'),h=document.getElementById('bh');
-      if(n){n.style.borderColor='#c1b085';n.style.color='#c1b085';n.style.background='rgba(193,176,133,0.05)';n.style.boxShadow='0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)';}
+      if(n){n.style.borderColor='#c1b085';n.style.color='#c1b085';n.style.background='rgba(193,176,133,0.05)';n.style.boxShadow='0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.05)';}
       if(y){y.style.borderColor='#4a3d28';y.style.color='#8a7240';y.style.background='transparent';y.style.boxShadow='none';}
       if(h){h.textContent='Your score will be calculated across 6 pillars.';h.style.color='#9a8d7a';}
     },
