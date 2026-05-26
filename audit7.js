@@ -3,13 +3,13 @@
   window.__laLoaded=true;
 
   var P=[
-    {n:'Digital Life',d:'Access and continuity for essential digital systems.',i:['PRIMARY EMAIL ACCESS','PASSWORD MANAGER','CLOUD STORAGE','2FA RECOVERY KEYS','SOCIAL MEDIA ACCESS','DIGITAL ARCHIV']},
+    {n:'Digital Life',d:'Access and continuity for essential digital systems.',i:['PRIMARY EMAIL ACCESS','PASSWORD MANAGER','CLOUD STORAGE','2FA RECOVERY KEYS','SOCIAL MEDIA ACCESS','DIGITAL ARCHIVE']},
     {n:'Financial & Assets',d:'Documentation of financial accounts, obligations, and payment systems.',i:['BANKING & CREDIT ACCESS','INVESTMENT & RETIREMENT ACCOUNTS','CRYPTOCURRENCY WALLETS & KEYS']},
-    {n:'Household & Property',d:'Property records, access information, and household operations.',i:['PROPERTY DEEDS & TITLES','VEHICLE REGISTRATIONS','HOME MAINTENANCE RECORDS','UTILITY ACCOUNT AC']},
-    {n:'Health & Medical',d:'Medical history, directives, and emergency access information.',i:['HEALTH INSURANCE INFORMATION','MEDICAL RECORDS & HISTORY','PRESCRIPTION MEDICATIONS LIST','ADVANCE H']},
-    {n:'Legal & Estate',d:'Legal instruments, policy documentation, and estate planning records.',i:['LAST WILL & TESTAMENT','TRUST DOCUMENTATION','POWERS OF ATTORNEY','LIFE INSURANCE POLICIES','G']},
-    {n:'Business Continuity',d:'Operational documentation for business owners, including transition planning.',i:['BUSINESS ENTITY DOCUMENTS','BUSINESS BANKING ACCESS','OPERATING OR PARTNERSHIP AG']},
-    {n:'Legacy & Wishes',d:'Personal statements, preferences, and messages for those left behind.',i:['PERSONAL LETTERS & MESSAGES','ETHICAL WILL STATEMENT','FUNERAL PREFERENCES','OBITUARY INFORMA']},
+    {n:'Household & Property',d:'Property records, access information, and household operations.',i:['PROPERTY DEEDS & TITLES','VEHICLE REGISTRATIONS','HOME MAINTENANCE RECORDS','UTILITY ACCOUNT ACCESS']},
+    {n:'Health & Medical',d:'Medical history, directives, and emergency access information.',i:['HEALTH INSURANCE INFORMATION','MEDICAL RECORDS & HISTORY','PRESCRIPTION MEDICATIONS LIST','ADVANCE DIRECTIVES']},
+    {n:'Legal & Estate',d:'Legal instruments, policy documentation, and estate planning records.',i:['LAST WILL & TESTAMENT','TRUST DOCUMENTATION','POWERS OF ATTORNEY','LIFE INSURANCE POLICIES','BUSINESS ENTITIES']},
+    {n:'Business Continuity',d:'Operational documentation for business owners, including transition planning.',i:['BUSINESS ENTITY DOCUMENTS','BUSINESS BANKING ACCESS','OPERATING OR PARTNERSHIP AGREEMENTS','KEY CUSTOMER & VENDOR RECORDS']},
+    {n:'Legacy & Wishes',d:'Personal statements, preferences, and messages for those left behind.',i:['PERSONAL LETTERS & MESSAGES','ETHICAL WILL STATEMENT','FUNERAL PREFERENCES','OBITUARY INFORMATION']},
   ];
 
   var ST=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
@@ -17,6 +17,10 @@
   var OB=null;
   var lastP1Cnt=-1;
   var lastP1Na=-1;
+
+  window.__la._ST = ST;
+  window.__la._NA = NA;
+  window.__la._P = P;
 
   function getPg1State(){
     for(var i=0;i<6;i++){
@@ -26,6 +30,9 @@
       NA[0][i]=(naCb&&naCb.checked)?1:0;
     }
   }
+
+  window.getPg1State = getPg1State;
+  window.__la.getPg1State = getPg1State;
 
   function pillarChecked(pi){ return ST[pi].reduce(function(a,v){return a+v;},0); }
   function pillarNa(pi){ return NA[pi].reduce(function(a,v){return a+v;},0); }
@@ -166,7 +173,7 @@
     var rec;
     if(percent>=86) rec='Your continuity planning is strong. A Life Manual would formalize everything into a single successor-ready system.';
     else if(percent>=66) rec='You have solid foundations — but the remaining gaps could still create real confusion for your family.';
-    else if(percent>=46) rec='Your planning has real complexity creating hidden risk. The gaps you're carrying could cost your family dozens of hours and real money.';
+    else if(percent>=46) rec='Your planning has real complexity creating hidden risk. The gaps you\'re carrying could cost your family dozens of hours and real money.';
     else rec='Your continuity gaps are significant. Without action, your family faces potentially weeks of confusion and costly decisions made in the dark.';
 
     var tc=tColor(tier);
@@ -196,7 +203,7 @@
       '<div style="background:#13100c;border:1px solid #c1b085;border-radius:6px;padding:32px;margin-bottom:36px;text-align:center;">'+
       '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;color:#c1b085;margin-bottom:8px;text-transform:uppercase;">Unlock Your Full Breakdown</div>'+
       '<div style="font-family:Bodoni Moda,serif;font-size:15px;font-style:italic;color:#9a8d7a;margin-bottom:8px;">See exactly which items need attention in each pillar</div>'+
-      '<div style="font-family:Georgia,serif;font-size:13px;color:#6b5a38;margin-bottom:24px;">You have '+totalGaps+' uncovered items across '+pillarData.length+' pillars. We'll send the complete breakdown to your email.</div>'+
+      '<div style="font-family:Georgia,serif;font-size:13px;color:#6b5a38;margin-bottom:24px;">You have '+totalGaps+' uncovered items across '+pillarData.length+' pillars. We\'ll send the complete breakdown to your email.</div>'+
       '<div style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto;">'+
       '<input id="la-fn" type="text" placeholder="First name" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#fdfcfa;">'+
       '<input id="la-em" type="email" placeholder="Email address" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#fdfcfa;">'+
@@ -239,14 +246,14 @@
       }).catch(function(){if(msg){msg.textContent='Connection error. Please try again.';msg.style.color='#8b3a3a';}if(btn){btn.textContent='SEND MY RESULTS';btn.disabled=false;}});
     },
     go:function(n){
-  if(n===1){showPg1();showRest('');}
-  else if(n==='R'){getPg1State();hidePg1();showRest(resultsHTML());}
-  else{hidePg1();showRest(pillarHTML(n-1));}
-  scrollToanalysis();
-  setTimeout(function(){scrollToanalysis();},0);
-  setTimeout(function(){scrollToanalysis();},50);
-  setTimeout(function(){scrollToanalysis();},150);
-},
+      if(n===1){showPg1();showRest('');}
+      else if(n==='R'){getPg1State();hidePg1();showRest(resultsHTML());}
+      else{hidePg1();showRest(pillarHTML(n-1));}
+      scrollToanalysis();
+      setTimeout(function(){scrollToanalysis();},0);
+      setTimeout(function(){scrollToanalysis();},50);
+      setTimeout(function(){scrollToanalysis();},150);
+    },
     t:function(pi,ii){
       if(NA[pi][ii]) return;
       ST[pi][ii]=ST[pi][ii]?0:1; var on=ST[pi][ii];
@@ -298,6 +305,22 @@
       }
       window.__la.go(OB?6:7);
     }
+  };
+
+  window.__la.goOrig = window.__la.go;
+  window.__la.go = function(n){
+    if(n===1){showPg1();showRest('');}
+    else if(n==='R'){window.__la.getPg1State();hidePg1();showRest(resultsHTML());}
+    else{hidePg1();showRest(pillarHTML(n-1));}
+    scrollToanalysis();
+    setTimeout(function(){scrollToanalysis();},0);
+    setTimeout(function(){scrollToanalysis();},50);
+    setTimeout(function(){scrollToanalysis();},150);
+  };
+
+  window.laNextPillar = function(){
+    if(window.__la && window.__la.getPg1State) window.__la.getPg1State();
+    if(window.__la) window.__la.go(2);
   };
 
   (function injectP1Ctr(){
