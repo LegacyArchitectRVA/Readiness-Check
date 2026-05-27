@@ -1,0 +1,218 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap');
+
+#la-wrap { 
+  background: transparent !important;
+  color: #fdfcfa;
+  padding: 48px 20px 60px;
+  font-family: 'Bodoni Moda', serif;
+}
+
+#la-wrap * { box-sizing: border-box; }
+.lacb, .lana { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+
+@keyframes la-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+.la-item-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  transition: opacity 0.25s, border-color 0.2s, background 0.2s;
+}
+
+.larow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.lash {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: 1px solid #7A6842;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: transparent;
+}
+
+.lamk {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.2s, transform 0.2s;
+  filter: drop-shadow(0 0 3px rgba(193,176,133,0.9));
+}
+
+.lalb {
+  font-family: Cinzel, serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: #9a8d7a;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.lacb:checked + .larow .lamk { opacity: 1; transform: scale(1); }
+.lacb:checked + .larow .lash {
+  border-color: #c1b085;
+  box-shadow: 0 0 12px rgba(193,176,133,0.6), 0 0 24px rgba(193,176,133,0.25), inset 0 0 8px rgba(193,176,133,0.1);
+}
+.lacb:checked + .larow .lalb {
+  color: #c1b085;
+  text-shadow: 0 0 12px rgba(193,176,133,0.3);
+}
+
+.lana-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 42px;
+  height: 24px;
+  padding: 0 8px;
+  flex-shrink: 0;
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: #4a3d28;
+  line-height: 1;
+  border: 1px solid #342a1c;
+  border-radius: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+/* Match checkbox styling when unchecked */
+.lana-btn {
+  border-color: #7A6842;
+  color: #4a3d28;
+}
+
+.lana:checked + .lana-btn {
+  border-color: #c1b085;
+  background: rgba(193,176,133,0.08);
+  box-shadow: 0 0 12px rgba(193,176,133,0.5), 0 0 24px rgba(193,176,133,0.2);
+  color: #b8984e;
+}
+
+/* Row styling for N/A state */
+.la-item-wrap.la-na-active {
+  opacity: 0.35;
+}
+</style>
+
+<div id="la-wrap" style="background:transparent;color:#fdfcfa;padding:48px 20px 60px;font-family:'Bodoni Moda',serif;">
+  <div style="max-width:620px;margin:0 auto;">
+
+    <div id="pg1">
+      <!-- Progress Bar -->
+      <div style="display:flex;gap:6px;margin-bottom:52px;">
+        <div style="height:3px;flex:1;background:#c1b085;border-radius:2px;box-shadow:0 0 8px rgba(193,176,133,0.6);"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+      </div>
+
+      <div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:5px;color:#b8984e;margin-bottom:10px;">PILLAR 1 OF 7</div>
+      <div style="font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#c1b085;letter-spacing:2px;margin-bottom:12px;line-height:1.15;">DIGITAL LIFE</div>
+      <div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#a09484;line-height:1.6;margin-bottom:20px;">Access and continuity for essential digital systems.</div>
+
+      <!-- Divider -->
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;">
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>
+        <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:#6b5a38;">✦</div>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>
+      </div>
+
+      <!-- Counter injected here by JS -->
+
+      <!-- Items -->
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:52px;">
+        <div class="la-item-wrap" id="r0-0">
+          <input type="checkbox" id="c0-0" class="lacb">
+          <label for="c0-0" class="larow">
+            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="lalb">PRIMARY EMAIL ACCESS</span>
+          </label>
+          <input type="checkbox" id="na0-0" class="lana">
+          <label for="na0-0" class="lana-btn" onclick="__la.handleNA(0, 0, event)">N/A</label>
+        </div>
+
+        <div class="la-item-wrap" id="r0-1">
+          <input type="checkbox" id="c0-1" class="lacb">
+          <label for="c0-1" class="larow">
+            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="lalb">PASSWORD MANAGER</span>
+          </label>
+          <input type="checkbox" id="na0-1" class="lana">
+          <label for="na0-1" class="lana-btn" onclick="__la.handleNA(0, 1, event)">N/A</label>
+        </div>
+
+        <div class="la-item-wrap" id="r0-2">
+          <input type="checkbox" id="c0-2" class="lacb">
+          <label for="c0-2" class="larow">
+            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="lalb">CLOUD STORAGE</span>
+          </label>
+          <input type="checkbox" id="na0-2" class="lana">
+          <label for="na0-2" class="lana-btn" onclick="__la.handleNA(0, 2, event)">N/A</label>
+        </div>
+
+        <div class="la-item-wrap" id="r0-3">
+          <input type="checkbox" id="c0-3" class="lacb">
+          <label for="c0-3" class="larow">
+            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="lalb">2FA RECOVERY KEYS</span>
+          </label>
+          <input type="checkbox" id="na0-3" class="lana">
+          <label for="na0-3" class="lana-btn" onclick="__la.handleNA(0, 3, event)">N/A</label>
+        </div>
+
+        <div class="la-item-wrap" id="r0-4">
+          <input type="checkbox" id="c0-4" class="lacb">
+          <label for="c0-4" class="larow">
+            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="lalb">SOCIAL MEDIA ACCESS</span>
+          </label>
+          <input type="checkbox" id="na0-4" class="lana">
+          <label for="na0-4" class="lana-btn" onclick="__la.handleNA(0, 4, event)">N/A</label>
+        </div>
+
+        <div class="la-item-wrap" id="r0-5">
+          <input type="checkbox" id="c0-5" class="lacb">
+          <label for="c0-5" class="larow">
+            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="lalb">DIGITAL ARCHIVES</span>
+          </label>
+          <input type="checkbox" id="na0-5" class="lana">
+          <label for="na0-5" class="lana-btn" onclick="__la.handleNA(0, 5, event)">N/A</label>
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <div style="text-align:right;position:relative;">
+        <input type="checkbox" id="la-go" class="lacb">
+        <label for="la-go" style="display:inline-block;font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);">NEXT PILLAR</label>
+      </div>
+    </div>
+
+    <div id="pg-rest"></div>
+
+  </div>
+</div>
+
+<script src="https://legacyarchitectrva.github.io/la-audit/audit7.js"></script>
