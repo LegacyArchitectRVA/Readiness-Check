@@ -1,85 +1,107 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Quiet Legacy Continuity Report</title>
+<title>Quiet Legacy Continuity Analysis</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Bodoni+Moda:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
 <style>
-  body {
+  body{
     margin:0;
-    background:#0b0a08;
-    color:#f2efe8;
-    font-family:'Bodoni Moda', serif;
+    background:#0a0a08;
+    color:#f4f1ea;
+    font-family:'Bodoni Moda',serif;
   }
 
-  #wrap {
-    max-width:720px;
+  #wrap{
+    max-width:760px;
     margin:0 auto;
-    padding:40px 20px 80px;
+    padding:40px 22px 80px;
   }
 
-  .muted { color:#a89f91; }
+  .gold{color:#b89a4a;}
 
-  .bar {
+  .stepbar{
     display:flex;
     gap:6px;
-    margin:18px 0 28px;
+    margin-bottom:30px;
   }
 
-  .seg {
+  .seg{
     flex:1;
     height:2px;
     background:#2a241c;
+    transition:0.3s;
   }
 
-  .seg.active {
+  .seg.active{
     background:#b89a4a;
   }
 
-  .pill {
-    margin-bottom:18px;
-    border-bottom:1px solid rgba(184,154,74,0.12);
-    padding-bottom:14px;
-  }
-
-  .item {
+  /* SLIDER STYLE SELECTOR */
+  .toggle{
     display:flex;
+    align-items:center;
     justify-content:space-between;
-    padding:10px 0;
+    padding:14px 12px;
+    border:1px solid #2a241c;
+    margin:10px 0;
     cursor:pointer;
-    opacity:0.9;
+    transition:0.25s;
   }
 
-  .state {
-    width:18px;
-    text-align:center;
-    color:#b89a4a;
+  .toggle.active{
+    border-color:#b89a4a;
+    box-shadow:0 0 14px rgba(185,154,74,0.25);
   }
 
-  .na {
-    color:#6b645a;
+  .state{
     font-size:12px;
-    cursor:pointer;
+    letter-spacing:2px;
+    width:90px;
+    text-align:right;
+    color:#8b8174;
   }
 
-  .legend-ring {
-    border:1px solid #b89a4a;
-    padding:22px;
-    text-align:center;
-    margin:30px 0;
-  }
-
-  .score {
-    font-size:54px;
+  .state.active{
     color:#b89a4a;
-    font-family:Cinzel;
   }
 
-  button {
+  /* FINAL SCORE RING */
+  .ring{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    border:2px solid #3a3328;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:30px auto;
+    transition:0.4s;
+  }
+
+  .ring.glow{
+    border-color:#b89a4a;
+    box-shadow:0 0 25px rgba(185,154,74,0.35);
+    animation:pulse 2.8s infinite;
+  }
+
+  @keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.02);}
+    100%{transform:scale(1);}
+  }
+
+  .score{
+    font-family:Cinzel;
+    font-size:44px;
+    color:#b89a4a;
+  }
+
+  button{
     width:100%;
     padding:14px;
     background:#b89a4a;
@@ -87,65 +109,53 @@
     font-family:Cinzel;
     letter-spacing:2px;
     cursor:pointer;
+    margin-top:18px;
   }
 
-  input {
+  input{
     width:100%;
     padding:12px;
-    margin:8px 0;
-    background:#0b0a08;
+    margin-top:10px;
+    background:#0a0a08;
     border:1px solid #2a241c;
-    color:#f2efe8;
+    color:#f4f1ea;
+  }
+
+  .muted{
+    color:#a59c8f;
+    line-height:1.6;
   }
 </style>
 </head>
 
 <body>
 <div id="wrap">
-
-  <div id="app"></div>
-
+<div id="app"></div>
 </div>
 
 <script>
-const P = [
-  {n:"Digital Life", i:["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication Keys","Social Media Access","Digital Archive"]},
-  {n:"Financial & Assets", i:["Bank Accounts","Investments","Crypto Wallets","","",""]},
-  {n:"Household & Property", i:["Deeds","Vehicle Registration","Maintenance Records","Utility Access","",""]},
-  {n:"Health & Medical", i:["Insurance","Medical Records","Prescriptions","Directives","",""]},
-  {n:"Legal & Estate", i:["Will","Trust","Power of Attorney","Life Insurance","Business Entities",""]},
-  {n:"Business Continuity", i:["Entity Docs","Banking","Agreements","Vendor Records","",""]},
-  {n:"Legacy & Wishes", i:["Letters","Ethical Will","Funeral Preferences","Obituary","",""]}
+
+const P=[
+  {n:"Digital Life",i:["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication","Social Media Access","Digital Archive"]},
+  {n:"Financial & Assets",i:["Bank Accounts","Investments","Crypto Wallets","","",""]},
+  {n:"Household & Property",i:["Deeds","Vehicle Registration","Maintenance","Utilities","",""]},
+  {n:"Health & Medical",i:["Insurance","Medical Records","Prescriptions","Directives","",""]},
+  {n:"Legal & Estate",i:["Will","Trust","Power of Attorney","Life Insurance","Business Entities",""]},
+  {n:"Business Continuity",i:["Entity Docs","Banking","Agreements","Vendor Records","",""]},
+  {n:"Legacy & Wishes",i:["Letters","Ethical Will","Funeral Preferences","Obituary","",""]}
 ];
 
-let ST = Array.from({length:7},()=>Array(6).fill(0));
-let NA = Array.from({length:7},()=>Array(6).fill(0));
-let page = 0;
-let OB = null;
+let ST=Array.from({length:7},()=>Array(6).fill(0));
+let NA=Array.from({length:7},()=>Array(6).fill(0));
+let step=0;
+let business=false;
 
 function checked(p){
   return ST[p].reduce((a,v)=>a+v,0);
 }
 
 function max(p){
-  return 6 - NA[p].reduce((a,v)=>a+v,0);
-}
-
-function pct(p){
-  let m = max(p);
-  return m ? Math.round(checked(p)/m*100) : 0;
-}
-
-function toggle(p,i){
-  ST[p][i] = ST[p][i] ? 0 : 1;
-  if(ST[p][i]) NA[p][i]=0;
-  render();
-}
-
-function toggleNA(p,i){
-  NA[p][i] = NA[p][i] ? 0 : 1;
-  if(NA[p][i]) ST[p][i]=0;
-  render();
+  return 6-NA[p].reduce((a,v)=>a+v,0);
 }
 
 function score(){
@@ -158,125 +168,146 @@ function score(){
 }
 
 function tier(s){
-  if(s>=86) return "CONTINUITY LEGEND";
-  if(s>=71) return "STABLE";
-  if(s>=61) return "AT RISK";
-  return "CRITICAL";
+  if(s>=86)return"CONTINUITY LEGEND";
+  if(s>=71)return"STABLE";
+  if(s>=61)return"AT RISK";
+  return"CRITICAL";
+}
+
+/* SLIDER TOGGLE */
+function toggle(p,i){
+  if(ST[p][i]){
+    ST[p][i]=0;
+    NA[p][i]=1;
+  }else if(NA[p][i]){
+    NA[p][i]=0;
+  }else{
+    ST[p][i]=1;
+  }
+  render();
 }
 
 function render(){
 
-  if(page===0){
-    document.getElementById("app").innerHTML = `
-      <div class="bar">
-        ${Array.from({length:7},(_,i)=>`<div class="seg ${i===0?'active':''}"></div>`).join('')}
-      </div>
+if(step===0){
+  document.getElementById("app").innerHTML=`
+    <div class="stepbar">
+      <div class="seg active"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+    </div>
 
-      <div style="font-family:Cinzel;letter-spacing:3px;color:#b89a4a;">STEP 0 — INSTRUCTIONS</div>
-
-      <p class="muted">
-        This assessment maps continuity readiness across 7 pillars.
-        If unsure whether an item applies, select N/A — it will not affect your score.
-      </p>
-
-      <button onclick="page=1;render()">BEGIN</button>
-    `;
-    return;
-  }
-
-  if(page<=7){
-    let p = page-1;
-
-    document.getElementById("app").innerHTML = `
-      <div class="bar">
-        ${Array.from({length:7},(_,i)=>`<div class="seg ${i<p?'active':''}"></div>`).join('')}
-      </div>
-
-      <div style="font-family:Cinzel;color:#b89a4a;letter-spacing:3px;">
-        PILLAR ${p+1} OF 7
-      </div>
-
-      <h2 style="font-family:Cinzel;">${P[p].n}</h2>
-
-      <div class="pill">
-        ${P[p].i.map((x,i)=>`
-          <div class="item">
-            <div onclick="toggle(${p},${i})">
-              <span class="state">${ST[p][i]?'●':'○'}</span>
-              ${x||""}
-            </div>
-            <div class="na" onclick="toggleNA(${p},${i})">N/A</div>
-          </div>
-        `).join('')}
-      </div>
-
-      <button onclick="page++;render()">NEXT</button>
-    `;
-    return;
-  }
-
-  let s = score();
-  let t = tier(s);
-  let legend = s>=86;
-
-  document.getElementById("app").innerHTML = `
-    <div class="legend-ring">
-      <div class="score">${s}%</div>
-      <div style="font-family:Cinzel;letter-spacing:2px;">${t}</div>
+    <div class="gold" style="letter-spacing:3px;font-family:Cinzel;">
+      STEP 0 — CONTINUITY ANALYSIS
     </div>
 
     <p class="muted">
-      ${s>=86
-        ? "Continuity systems are fully structured and resilient."
-        : s>=71
-        ? "Strong foundation with limited structural gaps."
-        : s>=61
-        ? "Moderate fragmentation across continuity systems."
-        : "Significant continuity gaps detected."}
+      This analysis evaluates continuity readiness across 7 life pillars.
+      If unsure, mark as N/A — it does not impact your score.
     </p>
 
-    <div style="margin-top:30px;border:1px solid rgba(184,154,74,0.15);padding:18px;">
-      <div style="font-family:Cinzel;letter-spacing:2px;margin-bottom:10px;">
-        REQUEST FULL CONTINUITY REPORT
-      </div>
+    <p class="muted">
+      <b>Business question:</b><br>
+      Do you own or operate a business requiring continuity planning?
+    </p>
 
-      <input id="name" placeholder="First name"/>
-      <input id="email" placeholder="Email address"/>
-
-      <button onclick="send()">REQUEST REPORT</button>
-
-      <div id="msg" style="margin-top:10px;color:#a89f91;font-size:13px;"></div>
-    </div>
+    <button onclick="business=true;step=1;render()">YES / CONTINUE</button>
+    <button onclick="business=false;step=1;render()" style="background:#2a241c;color:#b89a4a;">NO / CONTINUE</button>
   `;
+  return;
+}
+
+if(step<=7){
+
+let p=step-1;
+
+document.getElementById("app").innerHTML=`
+<div class="stepbar">
+${Array.from({length:7},(_,i)=>`<div class="seg ${i<p?'active':''}"></div>`).join('')}
+</div>
+
+<div class="gold" style="font-family:Cinzel;letter-spacing:3px;">
+PILLAR ${p+1} OF 7
+</div>
+
+<h2 style="font-family:Cinzel;">${P[p].n}</h2>
+
+<p class="muted">
+If a topic is not visible or seems missing, confirm N/A selection — no data is assumed.
+</p>
+
+<div>
+${P[p].i.map((x,i)=>`
+  <div class="toggle ${(ST[p][i]||NA[p][i])?'active':''}" onclick="toggle(${p},${i})">
+    <div>${x||""}</div>
+    <div class="state ${(ST[p][i]||NA[p][i])?'active':''}">
+      ${ST[p][i]?'RECORDED':NA[p][i]?'N/A':'SELECT'}
+    </div>
+  </div>
+`).join('')}
+</div>
+
+<button onclick="step++;render()">NEXT</button>
+`;
+return;
+}
+
+let s=score();
+let t=tier(s);
+let legend=s>=86;
+
+document.getElementById("app").innerHTML=`
+<div class="ring ${legend?'glow':''}">
+  <div class="score">${s}%</div>
+</div>
+
+<div style="text-align:center;font-family:Cinzel;letter-spacing:2px;">
+${t}
+</div>
+
+<p class="muted" style="text-align:center;margin-top:16px;">
+${s>=86
+?"Fully structured continuity profile."
+:s>=71
+?"Strong continuity foundation with limited gaps."
+:s>=61
+?"Moderate structural fragmentation detected."
+:"Significant continuity gaps present."}
+</p>
+
+<input id="name" placeholder="First name"/>
+<input id="email" placeholder="Email address"/>
+
+<button onclick="send()">REQUEST FULL CONTINUITY REPORT</button>
+<div id="msg" class="muted"></div>
+`;
+
 }
 
 async function send(){
-  let payload = {
+  let payload={
     name:document.getElementById("name").value,
     email:document.getElementById("email").value,
     score:score(),
     tier:tier(score()),
-    status: score()>=86 ? "legend" : "standard"
+    business:business
   };
 
-  try{
-    await fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
-    });
+  await fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(payload)
+  });
 
-    document.getElementById("msg").innerText =
-      "Report request received. Preparing continuity summary.";
-
-  }catch(e){
-    document.getElementById("msg").innerText =
-      "Submission failed. Please retry.";
-  }
+  document.getElementById("msg").innerText="Request received. Preparing continuity report.";
 }
 
 render();
-</script>
 
+</script>
 </body>
 </html>
