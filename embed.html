@@ -1,40 +1,68 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Legacy Architect Audit</title>
+<title>Legacy Architect Audit</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      color: #fdfcfa;
-      height: 100%;
-    }
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #fdfcfa;
+}
 
-    #la-wrap {
-      background: transparent !important;
-      color: #fdfcfa;
-      padding: 48px 20px 60px;
-      font-family: 'Bodoni Moda', serif;
-      box-sizing: border-box;
-    }
+body {
+  font-family: 'Bodoni Moda', serif;
+}
 
-    /* Prevent any accidental page overflow artifacts */
-    body > *:not(#la-wrap) {
-      display: none !important;
-    }
-  </style>
+#la-wrap {
+  background: transparent !important;
+  color: #fdfcfa;
+  padding: 48px 20px 60px;
+}
+
+/* keep Carrd clean */
+</style>
 </head>
 
 <body>
 
+<div id="la-wrap">
+
+  <!-- 🔥 THIS IS REQUIRED: your app root containers -->
+  <div id="pg1">
+
+    <!-- your FULL Pillar 1 HTML from Carrd goes here -->
+    <!-- (IMPORTANT: do NOT remove this section — JS depends on it) -->
+
+  </div>
+
+  <div id="pg-rest"></div>
+
+</div>
+
+<script src="audit7.js"></script>
+
+<script>
+(function(){
+  function boot(){
+    if(window.__la && window.__la.go){
+      window.__la.go(1);
+    } else {
+      setTimeout(boot,100);
+    }
+  }
+  window.addEventListener('load', boot);
+})();
+</script>
+
+</body>
+</html>
   <!-- APP ROOT -->
   <div id="la-wrap">
     <div id="pg1"></div>
