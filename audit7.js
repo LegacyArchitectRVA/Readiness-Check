@@ -1,230 +1,295 @@
-(function(){
-  console.log("AUDIT JS LOADED SUCCESSFULLY");
-document.body.style.border = "5px solid red";
-  if(window.__laLoaded)return;
-  window.__laLoaded=true;
-if (window.self !== window.top) {
-  document.documentElement.classList.add('embed-mode');
-}
-window.__la = window.__la || {};
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
-  var P=[
-    {n:'Digital Life',d:'Access and continuity for essential digital systems.',i:['PRIMARY EMAIL ACCESS','PASSWORD MANAGER','CLOUD STORAGE','2FA RECOVERY KEYS','SOCIAL MEDIA ACCESS','DIGITAL ARCHIVE']},
-    {n:'Financial & Assets',d:'Documentation of financial accounts, obligations, and payment systems.',i:['BANKING & CREDIT ACCESS','INVESTMENT & RETIREMENT ACCOUNTS','CRYPTOCURRENCY WALLETS & KEYS']},
-    {n:'Household & Property',d:'Property records, access information, and household operations.',i:['PROPERTY DEEDS & TITLES','VEHICLE REGISTRATIONS','HOME MAINTENANCE RECORDS','UTILITY ACCOUNT ACCESS']},
-    {n:'Health & Medical',d:'Medical history, directives, and emergency access information.',i:['HEALTH INSURANCE INFORMATION','MEDICAL RECORDS & HISTORY','PRESCRIPTION MEDICATIONS LIST','ADVANCE DIRECTIVES']},
-    {n:'Legal & Estate',d:'Legal instruments, policy documentation, and estate planning records.',i:['LAST WILL & TESTAMENT','TRUST DOCUMENTATION','POWERS OF ATTORNEY','LIFE INSURANCE POLICIES','BUSINESS ENTITIES']},
-    {n:'Business Continuity',d:'Operational documentation for business owners, including transition planning.',i:['BUSINESS ENTITY DOCUMENTS','BUSINESS BANKING ACCESS','OPERATING OR PARTNERSHIP AGREEMENTS','KEY CUSTOMER & VENDOR RECORDS']},
-    {n:'Legacy & Wishes',d:'Personal statements, preferences, and messages for those left behind.',i:['PERSONAL LETTERS & MESSAGES','ETHICAL WILL STATEMENT','FUNERAL PREFERENCES','OBITUARY INFORMATION']},
+#la-wrap{
+  font-family:Lora,serif;
+  color:#fdfcfa;
+  max-width:680px;
+  margin:0 auto;
+}
+
+/* ---------------- PROGRESS ---------------- */
+.la-prog{
+  display:flex;
+  gap:6px;
+  margin-bottom:40px;
+}
+.la-bar{
+  flex:1;
+  height:3px;
+  background:#2a2218;
+  border-radius:2px;
+  transition:all .3s;
+}
+.la-bar.on{
+  background:#c1b085;
+  box-shadow:0 0 10px rgba(193,176,133,.6);
+}
+
+/* ---------------- COUNTER ---------------- */
+.la-counter{
+  text-align:center;
+  margin:25px 0;
+}
+.la-counter-box{
+  display:inline-flex;
+  gap:10px;
+  padding:12px 24px;
+  border:1px solid #4a3d28;
+  background:rgba(193,176,133,.05);
+}
+.la-counter-box span{
+  font-family:Cinzel;
+  font-size:28px;
+  color:#c1b085;
+}
+
+/* ---------------- ROW ---------------- */
+.la-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  margin-bottom:8px;
+  border-radius:4px;
+  transition:.25s;
+}
+
+.la-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  cursor:pointer;
+  flex:1;
+}
+
+/* CHECKBOX */
+.la-box{
+  width:22px;
+  height:22px;
+  border:1px solid #7a6842;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.25s;
+}
+.la-box.on{
+  border-color:#c1b085;
+  box-shadow:0 0 12px rgba(193,176,133,.7);
+}
+.la-box svg{
+  opacity:0;
+  transform:scale(.6);
+  transition:.2s;
+}
+.la-box.on svg{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* LABEL */
+.la-label{
+  font-family:Cinzel;
+  font-size:15px;
+  color:#9a8d7a;
+  letter-spacing:1px;
+  transition:.25s;
+}
+.la-label.on{
+  color:#c1b085;
+  text-shadow:0 0 10px rgba(193,176,133,.4);
+}
+
+/* N/A BUTTON */
+.naBtn{
+  font-family:Cinzel;
+  font-size:11px;
+  padding:6px 10px;
+  border:1px solid #342a1c;
+  background:transparent;
+  color:#4a3d28;
+  cursor:pointer;
+  transition:.25s;
+}
+.naBtn.on{
+  border-color:#c1b085;
+  color:#b8984e;
+  box-shadow:0 0 12px rgba(193,176,133,.5);
+}
+
+/* ---------------- TITLES ---------------- */
+.title{
+  font-family:Cinzel;
+  font-size:14px;
+  letter-spacing:4px;
+  color:#b8984e;
+}
+.head{
+  font-family:Cinzel;
+  font-size:28px;
+  margin-bottom:6px;
+}
+.sub{
+  font-style:italic;
+  color:#a09484;
+  margin-bottom:20px;
+}
+
+/* ---------------- BUTTONS ---------------- */
+button{
+  cursor:pointer;
+}
+
+/* ---------------- RESULTS ---------------- */
+.result-box{
+  text-align:center;
+  padding:30px;
+}
+.result-score{
+  font-size:46px;
+  color:#c1b085;
+  font-family:Cinzel;
+}
+
+/* ---------------- EMAIL ---------------- */
+input{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  background:#0b0806;
+  border:1px solid #2a2218;
+  color:#fff;
+}
+
+.send-btn{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  font-family:Cinzel;
+  background:linear-gradient(135deg,#c1b085,#d4c4a0);
+  border:none;
+  color:#100d0a;
+}
+</style>
+
+<div id="la-wrap">
+  <div id="pg1"></div>
+  <div id="pg-rest"></div>
+</div>
+
+<script>
+(function(){
+  if(window.__laLoaded) return;
+  window.__laLoaded = true;
+
+  const P = [
+    {n:'Digital Life',d:'Access systems',i:['EMAIL','PASSWORDS','CLOUD','2-FACTOR AUTHENTICATION','SOCIAL','ARCHIVE']},
+    {n:'Financial',d:'Money systems',i:['BANK','INVEST','CRYPTO','RETIRE','INSURANCE','TAX']},
+    {n:'Property',d:'Home assets',i:['DEEDS','CAR','UTILITIES','MAINT','INSURANCE','ACCESS']},
+    {n:'Medical',d:'Health info',i:['INSURANCE','RECORDS','RX','ALLERGIES','DOCTOR','DIRECTIVE']},
+    {n:'Legal',d:'Legal docs',i:['WILL','TRUST','POA','POLICIES','BUSINESS','CONTACTS']},
+    {n:'Business',d:'Ops continuity',i:['ENTITY','BANKING','OPS','VENDORS','CLIENTS','ROLES']},
+    {n:'Legacy',d:'Personal intent',i:['LETTER','WISHES','FUNERAL','OBITUARY','MESSAGES','NOTES']}
   ];
 
-  var ST=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
-  var NA=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
-  var OB=null;
-  var lastP1Cnt=-1;
-  var lastP1Na=-1;
+  let ST = Array.from({length:7},()=>Array(6).fill(0));
+  let NA = Array.from({length:7},()=>Array(6).fill(0));
+  let OB = null;
 
-  window.__la._ST = ST;
-  window.__la._NA = NA;
-  window.__la._P = P;
+  const save = ()=> {
+    localStorage.setItem('la_st',JSON.stringify(ST));
+    localStorage.setItem('la_na',JSON.stringify(NA));
+  };
 
-  function getPg1State(){
-    for(var i=0;i<6;i++){
-      var cb=document.getElementById('c0-'+i);
-      ST[0][i]=(cb&&cb.checked)?1:0;
-      var naCb=document.getElementById('na0-'+i);
-      NA[0][i]=(naCb&&naCb.checked)?1:0;
-    }
-  }
+  const c = p => ST[p].reduce((a,v)=>a+v,0);
+  const m = p => 6-NA[p].reduce((a,v)=>a+v,0);
 
-  window.getPg1State = getPg1State;
-  window.__la.getPg1State = getPg1State;
-
-  function pillarChecked(pi){ return ST[pi].reduce(function(a,v){return a+v;},0); }
-  function pillarNa(pi){ return NA[pi].reduce(function(a,v){return a+v;},0); }
-  function pillarMax(pi){ return 6-pillarNa(pi); }
-
-  function ctrStyles(cnt,mx){
-    var f=mx>0&&cnt===mx;
-    return {
-      border: f?'#c1b085': cnt>0?'rgba(193,176,133,'+(0.3+cnt*0.1).toFixed(1)+')':'#342a1c',
-      shadow: cnt>0?'0 0 '+(8+cnt*4)+'px rgba(193,176,133,'+(0.15+cnt*0.05).toFixed(2)+')'+(f?',0 0 32px rgba(193,176,133,0.3)':''):'none',
-      bg: 'rgba(193,176,133,'+(f?'0.06':'0.02')+')',
-      numColor: f?'#c1b085': cnt>0?'#c1b085':'#6b5a38',
-      numShadow: f?'0 0 16px rgba(193,176,133,0.5)':'none'
-    };
-  }
-
-  function counterHTML(pi){
-    var cnt=pillarChecked(pi), mx=pillarMax(pi), s=ctrStyles(cnt,mx);
-    return '<div id="la-ctr-'+pi+'" style="display:flex;align-items:center;justify-content:center;margin-bottom:32px;">'+
-      '<div style="display:inline-flex;align-items:baseline;gap:8px;padding:14px 32px;border:1px solid '+s.border+';border-radius:2px;background:'+s.bg+';box-shadow:'+s.shadow+';transition:border-color 0.3s,box-shadow 0.3s,background 0.3s;">'+
-      '<span id="la-ctr-num-'+pi+'" style="font-family:Cinzel,serif;font-size:29px;font-weight:700;color:'+s.numColor+';line-height:1;text-shadow:'+s.numShadow+';">'+cnt+'</span>'+
-      '<span style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#8a7240;line-height:1;">of </span>'+
-      '<span id="la-ctr-mx-'+pi+'" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#8a7240;line-height:1;">'+mx+'</span>'+
-      '</div></div>';
-  }
-
-  function updateCtr(pi){
-    var cnt=pillarChecked(pi), mx=pillarMax(pi), wrap=document.getElementById('la-ctr-'+pi);
-    if(!wrap)return;
-    var box=wrap.firstElementChild, num=document.getElementById('la-ctr-num-'+pi), mxEl=document.getElementById('la-ctr-mx-'+pi), s=ctrStyles(cnt,mx);
-    if(box){ box.style.borderColor=s.border; box.style.boxShadow=s.shadow; box.style.background=s.bg; }
-    if(num){ num.textContent=cnt; num.style.color=s.numColor; num.style.textShadow=s.numShadow; }
-    if(mxEl){ mxEl.textContent=mx; }
-  }
-
-  function prog(active){
-    var h='<div style="display:flex;gap:6px;margin-bottom:52px;">';
-    for(var s=0;s<7;s++){
-      var bg=s<active?'#8a7030':s===active?'#c1b085':'#342a1c';
-      var sh=s===active?'0 0 8px rgba(193,176,133,0.6)':'none';
-      h+='<div style="height:3px;flex:1;background:'+(s<active?'linear-gradient(90deg,#8a7030,#c1b085)':bg)+';border-radius:2px;box-shadow:'+sh+';transition:background 0.4s;"></div>';
+  function prog(p){
+    let h='<div class="la-prog">';
+    for(let i=0;i<7;i++){
+      h+=`<div class="la-bar ${i<p?'on':''}"></div>`;
     }
     return h+'</div>';
   }
 
-  function naStyle(isNa){
-    return 'display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:42px;height:24px;padding:0 8px;flex-shrink:0;border:1px solid '+(isNa?'#c1b085':'#342a1c')+';border-radius:2px;background:'+(isNa?'rgba(193,176,133,0.08)':'transparent')+';box-shadow:'+(isNa?'0 0 12px rgba(193,176,133,0.5),0 0 24px rgba(193,176,133,0.2)':'none')+';cursor:pointer;transition:border-color 0.3s,background 0.3s,box-shadow 0.3s;';
+  function counter(p){
+    return `<div class="la-counter"><div class="la-counter-box"><span>${c(p)}</span><span>of ${m(p)}</span></div></div>`;
   }
 
-  function pillarHTML(pi){
-    var pl=P[pi], isP5=pi===4, isLast=pi===6, rows='';
-    for(var ii=0;ii<6;ii++){
-      var on=ST[pi][ii], isNa=NA[pi][ii], rowOpacity=isNa?'0.35':'1';
-      rows+='<div id="r'+pi+'-'+ii+'" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid '+(on?'rgba(193,176,133,0.12)':'transparent')+';border-radius:2px;background:'+(on?'rgba(193,176,133,0.03)':'transparent')+';opacity:'+rowOpacity+';transition:border-color 0.3s,background 0.3s,opacity 0.3s;">'+
-        '<div onclick="__la.t('+pi+','+ii+')" style="display:flex;align-items:center;gap:18px;flex:1;cursor:pointer;">'+
-        '<div id="sh'+pi+'-'+ii+'" style="width:24px;height:24px;flex-shrink:0;border:1px solid '+(on?'#c1b085':'#7A6842')+';border-radius:2px;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,box-shadow 0.3s;">'+
-        '<svg id="mk'+pi+'-'+ii+'" width="14" height="11" viewBox="0 0 14 11" fill="none" style="opacity:'+(on?'1':'0')+';transform:'+(on?'scale(1)':'scale(0.6)')+';transition:opacity 0.2s,transform 0.2s;"><path d="M1 6.5L5 10L13 1" stroke="#c1b085" stroke-width="1.5" fill="none"/></svg>'+
-        '</div>'+
-        '<div id="lb'+pi+'-'+ii+'" style="font-family:Cinzel,serif;font-size:17px;letter-spacing:2px;color:'+(on?'#c1b085':'#9a8d7a')+';'+(on?'text-shadow:0 0 12px rgba(193,176,133,0.3);':'')+'transition:color 0.3s,text-shadow 0.3s;">'+pl.i[ii]+'</div>'+
-        '</div>'+
-        '<div id="na'+pi+'-'+ii+'" onclick="__la.na('+pi+','+ii+')" style="'+naStyle(isNa)+'"><span style="font-family:Cinzel,serif;font-size:10px;letter-spacing:1.5px;font-weight:700;color:'+(isNa?'#b8984e':'#4a3d28')+';transition:color 0.3s;">N/A</span></div>'+
-      '</div>';
+  function render(p){
+    const d = P[p];
+
+    let rows='';
+    for(let i=0;i<6;i++){
+      rows+=`
+      <div class="la-row">
+        <div class="la-left" onclick="__la.t(${p},${i})">
+          <div class="la-box ${ST[p][i]?'on':''}">
+            <svg width="12" height="10"><path d="M1 5L4 8L11 1" stroke="#c1b085"/></svg>
+          </div>
+          <div class="la-label ${ST[p][i]?'on':''}">${d.i[i]}</div>
+        </div>
+
+        <button class="naBtn ${NA[p][i]?'on':''}" onclick="__la.n(${p},${i})">N/A</button>
+      </div>`;
     }
 
-    var gate='';
-    if(isP5){
-      gate='<div style="margin-top:36px;padding-top:32px;border-top:1px solid #2a2218;margin-bottom:52px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:3px;color:#b8984e;margin-bottom:20px;">DO YOU OWN A BUSINESS?</div>'+
-      '<div style="display:flex;gap:12px;">'+
-      '<button id="by" onclick="__la.by()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===true?'#c1b085':'#4a3d28')+';border-radius:2px;background:'+(OB===true?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===true?'#c1b085':'#8a7240')+';cursor:pointer;transition:border-color 0.3s,background 0.3s,color 0.3s;">YES</button>'+
-      '<button id="bn" onclick="__la.bn()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===false?'#c1b085':'#4a3d28')+';border-radius:2px;background:'+(OB===false?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===false?'#c1b085':'#8a7240')+';cursor:pointer;transition:border-color 0.3s,background 0.3s,color 0.3s;">NO</button>'+
-      '</div>'+
-      '<div id="bh" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:'+(OB!==null?'#9a8d7a':'transparent')+';margin-top:14px;min-height:18px;transition:color 0.3s;">'+(OB===true?'All 7 pillars will be included in your analysis.':(OB===false?'Your score will be calculated across 6 pillars.':''))+'</div>'+
-      '</div>';
-    }
+    const html =
+      prog(p)+
+      `<div class="title">PILLAR ${p+1}/7</div>`+
+      `<div class="head">${d.n}</div>`+
+      `<div class="sub">${d.d}</div>`+
+      counter(p)+
+      rows+
+      `<div style="display:flex;justify-content:space-between;margin-top:20px;">
+        ${p>0?`<button onclick="render(${p-1})">BACK</button>`:''}
+        <button onclick="render(${p+1})">NEXT</button>
+      </div>`;
 
-    var nextBtn;
-    if(isP5){ nextBtn='<button onclick="__la.p5()" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;opacity:0.95;">CALCULATE</button>';
-    } else if(isLast){ nextBtn='<button onclick="__la.go(\'R\')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;opacity:0.95;">GET MY RESULTS</button>';
-    } else { nextBtn='<button onclick="__la.go('+(pi+2)+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:14px 36px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;opacity:0.95;">NEXT PILLAR</button>';
-    }
-
-    var backTarget=pi===1?1:(pi===6&&OB===false)?5:pi;
-    var backBtn=pi===0?'':'<button onclick="__la.go('+backTarget+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#6b5a38;background:none;border:none;cursor:pointer;transition:color 0.3s;padding:0;">← BACK</button>';
-
-    return prog(pi)+'<div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:5px;color:#b8984e;margin-bottom:10px;">PILLAR '+(pi+1)+' OF 7</div>'+
-      '<div style="font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#c1b085;letter-spacing:2px;margin-bottom:12px;line-height:1.15;">'+pl.n.toUpperCase()+'</div>'+
-      '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#a09484;line-height:1.6;margin-bottom:20px;">'+pl.d+'</div>'+
-      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div><div style="font-family:Bodoni Moda,serif;font-size:13px;font-style:italic;color:#8a7240;">Items to Document</div><div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div></div>'+
-      counterHTML(pi)+'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:'+(isP5?'0':'52px')+';">'+rows+'</div>'+gate+
-      '<div style="display:flex;justify-content:'+(pi===0?'flex-end':'space-between')+';align-items:center;">'+backBtn+nextBtn+'</div>';
+    document.getElementById('pg-rest').innerHTML = html;
   }
 
-  function resultsHTML(){
-    var includeBiz=OB===true, totalChecked=0, totalMax=0, pillarData=[];
-    for(var pi=0;pi<7;pi++){
-      if(pi===5&&!includeBiz) continue;
-      var checked=pillarChecked(pi), max=pillarMax(pi);
-      totalChecked+=checked; totalMax+=max;
-      var pPct=max>0?Math.round(checked/max*100):0, pTier;
-      if(max===0) pTier='N/A';
-      else if(checked===max) pTier='Fully Documented';
-      else if(pPct>=75) pTier='Nearly Complete';
-      else if(pPct>=25) pTier='Needs Attention';
-      else pTier='Critical Gaps';
-      var items=[];
-      for(var ii=0;ii<6;ii++) items.push({name:P[pi].i[ii],checked:ST[pi][ii]===1,na:NA[pi][ii]===1});
-      pillarData.push({index:pi,name:P[pi].n,checked:checked,max:max,percent:pPct,tier:pTier,items:items});
+  window.__la = {
+    t(p,i){
+      ST[p][i]=ST[p][i]?0:1;
+      if(ST[p][i]) NA[p][i]=0;
+      save(); render(p);
+    },
+    n(p,i){
+      NA[p][i]=NA[p][i]?0:1;
+      if(NA[p][i]) ST[p][i]=0;
+      save(); render(p);
+    },
+    start(){
+      render(0);
+    },
+    send(){
+      const payload = {
+        name:document.getElementById('la-fn')?.value||'',
+        email:document.getElementById('la-em')?.value||'',
+        state:ST,
+        na:NA,
+        time:new Date().toISOString()
+      };
+
+      fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+      });
+
+      document.getElementById('pg-rest').innerHTML =
+        `<div class="result-box">
+          <div class="result-score">COMPLETE</div>
+          <p>We’ve received your analysis.</p>
+        </div>`;
     }
-    var percent=totalMax>0?Math.round(totalChecked/totalMax*100):0, tier;
-    if(percent>=86) tier='COMPREHENSIVE';
-    else if(percent>=66) tier='WELL STRUCTURED';
-    else if(percent>=46) tier='CRITICAL COMPLEXITY';
-    else if(percent>=21) tier='LEAN & READY';
-    else tier='LEGACY AT RISK';
+  };
 
-    function tColor(t){
-      if(t==='Fully Documented'||t==='COMPREHENSIVE') return '#4a7c59';
-      if(t==='Nearly Complete'||t==='WELL STRUCTURED') return '#7a8a3e';
-      if(t==='Needs Attention'||t==='CRITICAL COMPLEXITY'||t==='LEAN & READY') return '#b8984e';
-      return '#8b3a3a';
-    }
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('pg-rest').innerHTML =
+      `<button onclick="__la.start()">START ANALYSIS</button>`;
+  });
 
-    var pillarRows='', weakest=null, weakestPct=101, totalGaps=totalMax-totalChecked;
-    for(var p=0;p<pillarData.length;p++){
-      var pd=pillarData[p], barW=pd.max>0?pd.percent:0, pc=tColor(pd.tier);
-      if(pd.tier!=='N/A'&&pd.percent<weakestPct){weakestPct=pd.percent;weakest=pd;}
-      pillarRows+='<div style="margin-bottom:28px;">'+
-        '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">'+
-        '<span style="font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:2px;color:#fdfcfa;text-transform:uppercase;">'+pd.name+'</span>'+
-        '<span style="font-family:Cinzel,serif;font-size:18px;font-weight:700;color:#c1b085;">'+pd.checked+'/'+pd.max+'</span></div>'+
-        '<div style="background:#1a1510;border-radius:4px;height:8px;width:100%;margin-bottom:6px;">'+
-        '<div style="background:linear-gradient(90deg,'+pc+',#c1b085);height:8px;border-radius:4px;width:'+barW+'%;"></div></div>'+
-        '<div style="font-family:Cinzel,serif;font-size:11px;font-weight:600;letter-spacing:2px;color:'+pc+';text-transform:uppercase;">'+pd.tier+'</div></div>';
-    }
-
-    var wn=weakest?weakest.name:'your most critical areas';
-    var rec;
-    if(percent>=86) rec='Your continuity planning is strong. A Life Manual would formalize everything into a single successor-ready system.';
-    else if(percent>=66) rec='You have solid foundations — but the remaining gaps could still create real confusion for your family.';
-    else if(percent>=46) rec='Your planning has real complexity creating hidden risk. The gaps you\'re carrying could cost your family dozens of hours and real money.';
-    else rec='Your continuity gaps are significant. Without action, your family faces potentially weeks of confusion and costly decisions made in the dark.';
-
-    var tc=tColor(tier);
-
-    window.__laResults={score:totalChecked,maxScore:totalMax,percent:percent,tier:tier,businessOwner:includeBiz,pillarData:pillarData,recommendation:rec};
-
-    return '<div style="max-width:600px;margin:0 auto;">'+
-      '<div style="text-align:center;margin-bottom:36px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:11px;letter-spacing:6px;color:#b8984e;text-transform:uppercase;margin-bottom:20px;">7 PILLAR AUDIT</div>'+
-      '<div style="font-family:Cinzel,serif;font-size:26px;font-weight:700;color:#fdfcfa;letter-spacing:2px;margin-bottom:8px;">Your Continuity Score</div></div>'+
-
-      '<div style="text-align:center;margin-bottom:32px;">'+
-      '<div style="display:inline-flex;align-items:center;justify-content:center;width:150px;height:150px;border-radius:50%;border:3px solid '+tc+';">'+
-      '<div><div style="font-family:Cinzel,serif;font-size:48px;font-weight:700;color:#fdfcfa;line-height:1;">'+percent+'<span style="font-size:22px;color:#c1b085;">%</span></div>'+
-      '<div style="font-family:Georgia,serif;font-size:12px;color:#c1b085;">'+totalChecked+' of '+totalMax+'</div></div></div>'+
-      '<div style="margin-top:14px;font-family:Cinzel,serif;font-size:12px;font-weight:600;letter-spacing:2px;color:'+tc+';text-transform:uppercase;">'+tier+'</div></div>'+
-
-      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div><div style="font-family:Bodoni Moda,serif;font-size:13px;font-style:italic;color:#8a7240;">Performance Summary</div><div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div></div>'+
-
-      '<div style="font-family:Cinzel,serif;font-size:12px;letter-spacing:4px;color:#b8984e;margin-bottom:20px;text-transform:uppercase;">Pillar Overview</div>'+
-      pillarRows+
-
-      '<div style="background:#13100c;border:1px solid #2a2218;border-radius:6px;padding:24px;margin-bottom:36px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:11px;letter-spacing:4px;color:#b8984e;margin-bottom:12px;text-transform:uppercase;">What This Means</div>'+
-      '<div style="font-family:Georgia,serif;font-size:16px;font-style:italic;color:#fdfcfa;line-height:1.6;">'+rec+'</div></div>'+
-
-      '<div style="background:#13100c;border:1px solid #c1b085;border-radius:6px;padding:32px;margin-bottom:36px;text-align:center;">'+
-      '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;color:#c1b085;margin-bottom:8px;text-transform:uppercase;">Unlock Your Full Breakdown</div>'+
-      '<div style="font-family:Bodoni Moda,serif;font-size:15px;font-style:italic;color:#9a8d7a;margin-bottom:8px;">See exactly which items need attention in each pillar</div>'+
-      '<div style="font-family:Georgia,serif;font-size:13px;color:#6b5a38;margin-bottom:24px;">You have '+totalGaps+' uncovered items across '+pillarData.length+' pillars. We\'ll send the complete breakdown to your email.</div>'+
-      '<div style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto;">'+
-      '<input id="la-fn" type="text" placeholder="First name" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#fdfcfa;">'+
-      '<input id="la-em" type="email" placeholder="Email address" style="font-family:Georgia,serif;font-size:15px;padding:12px 16px;background:#0a0806;border:1px solid #342a1c;border-radius:2px;color:#fdfcfa;">'+
-      '<button id="la-send" onclick="__la.send()" style="font-family:Cinzel,serif;font-size:14px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;padding:12px 24px;border-radius:2px;cursor:pointer;transition:opacity 0.3s;">SEND MY RESULTS</button>'+
-      '<div id="la-msg" style="font-family:Georgia,serif;font-size:13px;color:#9a8d7a;min-height:20px;"></div></div></div>'+
-
-      '<div style="text-align:center;margin-bottom:36px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:3px;color:#b8984e;margin-bottom:16px;text-transform:uppercase;">Ready to Close the Gaps?</div>'+
-      '<div style="display:flex;flex-direction:column;gap:14px;align-items:center;">'+
-      '<a href="https://buy.stripe.com/dRm5kw3n46D1f3O7Bs1Nu01" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);text-decoration:none;padding:14px 36px;border-radius:2px;transition:opacity 0.3s;opacity:0.95;">ORDER YOUR LIFE MANUAL</a>'+
-      '<a href="https://cal.com/legacyarchitectrva/the-blueprint-session" target="_blank" style="display:inline-block;font-family:Cinzel,serif;font-size:12px;letter-spacing:2px;color:#c1b085;text-decoration:none;border:1px solid #c1b085;padding:12px 24px;border-radius:2px;transition:all 0.3s;opacity:0.95;">Schedule a Planning Session</a>'+
-
-      '<div style="text-align:center;border-top:1px solid #2a2218;padding-top:24px;">'+
-      '<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#8d774a;">LEGACY ARCHITECT RVA</div>'+
-      '<div style="font-family:Bodoni Moda,serif;font-size:12px;font-style:italic;color:#8a7e6a;margin-top:8px;">&ldquo;Order in Your Absence&rdquo;</div></div></div>';
-  }
-
-  function showRest(html){ var el=document.getElementById('p
+})();
+</script>
