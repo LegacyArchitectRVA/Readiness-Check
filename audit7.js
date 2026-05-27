@@ -362,4 +362,19 @@ window.__la = window.__la || {};
   },150);
 console.log('AUDIT LOADED');
 alert('AUDIT LOADED');
+if (document.head) {
+  var style = document.createElement('style');
+  style.innerHTML = `
+    html.embed-mode body > *:not(#la-wrap) {
+      display: none !important;
+    }
+
+    html.embed-mode body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
 })();
