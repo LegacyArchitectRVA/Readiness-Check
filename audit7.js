@@ -1,337 +1,279 @@
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+(function () {
+  if (window.__laLoaded) return;
+  window.__laLoaded = true;
 
-<style>
-#la{
-  font-family:Lora,serif;
-  max-width:760px;
-  margin:0 auto;
-  color:#fdfcfa;
-}
+  const WEBHOOK = "https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
 
-/* PROGRESS RING */
-.ringWrap{
-  display:flex;
-  justify-content:center;
-  margin:18px 0 8px;
-}
-svg{transform:rotate(-90deg);}
-.bgRing{fill:none;stroke:#2a2218;stroke-width:10;}
-.progressRing{
-  fill:none;
-  stroke:#c1b085;
-  stroke-width:10;
-  stroke-linecap:round;
-  filter:drop-shadow(0 0 10px rgba(193,176,133,.6));
-  transition:stroke-dashoffset .6s ease;
-}
+  window.__la = window.__la || {};
 
-/* PULSE STATES */
-@keyframes glowGold{
-  0%{box-shadow:0 0 6px rgba(193,176,133,.15);}
-  50%{box-shadow:0 0 18px rgba(193,176,133,.6);}
-  100%{box-shadow:0 0 6px rgba(193,176,133,.15);}
-}
-@keyframes glowRed{
-  0%{box-shadow:0 0 6px rgba(180,60,60,.15);}
-  50%{box-shadow:0 0 18px rgba(180,60,60,.65);}
-  100%{box-shadow:0 0 6px rgba(180,60,60,.15);}
-}
-.pulseGold{animation:glowGold 2s infinite;}
-.pulseRed{animation:glowRed 1.4s infinite;}
+  // -----------------------------
+  // STATE (client-facing only)
+  // -----------------------------
+  let ST = Array.from({ length: 7 }, () => Array(6).fill(0));
+  let NA = Array.from({ length: 7 }, () => Array(6).fill(0));
 
-/* ITEMS */
-.item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 10px;
-  margin:6px 0;
-  border:1px solid transparent;
-  transition:.3s;
-}
+  let current = 0;
 
-.left{
-  display:flex;
-  gap:12px;
-  flex:1;
-  cursor:pointer;
-}
+  const $ = (id) => document.getElementById(id);
 
-.box{
-  width:22px;
-  height:22px;
-  border:1px solid #7a6842;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.2s;
-}
-.box.on{
-  border-color:#c1b085;
-  box-shadow:0 0 14px rgba(193,176,133,.8);
-}
-.box svg{
-  opacity:0;
-  transform:scale(.6);
-  transition:.2s;
-}
-.box.on svg{
-  opacity:1;
-  transform:scale(1);
-}
+  // -----------------------------
+  // SAFE INIT (hide Carrd page 1 duplication)
+  // -----------------------------
+  function init() {
+    const pg1 = $("pg1");
+    if (pg1) pg1.style.display = "none";
 
-.label{
-  font-family:Cinzel;
-  font-size:14px;
-  color:#9a8d7a;
-}
-.label.on{
-  color:#c1b085;
-  text-shadow:0 0 10px rgba(193,176,133,.3);
-}
+    const rest = $("pg-rest");
+    if (rest) {
+      rest.style.transition = "all .4s ease";
+      rest.style.opacity = 1;
+    }
 
-.na{
-  font-family:Cinzel;
-  font-size:11px;
-  padding:6px 10px;
-  border:1px solid #342a1c;
-  background:transparent;
-  color:#4a3d28;
-  cursor:pointer;
-}
-.na.on{
-  border-color:#c1b085;
-  color:#b8984e;
-  box-shadow:0 0 10px rgba(193,176,133,.5);
-}
+    go(0);
+  }
 
-/* BUTTONS */
-.btn{
-  width:100%;
-  margin-top:14px;
-  padding:14px;
-  font-family:Cinzel;
-  background:linear-gradient(135deg,#c1b085,#d4c4a0);
-  border:none;
-  color:#100d0a;
-  cursor:pointer;
-}
+  // -----------------------------
+  // SCORE ENGINE (simple + stable)
+  // -----------------------------
+  function score() {
+    let t = 0, m = 0;
 
-/* SLIDE ANIMATION */
-.slideIn{
-  animation:slideIn .35s ease;
-}
-@keyframes slideIn{
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:translateY(0);}
-}
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 6; j++) {
+        if (!NA[i][j]) {
+          m++;
+          t += ST[i][j];
+        }
+      }
+    }
 
-input{
-  width:100%;
-  padding:12px;
-  margin:6px 0;
-  font-family:Lora;
-  background:#0a0806;
-  border:1px solid #342a1c;
-  color:#fff;
-}
-</style>
+    return m ? Math.round((t / m) * 100) : 0;
+  }
 
-<div id="la"><div id="view"></div></div>
+  function totalGaps() {
+    let g = 0;
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 6; j++) {
+        if (!ST[i][j] && !NA[i][j]) g++;
+      }
+    }
+    return g;
+  }
 
-<script>
-(function(){
+  // -----------------------------
+  // UI HELPERS
+  // -----------------------------
+  function ring(percent) {
+    const c = 2 * Math.PI * 54;
+    const offset = c - (percent / 100) * c;
 
-const WEBHOOK="https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
+    return `
+      <svg width="170" height="170">
+        <circle cx="85" cy="85" r="54"
+          stroke="#2a2218" stroke-width="6" fill="none"/>
+        <circle cx="85" cy="85" r="54"
+          stroke="#c1b085" stroke-width="6" fill="none"
+          stroke-linecap="round"
+          stroke-dasharray="${c}"
+          stroke-dashoffset="${offset}"
+          style="transition: stroke-dashoffset 1s ease;
+                 filter: drop-shadow(0 0 10px rgba(193,176,133,0.5));"/>
+        <text x="50%" y="50%" text-anchor="middle"
+          dy=".3em"
+          fill="#c1b085"
+          font-size="28"
+          font-family="Cinzel">
+          ${percent}%
+        </text>
+      </svg>
+    `;
+  }
 
-const P=[
-"Digital Life","Financial Assets","Property & Access",
-"Medical (2-Factor Authentication)","Legal Estate","Business Continuity","Legacy & Wishes"
-];
+  function pill(on) {
+    return `
+      width:22px;height:22px;
+      border:1px solid ${on ? "#c1b085" : "#5a4b33"};
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:${on ? "0 0 10px rgba(193,176,133,0.6)" : "none"};
+      transition:all .3s;
+      margin-right:12px;
+      color:#c1b085;
+      font-size:14px;
+    `;
+  }
 
-const items=Array.from({length:7},()=>Array(6).fill(0));
-const na=Array.from({length:7},()=>Array(6).fill(0));
+  // -----------------------------
+  // TOGGLE
+  // -----------------------------
+  function toggle(pi, ii) {
+    ST[pi][ii] = ST[pi][ii] ? 0 : 1;
+    NA[pi][ii] = 0;
+    render(current);
+  }
 
-let step=0;
+  window.__la.t = toggle;
 
-/* SCORE */
-const score=p=>items[p].reduce((a,b)=>a+b,0);
-const max=p=>6-na[p].reduce((a,b)=>a+b,0);
+  // -----------------------------
+  // NAVIGATION (ANIMATED SLIDE)
+  // -----------------------------
+  function go(pi) {
+    current = pi;
 
-function total(){
-let t=0,m=0;
-for(let i=0;i<7;i++){t+=score(i);m+=max(i);}
-return {t,m,pct:m?Math.round((t/m)*100):0};
-}
+    const el = $("pg-rest");
+    if (!el) return;
 
-/* RING */
-function ring(){
-const {pct}=total();
-const r=70;
-const c=2*Math.PI*r;
-const o=c-(pct/100)*c;
+    el.style.opacity = 0;
+    el.style.transform = "translateY(10px)";
 
-return `
-<div class="ringWrap ${pct>80?'pulseGold':pct<40?'pulseRed':''}">
-<svg width="180" height="180">
-<circle class="bgRing" cx="90" cy="90" r="${r}"/>
-<circle class="progressRing" cx="90" cy="90" r="${r}"
-style="stroke-dasharray:${c};stroke-dashoffset:${o};"/>
-</svg>
-</div>
-<div style="text-align:center;font-family:Cinzel;color:#c1b085;">
-${pct}% Continuity Score
-</div>`;
-}
+    setTimeout(() => {
+      if (pi === "R") {
+        el.innerHTML = results();
+      } else {
+        el.innerHTML = pillar(pi);
+      }
 
-/* CRM BUILDER (HIDDEN INSIGHTS) */
-function buildCRM(){
+      el.style.opacity = 1;
+      el.style.transform = "translateY(0)";
+    }, 180);
+  }
 
-const {t,m,pct}=total();
+  window.__la.go = go;
 
-let tier="AT RISK";
-if(pct>85)tier="COMPREHENSIVE";
-else if(pct>65)tier="STRUCTURED";
-else if(pct>40)tier="FRAGILE";
+  window.__la.next = function (pi) {
+    go(pi + 1);
+  };
 
-/* weakest pillar */
-let weakest=null, worst=999;
-let gaps=[];
+  // -----------------------------
+  // PILLAR UI (NO INSIGHTS)
+  // -----------------------------
+  function pillar(pi) {
+    const items = [
+      "PRIMARY EMAIL ACCESS",
+      "PASSWORD",
+      "CLOUD STORAGE",
+      "2FA AUTHENTICATION",
+      "SOCIAL MEDIA ACCESS",
+      "DIGITAL ARCHIVES"
+    ];
 
-for(let i=0;i<7;i++){
-let g=max(i)-score(i);
-gaps.push({pillar:P[i],gap:g});
-if(g<worst){worst=g;weakest=P[i];}
-}
+    const rows = items.map((txt, i) => {
+      const on = ST[pi][i];
 
-/* follow-ups */
-let followUps=[
-Date.now(),
-Date.now()+86400000,
-Date.now()+259200000
-];
+      return `
+        <div onclick="__la.t(${pi},${i})"
+          style="
+            display:flex;align-items:center;
+            padding:12px;
+            margin:8px 0;
+            border:1px solid ${on ? "#c1b085" : "#2a2218"};
+            background:${on ? "rgba(193,176,133,0.05)" : "transparent"};
+            cursor:pointer;
+            transition:all .3s;
+          ">
+          <div style="${pill(on)}">
+            ${on ? "✓" : ""}
+          </div>
+          <div style="font-family:Cinzel;color:${on ? "#c1b085" : "#9a8d7a"};">
+            ${txt}
+          </div>
+        </div>
+      `;
+    }).join("");
 
-/* public share id */
-let shareId=Math.random().toString(36).substring(2,10);
+    const progress = Math.round((pi / 6) * 100);
 
-return {
-score:t,
-max:m,
-percent:pct,
-tier,
-weakest,
-gaps,
-followUps,
-shareLink:location.origin+location.pathname+"#"+shareId,
-crmTag:pct>75?"HOT LEAD":"STANDARD",
-riskLevel:pct<50?"HIGH":"MEDIUM"
-};
-}
+    return `
+      <div style="margin-bottom:20px;height:4px;background:#2a2218;">
+        <div style="width:${progress}%;height:4px;background:#c1b085;transition:width .5s;"></div>
+      </div>
 
-/* RENDER */
-function render(anim=true){
+      <div style="max-width:700px;margin:auto;">
+        <div style="font-family:Cinzel;font-size:28px;color:#c1b085;">
+          Pillar ${pi + 1}
+        </div>
 
-const v=document.getElementById("view");
-const {t,m,pct}=total();
+        <div style="color:#a09484;font-style:italic;margin-bottom:20px;">
+          Complete this section to continue
+        </div>
 
-let h=ring()+
-`<h2 style="text-align:center;font-family:Cinzel;">${P[step]}</h2>`;
+        ${rows}
 
-/* items */
-for(let i=0;i<6;i++){
+        <button onclick="__la.next(${pi})"
+          style="margin-top:20px;padding:14px 24px;background:#c1b085;border:none;cursor:pointer;">
+          NEXT
+        </button>
+      </div>
+    `;
+  }
 
-let on=items[step][i];
-let n=na[step][i];
+  // -----------------------------
+  // RESULTS (CLIENT-FACING ONLY)
+  // -----------------------------
+  function results() {
+    const s = score();
 
-h+=`
-<div class="item ${anim?'slideIn':''}">
-<div class="left" onclick="toggle(${step},${i})">
-<div class="box ${on?'on':''}">
-<svg width="12" height="10"><path d="M1 5L4 8L11 1" stroke="#c1b085"/></svg>
-</div>
-<div class="label ${on?'on':''}">Item ${i+1}</div>
-</div>
-<button class="na ${n?'on':''}" onclick="toggleNA(${step},${i})">N/A</button>
-</div>`;
-}
+    return `
+      <div style="text-align:center;padding:40px;">
+        ${ring(s)}
 
-h+=`<button class="btn" onclick="next()">
-${step<6?'NEXT PILLAR':'FINISH ANALYSIS'}
-</button>`;
+        <div style="margin-top:20px;font-family:Cinzel;color:#c1b085;">
+          Your Continuity Score
+        </div>
 
-/* EMAIL CAPTURE ONLY ON LAST STEP */
-if(step===6){
-h+=`
-<div style="margin-top:16px">
-<input id="nm" placeholder="First Name">
-<input id="em" placeholder="Email">
+        <div style="margin-top:30px;">
+          <input id="la-name" placeholder="Name"
+            style="padding:10px;margin:5px;border:1px solid #2a2218;background:#0b0a08;color:#fff;">
+          <input id="la-email" placeholder="Email"
+            style="padding:10px;margin:5px;border:1px solid #2a2218;background:#0b0a08;color:#fff;">
+        </div>
 
-<button class="btn" onclick="send()">SEND FULL ANALYSIS</button>
-<button class="btn" onclick="downloadPDF()">DOWNLOAD REPORT</button>
-</div>`;
-}
+        <button onclick="__la.send()"
+          style="margin-top:20px;padding:14px 24px;background:#c1b085;border:none;cursor:pointer;">
+          SEND MY RESULTS
+        </button>
 
-v.innerHTML=h;
-}
+        <div id="la-msg" style="margin-top:10px;color:#9a8d7a;"></div>
+      </div>
+    `;
+  }
 
-/* ACTIONS */
-window.toggle=(p,i)=>{
-items[p][i]=items[p][i]?0:1;
-if(items[p][i]) na[p][i]=0;
-render();
-};
+  // -----------------------------
+  // WEBHOOK (PRIVATE DATA ONLY)
+  // -----------------------------
+  async function send() {
+    const name = $("la-name")?.value || "";
+    const email = $("la-email")?.value || "";
 
-window.toggleNA=(p,i)=>{
-na[p][i]=na[p][i]?0:1;
-if(na[p][i]) items[p][i]=0;
-render();
-};
+    const payload = {
+      name,
+      email,
+      score: score(),
+      totalGaps: totalGaps(),
+      matrix: ST,
+      naMatrix: NA,
+      timestamp: new Date().toISOString()
+    };
 
-window.next=()=>{if(step<6)step++;render();};
+    try {
+      await fetch(WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-/* SEND WEBHOOK */
-function send(){
+      const msg = $("la-msg");
+      if (msg) msg.innerText = "Results sent.";
+    } catch (e) {
+      const msg = $("la-msg");
+      if (msg) msg.innerText = "Send failed.";
+    }
+  }
 
-const crm=buildCRM();
+  window.__la.send = send;
 
-fetch(WEBHOOK,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-name:document.getElementById("nm")?.value||"",
-email:document.getElementById("em")?.value||"",
-crm,
-raw:{items,na},
-timestamp:new Date().toISOString()
-})
-});
-
-document.getElementById("view").innerHTML=
-`<div style="text-align:center;font-family:Cinzel;">
-<h2>Analysis Sent</h2>
-<p>Your results are being prepared.</p>
-</div>`;
-}
-
-/* PDF */
-function downloadPDF(){
-const crm=buildCRM();
-const {jsPDF}=window.jspdf;
-const doc=new jsPDF();
-
-doc.text("Analysis Report",10,10);
-doc.text("Score: "+crm.percent+"%",10,20);
-doc.text("Tier: "+crm.tier,10,30);
-doc.text("Weakest: "+crm.weakest,10,40);
-
-doc.save("analysis-report.pdf");
-}
-
-window.send=send;
-window.downloadPDF=downloadPDF;
-
-/* INIT */
-render();
-
+  // -----------------------------
+  // BOOT
+  // -----------------------------
+  console.log("PREMIUM V2 LOADED");
+  init();
 })();
-</script>
