@@ -1,255 +1,76 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7-Pillar Continuity Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Bodoni+Moda:wght@400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0d0c;--card:#151412;--gold:#e3cf8a;--line:#312b20;--txt:#f3efe6}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Georgia,serif}
-.wrap{max-width:960px;margin:auto;padding:24px}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px}
-h1,h2,h3{color:var(--gold)} .progress{height:10px;background:#221f19;border-radius:999px;overflow:hidden;margin:16px 0 24px}
-.bar{height:100%;background:var(--gold)} .item{display:flex;justify-content:space-between;gap:20px;align-items:center;border:1px solid var(--line);padding:16px;border-radius:16px;margin:12px 0}
-.opts{display:flex;gap:10px}.opt{padding:10px 14px;border:1px solid #555;border-radius:999px;cursor:pointer}
-.active{border-color:var(--gold)!important;box-shadow:0 0 16px rgba(227,207,138,.45)}
-button{width:100%;padding:14px;border:0;border-radius:14px;background:var(--gold);font-weight:700}
-.ring{width:220px;height:220px;border-radius:50%;margin:20px auto;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(227,207,138,.4)}
-input{width:100%;padding:12px;margin:8px 0;background:#111;color:#fff;border:1px solid #444;border-radius:10px}
-@media(max-width:700px){.item{flex-direction:column;align-items:flex-start}}
-</style></head><body>
-<div class="wrap"><div id="app" class="card"></div></div>
+:root{--gold:#e3cf8a;--goldsoft:rgba(227,207,138,.18);--line:#2a241c;--bg:#0a0a08}
+body{margin:0;background:var(--bg);color:#f4f1ea;font-family:'Bodoni Moda',serif}
+#wrap{max-width:720px;margin:auto;padding:52px 24px 100px}
+.stepbar{display:flex;gap:6px;margin-bottom:28px}
+.seg{flex:1;height:2px;background:var(--line)}
+.seg.active{background:var(--gold);box-shadow:0 0 10px var(--goldsoft)}
+.gold{color:var(--gold)}
+.muted{color:#a59c8f;line-height:1.8}
+.toggle{border:1px solid var(--line);padding:16px;border-radius:12px;margin:12px 0}
+.row{display:flex;justify-content:space-between;gap:16px;align-items:center}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opt{padding:8px 14px;border:1px solid var(--line);cursor:pointer;border-radius:999px;font-size:12px;letter-spacing:1px}
+.opt.active{border-color:var(--gold);box-shadow:0 0 12px var(--goldsoft),0 0 26px rgba(227,207,138,.10);color:var(--gold)}
+button{width:100%;padding:14px;background:var(--gold);border:none;font-family:Cinzel;letter-spacing:2px;margin-top:18px}
+.alt{background:#1b1712;color:var(--gold);border:1px solid var(--line)}
+.ring{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:24px auto;border:1px solid var(--line)}
+.ring.legend{border-color:var(--gold);box-shadow:0 0 18px var(--goldsoft),0 0 40px rgba(227,207,138,.12);animation:pulse 3s infinite}
+.score{font-family:Cinzel;font-size:48px;color:var(--gold)}
+input{width:100%;padding:12px;background:#0a0a08;border:1px solid var(--line);color:white;margin-top:10px}
+@keyframes pulse{50%{transform:scale(1.02)}}
+@media(max-width:700px){.row{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="app"></div></div>
 <script>
-const pillars=[
-["Digital Life",["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication Recovery Methods","Social Media Access","Digital Archive"]],
-["Financial & Assets",["Banking & Credit Access","Investment & Retirement Accounts","Cryptocurrency Wallets & Keys","Income Sources Documentation","Recurring Bills & Subscriptions","Emergency Financial Instructions"]],
-["Household & Property",["Property Deeds & Titles","Vehicle Registrations","Home Maintenance Records","Utility Account Access","Security & Access Information","Household Inventory Documentation"]],
-["Health & Medical",["Health Insurance Information","Medical Records & History","Prescription Medications List","Advance Directives","Emergency Contact Information","Healthcare Provider Information"]],
-["Legal & Estate",["Last Will & Testament","Trust Documentation","Powers of Attorney","Life Insurance Policies","Business Entities","Estate Planning Documents"]],
-["Business Continuity",["Business Entity Documents","Business Banking Access","Operating Agreements","Key Customer & Vendor Records","Critical Systems & Logins","Succession Planning"]],
-["Legacy & Wishes",["Personal Letters & Messages","Ethical Will Statement","Funeral Preferences","Obituary Information","Family History & Stories","Personal Wishes & Instructions"]]
+const P=[
+{n:"Digital Life",i:["Primary Email Access","Password Manager","Cloud Storage","2FA Recovery Methods","Social Media Accounts","Digital Archive"]},
+{n:"Financial & Assets",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
+{n:"Household & Property",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
+{n:"Health & Medical",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
+{n:"Legal & Estate",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
+{n:"Business Continuity",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
+{n:"Legacy & Wishes",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
-let step=0,biz=true,ans={};
-function active(){return biz?pillars:pillars.filter(p=>p[0]!=="Business Continuity")}
-function scoreData(){
- let recorded=0,na=0,total=active().length*6;
- Object.values(ans).forEach(v=>{if(v==="R") recorded++; if(v==="N") na++;});
- let applicable=Math.max(1,total-na);
- let score=Math.round((recorded/applicable)*100);
- let tier=score>=86?"Continuity Legend":score>=71?"Stable Continuity":score>=61?"Developing Continuity":"Legacy at Risk";
- return {score,tier,recorded,na,applicable};
-}
-function pick(k,v,el){
- ans[k]=v;
- el.parentNode.querySelectorAll('.opt').forEach(x=>x.classList.remove('active'));
- el.classList.add('active');
-}
+let step=0,business=false; const A={};
+function pillars(){return business?P:P.filter(x=>x.n!=="Business Continuity")}
+function calc(){let rec=0,na=0,total=0; pillars().forEach((p,pi)=>{total+=p.i.length;p.i.forEach((_,ii)=>{const v=A[pi+"_"+ii];if(v==="R")rec++;if(v==="N")na++;});}); return Math.round((rec/Math.max(1,total-na))*100);}
+function tier(s){if(s>=86)return"CONTINUITY LEGEND";if(s>=71)return"STABLE CONTINUITY";if(s>=61)return"DEVELOPING CONTINUITY";return"LEGACY AT RISK";}
+function pick(k,v){A[k]=v;render();}
 function render(){
- const app=document.getElementById('app');
- if(step===0){
-  app.innerHTML=`<h1>7-Pillar Continuity Analysis</h1>
-  <p>Select Recorded if documented. If it doesn't apply or you're unsure, select N/A. N/A items don't count against your score.</p>
-  <label><input type="radio" name="b" checked onclick="biz=true"> Yes, I own a business</label><br>
-  <label><input type="radio" name="b" onclick="biz=false"> No, I don't own a business</label><br><br>
-  <button onclick="step=1;render()">Begin Analysis</button>`; return;
- }
- let p=active();
- if(step<=p.length){
-  let idx=step-1;
-  app.innerHTML=`<div>PILLAR ${step} OF ${p.length}</div><div class="progress"><div class="bar" style="width:${(idx/p.length)*100}%"></div></div><h2>${p[idx][0]}</h2>`;
-  p[idx][1].forEach((t,i)=>{
-   app.innerHTML+=`<div class="item"><div>${t}</div><div class="opts">
-   <span class="opt" onclick="pick('${idx}_${i}','R',this)">Recorded</span>
-   <span class="opt" onclick="pick('${idx}_${i}','N',this)">N/A</span>
-   </div></div>`;
-  });
-  app.innerHTML+=`<button onclick="step++;window.scrollTo(0,0);render()">Continue</button>`; return;
- }
- let d=scoreData();
- app.innerHTML=`<div class="ring"><h1>${d.score}%</h1></div>
- <h2 style="text-align:center">${d.tier}</h2>
- <p style="text-align:center">Recorded: ${d.recorded} | N/A: ${d.na} | Applicable Items: ${d.applicable}</p>
- <p style="text-align:center">Most households score between 40% and 65%. Scores above 86% qualify as Continuity Legend.</p>
- <input placeholder="First Name"><input placeholder="Email Address">
- <button>REQUEST MY FULL ANALYSIS</button>`;
+const app=document.getElementById('app');
+if(step===0){app.innerHTML=`<div class="stepbar"><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+<div class="gold" style="font-family:Cinzel;letter-spacing:3px">7-PILLAR CONTINUITY ANALYSIS</div>
+<p class="muted">The 7-Pillar Continuity Analysis evaluates how prepared your household is to maintain continuity when life changes unexpectedly.</p>
+<p class="muted">For each item, indicate whether it has been documented, organized, and can be located by the people who may need it.</p>
+<p class="muted">If a category doesn't apply to your circumstances, or if you're uncertain whether it applies, select N/A. Items marked N/A are excluded from scoring and won't affect your Continuity Score.</p>
+<p class="muted">Upon completion, you'll receive your Continuity Score and Continuity Tier, providing a high-level view of your current continuity readiness.</p>
+<p class="muted">Do you currently own or operate a business?</p>
+<button onclick="business=true;step=1;render()">CONTINUE AS BUSINESS OWNER</button>
+<button class="alt" onclick="business=false;step=1;render()">CONTINUE AS INDIVIDUAL</button>`;return;}
+const ps=pillars();
+if(step<=ps.length){let p=ps[step-1];app.innerHTML=`<div class="stepbar">${Array.from({length:ps.length},(_,i)=>`<div class="seg ${i<=step-1?'active':''}"></div>`).join('')}</div><div class="gold" style="font-family:Cinzel;letter-spacing:3px">DOMAIN ${step} OF ${ps.length}</div><h2 style="font-family:Cinzel">${p.n}</h2><p class="muted">Review each item below.<br><br><p class="muted">
+Select the items that have been documented and can be located when needed.
+</p></p>`;
+p.i.forEach((item,idx)=>{const k=(step-1)+"_"+idx;app.innerHTML+=`<div class="toggle"><div class="row"><div>${item}</div><div class="opts"><div class="opt ${A[k]=='R'?'active':''}" onclick="pick('${k}','R')">RECORDED</div><div class="opt ${A[k]=='N'?'active':''}" onclick="pick('${k}','N')">N/A</div></div></div></div>`;});
+app.innerHTML+=`<button onclick="step++;window.scrollTo(0,0);render()">CONTINUE</button>`;return;}
+const s=calc();
+app.innerHTML=`<div class="ring ${s>=86?'legend':''}"><div class="score">${s}%</div></div><div style="text-align:center;font-family:Cinzel;letter-spacing:2px">${tier(s)}</div>
+<p class="muted" style="text-align:center">${s>=86?"Your continuity systems are comprehensively documented and positioned to support others when access and clarity matter most.":s>=71?"A strong continuity foundation exists, though some areas could benefit from additional organization and documentation.":s>=61?"Important continuity elements are in place, but meaningful gaps remain that could create confusion during critical moments.":"Significant continuity gaps are present. Key information may be difficult for others to locate or manage when needed."}</p>
+<p class="muted" style="text-align:center">Most households score between 40% and 65%.</p>
+<div class="muted" style="text-align:center">CONTINUITY LEGEND 86–100%<br><br>STABLE CONTINUITY 71–85%<br><br>DEVELOPING CONTINUITY 61–70%<br><br>LEGACY AT RISK 0–60%</div>
+<input placeholder="First Name"><input placeholder="Email Address"><button>REQUEST FULL ANALYSIS REPORT</button>`;
 }
 render();
-</script></body></html>  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  border: 1px solid #7A6842;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background: transparent;
-}
-
-.lamk {
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.2s, transform 0.2s;
-  filter: drop-shadow(0 0 3px rgba(193,176,133,0.9));
-}
-
-.lalb {
-  font-family: Cinzel, serif;
-  font-size: 17px;
-  letter-spacing: 2px;
-  color: #9a8d7a;
-  transition: color 0.2s, text-shadow 0.2s;
-}
-
-.lacb:checked + .larow .lamk { opacity: 1; transform: scale(1); }
-.lacb:checked + .larow .lash {
-  border-color: #c1b085;
-  box-shadow: 0 0 12px rgba(193,176,133,0.6), 0 0 24px rgba(193,176,133,0.25), inset 0 0 8px rgba(193,176,133,0.1);
-}
-.lacb:checked + .larow .lalb {
-  color: #c1b085;
-  text-shadow: 0 0 12px rgba(193,176,133,0.3);
-}
-
-.lana-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  min-width: 42px;
-  height: 24px;
-  padding: 0 8px;
-  flex-shrink: 0;
-  font-family: Cinzel, serif;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  font-weight: 700;
-  color: #4a3d28;
-  line-height: 1;
-  border: 1px solid #342a1c;
-  border-radius: 2px;
-  cursor: pointer;
-  background: transparent;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
-}
-
-/* Match checkbox styling when unchecked */
-.lana-btn {
-  border-color: #7A6842;
-  color: #4a3d28;
-}
-
-.lana:checked + .lana-btn {
-  border-color: #c1b085;
-  background: rgba(193,176,133,0.08);
-  box-shadow: 0 0 12px rgba(193,176,133,0.5), 0 0 24px rgba(193,176,133,0.2);
-  color: #b8984e;
-}
-
-/* Row styling for N/A state */
-.la-item-wrap.la-na-active {
-  opacity: 0.35;
-}
-</style>
-
-<div id="la-wrap" style="background:transparent;color:#fdfcfa;padding:48px 20px 60px;font-family:'Bodoni Moda',serif;">
-  <div style="max-width:620px;margin:0 auto;">
-
-    <div id="pg1">
-      <!-- Progress Bar -->
-      <div style="display:flex;gap:6px;margin-bottom:52px;">
-        <div style="height:3px;flex:1;background:#c1b085;border-radius:2px;box-shadow:0 0 8px rgba(193,176,133,0.6);"></div>
-        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
-        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
-        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
-        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
-        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
-        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
-      </div>
-
-      <div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:5px;color:#b8984e;margin-bottom:10px;">PILLAR 1 OF 7</div>
-      <div style="font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#c1b085;letter-spacing:2px;margin-bottom:12px;line-height:1.15;">DIGITAL LIFE</div>
-      <div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#a09484;line-height:1.6;margin-bottom:20px;">Access and continuity for essential digital systems.</div>
-
-      <!-- Divider -->
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;">
-        <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>
-        <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:#6b5a38;">✦</div>
-        <div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>
-      </div>
-
-      <!-- Counter injected here by JS -->
-
-      <!-- Items -->
-      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:52px;">
-        <div class="la-item-wrap" id="r0-0">
-          <input type="checkbox" id="c0-0" class="lacb">
-          <label for="c0-0" class="larow">
-            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="lalb">PRIMARY EMAIL ACCESS</span>
-          </label>
-          <input type="checkbox" id="na0-0" class="lana">
-          <label for="na0-0" class="lana-btn" onclick="__la.handleNA(0, 0, event)">N/A</label>
-        </div>
-
-        <div class="la-item-wrap" id="r0-1">
-          <input type="checkbox" id="c0-1" class="lacb">
-          <label for="c0-1" class="larow">
-            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="lalb">PASSWORD MANAGER</span>
-          </label>
-          <input type="checkbox" id="na0-1" class="lana">
-          <label for="na0-1" class="lana-btn" onclick="__la.handleNA(0, 1, event)">N/A</label>
-        </div>
-
-        <div class="la-item-wrap" id="r0-2">
-          <input type="checkbox" id="c0-2" class="lacb">
-          <label for="c0-2" class="larow">
-            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="lalb">CLOUD STORAGE</span>
-          </label>
-          <input type="checkbox" id="na0-2" class="lana">
-          <label for="na0-2" class="lana-btn" onclick="__la.handleNA(0, 2, event)">N/A</label>
-        </div>
-
-        <div class="la-item-wrap" id="r0-3">
-          <input type="checkbox" id="c0-3" class="lacb">
-          <label for="c0-3" class="larow">
-            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="lalb">2FA RECOVERY KEYS</span>
-          </label>
-          <input type="checkbox" id="na0-3" class="lana">
-          <label for="na0-3" class="lana-btn" onclick="__la.handleNA(0, 3, event)">N/A</label>
-        </div>
-
-        <div class="la-item-wrap" id="r0-4">
-          <input type="checkbox" id="c0-4" class="lacb">
-          <label for="c0-4" class="larow">
-            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="lalb">SOCIAL MEDIA ACCESS</span>
-          </label>
-          <input type="checkbox" id="na0-4" class="lana">
-          <label for="na0-4" class="lana-btn" onclick="__la.handleNA(0, 4, event)">N/A</label>
-        </div>
-
-        <div class="la-item-wrap" id="r0-5">
-          <input type="checkbox" id="c0-5" class="lacb">
-          <label for="c0-5" class="larow">
-            <div class="lash"><svg class="lamk" width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="lalb">DIGITAL ARCHIVES</span>
-          </label>
-          <input type="checkbox" id="na0-5" class="lana">
-          <label for="na0-5" class="lana-btn" onclick="__la.handleNA(0, 5, event)">N/A</label>
-        </div>
-      </div>
-
-      <!-- Next Button -->
-      <div style="text-align:right;position:relative;">
-        <input type="checkbox" id="la-go" class="lacb">
-        <label for="la-go" style="display:inline-block;font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);">NEXT PILLAR</label>
-      </div>
-    </div>
-
-    <div id="pg-rest"></div>
-
-  </div>
-</div>
-
-<script src="https://legacyarchitectrva.github.io/la-audit/audit7.js"></script>
+</script>
+</body>
+</html>
