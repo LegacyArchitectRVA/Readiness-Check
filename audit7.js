@@ -1,9 +1,7 @@
 (function(){
   if(window.__laLoaded)return;
   window.__laLoaded=true;
-if (window.self !== window.top) {
-  document.documentElement.classList.add('embed-mode');
-}
+
 window.__la = window.__la || {};
 
   var P=[
@@ -225,4 +223,5 @@ window.__la = window.__la || {};
       '<div style="font-family:Bodoni Moda,serif;font-size:12px;font-style:italic;color:#8a7e6a;margin-top:8px;">&ldquo;Order in Your Absence&rdquo;</div></div></div>';
   }
 
-  function showRest(html){ var el=document.getElementById('pg-rest'); if(!el)return; el.innerHTML=html; el.style.animation='none'; void el.offsetWidth; e
+  function showRest(html){ var el=document.getElementById('pg-rest'); if(!el)return; el.innerHTML=html; el.style.animation='none'; void el.offsetWidth; el.style.animation='la-in 0.4s ease'; }
+  function hidePg1(){var e=document.getElementById('
