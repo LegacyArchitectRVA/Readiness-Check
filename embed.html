@@ -1,105 +1,291 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>Legacy Analysis Audit</title>
+<title>Legacy Analysis Engine</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0b0a08;
-      color: #fdfcfa;
-      font-family: 'Bodoni Moda', serif;
-      overflow-x: hidden;
-    }
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  background:#0b0a08;
+  color:#fdfcfa;
+  font-family:Bodoni Moda,serif;
+}
 
-    #la-wrap {
-      padding: 40px 18px 60px;
-      box-sizing: border-box;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+#wrap{padding:40px 18px;max-width:900px;margin:0 auto;}
 
-    /* CRITICAL FIX:
-       Prevent static Pillar 1 from ever conflicting with JS rendering */
-    #pg1 {
-      display: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      overflow: hidden !important;
-      pointer-events: none !important;
-    }
+.page{
+  opacity:1;
+  transform:translateY(0);
+  transition:all .45s ease;
+}
 
-    #pg-rest {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.4s ease;
-    }
+.fade-out{
+  opacity:0;
+  transform:translateY(10px);
+}
 
-    /* smooth UI base */
-    button, input {
-      font-family: Cinzel, serif;
-    }
+.progress{
+  display:flex;gap:6px;margin-bottom:40px;
+}
 
-    input {
-      outline: none;
-    }
+.bar{
+  flex:1;height:3px;background:#2a2218;border-radius:2px;
+  overflow:hidden;
+  position:relative;
+}
 
-    /* mobile tuning */
-    @media (max-width: 600px) {
-      #la-wrap {
-        padding: 24px 14px 60px;
-      }
-    }
-  </style>
+.bar::after{
+  content:"";
+  position:absolute;left:0;top:0;height:100%;width:0%;
+  background:linear-gradient(90deg,#8a7030,#c1b085);
+  transition:width .4s ease;
+}
+
+.glow{
+  box-shadow:0 0 14px rgba(193,176,133,.35);
+}
+
+.pill{
+  font-family:Cinzel,serif;
+  letter-spacing:4px;
+  color:#b8984e;
+  font-size:12px;
+}
+.title{
+  font-family:Cinzel,serif;
+  font-size:30px;
+  color:#c1b085;
+}
+
+.item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 10px;
+  border:1px solid #2a2218;
+  margin:8px 0;
+  transition:all .3s ease;
+}
+
+.left{
+  display:flex;align-items:center;gap:12px;cursor:pointer;flex:1;
+}
+
+.box{
+  width:22px;height:22px;border:1px solid #7A6842;
+  display:flex;align-items:center;justify-content:center;
+  transition:.25s;
+  position:relative;
+}
+
+.check{
+  width:12px;height:8px;border-left:2px solid #c1b085;border-bottom:2px solid #c1b085;
+  transform:rotate(-45deg) scale(0);
+  transition:.2s;
+}
+
+.na{
+  padding:4px 10px;
+  border:1px solid #2a2218;
+  cursor:pointer;
+  font-size:11px;
+  letter-spacing:2px;
+  transition:.3s;
+}
+
+.na.active{
+  border-color:#c1b085;
+  box-shadow:0 0 12px rgba(193,176,133,.4);
+}
+
+.ring{
+  width:120px;height:120px;border-radius:50%;
+  border:3px solid #2a2218;
+  display:flex;align-items:center;justify-content:center;
+  margin:30px auto;
+  position:relative;
+}
+
+.ring::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:1px solid rgba(193,176,133,.15);
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:.2;transform:scale(1);}
+  50%{opacity:.6;transform:scale(1.05);}
+  100%{opacity:.2;transform:scale(1);}
+}
+</style>
 </head>
 
 <body>
+<div id="wrap">
 
-<div id="la-wrap">
-
-  <!--
-    IMPORTANT:
-    We KEEP pg1 only for compatibility with old Carrd structure,
-    but it is fully disabled above.
-  -->
-  <div id="pg1"></div>
-
-  <!-- JS RENDER TARGET (ALL UI GOES HERE) -->
-  <div id="pg-rest"></div>
+<div id="app"></div>
 
 </div>
 
-<!-- LOAD ENGINE -->
-<script src="audit7.js?v=3"></script>
-
-<!-- SAFETY BOOTSTRAP -->
 <script>
-  (function () {
-    function boot() {
-      if (!window.__la || !window.__la.go) {
-        console.log("Waiting for audit engine...");
-        setTimeout(boot, 50);
-        return;
-      }
+const WEBHOOK="https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
 
-      // Force clean start
-      try {
-        __la.go(0);
-      } catch (e) {
-        console.log("Boot error:", e);
-      }
-    }
+const P=[
+{n:"Digital Life",i:["PRIMARY EMAIL ACCESS","PASSWORD MANAGER","CLOUD STORAGE","2-FACTOR AUTHENTICATION RECOVERY","SOCIAL MEDIA ACCESS","DIGITAL ARCHIVE"]},
+{n:"Financial & Assets",i:["BANK ACCOUNTS","INVESTMENTS","CRYPTO WALLETS","RETIREMENT ACCOUNTS","INSURANCE POLICIES","DEBTS"]},
+{n:"Household & Property",i:["DEEDS","VEHICLE REGISTRATION","UTILITIES","HOME MAINTENANCE","ACCESS KEYS","DOCUMENT STORAGE"]},
+{n:"Health & Medical",i:["INSURANCE","MEDICAL HISTORY","PRESCRIPTIONS","EMERGENCY CONTACTS","DIRECTIVES","SPECIALISTS"]},
+{n:"Legal & Estate",i:["WILL","TRUST","POWER OF ATTORNEY","LIFE INSURANCE","BUSINESS STRUCTURES","LEGAL FILES"]},
+{n:"Business Continuity",i:["BUSINESS ACCOUNTS","OPERATIONS","VENDORS","CUSTOMERS","CONTRACTS","PROCESSES"]},
+{n:"Legacy & Wishes",i:["PERSONAL LETTERS","ETHICAL WILL","FUNERAL PREFERENCES","OBITUARY NOTES","MESSAGES","FINAL WISHES"]}
+];
 
-    window.addEventListener("DOMContentLoaded", function () {
-      setTimeout(boot, 80);
-    });
-  })();
+let ST=Array.from({length:7},()=>Array(6).fill(0));
+let NA=Array.from({length:7},()=>Array(6).fill(0));
+let OB=null;
+let page=0;
+
+const el=id=>document.getElementById(id);
+
+function checked(p){
+return ST[p].reduce((a,b)=>a+b,0);
+}
+
+function max(p){
+return 6-NA[p].reduce((a,b)=>a+b,0);
+}
+
+function renderProgress(p){
+let h='<div class="progress">';
+for(let i=0;i<7;i++){
+h+=`<div class="bar ${i<=p?'glow':''}"></div>`;
+}
+return h+'</div>';
+}
+
+function toggle(p,i){
+ST[p][i]=ST[p][i]?0:1;
+if(ST[p][i]) NA[p][i]=0;
+render(page,true);
+}
+
+function toggleNA(p,i){
+NA[p][i]=NA[p][i]?0:1;
+if(NA[p][i]) ST[p][i]=0;
+render(page,true);
+}
+
+function item(p,i){
+const on=ST[p][i];
+const na=NA[p][i];
+
+return `
+<div class="item" style="opacity:${na?0.4:1}">
+  <div class="left" onclick="toggle(${p},${i})">
+    <div class="box" style="border-color:${on?'#c1b085':'#7A6842'}">
+      <div class="check" style="transform:${on?'rotate(-45deg) scale(1)':'rotate(-45deg) scale(0)'}"></div>
+    </div>
+    <div style="color:${on?'#c1b085':'#9a8d7a'}">${P[p].i[i]}</div>
+  </div>
+  <div class="na ${na?'active':''}" onclick="toggleNA(${p},${i})">N/A</div>
+</div>`;
+}
+
+function pillar(p){
+let rows='';
+for(let i=0;i<6;i++) rows+=item(p,i);
+
+return `
+${renderProgress(p)}
+<div class="pill">PILLAR ${p+1} OF 7</div>
+<div class="title">${P[p].n}</div>
+
+<div class="ring glow">${checked(p)} / ${max(p)}</div>
+
+${rows}
+
+<button onclick="next()" style="margin-top:20px;padding:14px 24px;background:#c1b085;border:none;font-family:Cinzel;">NEXT</button>
+`;
+}
+
+function results(){
+let total=0,maxT=0;
+let breakdown=[];
+
+for(let i=0;i<7;i++){
+let c=checked(i);
+let m=max(i);
+total+=c;
+maxT+=m;
+breakdown.push({n:P[i].n,c,m});
+}
+
+let pct=Math.round((total/maxT)*100);
+
+return `
+<div style="text-align:center">
+<div class="pill">ANALYSIS COMPLETE</div>
+<div class="title">${pct}% COMPLETE</div>
+
+<div class="ring glow">${total}/${maxT}</div>
+
+${breakdown.map(b=>`
+<div style="margin:10px 0;text-align:left">
+${b.n} — ${b.c}/${b.m}
+</div>
+`).join("")}
+
+<div style="margin-top:30px">
+<input id="nm" placeholder="First name" style="padding:10px;width:80%;margin-bottom:10px"><br>
+<input id="em" placeholder="Email" style="padding:10px;width:80%">
+<br><br>
+<button onclick="send()" style="padding:14px 24px;background:#c1b085;border:none;">GET FULL ANALYSIS</button>
+</div>
+</div>`;
+}
+
+function send(){
+const payload={
+name:el("nm").value,
+email:el("em").value,
+score:window._score
+};
+
+fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+alert("Your analysis has been sent.");
+}
+
+function next(){
+page++;
+if(page>6){renderResults();return;}
+render(page);
+}
+
+function render(p,keep=false){
+const app=el("app");
+app.classList.add("page");
+app.innerHTML=p<7?pillar(p):results();
+setTimeout(()=>app.classList.remove("fade-out"),50);
+window._score={
+checked:ST,
+na:NA
+};
+}
+
+function renderResults(){
+page=7;
+el("app").classList.add("fade-out");
+setTimeout(()=>render(7),300);
+}
+
+render(0);
 </script>
 
 </body>
