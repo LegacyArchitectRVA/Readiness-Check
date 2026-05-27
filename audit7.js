@@ -1,7 +1,9 @@
 (function(){
   if(window.__laLoaded)return;
   window.__laLoaded=true;
-
+if (window.self !== window.top) {
+  document.documentElement.classList.add('embed-mode');
+}
 window.__la = window.__la || {};
 
   var P=[
