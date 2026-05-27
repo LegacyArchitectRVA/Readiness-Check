@@ -1,4 +1,6 @@
 (function(){
+  console.log("AUDIT JS LOADED SUCCESSFULLY");
+document.body.style.border = "5px solid red";
   if(window.__laLoaded)return;
   window.__laLoaded=true;
 if (window.self !== window.top) {
