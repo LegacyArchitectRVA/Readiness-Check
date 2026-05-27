@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Quiet Legacy Continuity Analysis</title>
+<title>7-Post Continuity Analysis</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Bodoni+Moda:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
@@ -19,97 +19,118 @@
   #wrap{
     max-width:760px;
     margin:0 auto;
-    padding:40px 22px 80px;
+    padding:42px 22px 90px;
   }
 
-  .gold{color:#b89a4a;}
+  /* LIGHTER PREMIUM GOLD */
+  :root{
+    --gold:#e3cf8a;
+    --gold-soft:rgba(227,207,138,0.22);
+    --line:#2a241c;
+  }
 
+  .gold{color:var(--gold);}
+
+  /* STEP BAR */
   .stepbar{
     display:flex;
     gap:6px;
-    margin-bottom:30px;
+    margin-bottom:28px;
   }
 
   .seg{
     flex:1;
     height:2px;
-    background:#2a241c;
+    background:var(--line);
     transition:0.3s;
   }
 
   .seg.active{
-    background:#b89a4a;
+    background:var(--gold);
+    box-shadow:0 0 10px var(--gold-soft);
   }
 
-  /* SLIDER STYLE SELECTOR */
+  /* ANALYSIS SELECTOR */
   .toggle{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     padding:14px 12px;
-    border:1px solid #2a241c;
     margin:10px 0;
+    border:1px solid var(--line);
     cursor:pointer;
     transition:0.25s;
+    background:rgba(0,0,0,0.15);
   }
 
   .toggle.active{
-    border-color:#b89a4a;
-    box-shadow:0 0 14px rgba(185,154,74,0.25);
+    border-color:var(--gold);
+    box-shadow:0 0 18px var(--gold-soft);
+    background:rgba(227,207,138,0.03);
   }
 
   .state{
-    font-size:12px;
-    letter-spacing:2px;
-    width:90px;
+    width:110px;
     text-align:right;
-    color:#8b8174;
+    font-size:11px;
+    letter-spacing:2px;
+    color:#7d7568;
   }
 
   .state.active{
-    color:#b89a4a;
+    color:var(--gold);
   }
 
-  /* FINAL SCORE RING */
+  /* FINAL RING */
   .ring{
-    width:160px;
-    height:160px;
+    width:170px;
+    height:170px;
     border-radius:50%;
-    border:2px solid #3a3328;
+    border:1px solid var(--line);
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:30px auto;
+    margin:32px auto;
     transition:0.4s;
   }
 
   .ring.glow{
-    border-color:#b89a4a;
-    box-shadow:0 0 25px rgba(185,154,74,0.35);
-    animation:pulse 2.8s infinite;
+    border-color:var(--gold);
+    box-shadow:
+      0 0 18px var(--gold-soft),
+      0 0 40px rgba(227,207,138,0.12);
+    animation:softPulse 3.2s ease-in-out infinite;
   }
 
-  @keyframes pulse{
+  @keyframes softPulse{
     0%{transform:scale(1);}
-    50%{transform:scale(1.02);}
+    50%{transform:scale(1.015);}
     100%{transform:scale(1);}
   }
 
   .score{
     font-family:Cinzel;
-    font-size:44px;
-    color:#b89a4a;
+    font-size:46px;
+    color:var(--gold);
+    text-shadow:0 0 18px var(--gold-soft);
   }
 
   button{
     width:100%;
     padding:14px;
-    background:#b89a4a;
+    background:var(--gold);
     border:none;
+    color:#0a0a08;
     font-family:Cinzel;
     letter-spacing:2px;
     cursor:pointer;
     margin-top:18px;
+    transition:0.25s;
+  }
+
+  button:hover{
+    box-shadow:0 0 18px var(--gold-soft);
+    transform:translateY(-1px);
   }
 
   input{
@@ -117,7 +138,7 @@
     padding:12px;
     margin-top:10px;
     background:#0a0a08;
-    border:1px solid #2a241c;
+    border:1px solid var(--line);
     color:#f4f1ea;
   }
 
@@ -150,31 +171,21 @@ let NA=Array.from({length:7},()=>Array(6).fill(0));
 let step=0;
 let business=false;
 
-function checked(p){
-  return ST[p].reduce((a,v)=>a+v,0);
-}
-
-function max(p){
-  return 6-NA[p].reduce((a,v)=>a+v,0);
-}
-
+function checked(p){return ST[p].reduce((a,v)=>a+v,0);}
+function max(p){return 6-NA[p].reduce((a,v)=>a+v,0);}
 function score(){
   let t=0,m=0;
-  for(let i=0;i<7;i++){
-    t+=checked(i);
-    m+=max(i);
-  }
+  for(let i=0;i<7;i++){t+=checked(i);m+=max(i);}
   return m?Math.round(t/m*100):0;
 }
 
 function tier(s){
   if(s>=86)return"CONTINUITY LEGEND";
-  if(s>=71)return"STABLE";
+  if(s>=71)return"STABLE ANALYSIS";
   if(s>=61)return"AT RISK";
-  return"CRITICAL";
+  return"CRITICAL GAPS";
 }
 
-/* SLIDER TOGGLE */
 function toggle(p,i){
   if(ST[p][i]){
     ST[p][i]=0;
@@ -190,35 +201,31 @@ function toggle(p,i){
 function render(){
 
 if(step===0){
-  document.getElementById("app").innerHTML=`
-    <div class="stepbar">
-      <div class="seg active"></div>
-      <div class="seg"></div>
-      <div class="seg"></div>
-      <div class="seg"></div>
-      <div class="seg"></div>
-      <div class="seg"></div>
-      <div class="seg"></div>
-    </div>
+document.getElementById("app").innerHTML=`
+<div class="stepbar">
+${Array.from({length:7},(_,i)=>`<div class="seg ${i===0?'active':''}"></div>`).join('')}
+</div>
 
-    <div class="gold" style="letter-spacing:3px;font-family:Cinzel;">
-      STEP 0 — CONTINUITY ANALYSIS
-    </div>
+<div class="gold" style="font-family:Cinzel;letter-spacing:3px;">
+7-POST CONTINUITY ANALYSIS
+</div>
 
-    <p class="muted">
-      This analysis evaluates continuity readiness across 7 life pillars.
-      If unsure, mark as N/A — it does not impact your score.
-    </p>
+<p class="muted">
+This analysis evaluates continuity structure across 7 core life domains.
+If uncertain, select N/A — it is excluded from scoring.
+</p>
 
-    <p class="muted">
-      <b>Business question:</b><br>
-      Do you own or operate a business requiring continuity planning?
-    </p>
+<p class="muted">
+<b>Business question:</b><br>
+Do you operate a business requiring continuity planning?
+</p>
 
-    <button onclick="business=true;step=1;render()">YES / CONTINUE</button>
-    <button onclick="business=false;step=1;render()" style="background:#2a241c;color:#b89a4a;">NO / CONTINUE</button>
-  `;
-  return;
+<button onclick="business=true;step=1;render()">CONTINUE AS BUSINESS OWNER</button>
+<button onclick="business=false;step=1;render()" style="background:#1b1712;color:var(--gold);border:1px solid var(--line);">
+CONTINUE AS INDIVIDUAL
+</button>
+`;
+return;
 }
 
 if(step<=7){
@@ -231,30 +238,31 @@ ${Array.from({length:7},(_,i)=>`<div class="seg ${i<p?'active':''}"></div>`).joi
 </div>
 
 <div class="gold" style="font-family:Cinzel;letter-spacing:3px;">
-PILLAR ${p+1} OF 7
+DOMAIN ${p+1} OF 7 — ANALYSIS
 </div>
 
 <h2 style="font-family:Cinzel;">${P[p].n}</h2>
 
 <p class="muted">
-If a topic is not visible or seems missing, confirm N/A selection — no data is assumed.
+If an item is not visible or does not apply, confirm N/A selection.
+No assumption is made in scoring.
 </p>
 
-<div>
 ${P[p].i.map((x,i)=>`
   <div class="toggle ${(ST[p][i]||NA[p][i])?'active':''}" onclick="toggle(${p},${i})">
     <div>${x||""}</div>
     <div class="state ${(ST[p][i]||NA[p][i])?'active':''}">
-      ${ST[p][i]?'RECORDED':NA[p][i]?'N/A':'SELECT'}
+      ${ST[p][i]?'RECORDED':NA[p][i]?'NOT APPLICABLE':'SELECT'}
     </div>
   </div>
 `).join('')}
-</div>
 
-<button onclick="step++;render()">NEXT</button>
+<button onclick="step++;render()">CONTINUE</button>
 `;
 return;
 }
+
+/* FINAL */
 
 let s=score();
 let t=tier(s);
@@ -269,9 +277,9 @@ document.getElementById("app").innerHTML=`
 ${t}
 </div>
 
-<p class="muted" style="text-align:center;margin-top:16px;">
+<p class="muted" style="text-align:center;margin-top:14px;">
 ${s>=86
-?"Fully structured continuity profile."
+?"Fully structured continuity profile across all domains."
 :s>=71
 ?"Strong continuity foundation with limited gaps."
 :s>=61
@@ -282,7 +290,7 @@ ${s>=86
 <input id="name" placeholder="First name"/>
 <input id="email" placeholder="Email address"/>
 
-<button onclick="send()">REQUEST FULL CONTINUITY REPORT</button>
+<button onclick="send()">REQUEST FULL ANALYSIS REPORT</button>
 <div id="msg" class="muted"></div>
 `;
 
@@ -294,7 +302,8 @@ async function send(){
     email:document.getElementById("email").value,
     score:score(),
     tier:tier(score()),
-    business:business
+    business:business,
+    mode:"7-post-continuity-analysis"
   };
 
   await fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
@@ -303,7 +312,7 @@ async function send(){
     body:JSON.stringify(payload)
   });
 
-  document.getElementById("msg").innerText="Request received. Preparing continuity report.";
+  document.getElementById("msg").innerText="Analysis request received. Preparing continuity report.";
 }
 
 render();
