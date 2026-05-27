@@ -2,290 +2,280 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Legacy Analysis Engine</title>
+<title>Quiet Legacy Continuity Report</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Bodoni+Moda:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  background:#0b0a08;
-  color:#fdfcfa;
-  font-family:Bodoni Moda,serif;
-}
+  body {
+    margin:0;
+    background:#0b0a08;
+    color:#f2efe8;
+    font-family:'Bodoni Moda', serif;
+  }
 
-#wrap{padding:40px 18px;max-width:900px;margin:0 auto;}
+  #wrap {
+    max-width:720px;
+    margin:0 auto;
+    padding:40px 20px 80px;
+  }
 
-.page{
-  opacity:1;
-  transform:translateY(0);
-  transition:all .45s ease;
-}
+  .muted { color:#a89f91; }
 
-.fade-out{
-  opacity:0;
-  transform:translateY(10px);
-}
+  .bar {
+    display:flex;
+    gap:6px;
+    margin:18px 0 28px;
+  }
 
-.progress{
-  display:flex;gap:6px;margin-bottom:40px;
-}
+  .seg {
+    flex:1;
+    height:2px;
+    background:#2a241c;
+  }
 
-.bar{
-  flex:1;height:3px;background:#2a2218;border-radius:2px;
-  overflow:hidden;
-  position:relative;
-}
+  .seg.active {
+    background:#b89a4a;
+  }
 
-.bar::after{
-  content:"";
-  position:absolute;left:0;top:0;height:100%;width:0%;
-  background:linear-gradient(90deg,#8a7030,#c1b085);
-  transition:width .4s ease;
-}
+  .pill {
+    margin-bottom:18px;
+    border-bottom:1px solid rgba(184,154,74,0.12);
+    padding-bottom:14px;
+  }
 
-.glow{
-  box-shadow:0 0 14px rgba(193,176,133,.35);
-}
+  .item {
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    cursor:pointer;
+    opacity:0.9;
+  }
 
-.pill{
-  font-family:Cinzel,serif;
-  letter-spacing:4px;
-  color:#b8984e;
-  font-size:12px;
-}
-.title{
-  font-family:Cinzel,serif;
-  font-size:30px;
-  color:#c1b085;
-}
+  .state {
+    width:18px;
+    text-align:center;
+    color:#b89a4a;
+  }
 
-.item{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 10px;
-  border:1px solid #2a2218;
-  margin:8px 0;
-  transition:all .3s ease;
-}
+  .na {
+    color:#6b645a;
+    font-size:12px;
+    cursor:pointer;
+  }
 
-.left{
-  display:flex;align-items:center;gap:12px;cursor:pointer;flex:1;
-}
+  .legend-ring {
+    border:1px solid #b89a4a;
+    padding:22px;
+    text-align:center;
+    margin:30px 0;
+  }
 
-.box{
-  width:22px;height:22px;border:1px solid #7A6842;
-  display:flex;align-items:center;justify-content:center;
-  transition:.25s;
-  position:relative;
-}
+  .score {
+    font-size:54px;
+    color:#b89a4a;
+    font-family:Cinzel;
+  }
 
-.check{
-  width:12px;height:8px;border-left:2px solid #c1b085;border-bottom:2px solid #c1b085;
-  transform:rotate(-45deg) scale(0);
-  transition:.2s;
-}
+  button {
+    width:100%;
+    padding:14px;
+    background:#b89a4a;
+    border:none;
+    font-family:Cinzel;
+    letter-spacing:2px;
+    cursor:pointer;
+  }
 
-.na{
-  padding:4px 10px;
-  border:1px solid #2a2218;
-  cursor:pointer;
-  font-size:11px;
-  letter-spacing:2px;
-  transition:.3s;
-}
-
-.na.active{
-  border-color:#c1b085;
-  box-shadow:0 0 12px rgba(193,176,133,.4);
-}
-
-.ring{
-  width:120px;height:120px;border-radius:50%;
-  border:3px solid #2a2218;
-  display:flex;align-items:center;justify-content:center;
-  margin:30px auto;
-  position:relative;
-}
-
-.ring::after{
-  content:"";
-  position:absolute;
-  inset:-6px;
-  border-radius:50%;
-  border:1px solid rgba(193,176,133,.15);
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%{opacity:.2;transform:scale(1);}
-  50%{opacity:.6;transform:scale(1.05);}
-  100%{opacity:.2;transform:scale(1);}
-}
+  input {
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    background:#0b0a08;
+    border:1px solid #2a241c;
+    color:#f2efe8;
+  }
 </style>
 </head>
 
 <body>
 <div id="wrap">
 
-<div id="app"></div>
+  <div id="app"></div>
 
 </div>
 
 <script>
-const WEBHOOK="https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
-
-const P=[
-{n:"Digital Life",i:["PRIMARY EMAIL ACCESS","PASSWORD MANAGER","CLOUD STORAGE","2-FACTOR AUTHENTICATION RECOVERY","SOCIAL MEDIA ACCESS","DIGITAL ARCHIVE"]},
-{n:"Financial & Assets",i:["BANK ACCOUNTS","INVESTMENTS","CRYPTO WALLETS","RETIREMENT ACCOUNTS","INSURANCE POLICIES","DEBTS"]},
-{n:"Household & Property",i:["DEEDS","VEHICLE REGISTRATION","UTILITIES","HOME MAINTENANCE","ACCESS KEYS","DOCUMENT STORAGE"]},
-{n:"Health & Medical",i:["INSURANCE","MEDICAL HISTORY","PRESCRIPTIONS","EMERGENCY CONTACTS","DIRECTIVES","SPECIALISTS"]},
-{n:"Legal & Estate",i:["WILL","TRUST","POWER OF ATTORNEY","LIFE INSURANCE","BUSINESS STRUCTURES","LEGAL FILES"]},
-{n:"Business Continuity",i:["BUSINESS ACCOUNTS","OPERATIONS","VENDORS","CUSTOMERS","CONTRACTS","PROCESSES"]},
-{n:"Legacy & Wishes",i:["PERSONAL LETTERS","ETHICAL WILL","FUNERAL PREFERENCES","OBITUARY NOTES","MESSAGES","FINAL WISHES"]}
+const P = [
+  {n:"Digital Life", i:["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication Keys","Social Media Access","Digital Archive"]},
+  {n:"Financial & Assets", i:["Bank Accounts","Investments","Crypto Wallets","","",""]},
+  {n:"Household & Property", i:["Deeds","Vehicle Registration","Maintenance Records","Utility Access","",""]},
+  {n:"Health & Medical", i:["Insurance","Medical Records","Prescriptions","Directives","",""]},
+  {n:"Legal & Estate", i:["Will","Trust","Power of Attorney","Life Insurance","Business Entities",""]},
+  {n:"Business Continuity", i:["Entity Docs","Banking","Agreements","Vendor Records","",""]},
+  {n:"Legacy & Wishes", i:["Letters","Ethical Will","Funeral Preferences","Obituary","",""]}
 ];
 
-let ST=Array.from({length:7},()=>Array(6).fill(0));
-let NA=Array.from({length:7},()=>Array(6).fill(0));
-let OB=null;
-let page=0;
-
-const el=id=>document.getElementById(id);
+let ST = Array.from({length:7},()=>Array(6).fill(0));
+let NA = Array.from({length:7},()=>Array(6).fill(0));
+let page = 0;
+let OB = null;
 
 function checked(p){
-return ST[p].reduce((a,b)=>a+b,0);
+  return ST[p].reduce((a,v)=>a+v,0);
 }
 
 function max(p){
-return 6-NA[p].reduce((a,b)=>a+b,0);
+  return 6 - NA[p].reduce((a,v)=>a+v,0);
 }
 
-function renderProgress(p){
-let h='<div class="progress">';
-for(let i=0;i<7;i++){
-h+=`<div class="bar ${i<=p?'glow':''}"></div>`;
-}
-return h+'</div>';
+function pct(p){
+  let m = max(p);
+  return m ? Math.round(checked(p)/m*100) : 0;
 }
 
 function toggle(p,i){
-ST[p][i]=ST[p][i]?0:1;
-if(ST[p][i]) NA[p][i]=0;
-render(page,true);
+  ST[p][i] = ST[p][i] ? 0 : 1;
+  if(ST[p][i]) NA[p][i]=0;
+  render();
 }
 
 function toggleNA(p,i){
-NA[p][i]=NA[p][i]?0:1;
-if(NA[p][i]) ST[p][i]=0;
-render(page,true);
+  NA[p][i] = NA[p][i] ? 0 : 1;
+  if(NA[p][i]) ST[p][i]=0;
+  render();
 }
 
-function item(p,i){
-const on=ST[p][i];
-const na=NA[p][i];
+function score(){
+  let t=0,m=0;
+  for(let i=0;i<7;i++){
+    t+=checked(i);
+    m+=max(i);
+  }
+  return m?Math.round(t/m*100):0;
+}
 
-return `
-<div class="item" style="opacity:${na?0.4:1}">
-  <div class="left" onclick="toggle(${p},${i})">
-    <div class="box" style="border-color:${on?'#c1b085':'#7A6842'}">
-      <div class="check" style="transform:${on?'rotate(-45deg) scale(1)':'rotate(-45deg) scale(0)'}"></div>
+function tier(s){
+  if(s>=86) return "CONTINUITY LEGEND";
+  if(s>=71) return "STABLE";
+  if(s>=61) return "AT RISK";
+  return "CRITICAL";
+}
+
+function render(){
+
+  if(page===0){
+    document.getElementById("app").innerHTML = `
+      <div class="bar">
+        ${Array.from({length:7},(_,i)=>`<div class="seg ${i===0?'active':''}"></div>`).join('')}
+      </div>
+
+      <div style="font-family:Cinzel;letter-spacing:3px;color:#b89a4a;">STEP 0 — INSTRUCTIONS</div>
+
+      <p class="muted">
+        This assessment maps continuity readiness across 7 pillars.
+        If unsure whether an item applies, select N/A — it will not affect your score.
+      </p>
+
+      <button onclick="page=1;render()">BEGIN</button>
+    `;
+    return;
+  }
+
+  if(page<=7){
+    let p = page-1;
+
+    document.getElementById("app").innerHTML = `
+      <div class="bar">
+        ${Array.from({length:7},(_,i)=>`<div class="seg ${i<p?'active':''}"></div>`).join('')}
+      </div>
+
+      <div style="font-family:Cinzel;color:#b89a4a;letter-spacing:3px;">
+        PILLAR ${p+1} OF 7
+      </div>
+
+      <h2 style="font-family:Cinzel;">${P[p].n}</h2>
+
+      <div class="pill">
+        ${P[p].i.map((x,i)=>`
+          <div class="item">
+            <div onclick="toggle(${p},${i})">
+              <span class="state">${ST[p][i]?'●':'○'}</span>
+              ${x||""}
+            </div>
+            <div class="na" onclick="toggleNA(${p},${i})">N/A</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <button onclick="page++;render()">NEXT</button>
+    `;
+    return;
+  }
+
+  let s = score();
+  let t = tier(s);
+  let legend = s>=86;
+
+  document.getElementById("app").innerHTML = `
+    <div class="legend-ring">
+      <div class="score">${s}%</div>
+      <div style="font-family:Cinzel;letter-spacing:2px;">${t}</div>
     </div>
-    <div style="color:${on?'#c1b085':'#9a8d7a'}">${P[p].i[i]}</div>
-  </div>
-  <div class="na ${na?'active':''}" onclick="toggleNA(${p},${i})">N/A</div>
-</div>`;
+
+    <p class="muted">
+      ${s>=86
+        ? "Continuity systems are fully structured and resilient."
+        : s>=71
+        ? "Strong foundation with limited structural gaps."
+        : s>=61
+        ? "Moderate fragmentation across continuity systems."
+        : "Significant continuity gaps detected."}
+    </p>
+
+    <div style="margin-top:30px;border:1px solid rgba(184,154,74,0.15);padding:18px;">
+      <div style="font-family:Cinzel;letter-spacing:2px;margin-bottom:10px;">
+        REQUEST FULL CONTINUITY REPORT
+      </div>
+
+      <input id="name" placeholder="First name"/>
+      <input id="email" placeholder="Email address"/>
+
+      <button onclick="send()">REQUEST REPORT</button>
+
+      <div id="msg" style="margin-top:10px;color:#a89f91;font-size:13px;"></div>
+    </div>
+  `;
 }
 
-function pillar(p){
-let rows='';
-for(let i=0;i<6;i++) rows+=item(p,i);
+async function send(){
+  let payload = {
+    name:document.getElementById("name").value,
+    email:document.getElementById("email").value,
+    score:score(),
+    tier:tier(score()),
+    status: score()>=86 ? "legend" : "standard"
+  };
 
-return `
-${renderProgress(p)}
-<div class="pill">PILLAR ${p+1} OF 7</div>
-<div class="title">${P[p].n}</div>
+  try{
+    await fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
+    });
 
-<div class="ring glow">${checked(p)} / ${max(p)}</div>
+    document.getElementById("msg").innerText =
+      "Report request received. Preparing continuity summary.";
 
-${rows}
-
-<button onclick="next()" style="margin-top:20px;padding:14px 24px;background:#c1b085;border:none;font-family:Cinzel;">NEXT</button>
-`;
+  }catch(e){
+    document.getElementById("msg").innerText =
+      "Submission failed. Please retry.";
+  }
 }
 
-function results(){
-let total=0,maxT=0;
-let breakdown=[];
-
-for(let i=0;i<7;i++){
-let c=checked(i);
-let m=max(i);
-total+=c;
-maxT+=m;
-breakdown.push({n:P[i].n,c,m});
-}
-
-let pct=Math.round((total/maxT)*100);
-
-return `
-<div style="text-align:center">
-<div class="pill">ANALYSIS COMPLETE</div>
-<div class="title">${pct}% COMPLETE</div>
-
-<div class="ring glow">${total}/${maxT}</div>
-
-${breakdown.map(b=>`
-<div style="margin:10px 0;text-align:left">
-${b.n} — ${b.c}/${b.m}
-</div>
-`).join("")}
-
-<div style="margin-top:30px">
-<input id="nm" placeholder="First name" style="padding:10px;width:80%;margin-bottom:10px"><br>
-<input id="em" placeholder="Email" style="padding:10px;width:80%">
-<br><br>
-<button onclick="send()" style="padding:14px 24px;background:#c1b085;border:none;">GET FULL ANALYSIS</button>
-</div>
-</div>`;
-}
-
-function send(){
-const payload={
-name:el("nm").value,
-email:el("em").value,
-score:window._score
-};
-
-fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-alert("Your analysis has been sent.");
-}
-
-function next(){
-page++;
-if(page>6){renderResults();return;}
-render(page);
-}
-
-function render(p,keep=false){
-const app=el("app");
-app.classList.add("page");
-app.innerHTML=p<7?pillar(p):results();
-setTimeout(()=>app.classList.remove("fade-out"),50);
-window._score={
-checked:ST,
-na:NA
-};
-}
-
-function renderResults(){
-page=7;
-el("app").classList.add("fade-out");
-setTimeout(()=>render(7),300);
-}
-
-render(0);
+render();
 </script>
 
 </body>
