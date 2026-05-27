@@ -1,107 +1,96 @@
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
-
-#la-wrap{
+#la{
   font-family:Lora,serif;
-  color:#fdfcfa;
-  max-width:680px;
+  max-width:760px;
   margin:0 auto;
+  color:#fdfcfa;
 }
 
-/* ---------------- PROGRESS ---------------- */
-.la-prog{
+/* PROGRESS RING */
+.ringWrap{
   display:flex;
-  gap:6px;
-  margin-bottom:40px;
+  justify-content:center;
+  margin:18px 0 8px;
 }
-.la-bar{
-  flex:1;
-  height:3px;
-  background:#2a2218;
-  border-radius:2px;
-  transition:all .3s;
-}
-.la-bar.on{
-  background:#c1b085;
-  box-shadow:0 0 10px rgba(193,176,133,.6);
-}
-
-/* ---------------- COUNTER ---------------- */
-.la-counter{
-  text-align:center;
-  margin:25px 0;
-}
-.la-counter-box{
-  display:inline-flex;
-  gap:10px;
-  padding:12px 24px;
-  border:1px solid #4a3d28;
-  background:rgba(193,176,133,.05);
-}
-.la-counter-box span{
-  font-family:Cinzel;
-  font-size:28px;
-  color:#c1b085;
+svg{transform:rotate(-90deg);}
+.bgRing{fill:none;stroke:#2a2218;stroke-width:10;}
+.progressRing{
+  fill:none;
+  stroke:#c1b085;
+  stroke-width:10;
+  stroke-linecap:round;
+  filter:drop-shadow(0 0 10px rgba(193,176,133,.6));
+  transition:stroke-dashoffset .6s ease;
 }
 
-/* ---------------- ROW ---------------- */
-.la-row{
+/* PULSE STATES */
+@keyframes glowGold{
+  0%{box-shadow:0 0 6px rgba(193,176,133,.15);}
+  50%{box-shadow:0 0 18px rgba(193,176,133,.6);}
+  100%{box-shadow:0 0 6px rgba(193,176,133,.15);}
+}
+@keyframes glowRed{
+  0%{box-shadow:0 0 6px rgba(180,60,60,.15);}
+  50%{box-shadow:0 0 18px rgba(180,60,60,.65);}
+  100%{box-shadow:0 0 6px rgba(180,60,60,.15);}
+}
+.pulseGold{animation:glowGold 2s infinite;}
+.pulseRed{animation:glowRed 1.4s infinite;}
+
+/* ITEMS */
+.item{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:12px;
-  margin-bottom:8px;
-  border-radius:4px;
-  transition:.25s;
+  padding:12px 10px;
+  margin:6px 0;
+  border:1px solid transparent;
+  transition:.3s;
 }
 
-.la-left{
+.left{
   display:flex;
-  align-items:center;
-  gap:14px;
-  cursor:pointer;
+  gap:12px;
   flex:1;
+  cursor:pointer;
 }
 
-/* CHECKBOX */
-.la-box{
+.box{
   width:22px;
   height:22px;
   border:1px solid #7a6842;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:.25s;
+  transition:.2s;
 }
-.la-box.on{
+.box.on{
   border-color:#c1b085;
-  box-shadow:0 0 12px rgba(193,176,133,.7);
+  box-shadow:0 0 14px rgba(193,176,133,.8);
 }
-.la-box svg{
+.box svg{
   opacity:0;
   transform:scale(.6);
   transition:.2s;
 }
-.la-box.on svg{
+.box.on svg{
   opacity:1;
   transform:scale(1);
 }
 
-/* LABEL */
-.la-label{
+.label{
   font-family:Cinzel;
-  font-size:15px;
+  font-size:14px;
   color:#9a8d7a;
-  letter-spacing:1px;
-  transition:.25s;
 }
-.la-label.on{
+.label.on{
   color:#c1b085;
-  text-shadow:0 0 10px rgba(193,176,133,.4);
+  text-shadow:0 0 10px rgba(193,176,133,.3);
 }
 
-/* N/A BUTTON */
-.naBtn{
+.na{
   font-family:Cinzel;
   font-size:11px;
   padding:6px 10px;
@@ -109,187 +98,240 @@
   background:transparent;
   color:#4a3d28;
   cursor:pointer;
-  transition:.25s;
 }
-.naBtn.on{
+.na.on{
   border-color:#c1b085;
   color:#b8984e;
-  box-shadow:0 0 12px rgba(193,176,133,.5);
+  box-shadow:0 0 10px rgba(193,176,133,.5);
 }
 
-/* ---------------- TITLES ---------------- */
-.title{
-  font-family:Cinzel;
-  font-size:14px;
-  letter-spacing:4px;
-  color:#b8984e;
-}
-.head{
-  font-family:Cinzel;
-  font-size:28px;
-  margin-bottom:6px;
-}
-.sub{
-  font-style:italic;
-  color:#a09484;
-  margin-bottom:20px;
-}
-
-/* ---------------- BUTTONS ---------------- */
-button{
-  cursor:pointer;
-}
-
-/* ---------------- RESULTS ---------------- */
-.result-box{
-  text-align:center;
-  padding:30px;
-}
-.result-score{
-  font-size:46px;
-  color:#c1b085;
-  font-family:Cinzel;
-}
-
-/* ---------------- EMAIL ---------------- */
-input{
+/* BUTTONS */
+.btn{
   width:100%;
-  padding:12px;
-  margin:6px 0;
-  background:#0b0806;
-  border:1px solid #2a2218;
-  color:#fff;
-}
-
-.send-btn{
-  width:100%;
+  margin-top:14px;
   padding:14px;
-  margin-top:10px;
   font-family:Cinzel;
   background:linear-gradient(135deg,#c1b085,#d4c4a0);
   border:none;
   color:#100d0a;
+  cursor:pointer;
+}
+
+/* SLIDE ANIMATION */
+.slideIn{
+  animation:slideIn .35s ease;
+}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  font-family:Lora;
+  background:#0a0806;
+  border:1px solid #342a1c;
+  color:#fff;
 }
 </style>
 
-<div id="la-wrap">
-  <div id="pg1"></div>
-  <div id="pg-rest"></div>
-</div>
+<div id="la"><div id="view"></div></div>
 
 <script>
 (function(){
-  if(window.__laLoaded) return;
-  window.__laLoaded = true;
 
-  const P = [
-    {n:'Digital Life',d:'Access systems',i:['EMAIL','PASSWORDS','CLOUD','2-FACTOR AUTHENTICATION','SOCIAL','ARCHIVE']},
-    {n:'Financial',d:'Money systems',i:['BANK','INVEST','CRYPTO','RETIRE','INSURANCE','TAX']},
-    {n:'Property',d:'Home assets',i:['DEEDS','CAR','UTILITIES','MAINT','INSURANCE','ACCESS']},
-    {n:'Medical',d:'Health info',i:['INSURANCE','RECORDS','RX','ALLERGIES','DOCTOR','DIRECTIVE']},
-    {n:'Legal',d:'Legal docs',i:['WILL','TRUST','POA','POLICIES','BUSINESS','CONTACTS']},
-    {n:'Business',d:'Ops continuity',i:['ENTITY','BANKING','OPS','VENDORS','CLIENTS','ROLES']},
-    {n:'Legacy',d:'Personal intent',i:['LETTER','WISHES','FUNERAL','OBITUARY','MESSAGES','NOTES']}
-  ];
+const WEBHOOK="https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
 
-  let ST = Array.from({length:7},()=>Array(6).fill(0));
-  let NA = Array.from({length:7},()=>Array(6).fill(0));
-  let OB = null;
+const P=[
+"Digital Life","Financial Assets","Property & Access",
+"Medical (2-Factor Authentication)","Legal Estate","Business Continuity","Legacy & Wishes"
+];
 
-  const save = ()=> {
-    localStorage.setItem('la_st',JSON.stringify(ST));
-    localStorage.setItem('la_na',JSON.stringify(NA));
-  };
+const items=Array.from({length:7},()=>Array(6).fill(0));
+const na=Array.from({length:7},()=>Array(6).fill(0));
 
-  const c = p => ST[p].reduce((a,v)=>a+v,0);
-  const m = p => 6-NA[p].reduce((a,v)=>a+v,0);
+let step=0;
 
-  function prog(p){
-    let h='<div class="la-prog">';
-    for(let i=0;i<7;i++){
-      h+=`<div class="la-bar ${i<p?'on':''}"></div>`;
-    }
-    return h+'</div>';
-  }
+/* SCORE */
+const score=p=>items[p].reduce((a,b)=>a+b,0);
+const max=p=>6-na[p].reduce((a,b)=>a+b,0);
 
-  function counter(p){
-    return `<div class="la-counter"><div class="la-counter-box"><span>${c(p)}</span><span>of ${m(p)}</span></div></div>`;
-  }
+function total(){
+let t=0,m=0;
+for(let i=0;i<7;i++){t+=score(i);m+=max(i);}
+return {t,m,pct:m?Math.round((t/m)*100):0};
+}
 
-  function render(p){
-    const d = P[p];
+/* RING */
+function ring(){
+const {pct}=total();
+const r=70;
+const c=2*Math.PI*r;
+const o=c-(pct/100)*c;
 
-    let rows='';
-    for(let i=0;i<6;i++){
-      rows+=`
-      <div class="la-row">
-        <div class="la-left" onclick="__la.t(${p},${i})">
-          <div class="la-box ${ST[p][i]?'on':''}">
-            <svg width="12" height="10"><path d="M1 5L4 8L11 1" stroke="#c1b085"/></svg>
-          </div>
-          <div class="la-label ${ST[p][i]?'on':''}">${d.i[i]}</div>
-        </div>
+return `
+<div class="ringWrap ${pct>80?'pulseGold':pct<40?'pulseRed':''}">
+<svg width="180" height="180">
+<circle class="bgRing" cx="90" cy="90" r="${r}"/>
+<circle class="progressRing" cx="90" cy="90" r="${r}"
+style="stroke-dasharray:${c};stroke-dashoffset:${o};"/>
+</svg>
+</div>
+<div style="text-align:center;font-family:Cinzel;color:#c1b085;">
+${pct}% Continuity Score
+</div>`;
+}
 
-        <button class="naBtn ${NA[p][i]?'on':''}" onclick="__la.n(${p},${i})">N/A</button>
-      </div>`;
-    }
+/* CRM BUILDER (HIDDEN INSIGHTS) */
+function buildCRM(){
 
-    const html =
-      prog(p)+
-      `<div class="title">PILLAR ${p+1}/7</div>`+
-      `<div class="head">${d.n}</div>`+
-      `<div class="sub">${d.d}</div>`+
-      counter(p)+
-      rows+
-      `<div style="display:flex;justify-content:space-between;margin-top:20px;">
-        ${p>0?`<button onclick="render(${p-1})">BACK</button>`:''}
-        <button onclick="render(${p+1})">NEXT</button>
-      </div>`;
+const {t,m,pct}=total();
 
-    document.getElementById('pg-rest').innerHTML = html;
-  }
+let tier="AT RISK";
+if(pct>85)tier="COMPREHENSIVE";
+else if(pct>65)tier="STRUCTURED";
+else if(pct>40)tier="FRAGILE";
 
-  window.__la = {
-    t(p,i){
-      ST[p][i]=ST[p][i]?0:1;
-      if(ST[p][i]) NA[p][i]=0;
-      save(); render(p);
-    },
-    n(p,i){
-      NA[p][i]=NA[p][i]?0:1;
-      if(NA[p][i]) ST[p][i]=0;
-      save(); render(p);
-    },
-    start(){
-      render(0);
-    },
-    send(){
-      const payload = {
-        name:document.getElementById('la-fn')?.value||'',
-        email:document.getElementById('la-em')?.value||'',
-        state:ST,
-        na:NA,
-        time:new Date().toISOString()
-      };
+/* weakest pillar */
+let weakest=null, worst=999;
+let gaps=[];
 
-      fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(payload)
-      });
+for(let i=0;i<7;i++){
+let g=max(i)-score(i);
+gaps.push({pillar:P[i],gap:g});
+if(g<worst){worst=g;weakest=P[i];}
+}
 
-      document.getElementById('pg-rest').innerHTML =
-        `<div class="result-box">
-          <div class="result-score">COMPLETE</div>
-          <p>We’ve received your analysis.</p>
-        </div>`;
-    }
-  };
+/* follow-ups */
+let followUps=[
+Date.now(),
+Date.now()+86400000,
+Date.now()+259200000
+];
 
-  document.addEventListener('DOMContentLoaded',()=>{
-    document.getElementById('pg-rest').innerHTML =
-      `<button onclick="__la.start()">START ANALYSIS</button>`;
-  });
+/* public share id */
+let shareId=Math.random().toString(36).substring(2,10);
+
+return {
+score:t,
+max:m,
+percent:pct,
+tier,
+weakest,
+gaps,
+followUps,
+shareLink:location.origin+location.pathname+"#"+shareId,
+crmTag:pct>75?"HOT LEAD":"STANDARD",
+riskLevel:pct<50?"HIGH":"MEDIUM"
+};
+}
+
+/* RENDER */
+function render(anim=true){
+
+const v=document.getElementById("view");
+const {t,m,pct}=total();
+
+let h=ring()+
+`<h2 style="text-align:center;font-family:Cinzel;">${P[step]}</h2>`;
+
+/* items */
+for(let i=0;i<6;i++){
+
+let on=items[step][i];
+let n=na[step][i];
+
+h+=`
+<div class="item ${anim?'slideIn':''}">
+<div class="left" onclick="toggle(${step},${i})">
+<div class="box ${on?'on':''}">
+<svg width="12" height="10"><path d="M1 5L4 8L11 1" stroke="#c1b085"/></svg>
+</div>
+<div class="label ${on?'on':''}">Item ${i+1}</div>
+</div>
+<button class="na ${n?'on':''}" onclick="toggleNA(${step},${i})">N/A</button>
+</div>`;
+}
+
+h+=`<button class="btn" onclick="next()">
+${step<6?'NEXT PILLAR':'FINISH ANALYSIS'}
+</button>`;
+
+/* EMAIL CAPTURE ONLY ON LAST STEP */
+if(step===6){
+h+=`
+<div style="margin-top:16px">
+<input id="nm" placeholder="First Name">
+<input id="em" placeholder="Email">
+
+<button class="btn" onclick="send()">SEND FULL ANALYSIS</button>
+<button class="btn" onclick="downloadPDF()">DOWNLOAD REPORT</button>
+</div>`;
+}
+
+v.innerHTML=h;
+}
+
+/* ACTIONS */
+window.toggle=(p,i)=>{
+items[p][i]=items[p][i]?0:1;
+if(items[p][i]) na[p][i]=0;
+render();
+};
+
+window.toggleNA=(p,i)=>{
+na[p][i]=na[p][i]?0:1;
+if(na[p][i]) items[p][i]=0;
+render();
+};
+
+window.next=()=>{if(step<6)step++;render();};
+
+/* SEND WEBHOOK */
+function send(){
+
+const crm=buildCRM();
+
+fetch(WEBHOOK,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:document.getElementById("nm")?.value||"",
+email:document.getElementById("em")?.value||"",
+crm,
+raw:{items,na},
+timestamp:new Date().toISOString()
+})
+});
+
+document.getElementById("view").innerHTML=
+`<div style="text-align:center;font-family:Cinzel;">
+<h2>Analysis Sent</h2>
+<p>Your results are being prepared.</p>
+</div>`;
+}
+
+/* PDF */
+function downloadPDF(){
+const crm=buildCRM();
+const {jsPDF}=window.jspdf;
+const doc=new jsPDF();
+
+doc.text("Analysis Report",10,10);
+doc.text("Score: "+crm.percent+"%",10,20);
+doc.text("Tier: "+crm.tier,10,30);
+doc.text("Weakest: "+crm.weakest,10,40);
+
+doc.save("analysis-report.pdf");
+}
+
+window.send=send;
+window.downloadPDF=downloadPDF;
+
+/* INIT */
+render();
 
 })();
 </script>
