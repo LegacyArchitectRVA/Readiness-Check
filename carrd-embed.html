@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7-Pillar Continuity Analysis</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Bodoni+Moda:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -13,6 +13,10 @@
   --goldsoft:rgba(227,207,138,.18);
   --line:#2a241c;
   --bg:#0a0a08;
+}
+
+*{
+  box-sizing:border-box;
 }
 
 body{
@@ -98,9 +102,11 @@ body{
   box-shadow:
     0 0 12px var(--goldsoft),
     0 0 26px rgba(227,207,138,.10);
+
   color:var(--gold);
 }
 
+/* BUTTON PRESS EFFECT */
 button{
   width:100%;
   padding:14px;
@@ -110,14 +116,10 @@ button{
   letter-spacing:2px;
   margin-top:18px;
   cursor:pointer;
+
   transition:
     transform 0.08s ease,
-    filter 0.08s ease,
-    box-shadow 0.08s ease;
-}
-
-button:hover{
-  filter:brightness(1.03);
+    filter 0.08s ease;
 }
 
 button:active{
@@ -125,7 +127,12 @@ button:active{
   filter:brightness(0.95);
 }
 
-button.alt{
+button:disabled{
+  opacity:0.7;
+  cursor:not-allowed;
+}
+
+.alt{
   background:#1b1712;
   color:var(--gold);
   border:1px solid var(--line);
@@ -144,10 +151,12 @@ button.alt{
 
 .ring.legend{
   border-color:var(--gold);
+
   box-shadow:
     0 0 18px var(--goldsoft),
     0 0 40px rgba(227,207,138,.12);
-  animation:pulse 3s infinite;
+
+  animation:pulse 2s infinite;
 }
 
 .score{
@@ -163,13 +172,14 @@ input{
   border:1px solid var(--line);
   color:white;
   margin-top:10px;
-  box-sizing:border-box;
 }
 
 input:focus{
   outline:none;
   border-color:var(--gold);
-  box-shadow:0 0 12px var(--goldsoft);
+
+  box-shadow:
+    0 0 10px var(--goldsoft);
 }
 
 @keyframes pulse{
@@ -179,104 +189,109 @@ input:focus{
 }
 
 @media(max-width:700px){
+
   .row{
     flex-direction:column;
     align-items:flex-start;
   }
+
 }
 </style>
 </head>
 
 <body>
+
 <div id="wrap">
   <div id="app"></div>
 </div>
 
 <script>
 const P=[
-  {
-    n:"Digital Life",
-    i:[
-      "Primary Email Access",
-      "Password Manager",
-      "Cloud Storage",
-      "2-Factor Authentication Recovery Methods",
-      "Social Media Accounts",
-      "Digital Archive"
-    ]
-  },
 
-  {
-    n:"Financial & Assets",
-    i:[
-      "Banking Accounts",
-      "Credit Accounts",
-      "Investment & Retirement Accounts",
-      "Life Insurance Policies",
-      "Cryptocurrency & Digital Assets",
-      "Recurring Bills & Subscriptions"
-    ]
-  },
+{
+  n:"01: Digital Life",
+  i:[
+    "Primary Email Access",
+    "Password Manager",
+    "Cloud Storage",
+    "2-Factor Authentication Recovery Methods",
+    "Social Media Accounts",
+    "Digital Archive"
+  ]
+},
 
-  {
-    n:"Household & Property",
-    i:[
-      "Property Deeds & Titles",
-      "Vehicle Titles & Registration",
-      "Home Maintenance Records",
-      "Utility Accounts",
-      "Security Systems & Access Codes",
-      "Household Inventory Documentation"
-    ]
-  },
+{
+  n:"02: Financial & Assets",
+  i:[
+    "Banking Accounts",
+    "Credit Accounts",
+    "Investment & Retirement Accounts",
+    "Life Insurance Policies",
+    "Cryptocurrency & Digital Assets",
+    "Recurring Bills & Subscriptions"
+  ]
+},
 
-  {
-    n:"Health & Medical",
-    i:[
-      "Health Insurance Information",
-      "Medical Providers & Contacts",
-      "Prescription Information",
-      "Medical History & Records",
-      "Advance Healthcare Directives",
-      "Emergency Medical Instructions"
-    ]
-  },
+{
+  n:"03: Household & Property",
+  i:[
+    "Property Deeds & Titles",
+    "Vehicle Titles & Registration",
+    "Home Maintenance Records",
+    "Utility Accounts",
+    "Security Systems & Access Codes",
+    "Household Inventory Documentation"
+  ]
+},
 
-  {
-    n:"Legal & Estate",
-    i:[
-      "Last Will & Testament",
-      "Trust Documentation",
-      "Financial Power of Attorney",
-      "Healthcare Power of Attorney",
-      "Beneficiary Designations",
-      "Estate Planning Documents"
-    ]
-  },
+{
+  n:"04: Health & Medical",
+  i:[
+    "Health Insurance Information",
+    "Medical Providers & Contacts",
+    "Prescription Information",
+    "Medical History & Records",
+    "Advance Healthcare Directives",
+    "Emergency Medical Instructions"
+  ]
+},
 
-  {
-    n:"Business Continuity",
-    i:[
-      "Entity Formation Documents",
-      "Business Banking Access",
-      "Operating Agreements",
-      "Key Vendor Relationships",
-      "Client & Contract Records",
-      "Succession & Continuity Planning"
-    ]
-  },
+{
+  n:"05: Legal & Estate",
+  i:[
+    "Last Will & Testament",
+    "Trust Documentation",
+    "Financial Power of Attorney",
+    "Healthcare Power of Attorney",
+    "Beneficiary Designations",
+    "Estate Planning Documents"
+  ]
+},
 
-  {
-    n:"Legacy & Wishes",
-    i:[
-      "Personal Letters",
-      "Family History & Stories",
-      "Ethical Will",
-      "Funeral Preferences",
-      "Obituary Information",
-      "Personal Wishes & Instructions"
-    ]
-  }
+{
+  n:"06: Business Continuity",
+  i:[
+    "Entity Formation Documents",
+    "Business Banking Access",
+    "Operating Agreements",
+    "Key Vendor Relationships",
+    "Client & Contract Records",
+    "Succession & Continuity Planning"
+  ]
+},
+
+{
+  n:"07: Legacy & Wishes",
+  i:[
+    "Personal Letters",
+    "Family History & Stories",
+    "Ethical Will",
+    "Funeral Preferences",
+    "Obituary Information",
+    "Personal Wishes & Instructions"
+  ]
+}
+
 ];
 
 let step=0;
@@ -285,25 +300,29 @@ let business=false;
 const A={};
 
 function pillars(){
+
   return business
     ? P
     : P.filter(x=>x.n!=="Business Continuity");
+
 }
 
 function calc(){
+
   let rec=0;
   let na=0;
   let total=0;
 
   pillars().forEach((p,pi)=>{
 
-    total+=p.i.length;
+    total += p.i.length;
 
     p.i.forEach((_,ii)=>{
 
       const v=A[pi+"_"+ii];
 
       if(v==="R") rec++;
+
       if(v==="N") na++;
 
     });
@@ -326,9 +345,9 @@ function tier(s){
   return "LEGACY AT RISK";
 }
 
+/* CLICK AGAIN TO DESELECT */
 function pick(k,v){
 
-  // deselect when clicking active option
   if(A[k]===v){
 
     delete A[k];
@@ -357,7 +376,9 @@ function submitReport(){
     btn.innerText="EMAIL REQUIRED";
 
     setTimeout(()=>{
+
       btn.innerText="REQUEST FULL ANALYSIS REPORT";
+
     },1200);
 
     return;
@@ -370,6 +391,7 @@ function submitReport(){
   const score=calc();
 
   fetch("YOUR_ENDPOINT_HERE",{
+
     method:"POST",
 
     headers:{
@@ -382,6 +404,7 @@ function submitReport(){
       score,
       tier:tier(score)
     })
+
   })
 
   .then(r=>r.json().catch(()=>({})))
@@ -407,7 +430,7 @@ function render(){
 
   const app=document.getElementById('app');
 
-  // INTRO SCREEN
+  // INTRO
   if(step===0){
 
     app.innerHTML=`
@@ -434,6 +457,10 @@ function render(){
 
       <p class="muted">
         The 7-Pillar Continuity Analysis evaluates how prepared your household is to maintain continuity when life changes unexpectedly.
+      </p>
+
+      <p class="muted">
+        For each item, indicate whether it has been recorded for someone else, is unprepared, and if it doesn't apply or you're unsure, select N/A. Topics selected as N/A do not count in your final score.
       </p>
 
       <p class="muted">
@@ -468,10 +495,10 @@ function render(){
 
   const ps=pillars();
 
-  // QUESTION SCREENS
+  // QUESTIONS
   if(step<=ps.length){
 
-    let p=ps[step-1];
+    const p=ps[step-1];
 
     app.innerHTML=`
 
@@ -482,27 +509,13 @@ function render(){
           (_,i)=>`
             <div class="seg ${i<=step-1?'active':''}"></div>
           `
-        ).join('')}
+        ).join("")}
 
-      </div>
-
-      <div
-        class="gold"
-        style="
-          font-family:Cinzel;
-          letter-spacing:3px
-        "
-      >
-        DOMAIN ${step} OF ${ps.length}
       </div>
 
       <h2 style="font-family:Cinzel">
         ${p.n}
       </h2>
-
-      <p class="muted">
-        Select items that are documented and accessible.
-      </p>
 
     `;
 
@@ -510,7 +523,7 @@ function render(){
 
       const k=(step-1)+"_"+idx;
 
-      app.innerHTML+=`
+      app.innerHTML += `
 
         <div class="toggle">
 
@@ -550,7 +563,7 @@ function render(){
       `;
     });
 
-    app.innerHTML+=`
+    app.innerHTML += `
 
       <button
         onclick="
@@ -573,7 +586,11 @@ function render(){
   app.innerHTML=`
 
     <div class="ring ${s>=86?'legend':''}">
-      <div class="score">${s}%</div>
+
+      <div class="score">
+        ${s}%
+      </div>
+
     </div>
 
     <div
@@ -584,6 +601,29 @@ function render(){
       "
     >
       ${tier(s)}
+    </div>
+
+    <p
+      class="muted"
+      style="text-align:center"
+    >
+      Most households score between 40% and 65%.
+    </p>
+
+    <div
+      class="muted"
+      style="text-align:center"
+    >
+      CONTINUITY LEGEND 86–100%
+      <br><br>
+
+      STABLE CONTINUITY 71–85%
+      <br><br>
+
+      DEVELOPING CONTINUITY 61–70%
+      <br><br>
+
+      LEGACY AT RISK 0–60%
     </div>
 
     <input
@@ -608,5 +648,6 @@ function render(){
 
 render();
 </script>
+
 </body>
 </html>
