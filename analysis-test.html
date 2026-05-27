@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7-Pillar Continuity Analysis</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Bodoni+Moda:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -13,6 +13,10 @@
   --goldsoft:rgba(227,207,138,.18);
   --line:#2a241c;
   --bg:#0a0a08;
+}
+
+*{
+  box-sizing:border-box;
 }
 
 body{
@@ -81,11 +85,24 @@ body{
   border-radius:999px;
   font-size:12px;
   letter-spacing:1px;
+  transition:all .12s ease;
+  user-select:none;
+}
+
+.opt:hover{
+  transform:translateY(-1px);
+}
+
+.opt:active{
+  transform:scale(.95);
 }
 
 .opt.active{
   border-color:var(--gold);
-  box-shadow:0 0 12px var(--goldsoft),0 0 26px rgba(227,207,138,.10);
+  box-shadow:
+    0 0 12px var(--goldsoft),
+    0 0 26px rgba(227,207,138,.10);
+
   color:var(--gold);
 }
 
@@ -99,7 +116,10 @@ button{
   letter-spacing:2px;
   margin-top:18px;
   cursor:pointer;
-  transition:transform 0.08s ease, filter 0.08s ease;
+
+  transition:
+    transform 0.08s ease,
+    filter 0.08s ease;
 }
 
 button:active{
@@ -131,7 +151,11 @@ button:disabled{
 
 .ring.legend{
   border-color:var(--gold);
-  box-shadow:0 0 18px var(--goldsoft),0 0 40px rgba(227,207,138,.12);
+
+  box-shadow:
+    0 0 18px var(--goldsoft),
+    0 0 40px rgba(227,207,138,.12);
+
   animation:pulse 3s infinite;
 }
 
@@ -150,107 +174,284 @@ input{
   margin-top:10px;
 }
 
+input:focus{
+  outline:none;
+  border-color:var(--gold);
+
+  box-shadow:
+    0 0 10px var(--goldsoft);
+}
+
 @keyframes pulse{
-  50%{transform:scale(1.02)}
+  50%{
+    transform:scale(1.02);
+  }
 }
 
 @media(max-width:700px){
-  .row{flex-direction:column;align-items:flex-start}
+
+  .row{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
 }
 </style>
 </head>
 
 <body>
-<div id="wrap"><div id="app"></div></div>
+
+<div id="wrap">
+  <div id="app"></div>
+</div>
 
 <script>
 const P=[
-{n:"Digital Life",i:["Primary Email Access","Password Manager","Cloud Storage","2FA Recovery Methods","Social Media Accounts","Digital Archive"]},
-{n:"Financial & Assets",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
-{n:"Household & Property",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
-{n:"Health & Medical",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
-{n:"Legal & Estate",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
-{n:"Business Continuity",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
-{n:"Legacy & Wishes",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
+
+{
+  n:"Digital Life",
+  i:[
+    "Primary Email Access",
+    "Password Manager",
+    "Cloud Storage",
+    "2FA Recovery Methods",
+    "Social Media Accounts",
+    "Digital Archive"
+  ]
+},
+
+{
+  n:"Financial & Assets",
+  i:[
+    "Banking Accounts",
+    "Credit Accounts",
+    "Investment & Retirement Accounts",
+    "Life Insurance Policies",
+    "Cryptocurrency & Digital Assets",
+    "Recurring Bills & Subscriptions"
+  ]
+},
+
+{
+  n:"Household & Property",
+  i:[
+    "Property Deeds & Titles",
+    "Vehicle Titles & Registration",
+    "Home Maintenance Records",
+    "Utility Accounts",
+    "Security Systems & Access Codes",
+    "Household Inventory Documentation"
+  ]
+},
+
+{
+  n:"Health & Medical",
+  i:[
+    "Health Insurance Information",
+    "Medical Providers & Contacts",
+    "Prescription Information",
+    "Medical History & Records",
+    "Advance Healthcare Directives",
+    "Emergency Medical Instructions"
+  ]
+},
+
+{
+  n:"Legal & Estate",
+  i:[
+    "Last Will & Testament",
+    "Trust Documentation",
+    "Financial Power of Attorney",
+    "Healthcare Power of Attorney",
+    "Beneficiary Designations",
+    "Estate Planning Documents"
+  ]
+},
+
+{
+  n:"Business Continuity",
+  i:[
+    "Entity Formation Documents",
+    "Business Banking Access",
+    "Operating Agreements",
+    "Key Vendor Relationships",
+    "Client & Contract Records",
+    "Succession & Continuity Planning"
+  ]
+},
+
+{
+  n:"Legacy & Wishes",
+  i:[
+    "Personal Letters",
+    "Family History & Stories",
+    "Ethical Will",
+    "Funeral Preferences",
+    "Obituary Information",
+    "Personal Wishes & Instructions"
+  ]
+}
+
 ];
 
 let step=0;
 let business=false;
+
 const A={};
 
 function pillars(){
-  return business ? P : P.filter(x=>x.n!=="Business Continuity");
+
+  return business
+    ? P
+    : P.filter(x=>x.n!=="Business Continuity");
+
 }
 
 function calc(){
-  let rec=0,na=0,total=0;
+
+  let rec=0;
+  let na=0;
+  let total=0;
+
   pillars().forEach((p,pi)=>{
-    total+=p.i.length;
+
+    total += p.i.length;
+
     p.i.forEach((_,ii)=>{
+
       const v=A[pi+"_"+ii];
-      if(v==="R")rec++;
-      if(v==="N")na++;
+
+      if(v==="R") rec++;
+
+      if(v==="N") na++;
+
     });
+
   });
-  return Math.round((rec/Math.max(1,total-na))*100);
+
+  return Math.round(
+    (rec / Math.max(1,total-na)) * 100
+  );
 }
 
 function tier(s){
-  if(s>=86)return"CONTINUITY LEGEND";
-  if(s>=71)return"STABLE CONTINUITY";
-  if(s>=61)return"DEVELOPING CONTINUITY";
-  return"LEGACY AT RISK";
+
+  if(s>=86) return "CONTINUITY LEGEND";
+
+  if(s>=71) return "STABLE CONTINUITY";
+
+  if(s>=61) return "DEVELOPING CONTINUITY";
+
+  return "LEGACY AT RISK";
 }
 
+/* CLICK AGAIN TO DESELECT */
 function pick(k,v){
-  A[k]=v;
+
+  if(A[k]===v){
+
+    delete A[k];
+
+  }else{
+
+    A[k]=v;
+
+  }
+
   render();
 }
 
 function submitReport(){
+
   const btn=document.getElementById("submitBtn");
 
-  const firstName=document.getElementById("firstName")?.value||"";
-  const email=document.getElementById("email")?.value||"";
+  const firstName=
+    document.getElementById("firstName")?.value || "";
+
+  const email=
+    document.getElementById("email")?.value || "";
 
   if(!email){
+
     btn.innerText="EMAIL REQUIRED";
-    setTimeout(()=>btn.innerText="REQUEST FULL ANALYSIS REPORT",1200);
+
+    setTimeout(()=>{
+
+      btn.innerText="REQUEST FULL ANALYSIS REPORT";
+
+    },1200);
+
     return;
   }
 
   btn.disabled=true;
+
   btn.innerText="SENDING...";
 
   const score=calc();
 
   fetch("YOUR_ENDPOINT_HERE",{
+
     method:"POST",
-    headers:{"Content-Type":"application/json"},
+
+    headers:{
+      "Content-Type":"application/json"
+    },
+
     body:JSON.stringify({
       firstName,
       email,
       score,
       tier:tier(score)
     })
+
   })
+
   .then(r=>r.json().catch(()=>({})))
+
   .then(()=>{
+
     btn.innerText="REPORT REQUESTED ✓";
+
   })
+
   .catch(err=>{
+
     console.error(err);
+
     btn.disabled=false;
+
     btn.innerText="TRY AGAIN";
+
   });
 }
 
 function render(){
+
   const app=document.getElementById('app');
 
+  // INTRO
   if(step===0){
+
     app.innerHTML=`
-      <div class="gold" style="font-family:Cinzel;letter-spacing:3px">
+
+      <div class="stepbar">
+        <div class="seg active"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+      </div>
+
+      <div
+        class="gold"
+        style="
+          font-family:Cinzel;
+          letter-spacing:3px
+        "
+      >
         7-PILLAR CONTINUITY ANALYSIS
       </div>
 
@@ -266,72 +467,187 @@ function render(){
         Do you currently own or operate a business?
       </p>
 
-      <button onclick="business=true;step=1;render()">CONTINUE AS BUSINESS OWNER</button>
-      <button class="alt" onclick="business=false;step=1;render()">CONTINUE AS INDIVIDUAL</button>
+      <button
+        onclick="
+          business=true;
+          step=1;
+          render();
+        "
+      >
+        CONTINUE AS BUSINESS OWNER
+      </button>
+
+      <button
+        class="alt"
+        onclick="
+          business=false;
+          step=1;
+          render();
+        "
+      >
+        CONTINUE AS INDIVIDUAL
+      </button>
+
     `;
+
     return;
   }
 
   const ps=pillars();
 
+  // QUESTIONS
   if(step<=ps.length){
+
     const p=ps[step-1];
 
     app.innerHTML=`
-      <h2 style="font-family:Cinzel">${p.n}</h2>
+
+      <div class="stepbar">
+
+        ${Array.from(
+          {length:ps.length},
+          (_,i)=>`
+            <div class="seg ${i<=step-1?'active':''}"></div>
+          `
+        ).join("")}
+
+      </div>
+
+      <h2 style="font-family:Cinzel">
+        ${p.n}
+      </h2>
+
     `;
 
     p.i.forEach((item,idx)=>{
+
       const k=(step-1)+"_"+idx;
-      app.innerHTML+=`
+
+      app.innerHTML += `
+
         <div class="toggle">
+
           <div class="row">
+
             <div>${item}</div>
+
             <div class="opts">
-              <div class="opt ${A[k]=='R'?'active':''}" onclick="pick('${k}','R')">RECORDED</div>
-              <div class="opt ${A[k]=='N'?'active':''}" onclick="pick('${k}','N')">N/A</div>
+
+              <div
+                class="opt ${A[k]=='R'?'active':''}"
+                onclick="pick('${k}','R')"
+              >
+                RECORDED
+              </div>
+
+              <div
+                class="opt ${A[k]=='U'?'active':''}"
+                onclick="pick('${k}','U')"
+              >
+                UNPREPARED
+              </div>
+
+              <div
+                class="opt ${A[k]=='N'?'active':''}"
+                onclick="pick('${k}','N')"
+              >
+                N/A
+              </div>
+
             </div>
+
           </div>
+
         </div>
+
       `;
     });
 
-    app.innerHTML+=`<button onclick="step++;window.scrollTo(0,0);render()">CONTINUE</button>`;
+    app.innerHTML += `
+
+      <button
+        onclick="
+          step++;
+          window.scrollTo(0,0);
+          render();
+        "
+      >
+        CONTINUE
+      </button>
+
+    `;
+
     return;
   }
 
+  // RESULTS
   const s=calc();
 
   app.innerHTML=`
+
     <div class="ring ${s>=86?'legend':''}">
-      <div class="score">${s}%</div>
+
+      <div class="score">
+        ${s}%
+      </div>
+
     </div>
 
-    <div style="text-align:center;font-family:Cinzel;letter-spacing:2px">
+    <div
+      style="
+        text-align:center;
+        font-family:Cinzel;
+        letter-spacing:2px
+      "
+    >
       ${tier(s)}
     </div>
 
-    <p class="muted" style="text-align:center">
+    <p
+      class="muted"
+      style="text-align:center"
+    >
       Most households score between 40% and 65%.
     </p>
 
-    <div class="muted" style="text-align:center">
-      CONTINUITY LEGEND 86–100%<br><br>
-      STABLE CONTINUITY 71–85%<br><br>
-      DEVELOPING CONTINUITY 61–70%<br><br>
+    <div
+      class="muted"
+      style="text-align:center"
+    >
+      CONTINUITY LEGEND 86–100%
+      <br><br>
+
+      STABLE CONTINUITY 71–85%
+      <br><br>
+
+      DEVELOPING CONTINUITY 61–70%
+      <br><br>
+
       LEGACY AT RISK 0–60%
     </div>
 
-    <input id="firstName" placeholder="First Name">
-    <input id="email" placeholder="Email Address">
+    <input
+      id="firstName"
+      placeholder="First Name"
+    >
 
-    <button id="submitBtn" onclick="submitReport()">
+    <input
+      id="email"
+      placeholder="Email Address"
+    >
+
+    <button
+      id="submitBtn"
+      onclick="submitReport()"
+    >
       REQUEST FULL ANALYSIS REPORT
     </button>
+
   `;
 }
 
 render();
 </script>
+
 </body>
 </html>
