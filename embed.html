@@ -1,103 +1,93 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
+  <title>Legacy Architect Audit</title>
 
-<style>
-/* KEEP YOUR ORIGINAL CSS EXACTLY AS-IS */
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #fdfcfa;
+      font-family: 'Bodoni Moda', serif;
+    }
+
+    #la-wrap {
+      background: transparent;
+      padding: 48px 20px 60px;
+      box-sizing: border-box;
+    }
+
+    #pg-rest {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- 🔥 PASTE YOUR EXACT CARRD EMBED HERE (UNCHANGED) -->
+<div id="la-wrap">
 
-<div id="la-wrap" style="background:transparent;color:#fdfcfa;padding:48px 20px 60px;font-family:'Bodoni Moda',serif;">
-  <div style="max-width:620px;margin:0 auto;">
-
-    <div id="pg1">
-      <!-- ALL YOUR PILLAR 1 HTML EXACTLY AS YOU SENT IT -->
-    </div>
-
-    <div id="pg-rest"></div>
-
-  </div>
-</div>
-
-<!-- 🔥 ONLY CHANGE: load JS LAST -->
-<script src="audit7.js"></script>
-
-<script>
-(function(){
-  function boot(){
-    if(window.__la && window.__la.go){
-      window.__la.go(1);
-    } else {
-      setTimeout(boot,100);
-    }
-  }
-  window.addEventListener('load', boot);
-})();
-</script>
-
-</body>
-</html>  <!-- 🔥 THIS IS REQUIRED: your app root containers -->
+  <!-- PAGE 1 (YOUR EXISTING CARRD PILLAR 1 CONTENT) -->
   <div id="pg1">
 
-    <!-- your FULL Pillar 1 HTML from Carrd goes here -->
-    <!-- (IMPORTANT: do NOT remove this section — JS depends on it) -->
+    <div style="max-width:620px;margin:0 auto;">
 
+      <div style="display:flex;gap:6px;margin-bottom:52px;">
+        <div style="height:3px;flex:1;background:#c1b085;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+        <div style="height:3px;flex:1;background:#342a1c;border-radius:2px;"></div>
+      </div>
+
+      <div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:5px;color:#b8984e;margin-bottom:10px;">
+        PILLAR 1 OF 7
+      </div>
+
+      <div style="font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#c1b085;margin-bottom:12px;">
+        DIGITAL LIFE
+      </div>
+
+      <div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#a09484;margin-bottom:20px;">
+        Access and continuity for essential digital systems.
+      </div>
+
+      <!-- Items -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:40px;">
+
+        <label><input type="checkbox" id="c0-0"> PRIMARY EMAIL ACCESS</label>
+        <label><input type="checkbox" id="c0-1"> PASSWORD MANAGER</label>
+        <label><input type="checkbox" id="c0-2"> CLOUD STORAGE</label>
+        <label><input type="checkbox" id="c0-3"> 2FA RECOVERY KEYS</label>
+        <label><input type="checkbox" id="c0-4"> SOCIAL MEDIA ACCESS</label>
+        <label><input type="checkbox" id="c0-5"> DIGITAL ARCHIVES</label>
+
+      </div>
+
+      <button
+        onclick="window.__la && __la.go(2)"
+        style="padding:14px 28px;background:#c1b085;border:none;font-family:Cinzel;cursor:pointer;">
+        NEXT PILLAR
+      </button>
+
+    </div>
   </div>
 
+  <!-- RENDER TARGET -->
   <div id="pg-rest"></div>
 
 </div>
 
+<!-- LOAD YOUR EXISTING LOGIC -->
 <script src="audit7.js"></script>
-
-<script>
-(function(){
-  function boot(){
-    if(window.__la && window.__la.go){
-      window.__la.go(1);
-    } else {
-      setTimeout(boot,100);
-    }
-  }
-  window.addEventListener('load', boot);
-})();
-</script>
-
-</body>
-</html>
-  <!-- APP ROOT -->
-  <div id="la-wrap">
-    <div id="pg1"></div>
-    <div id="pg-rest"></div>
-  </div>
-
-  <!-- MAIN APP SCRIPT -->
-  <script src="audit7.js"></script>
-
-  <!-- SAFE INIT (prevents iframe timing issues in Carrd) -->
-  <script>
-    (function () {
-      function boot() {
-        if (window.__la && window.__la.go) {
-          try {
-            window.__la.go(1);
-          } catch (e) {}
-        } else {
-          setTimeout(boot, 100);
-        }
-      }
-
-      window.addEventListener("load", boot);
-    })();
-  </script>
 
 </body>
 </html>
