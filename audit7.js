@@ -358,4 +358,6 @@ window.__la = window.__la || {};
       }
     }
   },150);
+console.log('AUDIT LOADED');
+alert('AUDIT LOADED');
 })();
