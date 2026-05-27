@@ -321,9 +321,9 @@ window.__la = window.__la || {};
   };
 
   window.laNextPillar = function(){
-    if(window.__la && window.__la.getPg1State) window.__la.getPg1State();
-    if(window.__la) window.__la.go(2);
-  };
+    getPg1State();
+    window.__la.go(2);
+};
 
   (function injectP1Ctr(){
     if(document.getElementById('la-ctr-num-0'))return;
