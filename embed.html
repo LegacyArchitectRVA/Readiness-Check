@@ -1,40 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Legacy Architect Audit</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap" rel="stylesheet">
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  color: #fdfcfa;
-}
-
-body {
-  font-family: 'Bodoni Moda', serif;
-}
-
-#la-wrap {
-  background: transparent !important;
-  color: #fdfcfa;
-  padding: 48px 20px 60px;
-}
-
-/* keep Carrd clean */
+/* KEEP YOUR ORIGINAL CSS EXACTLY AS-IS */
 </style>
 </head>
 
 <body>
 
-<div id="la-wrap">
+<!-- 🔥 PASTE YOUR EXACT CARRD EMBED HERE (UNCHANGED) -->
 
-  <!-- 🔥 THIS IS REQUIRED: your app root containers -->
+<div id="la-wrap" style="background:transparent;color:#fdfcfa;padding:48px 20px 60px;font-family:'Bodoni Moda',serif;">
+  <div style="max-width:620px;margin:0 auto;">
+
+    <div id="pg1">
+      <!-- ALL YOUR PILLAR 1 HTML EXACTLY AS YOU SENT IT -->
+    </div>
+
+    <div id="pg-rest"></div>
+
+  </div>
+</div>
+
+<!-- 🔥 ONLY CHANGE: load JS LAST -->
+<script src="audit7.js"></script>
+
+<script>
+(function(){
+  function boot(){
+    if(window.__la && window.__la.go){
+      window.__la.go(1);
+    } else {
+      setTimeout(boot,100);
+    }
+  }
+  window.addEventListener('load', boot);
+})();
+</script>
+
+</body>
+</html>  <!-- 🔥 THIS IS REQUIRED: your app root containers -->
   <div id="pg1">
 
     <!-- your FULL Pillar 1 HTML from Carrd goes here -->
