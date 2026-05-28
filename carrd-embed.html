@@ -11,7 +11,6 @@
 :root{
   --gold:#e3cf8a;
   --gold-soft:rgba(227,207,138,0.18);
-  --gold-soft-strong:rgba(227,207,138,0.32);
   --line:#2a241c;
   --bg:#050405;
   --text:#f4f1ea;
@@ -25,7 +24,9 @@
   --tier-legend:#4bbf6b;
 }
 
-*{box-sizing:border-box;}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -78,27 +79,12 @@ body{
   flex:1;
   height:3px;
   border-radius:999px;
-  background:var(--line);
-  position:relative;
-  overflow:hidden;
+  background:#2a241c;
 }
 
 .seg.active{
   background:linear-gradient(90deg,rgba(227,207,138,0.1),var(--gold));
   box-shadow:0 0 14px var(--gold-soft);
-}
-
-.seg.active::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 0 50%,rgba(255,255,255,0.35),transparent 60%);
-  animation:glowSweep 1.8s linear infinite;
-}
-
-@keyframes glowSweep{
-  0%{transform:translateX(-120%);}
-  100%{transform:translateX(120%);}
 }
 
 .muted{
@@ -114,8 +100,8 @@ body{
 }
 
 .toggle{
-  border:1px solid var(--line);
-  padding:14px 14px 12px;
+  border:1px solid #2a241c;
+  padding:14px;
   border-radius:12px;
   margin:10px 0;
   background:rgba(10,10,8,0.9);
@@ -128,7 +114,9 @@ body{
   align-items:flex-start;
 }
 
-.item-label{font-size:16px;}
+.item-label{
+  font-size:16px;
+}
 
 .opts{
   display:flex;
@@ -138,7 +126,7 @@ body{
 
 .opt{
   padding:7px 13px;
-  border:1px solid var(--line);
+  border:1px solid #2a241c;
   cursor:pointer;
   border-radius:999px;
   font-size:13px;
@@ -150,23 +138,12 @@ body{
   background:rgba(8,8,6,0.9);
 }
 
-.opt:hover{
-  transform:translateY(-1px);
-  border-color:rgba(227,207,138,0.4);
-}
-
-.opt:active{transform:scale(.96);}
-
 .opt.active{
   border-color:var(--gold);
-  box-shadow:
-    0 0 12px var(--gold-soft),
-    0 0 26px rgba(227,207,138,0.10);
+  box-shadow:0 0 12px var(--gold-soft);
   color:var(--gold);
-  background:radial-gradient(circle at top,rgba(227,207,138,0.16),rgba(8,8,6,0.95));
 }
 
-/* BUTTONS */
 button{
   width:100%;
   padding:16px;
@@ -181,57 +158,27 @@ button{
   text-transform:uppercase;
   color:#1b1712;
   border-radius:999px;
-  transition:
-    transform .08s ease,
-    filter .08s ease,
-    box-shadow .12s ease;
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 18px 40px rgba(0,0,0,0.9);
-}
-
-button:hover{
-  filter:brightness(1.03);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 22px 46px rgba(0,0,0,0.95);
-}
-
-button:active{
-  transform:scale(.97);
-  filter:brightness(.96);
-}
-
-button:disabled{
-  opacity:.7;
-  cursor:not-allowed;
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 10px 26px rgba(0,0,0,0.7);
 }
 
 button.alt{
   background:#1b1712;
   color:var(--gold);
-  border:1px solid var(--line);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 16px 34px rgba(0,0,0,0.85);
-}
-
-button.alt:hover{
-  filter:none;
-  border-color:rgba(227,207,138,0.4);
+  border:1px solid #2a241c;
 }
 
 button.small{
   width:auto;
   padding:10px 18px;
   font-size:13px;
-  margin-top:12px;
 }
 
-/* SCORE RING */
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+}
+
 .ring-wrap{
   display:flex;
   flex-direction:column;
@@ -246,7 +193,6 @@ button.small{
   text-transform:uppercase;
   color:#ffffff;
   margin-bottom:8px;
-  text-align:center;
 }
 
 .ring{
@@ -257,55 +203,31 @@ button.small{
   align-items:center;
   justify-content:center;
   margin:10px auto 14px;
-  border:1px solid var(--line);
+  border:1px solid #2a241c;
   position:relative;
-  background:radial-gradient(circle at top,rgba(227,207,138,0.08),rgba(10,8,6,0.98));
-  overflow:hidden;
+  background:
+    conic-gradient(
+      #e3cf8a var(--angle),
+      rgba(255,255,255,0.06) var(--angle)
+    );
 }
 
 .ring::before{
   content:"";
   position:absolute;
-  inset:18px;
+  inset:16px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,0.04);
-  background:radial-gradient(circle at top,rgba(227,207,138,0.05),transparent 70%);
-}
-
-.ring.legend{
-  border-color:var(--gold);
-  box-shadow:
-    0 0 18px var(--gold-soft),
-    0 0 40px rgba(227,207,138,0.18);
-  animation:pulse 2s infinite;
-}
-
-.ring-progress{
-  position:absolute;
-  inset:-40%;
-  border-radius:50%;
-  background:conic-gradient(
-    rgba(60,48,32,0.9) 0deg,
-    rgba(90,72,48,0.95) var(--angle),
-    rgba(20,16,12,0.9) var(--angle),
-    rgba(10,8,6,0.98) 360deg
-  );
-  filter:blur(.4px);
-}
-
-.ring-inner{
-  position:relative;
-  z-index:2;
+  background:#050405;
 }
 
 .score{
+  position:relative;
+  z-index:2;
   font-family:'Cinzel',serif;
-  font-size:53px;
+  font-size:52px;
   color:var(--gold);
-  text-align:center;
 }
 
-/* INPUTS */
 .input-row{
   display:flex;
   gap:10px;
@@ -315,76 +237,25 @@ button.small{
 
 .input-field{
   flex:1;
-  min-width:0;
 }
 
 input{
   width:100%;
   padding:13px 12px;
   background:#050405;
-  border:1px solid var(--line);
+  border:1px solid #2a241c;
   color:var(--text);
   margin-top:6px;
   border-radius:10px;
   font-size:16px;
 }
 
-input::placeholder{color:#6f675c;}
-
-input:focus{
-  outline:none;
-  border-color:var(--gold);
-  box-shadow:0 0 10px var(--gold-soft);
-}
-
-/* LEGEND BLOCK */
-.legend-block{
-  margin-top:16px;
-  padding:14px 14px 12px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:rgba(8,7,5,0.95);
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.7;
-}
-
-.legend-row{margin-bottom:10px;}
-
-.legend-name{
-  font-weight:600;
-  font-size:15px;
-}
-
-.legend-range{
-  font-size:13px;
-  opacity:.9;
-}
-
-.legend-text{font-size:13px;}
-
-/* Tier colors */
-.tier-risk{color:var(--tier-risk);}
-.tier-develop{color:var(--tier-develop);}
-.tier-stable{color:var(--tier-stable);}
-.tier-legend{color:var(--tier-legend);}
-
-/* ALERT TEXT */
 .alert{
   margin-top:10px;
   font-size:13px;
   color:var(--danger);
 }
 
-/* FOOTNOTE */
-.footnote{
-  margin-top:16px;
-  font-size:12px;
-  color:#7f7567;
-  text-align:center;
-}
-
-/* SHARE LINK */
 .share-link{
   margin-top:10px;
   font-size:13px;
@@ -393,38 +264,65 @@ input:focus{
   cursor:pointer;
 }
 
-.share-link span{text-decoration:underline;}
-
-/* NAV ROW (back/reset) */
-.nav-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:10px;
+.share-link span{
+  text-decoration:underline;
 }
 
-/* MOBILE */
+.footnote{
+  margin-top:16px;
+  font-size:12px;
+  color:#7f7567;
+  text-align:center;
+}
+
+.legend-block{
+  margin-top:16px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #2a241c;
+  background:rgba(8,7,5,0.95);
+  font-size:14px;
+  color:var(--muted);
+}
+
+.legend-row{
+  margin-bottom:10px;
+}
+
+.tier-risk{color:#d45b5b;}
+.tier-develop{color:#e08b3a;}
+.tier-stable{color:#e3cf8a;}
+.tier-legend{color:#4bbf6b;}
+
 @media(max-width:700px){
-  #wrap{padding:26px 14px 60px;}
-  .card{padding:20px 16px 24px;}
-  .row{flex-direction:column;align-items:flex-start;}
-  .ring{width:170px;height:170px;}
-  .score{font-size:47px;}
-  .input-row{flex-direction:column;}
-}
+  #wrap{
+    padding:26px 14px 60px;
+  }
 
-@keyframes pulse{
-  50%{transform:scale(1.02);}
+  .card{
+    padding:20px 16px 24px;
+  }
+
+  .row{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .input-row{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div id="wrap">
-  <div id="app" class="card"></div>
+  <div id="app"></div>
 </div>
 
-<script>
+<script type="text/javascript">
+
 const PILLARS = [
   {
     n:"01: Digital Life",
@@ -512,30 +410,36 @@ const ANSWERS = {};
 function activePillars(){
   return businessOwner
     ? PILLARS
-    : PILLARS.filter(p => p.n.indexOf("Business Continuity") === -1);
+    : PILLARS.filter(
+        p => !p.n.includes("Business Continuity")
+      );
 }
 
 function calcScoreData(){
+
   let recorded = 0;
   let na = 0;
   let total = 0;
 
   activePillars().forEach((p,pi)=>{
-    p.i.forEach((_,ii)=>{
+    p.i.forEach((item,ii)=>{
+
       total++;
-      const v = ANSWERS[pi + "_" + ii];
-      if(v === "R") recorded++;
-      if(v === "N") na++;
+
+      const val = ANSWERS[pi + "_" + ii];
+
+      if(val === "R") recorded++;
+      if(val === "N") na++;
+
     });
   });
 
   const effectiveTotal = Math.max(1, total - na);
-  const percent = (recorded / effectiveTotal) * 100;
+
   return {
-    percent: Math.round(percent),
     recorded,
-    total,
-    effectiveTotal
+    effectiveTotal,
+    percent: Math.round((recorded / effectiveTotal) * 100)
   };
 }
 
@@ -553,121 +457,160 @@ function tierColorClass(score){
   return "tier-risk";
 }
 
-function pick(key,value){
-  if(ANSWERS[key] === value){
+function pick(key,val){
+
+  if(ANSWERS[key] === val){
     delete ANSWERS[key];
   }else{
-    ANSWERS[key] = value;
-  }
-  render();
-}
-
-function submitReport(){
-  const btn = document.getElementById("submitBtn");
-  const firstName = document.getElementById("firstName")?.value.trim() || "";
-  const email = document.getElementById("email")?.value.trim() || "";
-  const alertEl = document.getElementById("submitAlert");
-
-  if(alertEl) alertEl.textContent = "";
-
-  if(!email){
-    if(alertEl) alertEl.textContent = "Email is required to receive your full analysis report.";
-    btn.innerText = "EMAIL REQUIRED";
-    setTimeout(()=>{ btn.innerText = "REQUEST FULL ANALYSIS REPORT"; }, 1200);
-    return;
+    ANSWERS[key] = val;
   }
 
-  btn.disabled = true;
-  btn.innerText = "SENDING...";
-
-  const scoreData = calcScoreData();
-  const score = scoreData.percent;
-  const tier = tierLabel(score);
-
-  let recommendation = "";
-  if(score < 61) recommendation = "Focus on centralizing your scattered information into a single, secure location.";
-  else if(score < 71) recommendation = "Prioritize documenting your most critical digital and financial assets.";
-  else if(score < 86) recommendation = "You are in a great spot; now focus on periodic reviews and testing your plan.";
-  else recommendation = "Maintain your documentation and ensure your trusted contacts know where to find it.";
-
-  const pillarSummary = activePillars().map(p => p.n).join(", ");
-
-  const payload = {
-    firstName: firstName,
-    email: email,
-    score: score,
-    maxScore: scoreData.effectiveTotal,
-    percent: score,
-    tier: tier,
-    businessOwner: businessOwner ? "Yes" : "No",
-    answers: ANSWERS,
-    recommendation: recommendation,
-    pillarSummary: pillarSummary
-  };
-
-  fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(payload)
-  })
-  .then(r => r.json().catch(()=>({})))
-  .then(()=>{
-    btn.innerText = "REPORT REQUESTED";
-  })
-  .catch(err=>{
-    console.error(err);
-    btn.disabled = false;
-    btn.innerText = "TRY AGAIN";
-    if(alertEl) alertEl.textContent = "There was an issue sending your request. Please try again.";
-  });
-}
-
-function shareScore(){
-  const scoreData = calcScoreData();
-  const score = scoreData.percent;
-  const tier = tierLabel(score);
-  const text = `My Continuity Readiness score is ${score}% (${tier}). How prepared is your household?`;
-  if(navigator.share){
-    navigator.share({
-      title:"7-Pillar Continuity Analysis",
-      text,
-      url:window.location.href
-    }).catch(()=>{});
-  }else{
-    navigator.clipboard.writeText(text + " " + window.location.href).catch(()=>{});
-    alert("A shareable message with your score has been copied.");
-  }
-}
-
-function resetAnalysis(){
-  for(const k in ANSWERS) delete ANSWERS[k];
-  step = 0;
-  businessOwner = false;
   render();
 }
 
 function goBack(){
+
   if(step > 0){
     step--;
     render();
   }
 }
 
+function resetAnalysis(){
+
+  for(const k in ANSWERS){
+    delete ANSWERS[k];
+  }
+
+  step = 0;
+  businessOwner = false;
+
+  render();
+}
+
+function shareScore(){
+
+  const data = calcScoreData();
+  const text =
+    "My Continuity Readiness score is " +
+    data.percent +
+    "% (" +
+    tierLabel(data.percent) +
+    ").";
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"7-Pillar Continuity Analysis",
+      text:text,
+      url:window.location.href
+    }).catch(()=>{});
+
+  }else{
+
+    navigator.clipboard.writeText(
+      text + " " + window.location.href
+    );
+
+    alert("Share message copied.");
+  }
+}
+
+function submitReport(){
+
+  const btn = document.getElementById("submitBtn");
+  const alertEl = document.getElementById("submitAlert");
+
+  const firstName =
+    document.getElementById("firstName").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  alertEl.innerHTML = "";
+
+  if(!email){
+
+    alertEl.innerHTML =
+      "Email is required to receive your report.";
+
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = "SENDING...";
+
+  const scoreData = calcScoreData();
+
+  const payload = {
+    firstName:firstName,
+    email:email,
+    score:scoreData.percent,
+    businessOwner:businessOwner ? "Yes" : "No",
+    answers:ANSWERS
+  };
+
+  fetch(
+    "https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(payload)
+    }
+  )
+  .then(function(){
+
+    btn.innerHTML = "REPORT REQUESTED";
+
+  })
+  .catch(function(){
+
+    btn.disabled = false;
+
+    btn.innerHTML =
+      "TRY AGAIN";
+
+    alertEl.innerHTML =
+      "There was an issue sending your request.";
+  });
+}
+
 function render(){
-  const app = document.getElementById("app");
-  if(step === 0) renderIntro(app);
-  else if(step <= activePillars().length) renderQuestions(app);
-  else renderResults(app);
+
+  const app = document.querySelector("#app");
+
+  if(!app){
+    return;
+  }
+
+  app.className = "card";
+
+  if(step === 0){
+    renderIntro(app);
+  }
+  else if(step <= activePillars().length){
+    renderQuestions(app);
+  }
+  else{
+    renderResults(app);
+  }
 }
 
 function renderIntro(app){
-  const totalPillars = activePillars().length;
+
+  const total =
+    activePillars().length + 2;
 
   app.innerHTML = `
+
     <div class="stepbar">
-      ${Array.from({length:totalPillars+2},(_,i)=>`
-        <div class="seg ${i===0 ? "active" : ""}"></div>
-      `).join("")}
+      ${
+        Array.from({length:total},(_,i)=>`
+          <div class="seg ${i===0 ? "active" : ""}"></div>
+        `).join("")
+      }
     </div>
 
     <div class="header-title">
@@ -675,50 +618,63 @@ function renderIntro(app){
     </div>
 
     <p class="header-sub">
-      The 7-Pillar Continuity Analysis looks at how prepared your household is to maintain continuity when life changes unexpectedly.
+      Evaluate how prepared your household is to maintain continuity when life changes unexpectedly.
     </p>
 
     <p class="muted">
-      For each item, you will indicate whether it has been recorded for someone else, is unprepared, or does not apply. Items marked N/A are removed from your final score.
+      For each item, choose whether it has been recorded, remains unprepared, or does not apply.
     </p>
 
     <p class="muted" style="margin-top:18px;">
       Do you currently own or operate a business?
     </p>
 
-    <button
-      onclick="(function(){
-        businessOwner = true;
-        step = 1;
-        render();
-      })()"
-    >
+    <button id="businessBtn">
       CONTINUE AS BUSINESS OWNER
     </button>
 
-    <button
-      class="alt"
-      onclick="(function(){
-        businessOwner = false;
-        step = 1;
-        render();
-      })()"
-    >
+    <button class="alt" id="individualBtn">
       CONTINUE AS INDIVIDUAL
     </button>
+
   `;
+
+  document
+    .getElementById("businessBtn")
+    .onclick = function(){
+
+      businessOwner = true;
+      step = 1;
+      render();
+    };
+
+  document
+    .getElementById("individualBtn")
+    .onclick = function(){
+
+      businessOwner = false;
+      step = 1;
+      render();
+    };
 }
 
 function renderQuestions(app){
-  const ps = activePillars();
-  const p = ps[step - 1];
-  const totalSteps = ps.length + 2;
 
-  app.innerHTML = `
+  const pillars = activePillars();
+
+  const p = pillars[step - 1];
+
+  const totalSteps =
+    pillars.length + 2;
+
+  let html = `
+
     <div class="stepbar">
-      ${Array.from({length:totalSteps},(_,i)=>`
-        <div class="seg ${i <= step ? "active" : ""}"></div>
-      `).join("")}
+      ${
+        Array.from({length:totalSteps},(_,i)=>`
+          <div class="seg ${i <= step ? "active" : ""}"></div>
+        `).join("")
+      }
     </div>
 
     <div class="section-title">
@@ -728,91 +684,137 @@ function renderQuestions(app){
     <p class="muted" style="margin-bottom:14px;">
       Select the option that best reflects the current state of each item.
     </p>
+
   `;
 
-  p.i.forEach((item,idx)=>{
-    const key = (step - 1) + "_" + idx;
-    const val = ANSWERS[key] || "";
+  p.i.forEach(function(item,idx){
 
-    app.innerHTML += `
+    const key =
+      (step - 1) + "_" + idx;
+
+    const val =
+      ANSWERS[key] || "";
+
+    html += `
+
       <div class="toggle">
+
         <div class="row">
-          <div class="item-label">${item}</div>
+
+          <div class="item-label">
+            ${item}
+          </div>
+
           <div class="opts">
+
             <div
-              class="opt ${val === "R" ? "active" : ""}"
+              class="opt ${val==="R" ? "active" : ""}"
               onclick="pick('${key}','R')"
             >
               RECORDED
             </div>
+
             <div
-              class="opt ${val === "U" ? "active" : ""}"
+              class="opt ${val==="U" ? "active" : ""}"
               onclick="pick('${key}','U')"
             >
               UNPREPARED
             </div>
+
             <div
-              class="opt ${val === "N" ? "active" : ""}"
+              class="opt ${val==="N" ? "active" : ""}"
               onclick="pick('${key}','N')"
             >
               N/A
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     `;
   });
 
-  app.innerHTML += `
-    <button
-      onclick="(function(){
-        step++;
-        window.scrollTo(0,0);
-        render();
-      })()"
-    >
+  html += `
+
+    <button id="continueBtn">
       CONTINUE
     </button>
 
     <div class="nav-row">
-      <button class="small alt" onclick="goBack()">BACK</button>
-      <button class="small alt" onclick="resetAnalysis()">RESET</button>
+      <button class="small alt" id="backBtn">
+        BACK
+      </button>
+
+      <button class="small alt" id="resetBtn">
+        RESET
+      </button>
     </div>
+
   `;
+
+  app.innerHTML = html;
+
+  document
+    .getElementById("continueBtn")
+    .onclick = function(){
+
+      step++;
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+      render();
+    };
+
+  document
+    .getElementById("backBtn")
+    .onclick = goBack;
+
+  document
+    .getElementById("resetBtn")
+    .onclick = resetAnalysis;
 }
 
 function renderResults(app){
-  const ps = activePillars();
-  const totalSteps = ps.length + 2;
-  const scoreData = calcScoreData();
-  const score = scoreData.percent;
+
+  const data = calcScoreData();
+
+  const score = data.percent;
+
   const tier = tierLabel(score);
-  const tierClass = tierColorClass(score);
-  const angle = Math.max(0, Math.min(360, Math.round((score / 100) * 360)));
+
+  const tierClass =
+    tierColorClass(score);
+
+  const angle =
+    Math.round((score / 100) * 360);
 
   app.innerHTML = `
-    <div class="stepbar">
-      ${Array.from({length:totalSteps},(_,i)=>`
-        <div class="seg ${i <= totalSteps - 1 ? "active" : ""}"></div>
-      `).join("")}
-    </div>
 
     <div class="ring-wrap">
+
       <div class="readiness-label">
         CONTINUITY READINESS
       </div>
+
       <div
-        class="ring ${score >= 86 ? "legend" : ""}"
+        class="ring"
         style="--angle:${angle}deg;"
       >
-        <div class="ring-progress"></div>
-        <div class="ring-inner">
-          <div class="score">${score}%</div>
+        <div class="score">
+          ${score}%
         </div>
       </div>
+
     </div>
 
     <div
+      class="${tierClass}"
       style="
         text-align:center;
         font-family:'Cinzel',serif;
@@ -821,32 +823,44 @@ function renderResults(app){
         text-transform:uppercase;
         margin-bottom:10px;
       "
-      class="${tierClass}"
     >
       ${tier}
     </div>
 
-    <p class="muted" style="text-align:center;margin-top:4px;">
-      You have ${scoreData.recorded} of ${scoreData.effectiveTotal} items recorded.
+    <p class="muted" style="text-align:center;">
+      You have ${data.recorded} of ${data.effectiveTotal} items recorded.
     </p>
 
     <div class="legend-block">
+
       <div class="legend-row">
-        <span class="legend-name tier-legend">Continuity Luminary</span>
-        <span class="legend-range">86-100%</span>
+        <span class="tier-legend">
+          Continuity Luminary
+        </span>
+        — 86-100%
       </div>
+
       <div class="legend-row">
-        <span class="legend-name tier-stable">Continuity Steward</span>
-        <span class="legend-range">71-85%</span>
+        <span class="tier-stable">
+          Continuity Steward
+        </span>
+        — 71-85%
       </div>
+
       <div class="legend-row">
-        <span class="legend-name tier-develop">Continuity Builder</span>
-        <span class="legend-range">61-70%</span>
+        <span class="tier-develop">
+          Continuity Builder
+        </span>
+        — 61-70%
       </div>
+
       <div class="legend-row">
-        <span class="legend-name tier-risk">Continuity Sentinel</span>
-        <span class="legend-range">Below 61%</span>
+        <span class="tier-risk">
+          Continuity Sentinel
+        </span>
+        — Below 61%
       </div>
+
     </div>
 
     <p class="muted" style="margin-top:16px;text-align:center;">
@@ -854,36 +868,78 @@ function renderResults(app){
     </p>
 
     <div class="input-row">
+
       <div class="input-field">
-        <input type="text" id="firstName" placeholder="First Name (Optional)">
+        <input
+          type="text"
+          id="firstName"
+          placeholder="First Name (Optional)"
+        >
       </div>
+
       <div class="input-field">
-        <input type="email" id="email" placeholder="Email*">
+        <input
+          type="email"
+          id="email"
+          placeholder="Email*"
+        >
       </div>
+
     </div>
 
     <div id="submitAlert" class="alert"></div>
 
-    <button id="submitBtn" onclick="submitReport()">
+    <button id="submitBtn">
       REQUEST FULL ANALYSIS REPORT
     </button>
 
-    <div class="share-link" onclick="shareScore()">
+    <div class="share-link" id="shareBtn">
       <span>Share your score</span>
     </div>
 
     <div class="nav-row">
-      <button class="small alt" onclick="goBack()">BACK</button>
-      <button class="small alt" onclick="resetAnalysis()">RESET</button>
+
+      <button class="small alt" id="backBtn">
+        BACK
+      </button>
+
+      <button class="small alt" id="resetBtn">
+        RESET
+      </button>
+
     </div>
 
     <p class="footnote">
       This analysis is for informational purposes only and does not constitute legal or financial advice.
     </p>
+
   `;
+
+  document
+    .getElementById("submitBtn")
+    .onclick = submitReport;
+
+  document
+    .getElementById("shareBtn")
+    .onclick = shareScore;
+
+  document
+    .getElementById("backBtn")
+    .onclick = goBack;
+
+  document
+    .getElementById("resetBtn")
+    .onclick = resetAnalysis;
 }
 
-render();
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+    render();
+  }
+);
+
 </script>
+
 </body>
 </html>
