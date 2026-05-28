@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7-Pillar Continuity Analysis</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --gold:#e3cf8a;
   --gold-soft:rgba(227,207,138,0.18);
@@ -30,7 +31,8 @@
 
 body{
   margin:0;
-  background:radial-gradient(circle at top,#1b1510 0,#050405 55%,#020203 100%);
+  background:
+    radial-gradient(circle at top,#1b1510 0,#050405 55%,#020203 100%);
   color:var(--text);
   font-family:'Lora',serif;
   -webkit-font-smoothing:antialiased;
@@ -79,18 +81,17 @@ body{
   flex:1;
   height:3px;
   border-radius:999px;
-  background:#2a241c;
+  background:var(--line);
 }
 
 .seg.active{
-  background:linear-gradient(90deg,rgba(227,207,138,0.1),var(--gold));
+  background:
+    linear-gradient(
+      90deg,
+      rgba(227,207,138,0.1),
+      var(--gold)
+    );
   box-shadow:0 0 14px var(--gold-soft);
-}
-
-.muted{
-  color:var(--muted);
-  line-height:1.8;
-  font-size:16px;
 }
 
 .section-title{
@@ -99,8 +100,13 @@ body{
   margin:0 0 10px;
 }
 
+.muted{
+  color:var(--muted);
+  line-height:1.8;
+}
+
 .toggle{
-  border:1px solid #2a241c;
+  border:1px solid var(--line);
   padding:14px;
   border-radius:12px;
   margin:10px 0;
@@ -126,7 +132,7 @@ body{
 
 .opt{
   padding:7px 13px;
-  border:1px solid #2a241c;
+  border:1px solid var(--line);
   cursor:pointer;
   border-radius:999px;
   font-size:13px;
@@ -147,7 +153,12 @@ body{
 button{
   width:100%;
   padding:16px;
-  background:linear-gradient(135deg,#e3cf8a,#c1b085);
+  background:
+    linear-gradient(
+      135deg,
+      #e3cf8a,
+      #c1b085
+    );
   border:none;
   font-family:'Cinzel',serif;
   font-weight:700;
@@ -163,7 +174,7 @@ button{
 button.alt{
   background:#1b1712;
   color:var(--gold);
-  border:1px solid #2a241c;
+  border:1px solid var(--line);
 }
 
 button.small{
@@ -203,12 +214,12 @@ button.small{
   align-items:center;
   justify-content:center;
   margin:10px auto 14px;
-  border:1px solid #2a241c;
+  border:1px solid var(--line);
   position:relative;
   background:
     conic-gradient(
-      #e3cf8a var(--angle),
-      rgba(255,255,255,0.06) var(--angle)
+      var(--gold) var(--angle),
+      rgba(255,255,255,0.08) var(--angle)
     );
 }
 
@@ -243,11 +254,46 @@ input{
   width:100%;
   padding:13px 12px;
   background:#050405;
-  border:1px solid #2a241c;
+  border:1px solid var(--line);
   color:var(--text);
   margin-top:6px;
   border-radius:10px;
   font-size:16px;
+}
+
+input::placeholder{
+  color:#6f675c;
+}
+
+.legend-block{
+  margin-top:16px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(8,7,5,0.95);
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.legend-row{
+  margin-bottom:10px;
+}
+
+.tier-risk{
+  color:var(--tier-risk);
+}
+
+.tier-develop{
+  color:var(--tier-develop);
+}
+
+.tier-stable{
+  color:var(--tier-stable);
+}
+
+.tier-legend{
+  color:var(--tier-legend);
 }
 
 .alert{
@@ -275,26 +321,8 @@ input{
   text-align:center;
 }
 
-.legend-block{
-  margin-top:16px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #2a241c;
-  background:rgba(8,7,5,0.95);
-  font-size:14px;
-  color:var(--muted);
-}
-
-.legend-row{
-  margin-bottom:10px;
-}
-
-.tier-risk{color:#d45b5b;}
-.tier-develop{color:#e08b3a;}
-.tier-stable{color:#e3cf8a;}
-.tier-legend{color:#4bbf6b;}
-
 @media(max-width:700px){
+
   #wrap{
     padding:26px 14px 60px;
   }
@@ -311,7 +339,9 @@ input{
   .input-row{
     flex-direction:column;
   }
+
 }
+
 </style>
 </head>
 
@@ -323,7 +353,11 @@ input{
 
 <script type="text/javascript">
 
+const WEBHOOK_URL =
+  "https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
+
 const PILLARS = [
+
   {
     n:"01: Digital Life",
     i:[
@@ -335,6 +369,7 @@ const PILLARS = [
       "Digital Archive"
     ]
   },
+
   {
     n:"02: Financial & Assets",
     i:[
@@ -346,6 +381,7 @@ const PILLARS = [
       "Recurring Bills & Subscriptions"
     ]
   },
+
   {
     n:"03: Household & Property",
     i:[
@@ -357,6 +393,7 @@ const PILLARS = [
       "Household Inventory Documentation"
     ]
   },
+
   {
     n:"04: Health & Medical",
     i:[
@@ -368,6 +405,7 @@ const PILLARS = [
       "Emergency Medical Instructions"
     ]
   },
+
   {
     n:"05: Legal & Estate",
     i:[
@@ -379,6 +417,7 @@ const PILLARS = [
       "Estate Planning Documents"
     ]
   },
+
   {
     n:"06: Business Continuity",
     i:[
@@ -390,6 +429,7 @@ const PILLARS = [
       "Succession & Continuity Planning"
     ]
   },
+
   {
     n:"07: Legacy & Wishes",
     i:[
@@ -401,13 +441,16 @@ const PILLARS = [
       "Personal Wishes & Instructions"
     ]
   }
+
 ];
 
 let step = 0;
 let businessOwner = false;
+
 const ANSWERS = {};
 
 function activePillars(){
+
   return businessOwner
     ? PILLARS
     : PILLARS.filter(
@@ -421,48 +464,88 @@ function calcScoreData(){
   let na = 0;
   let total = 0;
 
-  activePillars().forEach((p,pi)=>{
-    p.i.forEach((item,ii)=>{
+  activePillars().forEach((pillar,pi)=>{
+
+    pillar.i.forEach((item,ii)=>{
 
       total++;
 
-      const val = ANSWERS[pi + "_" + ii];
+      const val =
+        ANSWERS[pi + "_" + ii];
 
-      if(val === "R") recorded++;
-      if(val === "N") na++;
+      if(val === "R"){
+        recorded++;
+      }
+
+      if(val === "N"){
+        na++;
+      }
 
     });
+
   });
 
-  const effectiveTotal = Math.max(1, total - na);
+  const effectiveTotal =
+    Math.max(1,total - na);
+
+  const percent =
+    Math.round(
+      (recorded / effectiveTotal) * 100
+    );
 
   return {
     recorded,
+    total,
+    na,
     effectiveTotal,
-    percent: Math.round((recorded / effectiveTotal) * 100)
+    percent
   };
 }
 
 function tierLabel(score){
-  if(score >= 86) return "Continuity Luminary";
-  if(score >= 71) return "Continuity Steward";
-  if(score >= 61) return "Continuity Builder";
+
+  if(score >= 86){
+    return "Continuity Luminary";
+  }
+
+  if(score >= 71){
+    return "Continuity Steward";
+  }
+
+  if(score >= 61){
+    return "Continuity Builder";
+  }
+
   return "Continuity Sentinel";
 }
 
 function tierColorClass(score){
-  if(score >= 86) return "tier-legend";
-  if(score >= 71) return "tier-stable";
-  if(score >= 61) return "tier-develop";
+
+  if(score >= 86){
+    return "tier-legend";
+  }
+
+  if(score >= 71){
+    return "tier-stable";
+  }
+
+  if(score >= 61){
+    return "tier-develop";
+  }
+
   return "tier-risk";
 }
 
 function pick(key,val){
 
   if(ANSWERS[key] === val){
+
     delete ANSWERS[key];
+
   }else{
+
     ANSWERS[key] = val;
+
   }
 
   render();
@@ -471,31 +554,37 @@ function pick(key,val){
 function goBack(){
 
   if(step > 0){
+
     step--;
+
     render();
   }
 }
 
 function resetAnalysis(){
 
-  for(const k in ANSWERS){
-    delete ANSWERS[k];
-  }
+  Object.keys(ANSWERS).forEach(key=>{
 
-  step = 0;
+    delete ANSWERS[key];
+
+  });
+
   businessOwner = false;
+  step = 0;
 
   render();
 }
 
 function shareScore(){
 
-  const data = calcScoreData();
+  const scoreData =
+    calcScoreData();
+
   const text =
     "My Continuity Readiness score is " +
-    data.percent +
+    scoreData.percent +
     "% (" +
-    tierLabel(data.percent) +
+    tierLabel(scoreData.percent) +
     ").";
 
   if(navigator.share){
@@ -504,7 +593,7 @@ function shareScore(){
       title:"7-Pillar Continuity Analysis",
       text:text,
       url:window.location.href
-    }).catch(()=>{});
+    });
 
   }else{
 
@@ -512,20 +601,29 @@ function shareScore(){
       text + " " + window.location.href
     );
 
-    alert("Share message copied.");
+    alert(
+      "Share message copied."
+    );
   }
 }
 
 function submitReport(){
 
-  const btn = document.getElementById("submitBtn");
-  const alertEl = document.getElementById("submitAlert");
+  const btn =
+    document.getElementById("submitBtn");
+
+  const alertEl =
+    document.getElementById("submitAlert");
 
   const firstName =
-    document.getElementById("firstName").value.trim();
+    document.getElementById("firstName")
+    .value
+    .trim();
 
   const email =
-    document.getElementById("email").value.trim();
+    document.getElementById("email")
+    .value
+    .trim();
 
   alertEl.innerHTML = "";
 
@@ -540,32 +638,161 @@ function submitReport(){
   btn.disabled = true;
   btn.innerHTML = "SENDING...";
 
-  const scoreData = calcScoreData();
+  const scoreData =
+    calcScoreData();
+
+  const strengths = [];
+  const gaps = [];
+  const pillarBreakdown = [];
+
+  activePillars().forEach((pillar,pi)=>{
+
+    let recorded = 0;
+    let unprepared = 0;
+    let na = 0;
+
+    pillar.i.forEach((item,ii)=>{
+
+      const val =
+        ANSWERS[pi + "_" + ii];
+
+      if(val === "R"){
+
+        recorded++;
+
+        strengths.push({
+          pillar:pillar.n,
+          item:item
+        });
+      }
+
+      if(val === "U"){
+
+        unprepared++;
+
+        gaps.push({
+          pillar:pillar.n,
+          item:item
+        });
+      }
+
+      if(val === "N"){
+
+        na++;
+      }
+
+    });
+
+    const effectiveTotal =
+      pillar.i.length - na;
+
+    const percent =
+      effectiveTotal > 0
+        ? Math.round(
+            (recorded / effectiveTotal) * 100
+          )
+        : 0;
+
+    pillarBreakdown.push({
+
+      pillar:pillar.n,
+
+      recorded:recorded,
+
+      unprepared:unprepared,
+
+      na:na,
+
+      percent:percent
+
+    });
+
+  });
+
+  let recommendation = "";
+
+  if(scoreData.percent < 61){
+
+    recommendation =
+      "Focus on centralizing essential household, legal, financial, and digital information into one secure location.";
+
+  }else if(scoreData.percent < 71){
+
+    recommendation =
+      "Your foundation is forming well. Prioritize documenting your highest-risk continuity gaps.";
+
+  }else if(scoreData.percent < 86){
+
+    recommendation =
+      "Your continuity structure is strong. Focus on maintaining updates and improving accessibility.";
+
+  }else{
+
+    recommendation =
+      "You demonstrate exceptional continuity readiness. Maintain regular reviews and trusted access procedures.";
+
+  }
 
   const payload = {
+
+    submittedAt:
+      new Date().toISOString(),
+
     firstName:firstName,
+
     email:email,
+
     score:scoreData.percent,
-    businessOwner:businessOwner ? "Yes" : "No",
-    answers:ANSWERS
+
+    recordedItems:
+      scoreData.recorded,
+
+    effectiveTotal:
+      scoreData.effectiveTotal,
+
+    businessOwner:
+      businessOwner ? "Yes" : "No",
+
+    tier:
+      tierLabel(scoreData.percent),
+
+    recommendation:
+      recommendation,
+
+    strengths:
+      strengths,
+
+    gaps:
+      gaps,
+
+    pillarBreakdown:
+      pillarBreakdown,
+
+    answers:
+      ANSWERS
+
   };
 
-  fetch(
-    "https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",
-    {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(payload)
-    }
-  )
-  .then(function(){
+  fetch(WEBHOOK_URL,{
 
-    btn.innerHTML = "REPORT REQUESTED";
+    method:"POST",
+
+    headers:{
+      "Content-Type":"application/json"
+    },
+
+    body:JSON.stringify(payload)
 
   })
-  .catch(function(){
+  .then(function(){
+
+    btn.innerHTML =
+      "REPORT REQUESTED";
+
+  })
+  .catch(function(error){
+
+    console.error(error);
 
     btn.disabled = false;
 
@@ -574,12 +801,14 @@ function submitReport(){
 
     alertEl.innerHTML =
       "There was an issue sending your request.";
+
   });
 }
 
 function render(){
 
-  const app = document.querySelector("#app");
+  const app =
+    document.querySelector("#app");
 
   if(!app){
     return;
@@ -588,13 +817,19 @@ function render(){
   app.className = "card";
 
   if(step === 0){
+
     renderIntro(app);
-  }
-  else if(step <= activePillars().length){
+
+  }else if(
+    step <= activePillars().length
+  ){
+
     renderQuestions(app);
-  }
-  else{
+
+  }else{
+
     renderResults(app);
+
   }
 }
 
@@ -606,11 +841,16 @@ function renderIntro(app){
   app.innerHTML = `
 
     <div class="stepbar">
+
       ${
-        Array.from({length:total},(_,i)=>`
-          <div class="seg ${i===0 ? "active" : ""}"></div>
-        `).join("")
+        Array.from(
+          {length:total},
+          (_,i)=>`
+            <div class="seg ${i===0 ? "active" : ""}"></div>
+          `
+        ).join("")
       }
+
     </div>
 
     <div class="header-title">
@@ -660,9 +900,11 @@ function renderIntro(app){
 
 function renderQuestions(app){
 
-  const pillars = activePillars();
+  const pillars =
+    activePillars();
 
-  const p = pillars[step - 1];
+  const pillar =
+    pillars[step - 1];
 
   const totalSteps =
     pillars.length + 2;
@@ -670,15 +912,20 @@ function renderQuestions(app){
   let html = `
 
     <div class="stepbar">
+
       ${
-        Array.from({length:totalSteps},(_,i)=>`
-          <div class="seg ${i <= step ? "active" : ""}"></div>
-        `).join("")
+        Array.from(
+          {length:totalSteps},
+          (_,i)=>`
+            <div class="seg ${i <= step ? "active" : ""}"></div>
+          `
+        ).join("")
       }
+
     </div>
 
     <div class="section-title">
-      ${p.n}
+      ${pillar.n}
     </div>
 
     <p class="muted" style="margin-bottom:14px;">
@@ -687,7 +934,7 @@ function renderQuestions(app){
 
   `;
 
-  p.i.forEach(function(item,idx){
+  pillar.i.forEach(function(item,idx){
 
     const key =
       (step - 1) + "_" + idx;
@@ -744,13 +991,21 @@ function renderQuestions(app){
     </button>
 
     <div class="nav-row">
-      <button class="small alt" id="backBtn">
+
+      <button
+        class="small alt"
+        id="backBtn"
+      >
         BACK
       </button>
 
-      <button class="small alt" id="resetBtn">
+      <button
+        class="small alt"
+        id="resetBtn"
+      >
         RESET
       </button>
+
     </div>
 
   `;
@@ -782,17 +1037,22 @@ function renderQuestions(app){
 
 function renderResults(app){
 
-  const data = calcScoreData();
+  const scoreData =
+    calcScoreData();
 
-  const score = data.percent;
+  const score =
+    scoreData.percent;
 
-  const tier = tierLabel(score);
+  const tier =
+    tierLabel(score);
 
   const tierClass =
     tierColorClass(score);
 
   const angle =
-    Math.round((score / 100) * 360);
+    Math.round(
+      (score / 100) * 360
+    );
 
   app.innerHTML = `
 
@@ -806,9 +1066,11 @@ function renderResults(app){
         class="ring"
         style="--angle:${angle}deg;"
       >
+
         <div class="score">
           ${score}%
         </div>
+
       </div>
 
     </div>
@@ -827,8 +1089,15 @@ function renderResults(app){
       ${tier}
     </div>
 
-    <p class="muted" style="text-align:center;">
-      You have ${data.recorded} of ${data.effectiveTotal} items recorded.
+    <p
+      class="muted"
+      style="text-align:center;"
+    >
+      You have
+      ${scoreData.recorded}
+      of
+      ${scoreData.effectiveTotal}
+      applicable items recorded.
     </p>
 
     <div class="legend-block">
@@ -837,21 +1106,21 @@ function renderResults(app){
         <span class="tier-legend">
           Continuity Luminary
         </span>
-        — 86-100%
+        — 86–100%
       </div>
 
       <div class="legend-row">
         <span class="tier-stable">
           Continuity Steward
         </span>
-        — 71-85%
+        — 71–85%
       </div>
 
       <div class="legend-row">
         <span class="tier-develop">
           Continuity Builder
         </span>
-        — 61-70%
+        — 61–70%
       </div>
 
       <div class="legend-row">
@@ -863,47 +1132,69 @@ function renderResults(app){
 
     </div>
 
-    <p class="muted" style="margin-top:16px;text-align:center;">
+    <p
+      class="muted"
+      style="
+        margin-top:16px;
+        text-align:center;
+      "
+    >
       Receive a detailed report with actionable next steps.
     </p>
 
     <div class="input-row">
 
       <div class="input-field">
+
         <input
           type="text"
           id="firstName"
           placeholder="First Name (Optional)"
         >
+
       </div>
 
       <div class="input-field">
+
         <input
           type="email"
           id="email"
           placeholder="Email*"
         >
+
       </div>
 
     </div>
 
-    <div id="submitAlert" class="alert"></div>
+    <div
+      id="submitAlert"
+      class="alert"
+    ></div>
 
     <button id="submitBtn">
       REQUEST FULL ANALYSIS REPORT
     </button>
 
-    <div class="share-link" id="shareBtn">
+    <div
+      class="share-link"
+      id="shareBtn"
+    >
       <span>Share your score</span>
     </div>
 
     <div class="nav-row">
 
-      <button class="small alt" id="backBtn">
+      <button
+        class="small alt"
+        id="backBtn"
+      >
         BACK
       </button>
 
-      <button class="small alt" id="resetBtn">
+      <button
+        class="small alt"
+        id="resetBtn"
+      >
         RESET
       </button>
 
@@ -935,7 +1226,9 @@ function renderResults(app){
 document.addEventListener(
   "DOMContentLoaded",
   function(){
+
     render();
+
   }
 );
 
