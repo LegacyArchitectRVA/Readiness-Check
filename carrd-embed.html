@@ -1,13 +1,10 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>7-Pillar Continuity Analysis</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --gold:#e3cf8a;
@@ -19,15 +16,12 @@
   --muted:#a59c8f;
   --danger:#c96b5b;
   --accent:#c1b085;
-
   --tier-risk:#d45b5b;
   --tier-develop:#e08b3a;
   --tier-stable:#e3cf8a;
   --tier-legend:#4bbf6b;
 }
-
 *{box-sizing:border-box;}
-
 body{
   margin:0;
   background:radial-gradient(circle at top,#1b1510 0,#050405 55%,#020203 100%);
@@ -36,23 +30,18 @@ body{
   -webkit-font-smoothing:antialiased;
   font-size:17px;
 }
-
 #wrap{
   max-width:760px;
   margin:0 auto;
   padding:40px 18px 80px;
 }
-
 .card{
   background:transparent;
   border-radius:18px;
   border:1px solid rgba(255,255,255,0.05);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 26px 60px rgba(0,0,0,0.85);
+  box-shadow:0 0 0 1px rgba(0,0,0,0.7),0 26px 60px rgba(0,0,0,0.85);
   padding:26px 22px 30px;
 }
-
 .header-title{
   font-family:'Cinzel',serif;
   letter-spacing:3px;
@@ -60,21 +49,18 @@ body{
   text-transform:uppercase;
   color:var(--gold);
 }
-
 .header-sub{
   margin-top:10px;
   color:var(--muted);
   line-height:1.8;
   font-size:16px;
 }
-
 .stepbar{
   display:flex;
   gap:6px;
   margin-bottom:22px;
   margin-top:4px;
 }
-
 .seg{
   flex:1;
   height:3px;
@@ -83,12 +69,10 @@ body{
   position:relative;
   overflow:hidden;
 }
-
 .seg.active{
   background:linear-gradient(90deg,rgba(227,207,138,0.1),var(--gold));
   box-shadow:0 0 14px var(--gold-soft);
 }
-
 .seg.active::after{
   content:"";
   position:absolute;
@@ -96,24 +80,20 @@ body{
   background:radial-gradient(circle at 0 50%,rgba(255,255,255,0.35),transparent 60%);
   animation:glowSweep 1.8s linear infinite;
 }
-
 @keyframes glowSweep{
   0%{transform:translateX(-120%);}
   100%{transform:translateX(120%);}
 }
-
 .muted{
   color:var(--muted);
   line-height:1.8;
   font-size:16px;
 }
-
 .section-title{
   font-family:'Cinzel',serif;
   font-size:21px;
   margin:0 0 10px;
 }
-
 .toggle{
   border:1px solid var(--line);
   padding:14px 14px 12px;
@@ -121,22 +101,18 @@ body{
   margin:10px 0;
   background:rgba(10,10,8,0.9);
 }
-
 .row{
   display:flex;
   justify-content:space-between;
   gap:16px;
   align-items:flex-start;
 }
-
 .item-label{font-size:16px;}
-
 .opts{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
 }
-
 .opt{
   padding:7px 13px;
   border:1px solid var(--line);
@@ -150,23 +126,17 @@ body{
   color:var(--muted);
   background:rgba(8,8,6,0.9);
 }
-
 .opt:hover{
   transform:translateY(-1px);
   border-color:rgba(227,207,138,0.4);
 }
-
 .opt:active{transform:scale(.96);}
-
 .opt.active{
   border-color:var(--gold);
-  box-shadow:
-    0 0 12px var(--gold-soft),
-    0 0 26px rgba(227,207,138,0.10);
+  box-shadow:0 0 12px var(--gold-soft),0 0 26px rgba(227,207,138,0.10);
   color:var(--gold);
   background:radial-gradient(circle at top,rgba(227,207,138,0.16),rgba(8,8,6,0.95));
 }
-
 button{
   width:100%;
   padding:16px;
@@ -181,63 +151,44 @@ button{
   text-transform:uppercase;
   color:#1b1712;
   border-radius:999px;
-  transition:
-    transform .08s ease,
-    filter .08s ease,
-    box-shadow .12s ease;
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 18px 40px rgba(0,0,0,0.9);
+  transition:transform .08s ease,filter .08s ease,box-shadow .12s ease;
+  box-shadow:0 0 0 1px rgba(0,0,0,0.7),0 18px 40px rgba(0,0,0,0.9);
 }
-
 button:hover{
   filter:brightness(1.03);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 22px 46px rgba(0,0,0,0.95);
+  box-shadow:0 0 0 1px rgba(0,0,0,0.7),0 22px 46px rgba(0,0,0,0.95);
 }
-
 button:active{
   transform:scale(.97);
   filter:brightness(.96);
 }
-
 button:disabled{
   opacity:.7;
   cursor:not-allowed;
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 10px 26px rgba(0,0,0,0.7);
+  box-shadow:0 0 0 1px rgba(0,0,0,0.7),0 10px 26px rgba(0,0,0,0.7);
 }
-
 button.alt{
   background:#1b1712;
   color:var(--gold);
   border:1px solid var(--line);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 16px 34px rgba(0,0,0,0.85);
+  box-shadow:0 0 0 1px rgba(0,0,0,0.7),0 16px 34px rgba(0,0,0,0.85);
 }
-
 button.alt:hover{
   filter:none;
   border-color:rgba(227,207,138,0.4);
 }
-
 button.small{
   width:auto;
   padding:10px 18px;
   font-size:13px;
   margin-top:12px;
 }
-
 .ring-wrap{
   display:flex;
   flex-direction:column;
   align-items:center;
   margin:10px 0 18px;
 }
-
 .readiness-label{
   font-family:'Cinzel',serif;
   font-size:22px;
@@ -247,7 +198,6 @@ button.small{
   margin-bottom:8px;
   text-align:center;
 }
-
 .ring{
   width:190px;
   height:190px;
@@ -261,7 +211,6 @@ button.small{
   background:radial-gradient(circle at top,rgba(227,207,138,0.08),rgba(10,8,6,0.98));
   overflow:hidden;
 }
-
 .ring::before{
   content:"";
   position:absolute;
@@ -270,52 +219,38 @@ button.small{
   border:1px solid rgba(255,255,255,0.04);
   background:radial-gradient(circle at top,rgba(227,207,138,0.05),transparent 70%);
 }
-
 .ring.legend{
   border-color:var(--gold);
-  box-shadow:
-    0 0 18px var(--gold-soft),
-    0 0 40px rgba(227,207,138,0.18);
+  box-shadow:0 0 18px var(--gold-soft),0 0 40px rgba(227,207,138,0.18);
   animation:pulse 2s infinite;
 }
-
 .ring-progress{
   position:absolute;
   inset:-40%;
   border-radius:50%;
-  background:conic-gradient(
-    rgba(60,48,32,0.9) 0deg,
-    rgba(90,72,48,0.95) var(--angle),
-    rgba(20,16,12,0.9) var(--angle),
-    rgba(10,8,6,0.98) 360deg
-  );
+  background:conic-gradient(rgba(60,48,32,0.9) 0deg,rgba(90,72,48,0.95) var(--angle),rgba(20,16,12,0.9) var(--angle),rgba(10,8,6,0.98) 360deg);
   filter:blur(.4px);
 }
-
 .ring-inner{
   position:relative;
   z-index:2;
 }
-
 .score{
   font-family:'Cinzel',serif;
   font-size:53px;
   color:var(--gold);
   text-align:center;
 }
-
 .input-row{
   display:flex;
   gap:10px;
   margin-top:18px;
   flex-wrap:wrap;
 }
-
 .input-field{
   flex:1;
   min-width:0;
 }
-
 input{
   width:100%;
   padding:13px 12px;
@@ -326,15 +261,12 @@ input{
   border-radius:10px;
   font-size:16px;
 }
-
 input::placeholder{color:#6f675c;}
-
 input:focus{
   outline:none;
   border-color:var(--gold);
   box-shadow:0 0 10px var(--gold-soft);
 }
-
 .legend-block{
   margin-top:16px;
   padding:14px 14px 12px;
@@ -345,39 +277,31 @@ input:focus{
   color:var(--muted);
   line-height:1.7;
 }
-
 .legend-row{margin-bottom:10px;}
-
 .legend-name{
   font-weight:600;
   font-size:15px;
 }
-
 .legend-range{
   font-size:13px;
   opacity:.9;
 }
-
 .legend-text{font-size:13px;}
-
 .tier-risk{color:var(--tier-risk);}
 .tier-develop{color:var(--tier-develop);}
 .tier-stable{color:var(--tier-stable);}
 .tier-legend{color:var(--tier-legend);}
-
 .alert{
   margin-top:10px;
   font-size:13px;
   color:var(--danger);
 }
-
 .footnote{
   margin-top:16px;
   font-size:12px;
   color:#7f7567;
   text-align:center;
 }
-
 .share-link{
   margin-top:10px;
   font-size:13px;
@@ -385,16 +309,13 @@ input:focus{
   color:var(--accent);
   cursor:pointer;
 }
-
 .share-link span{text-decoration:underline;}
-
 .nav-row{
   display:flex;
   justify-content:space-between;
   gap:10px;
   margin-top:10px;
 }
-
 @media(max-width:700px){
   #wrap{padding:26px 14px 60px;}
   .card{padding:20px 16px 24px;}
@@ -403,114 +324,33 @@ input:focus{
   .score{font-size:47px;}
   .input-row{flex-direction:column;}
 }
-
 @keyframes pulse{
   50%{transform:scale(1.02);}
 }
 </style>
 </head>
-
 <body>
 <div id="wrap">
   <div id="app" class="card"></div>
 </div>
-
 <script>
 const PILLARS = [
-  {
-    n:"01: Digital Life",
-    i:[
-      "Primary Email Access",
-      "Password Manager",
-      "Cloud Storage",
-      "2-Factor Authentication Recovery",
-      "Social Media Accounts",
-      "Digital Archive"
-    ]
-  },
-  {
-    n:"02: Financial & Assets",
-    i:[
-      "Banking Accounts",
-      "Credit Accounts",
-      "Investment & Retirement Accounts",
-      "Life Insurance Policies",
-      "Cryptocurrency & Digital Assets",
-      "Recurring Bills & Subscriptions"
-    ]
-  },
-  {
-    n:"03: Household & Property",
-    i:[
-      "Property Deeds & Titles",
-      "Vehicle Titles & Registration",
-      "Home Maintenance Records",
-      "Utility Accounts",
-      "Security Systems & Access Codes",
-      "Household Inventory Documentation"
-    ]
-  },
-  {
-    n:"04: Health & Medical",
-    i:[
-      "Health Insurance Information",
-      "Medical Providers & Contacts",
-      "Prescription Information",
-      "Medical History & Records",
-      "Advance Healthcare Directives",
-      "Emergency Medical Instructions"
-    ]
-  },
-  {
-    n:"05: Legal & Estate",
-    i:[
-      "Last Will & Testament",
-      "Trust Documentation",
-      "Financial Power of Attorney",
-      "Healthcare Power of Attorney",
-      "Beneficiary Designations",
-      "Estate Planning Documents"
-    ]
-  },
-  {
-    n:"06: Business Continuity",
-    i:[
-      "Entity Formation Documents",
-      "Business Banking Access",
-      "Operating Agreements",
-      "Key Vendor Relationships",
-      "Client & Contract Records",
-      "Succession & Continuity Planning"
-    ]
-  },
-  {
-    n:"07: Legacy & Wishes",
-    i:[
-      "Personal Letters",
-      "Family History & Stories",
-      "Ethical Will",
-      "Funeral Preferences",
-      "Obituary Information",
-      "Personal Wishes & Instructions"
-    ]
-  }
+  {n:"01: Digital Life",i:["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication Recovery","Social Media Accounts","Digital Archive"]},
+  {n:"02: Financial & Assets",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
+  {n:"03: Household & Property",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
+  {n:"04: Health & Medical",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
+  {n:"05: Legal & Estate",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
+  {n:"06: Business Continuity",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
+  {n:"07: Legacy & Wishes",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
-
 let step = 0;
 let businessOwner = false;
 const ANSWERS = {};
 
-function activePillars(){
-  return businessOwner
-    ? PILLARS
-    : PILLARS.filter(p => p.n.indexOf("Business Continuity") === -1);
-}
+function activePillars(){return businessOwner ? PILLARS : PILLARS.filter(p => p.n.indexOf("Business Continuity") === -1);}
 
 function calcScoreData(){
-  let recorded = 0;
-  let na = 0;
-  let total = 0;
-
+  let recorded = 0, na = 0, total = 0;
   activePillars().forEach((p,pi)=>{
     p.i.forEach((_,ii)=>{
       total++;
@@ -519,15 +359,8 @@ function calcScoreData(){
       if(v === "N") na++;
     });
   });
-
   const effectiveTotal = Math.max(1, total - na);
-  const percent = (recorded / effectiveTotal) * 100;
-  return {
-    percent: Math.round(percent),
-    recorded,
-    total,
-    effectiveTotal
-  };
+  return {percent: Math.round((recorded / effectiveTotal) * 100), recorded, total, effectiveTotal};
 }
 
 function tierLabel(score){
@@ -545,11 +378,7 @@ function tierColorClass(score){
 }
 
 function pick(key,value){
-  if(ANSWERS[key] === value){
-    delete ANSWERS[key];
-  }else{
-    ANSWERS[key] = value;
-  }
+  ANSWERS[key] === value ? delete ANSWERS[key] : ANSWERS[key] = value;
   render();
 }
 
@@ -558,59 +387,29 @@ function submitReport(){
   const firstName = document.getElementById("firstName")?.value.trim() || "";
   const email = document.getElementById("email")?.value.trim() || "";
   const alertEl = document.getElementById("submitAlert");
-
   if(alertEl) alertEl.textContent = "";
-
   if(!email){
     if(alertEl) alertEl.textContent = "Email is required to receive your full analysis report.";
     btn.innerText = "EMAIL REQUIRED";
-    setTimeout(()=>{ btn.innerText = "REQUEST FULL ANALYSIS REPORT"; }, 1200);
+    setTimeout(()=>{btn.innerText="REQUEST FULL ANALYSIS REPORT"},1200);
     return;
   }
-
   btn.disabled = true;
   btn.innerText = "SENDING...";
-
   const scoreData = calcScoreData();
   const score = scoreData.percent;
   const tier = tierLabel(score);
-
   let recommendation = "";
   if(score < 61) recommendation = "Focus on centralizing your scattered information into a single, secure location.";
   else if(score < 71) recommendation = "Prioritize documenting your most critical digital and financial assets.";
   else if(score < 86) recommendation = "You are in a great spot; now focus on periodic reviews and testing your plan.";
   else recommendation = "Maintain your documentation and ensure your trusted contacts know where to find it.";
-
   const pillarSummary = activePillars().map(p => p.n).join(", ");
-
-  const payload = {
-    firstName: firstName,
-    email: email,
-    score: score,
-    maxScore: scoreData.effectiveTotal,
-    percent: score,
-    tier: tier,
-    businessOwner: businessOwner ? "Yes" : "No",
-    answers: ANSWERS,
-    recommendation: recommendation,
-    pillarSummary: pillarSummary
-  };
-
   fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(payload)
-  })
-  .then(r => r.json().catch(()=>({})))
-  .then(()=>{
-    btn.innerText = "REPORT REQUESTED";
-  })
-  .catch(err=>{
-    console.error(err);
-    btn.disabled = false;
-    btn.innerText = "TRY AGAIN";
-    if(alertEl) alertEl.textContent = "There was an issue sending your request. Please try again.";
-  });
+    body:JSON.stringify({firstName,email,score,maxScore:scoreData.effectiveTotal,percent:score,tier,businessOwner:businessOwner?"Yes":"No",answers:ANSWERS,recommendation,pillarSummary})
+  }).then(r=>r.json().catch(()=>({}))).then(()=>{btn.innerText="REPORT REQUESTED";}).catch(err=>{console.error(err);btn.disabled=false;btn.innerText="TRY AGAIN";if(alertEl)alertEl.textContent="There was an issue sending your request. Please try again.";});
 }
 
 function shareScore(){
@@ -618,16 +417,8 @@ function shareScore(){
   const score = scoreData.percent;
   const tier = tierLabel(score);
   const text = `My Continuity Readiness score is ${score}% (${tier}). How prepared is your household?`;
-  if(navigator.share){
-    navigator.share({
-      title:"7-Pillar Continuity Analysis",
-      text,
-      url:window.location.href
-    }).catch(()=>{});
-  }else{
-    navigator.clipboard.writeText(text + " " + window.location.href).catch(()=>{});
-    alert("A shareable message with your score has been copied.");
-  }
+  if(navigator.share) navigator.share({title:"7-Pillar Continuity Analysis",text,url:window.location.href}).catch(()=>{});
+  else{navigator.clipboard.writeText(text+" "+window.location.href).catch(()=>{});alert("A shareable message with your score has been copied.");}
 }
 
 function resetAnalysis(){
@@ -637,12 +428,7 @@ function resetAnalysis(){
   render();
 }
 
-function goBack(){
-  if(step > 0){
-    step--;
-    render();
-  }
-}
+function goBack(){if(step > 0){step--;render();}}
 
 function render(){
   const app = document.getElementById("app");
@@ -653,123 +439,46 @@ function render(){
 
 function renderIntro(app){
   const totalPillars = activePillars().length;
-
   app.innerHTML = `
-    <div class="stepbar">
-      ${Array.from({length:totalPillars+2},(_,i)=>`
-        <div class="seg ${i===0 ? "active" : ""}"></div>
-      `).join("")}
-    </div>
-
-    <div class="header-title">
-      7-PILLAR CONTINUITY ANALYSIS
-    </div>
-
-    <p class="header-sub">
-      The 7-Pillar Continuity Analysis looks at how prepared your household is to maintain continuity when life changes unexpectedly.
-    </p>
-
-    <p class="muted">
-      For each item, you will indicate whether it has been recorded for someone else, is unprepared, or does not apply. Items marked N/A are removed from your final score.
-    </p>
-
-    <p class="muted" style="margin-top:18px;">
-      Do you currently own or operate a business?
-    </p>
-
-    <button
-      onclick="(function(){
-        businessOwner = true;
-        step = 1;
-        render();
-      })()"
-    >
-      CONTINUE AS BUSINESS OWNER
-    </button>
-
-    <button
-      class="alt"
-      onclick="(function(){
-        businessOwner = false;
-        step = 1;
-        render();
-      })()"
-    >
-      CONTINUE AS INDIVIDUAL
-    </button>
-  `;
+    <div class="stepbar">${Array.from({length:totalPillars+2},(_,i)=>`<div class="seg ${i===0?"active":""}"></div>`).join("")}</div>
+    <div class="header-title">7-PILLAR CONTINUITY ANALYSIS</div>
+    <p class="header-sub">The 7-Pillar Continuity Analysis looks at how prepared your household is to maintain continuity when life changes unexpectedly.</p>
+    <p class="muted">For each item, you will indicate whether it has been recorded for someone else, is unprepared, or does not apply. Items marked N/A are removed from your final score.</p>
+    <p class="muted" style="margin-top:18px;">Do you currently own or operate a business?</p>
+    <button onclick="businessOwner=true;step=1;render()">CONTINUE AS BUSINESS OWNER</button>
+    <button class="alt" onclick="businessOwner=false;step=1;render()">CONTINUE AS INDIVIDUAL</button>`;
 }
 
 function renderQuestions(app){
   const ps = activePillars();
   const p = ps[step - 1];
   const totalSteps = ps.length + 2;
-
-  app.innerHTML = `
-    <div class="stepbar">
-      ${Array.from({length:totalSteps},(_,i)=>`
-        <div class="seg ${i <= step ? "active" : ""}"></div>
-      `).join("")}
-    </div>
-
-    <div class="section-title">
-      ${p.n}
-    </div>
-
-    <p class="muted" style="margin-bottom:14px;">
-      Select the option that best reflects the current state of each item.
-    </p>
-  `;
-
+  let html = `
+    <div class="stepbar">${Array.from({length:totalSteps},(_,i)=>`<div class="seg ${i<=step?"active":""}"></div>`).join("")}</div>
+    <div class="section-title">${p.n}</div>
+    <p class="muted" style="margin-bottom:14px;">Select the option that best reflects the current state of each item.</p>`;
   p.i.forEach((item,idx)=>{
-    const key = (step - 1) + "_" + idx;
+    const key = (step-1)+"_"+idx;
     const val = ANSWERS[key] || "";
-
-    app.innerHTML += `
+    html += `
       <div class="toggle">
         <div class="row">
           <div class="item-label">${item}</div>
           <div class="opts">
-            <div
-              class="opt ${val === "R" ? "active" : ""}"
-              onclick="pick('${key}','R')"
-            >
-              RECORDED
-            </div>
-            <div
-              class="opt ${val === "U" ? "active" : ""}"
-              onclick="pick('${key}','U')"
-            >
-              UNPREPARED
-            </div>
-            <div
-              class="opt ${val === "N" ? "active" : ""}"
-              onclick="pick('${key}','N')"
-            >
-              N/A
-            </div>
+            <div class="opt ${val==="R"?"active":""}" onclick="pick('${key}','R')">RECORDED</div>
+            <div class="opt ${val==="U"?"active":""}" onclick="pick('${key}','U')">UNPREPARED</div>
+            <div class="opt ${val==="N"?"active":""}" onclick="pick('${key}','N')">N/A</div>
           </div>
         </div>
-      </div>
-    `;
+      </div>`;
   });
-
-  app.innerHTML += `
-    <button
-      onclick="(function(){
-        step++;
-        window.scrollTo(0,0);
-        render();
-      })()"
-    >
-      CONTINUE
-    </button>
-
+  html += `
+    <button onclick="step++;window.scrollTo(0,0);render()">CONTINUE</button>
     <div class="nav-row">
       <button class="small alt" onclick="goBack()">BACK</button>
       <button class="small alt" onclick="resetAnalysis()">RESET</button>
-    </div>
-  `;
+    </div>`;
+  app.innerHTML = html;
 }
 
 function renderResults(app){
@@ -780,104 +489,38 @@ function renderResults(app){
   const tier = tierLabel(score);
   const tierClass = tierColorClass(score);
   const angle = Math.max(0, Math.min(360, Math.round((score / 100) * 360)));
-
   app.innerHTML = `
-    <div class="stepbar">
-      ${Array.from({length:totalSteps},(_,i)=>`
-        <div class="seg ${i <= totalSteps - 1 ? "active" : ""}"></div>
-      `).join("")}
-    </div>
-
+    <div class="stepbar">${Array.from({length:totalSteps},(_,i)=>`<div class="seg ${i<=totalSteps-1?"active":""}"></div>`).join("")}</div>
     <div class="ring-wrap">
-      <div class="readiness-label">
-        CONTINUITY READINESS
-      </div>
-      <div
-        class="ring ${score >= 86 ? "legend" : ""}"
-        style="--angle:${angle}deg;"
-      >
+      <div class="readiness-label">CONTINUITY READINESS</div>
+      <div class="ring ${score>=86?"legend":""}" style="--angle:${angle}deg;">
         <div class="ring-progress"></div>
-        <div class="ring-inner">
-          <div class="score">${score}%</div>
-        </div>
+        <div class="ring-inner"><div class="score">${score}%</div></div>
       </div>
     </div>
-
-    <div
-      style="
-        text-align:center;
-        font-family:'Cinzel',serif;
-        letter-spacing:2px;
-        font-size:15px;
-        text-transform:uppercase;
-        margin-bottom:10px;
-      "
-      class="${tierClass}"
-    >
-      ${tier}
-    </div>
-
-    <p class="muted" style="text-align:center;margin-top:4px;">
-      You have ${scoreData.recorded} of ${scoreData.effectiveTotal} items recorded.
-    </p>
-
+    <div style="text-align:center;font-family:'Cinzel',serif;letter-spacing:2px;font-size:15px;text-transform:uppercase;margin-bottom:10px;" class="${tierClass}">${tier}</div>
+    <p class="muted" style="text-align:center;margin-top:4px;">You have ${scoreData.recorded} of ${scoreData.effectiveTotal} items recorded.</p>
     <div class="legend-block">
-      <div class="legend-row">
-        <span class="legend-name tier-legend">Continuity Luminary</span>
-        <span class="legend-range">86-100%</span>
-      </div>
-      <div class="legend-row">
-        <span class="legend-name tier-stable">Continuity Steward</span>
-        <span class="legend-range">71-85%</span>
-      </div>
-      <div class="legend-row">
-        <span class="legend-name tier-develop">Continuity Builder</span>
-        <span class="legend-range">61-70%</span>
-      </div>
-      <div class="legend-row">
-        <span class="legend-name tier-risk">Continuity Sentinel</span>
-        <span class="legend-range">Below 61%</span>
-      </div>
+      <div class="legend-row"><span class="legend-name tier-legend">Continuity Luminary</span><span class="legend-range">86-100%</span></div>
+      <div class="legend-row"><span class="legend-name tier-stable">Continuity Steward</span><span class="legend-range">71-85%</span></div>
+      <div class="legend-row"><span class="legend-name tier-develop">Continuity Builder</span><span class="legend-range">61-70%</span></div>
+      <div class="legend-row"><span class="legend-name tier-risk">Continuity Sentinel</span><span class="legend-range">Below 61%</span></div>
     </div>
-
-    <p class="muted" style="margin-top:16px;text-align:center;">
-      Receive a detailed report with actionable next steps.
-    </p>
-
+    <p class="muted" style="margin-top:16px;text-align:center;">Receive a detailed report with actionable next steps.</p>
     <div class="input-row">
-      <div class="input-field">
-        <input type="text" id="firstName" placeholder="First Name (Optional)">
-      </div>
-      <div class="input-field">
-        <input type="email" id="email" placeholder="Email*">
-      </div>
+      <div class="input-field"><input type="text" id="firstName" placeholder="First Name (Optional)"></div>
+      <div class="input-field"><input type="email" id="email" placeholder="Email*"></div>
     </div>
-
     <div id="submitAlert" class="alert"></div>
-
-    <button id="submitBtn" onclick="submitReport()">
-      REQUEST FULL ANALYSIS REPORT
-    </button>
-
-    <div class="share-link" onclick="shareScore()">
-      <span>Share your score</span>
-    </div>
-
+    <button id="submitBtn" onclick="submitReport()">REQUEST FULL ANALYSIS REPORT</button>
+    <div class="share-link" onclick="shareScore()"><span>Share your score</span></div>
     <div class="nav-row">
       <button class="small alt" onclick="goBack()">BACK</button>
       <button class="small alt" onclick="resetAnalysis()">RESET</button>
     </div>
-
-    <p class="footnote">
-      This analysis is for informational purposes only and does not constitute legal or financial advice.
-    </p>
-  `;
-
-  render();
+    <p class="footnote">This analysis is for informational purposes only and does not constitute legal or financial advice.</p>`;
 }
-
 render();
 </script>
 </body>
 </html>
-```
