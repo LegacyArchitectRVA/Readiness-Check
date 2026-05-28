@@ -2,31 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 <title>7-Pillar Continuity Analysis</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;500;600&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
 :root{
   --gold:#e3cf8a;
-  --gold-soft:rgba(227,207,138,0.18);
+  --gold-soft:rgba(227,207,138,.16);
   --line:#2a241c;
   --bg:#050405;
+  --card:#0d0b09;
   --text:#f4f1ea;
   --muted:#a59c8f;
-  --danger:#c96b5b;
-  --accent:#c1b085;
+  --danger:#d06d61;
 
-  --tier-risk:#d45b5b;
-  --tier-develop:#e08b3a;
-  --tier-stable:#e3cf8a;
-  --tier-legend:#4bbf6b;
+  --risk:#d45b5b;
+  --develop:#e08b3a;
+  --stable:#e3cf8a;
+  --legend:#4bbf6b;
 }
 
 *{
   box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  font-size:16px;
 }
 
 body{
@@ -36,277 +47,304 @@ body{
   color:var(--text);
   font-family:'Lora',serif;
   -webkit-font-smoothing:antialiased;
-  font-size:17px;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+button,
+input{
+  font:inherit;
 }
 
 #wrap{
+  width:100%;
   max-width:760px;
   margin:0 auto;
-  padding:40px 18px 80px;
+  padding:
+    max(16px,env(safe-area-inset-top))
+    14px
+    max(40px,env(safe-area-inset-bottom));
 }
 
 .card{
-  background:transparent;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.05);
+  width:100%;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.05);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,16,12,.92),
+      rgba(8,7,5,.98)
+    );
   box-shadow:
-    0 0 0 1px rgba(0,0,0,0.7),
-    0 26px 60px rgba(0,0,0,0.85);
-  padding:26px 22px 30px;
-}
-
-.header-title{
-  font-family:'Cinzel',serif;
-  letter-spacing:3px;
-  font-size:15px;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-
-.header-sub{
-  margin-top:10px;
-  color:var(--muted);
-  line-height:1.8;
-  font-size:16px;
+    0 0 0 1px rgba(0,0,0,.6),
+    0 24px 60px rgba(0,0,0,.75);
+  padding:20px;
 }
 
 .stepbar{
   display:flex;
-  gap:6px;
+  gap:5px;
   margin-bottom:22px;
-  margin-top:4px;
 }
 
 .seg{
   flex:1;
   height:3px;
   border-radius:999px;
-  background:var(--line);
+  background:#2a241c;
 }
 
 .seg.active{
   background:
     linear-gradient(
       90deg,
-      rgba(227,207,138,0.1),
+      rgba(227,207,138,.2),
       var(--gold)
     );
-  box-shadow:0 0 14px var(--gold-soft);
+  box-shadow:0 0 12px var(--gold-soft);
+}
+
+.header-title,
+.section-title,
+.readiness-label{
+  font-family:'Cinzel',serif;
+}
+
+.header-title{
+  font-size:.88rem;
+  letter-spacing:2.6px;
+  text-transform:uppercase;
+  color:var(--gold);
 }
 
 .section-title{
-  font-family:'Cinzel',serif;
-  font-size:21px;
+  font-size:1.25rem;
   margin:0 0 10px;
+}
+
+.readiness-label{
+  font-size:1.15rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-align:center;
+  margin-bottom:10px;
 }
 
 .muted{
   color:var(--muted);
-  line-height:1.8;
+  line-height:1.7;
+  font-size:.97rem;
 }
 
 .toggle{
+  margin:12px 0;
   border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(12,10,8,.92);
   padding:14px;
-  border-radius:12px;
-  margin:10px 0;
-  background:rgba(10,10,8,0.9);
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:16px;
-  align-items:flex-start;
 }
 
 .item-label{
-  font-size:16px;
+  font-size:.98rem;
+  line-height:1.5;
+  margin-bottom:12px;
 }
 
 .opts{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
-  flex-wrap:wrap;
 }
 
 .opt{
-  padding:7px 13px;
-  border:1px solid var(--line);
-  cursor:pointer;
+  min-height:46px;
   border-radius:999px;
-  font-size:13px;
+  border:1px solid var(--line);
+  background:#0b0907;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px 8px;
+  font-size:.72rem;
+  font-weight:600;
   letter-spacing:1px;
   text-transform:uppercase;
-  transition:all .12s ease;
+  cursor:pointer;
   user-select:none;
-  color:var(--muted);
-  background:rgba(8,8,6,0.9);
+  transition:
+    border-color .12s ease,
+    transform .08s ease,
+    color .12s ease;
+}
+
+.opt:active{
+  transform:scale(.97);
 }
 
 .opt.active{
   border-color:var(--gold);
-  box-shadow:0 0 12px var(--gold-soft);
   color:var(--gold);
+  box-shadow:0 0 12px var(--gold-soft);
 }
 
 button{
   width:100%;
-  padding:16px;
+  border:none;
+  border-radius:999px;
+  min-height:54px;
+  padding:14px 18px;
+  margin-top:18px;
   background:
     linear-gradient(
       135deg,
       #e3cf8a,
       #c1b085
     );
-  border:none;
+  color:#18140f;
   font-family:'Cinzel',serif;
+  font-size:.84rem;
   font-weight:700;
-  letter-spacing:2px;
-  margin-top:18px;
-  cursor:pointer;
-  font-size:14px;
+  letter-spacing:1.7px;
   text-transform:uppercase;
-  color:#1b1712;
-  border-radius:999px;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.985);
 }
 
 button.alt{
-  background:#1b1712;
+  background:#14110d;
   color:var(--gold);
   border:1px solid var(--line);
 }
 
-button.small{
-  width:auto;
-  padding:10px 18px;
-  font-size:13px;
-}
-
 .nav-row{
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:10px;
+  margin-top:12px;
 }
 
 .ring-wrap{
   display:flex;
   flex-direction:column;
   align-items:center;
-  margin:10px 0 18px;
-}
-
-.readiness-label{
-  font-family:'Cinzel',serif;
-  font-size:22px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:#ffffff;
-  margin-bottom:8px;
 }
 
 .ring{
-  width:190px;
-  height:190px;
+  width:min(48vw,190px);
+  height:min(48vw,190px);
   border-radius:50%;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:10px auto 14px;
-  border:1px solid var(--line);
-  position:relative;
+  margin:10px 0 14px;
   background:
     conic-gradient(
       var(--gold) var(--angle),
-      rgba(255,255,255,0.08) var(--angle)
+      rgba(255,255,255,.08) var(--angle)
     );
 }
 
 .ring::before{
   content:"";
   position:absolute;
-  inset:16px;
+  inset:14px;
   border-radius:50%;
-  background:#050405;
+  background:var(--bg);
 }
 
 .score{
   position:relative;
   z-index:2;
   font-family:'Cinzel',serif;
-  font-size:52px;
+  font-size:clamp(2rem,9vw,3.3rem);
   color:var(--gold);
 }
 
-.input-row{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-  flex-wrap:wrap;
-}
-
-.input-field{
-  flex:1;
-}
-
-input{
-  width:100%;
-  padding:13px 12px;
-  background:#050405;
-  border:1px solid var(--line);
-  color:var(--text);
-  margin-top:6px;
-  border-radius:10px;
-  font-size:16px;
-}
-
-input::placeholder{
-  color:#6f675c;
-}
-
-.legend-block{
-  margin-top:16px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:rgba(8,7,5,0.95);
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.7;
-}
-
-.legend-row{
+.tier{
+  text-align:center;
+  font-family:'Cinzel',serif;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  font-size:.85rem;
   margin-bottom:10px;
 }
 
 .tier-risk{
-  color:var(--tier-risk);
+  color:var(--risk);
 }
 
 .tier-develop{
-  color:var(--tier-develop);
+  color:var(--develop);
 }
 
 .tier-stable{
-  color:var(--tier-stable);
+  color:var(--stable);
 }
 
 .tier-legend{
-  color:var(--tier-legend);
+  color:var(--legend);
+}
+
+.legend-block{
+  margin-top:18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(9,8,6,.92);
+  padding:14px;
+}
+
+.legend-row{
+  font-size:.88rem;
+  line-height:1.6;
+  margin-bottom:8px;
+}
+
+.input-row{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:18px;
+}
+
+input{
+  width:100%;
+  min-height:52px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#070605;
+  color:var(--text);
+  padding:14px;
+  font-size:16px;
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(227,207,138,.08);
+}
+
+input::placeholder{
+  color:#73695d;
 }
 
 .alert{
   margin-top:10px;
-  font-size:13px;
   color:var(--danger);
+  font-size:.84rem;
 }
 
 .share-link{
-  margin-top:10px;
-  font-size:13px;
   text-align:center;
-  color:var(--accent);
+  margin-top:14px;
+  color:var(--gold);
+  font-size:.88rem;
   cursor:pointer;
 }
 
@@ -315,29 +353,25 @@ input::placeholder{
 }
 
 .footnote{
-  margin-top:16px;
-  font-size:12px;
-  color:#7f7567;
+  margin-top:18px;
   text-align:center;
+  color:#7f7567;
+  font-size:.72rem;
+  line-height:1.6;
 }
 
-@media(max-width:700px){
-
-  #wrap{
-    padding:26px 14px 60px;
-  }
+@media (min-width:640px){
 
   .card{
-    padding:20px 16px 24px;
-  }
-
-  .row{
-    flex-direction:column;
-    align-items:flex-start;
+    padding:28px;
   }
 
   .input-row{
-    flex-direction:column;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .toggle{
+    padding:16px;
   }
 
 }
@@ -351,7 +385,7 @@ input::placeholder{
   <div id="app"></div>
 </div>
 
-<script type="text/javascript">
+<script>
 
 const WEBHOOK_URL =
   "https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
@@ -364,7 +398,7 @@ const PILLARS = [
       "Primary Email Access",
       "Password Manager",
       "Cloud Storage",
-      "2-Factor Authentication Recovery",
+      "2FA Recovery",
       "Social Media Accounts",
       "Digital Archive"
     ]
@@ -375,58 +409,58 @@ const PILLARS = [
     i:[
       "Banking Accounts",
       "Credit Accounts",
-      "Investment & Retirement Accounts",
-      "Life Insurance Policies",
-      "Cryptocurrency & Digital Assets",
-      "Recurring Bills & Subscriptions"
+      "Investments & Retirement",
+      "Life Insurance",
+      "Crypto & Digital Assets",
+      "Recurring Bills"
     ]
   },
 
   {
     n:"03: Household & Property",
     i:[
-      "Property Deeds & Titles",
-      "Vehicle Titles & Registration",
-      "Home Maintenance Records",
+      "Property Deeds",
+      "Vehicle Titles",
+      "Maintenance Records",
       "Utility Accounts",
-      "Security Systems & Access Codes",
-      "Household Inventory Documentation"
+      "Security Access",
+      "Household Inventory"
     ]
   },
 
   {
     n:"04: Health & Medical",
     i:[
-      "Health Insurance Information",
-      "Medical Providers & Contacts",
-      "Prescription Information",
-      "Medical History & Records",
-      "Advance Healthcare Directives",
-      "Emergency Medical Instructions"
+      "Health Insurance",
+      "Medical Contacts",
+      "Prescriptions",
+      "Medical History",
+      "Healthcare Directives",
+      "Emergency Instructions"
     ]
   },
 
   {
     n:"05: Legal & Estate",
     i:[
-      "Last Will & Testament",
+      "Will & Testament",
       "Trust Documentation",
-      "Financial Power of Attorney",
-      "Healthcare Power of Attorney",
-      "Beneficiary Designations",
-      "Estate Planning Documents"
+      "Financial POA",
+      "Healthcare POA",
+      "Beneficiaries",
+      "Estate Documents"
     ]
   },
 
   {
     n:"06: Business Continuity",
     i:[
-      "Entity Formation Documents",
-      "Business Banking Access",
+      "Formation Documents",
+      "Business Banking",
       "Operating Agreements",
-      "Key Vendor Relationships",
-      "Client & Contract Records",
-      "Succession & Continuity Planning"
+      "Vendor Relationships",
+      "Client Records",
+      "Succession Planning"
     ]
   },
 
@@ -434,11 +468,11 @@ const PILLARS = [
     n:"07: Legacy & Wishes",
     i:[
       "Personal Letters",
-      "Family History & Stories",
+      "Family Stories",
       "Ethical Will",
       "Funeral Preferences",
       "Obituary Information",
-      "Personal Wishes & Instructions"
+      "Personal Wishes"
     ]
   }
 
@@ -458,7 +492,7 @@ function activePillars(){
       );
 }
 
-function calcScoreData(){
+function calcScore(){
 
   let recorded = 0;
   let na = 0;
@@ -485,55 +519,45 @@ function calcScoreData(){
 
   });
 
-  const effectiveTotal =
+  const effective =
     Math.max(1,total - na);
-
-  const percent =
-    Math.round(
-      (recorded / effectiveTotal) * 100
-    );
 
   return {
     recorded,
-    total,
-    na,
-    effectiveTotal,
-    percent
+    effective,
+    percent:Math.round(
+      (recorded / effective) * 100
+    )
   };
 }
 
-function tierLabel(score){
+function tier(score){
 
   if(score >= 86){
-    return "Continuity Luminary";
+    return {
+      label:"Continuity Luminary",
+      class:"tier-legend"
+    };
   }
 
   if(score >= 71){
-    return "Continuity Steward";
+    return {
+      label:"Continuity Steward",
+      class:"tier-stable"
+    };
   }
 
   if(score >= 61){
-    return "Continuity Builder";
+    return {
+      label:"Continuity Builder",
+      class:"tier-develop"
+    };
   }
 
-  return "Continuity Sentinel";
-}
-
-function tierColorClass(score){
-
-  if(score >= 86){
-    return "tier-legend";
-  }
-
-  if(score >= 71){
-    return "tier-stable";
-  }
-
-  if(score >= 61){
-    return "tier-develop";
-  }
-
-  return "tier-risk";
+  return {
+    label:"Continuity Sentinel",
+    class:"tier-risk"
+  };
 }
 
 function pick(key,val){
@@ -551,7 +575,19 @@ function pick(key,val){
   render();
 }
 
-function goBack(){
+function next(){
+
+  step++;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  render();
+}
+
+function back(){
 
   if(step > 0){
 
@@ -561,7 +597,7 @@ function goBack(){
   }
 }
 
-function resetAnalysis(){
+function resetAll(){
 
   Object.keys(ANSWERS).forEach(key=>{
 
@@ -575,35 +611,30 @@ function resetAnalysis(){
   render();
 }
 
-function shareScore(){
+function share(){
 
-  const scoreData =
-    calcScoreData();
+  const s = calcScore();
 
   const text =
     "My Continuity Readiness score is " +
-    scoreData.percent +
-    "% (" +
-    tierLabel(scoreData.percent) +
-    ").";
+    s.percent +
+    "%.";
 
   if(navigator.share){
 
     navigator.share({
       title:"7-Pillar Continuity Analysis",
       text:text,
-      url:window.location.href
+      url:location.href
     });
 
   }else{
 
     navigator.clipboard.writeText(
-      text + " " + window.location.href
+      text + " " + location.href
     );
 
-    alert(
-      "Share message copied."
-    );
+    alert("Copied.");
   }
 }
 
@@ -612,25 +643,27 @@ function submitReport(){
   const btn =
     document.getElementById("submitBtn");
 
-  const alertEl =
+  const alert =
     document.getElementById("submitAlert");
 
   const firstName =
-    document.getElementById("firstName")
-    .value
-    .trim();
+    document
+      .getElementById("firstName")
+      .value
+      .trim();
 
   const email =
-    document.getElementById("email")
-    .value
-    .trim();
+    document
+      .getElementById("email")
+      .value
+      .trim();
 
-  alertEl.innerHTML = "";
+  alert.innerHTML = "";
 
   if(!email){
 
-    alertEl.innerHTML =
-      "Email is required to receive your report.";
+    alert.innerHTML =
+      "Email is required.";
 
     return;
   }
@@ -638,8 +671,7 @@ function submitReport(){
   btn.disabled = true;
   btn.innerHTML = "SENDING...";
 
-  const scoreData =
-    calcScoreData();
+  const scoreData = calcScore();
 
   const strengths = [];
   const gaps = [];
@@ -677,21 +709,13 @@ function submitReport(){
       }
 
       if(val === "N"){
-
         na++;
       }
 
     });
 
-    const effectiveTotal =
+    const effective =
       pillar.i.length - na;
-
-    const percent =
-      effectiveTotal > 0
-        ? Math.round(
-            (recorded / effectiveTotal) * 100
-          )
-        : 0;
 
     pillarBreakdown.push({
 
@@ -703,35 +727,16 @@ function submitReport(){
 
       na:na,
 
-      percent:percent
+      percent:
+        effective > 0
+          ? Math.round(
+              (recorded / effective) * 100
+            )
+          : 0
 
     });
 
   });
-
-  let recommendation = "";
-
-  if(scoreData.percent < 61){
-
-    recommendation =
-      "Focus on centralizing essential household, legal, financial, and digital information into one secure location.";
-
-  }else if(scoreData.percent < 71){
-
-    recommendation =
-      "Your foundation is forming well. Prioritize documenting your highest-risk continuity gaps.";
-
-  }else if(scoreData.percent < 86){
-
-    recommendation =
-      "Your continuity structure is strong. Focus on maintaining updates and improving accessibility.";
-
-  }else{
-
-    recommendation =
-      "You demonstrate exceptional continuity readiness. Maintain regular reviews and trusted access procedures.";
-
-  }
 
   const payload = {
 
@@ -742,22 +747,20 @@ function submitReport(){
 
     email:email,
 
-    score:scoreData.percent,
+    businessOwner:
+      businessOwner ? "Yes" : "No",
+
+    score:
+      scoreData.percent,
 
     recordedItems:
       scoreData.recorded,
 
-    effectiveTotal:
-      scoreData.effectiveTotal,
-
-    businessOwner:
-      businessOwner ? "Yes" : "No",
+    applicableItems:
+      scoreData.effective,
 
     tier:
-      tierLabel(scoreData.percent),
-
-    recommendation:
-      recommendation,
+      tier(scoreData.percent).label,
 
     strengths:
       strengths,
@@ -784,13 +787,13 @@ function submitReport(){
     body:JSON.stringify(payload)
 
   })
-  .then(function(){
+  .then(()=>{
 
     btn.innerHTML =
       "REPORT REQUESTED";
 
   })
-  .catch(function(error){
+  .catch(error=>{
 
     console.error(error);
 
@@ -799,8 +802,8 @@ function submitReport(){
     btn.innerHTML =
       "TRY AGAIN";
 
-    alertEl.innerHTML =
-      "There was an issue sending your request.";
+    alert.innerHTML =
+      "Unable to send request.";
 
   });
 }
@@ -808,11 +811,7 @@ function submitReport(){
 function render(){
 
   const app =
-    document.querySelector("#app");
-
-  if(!app){
-    return;
-  }
+    document.getElementById("app");
 
   app.className = "card";
 
@@ -857,12 +856,8 @@ function renderIntro(app){
       7-PILLAR CONTINUITY ANALYSIS
     </div>
 
-    <p class="header-sub">
+    <p class="muted" style="margin-top:12px;">
       Evaluate how prepared your household is to maintain continuity when life changes unexpectedly.
-    </p>
-
-    <p class="muted">
-      For each item, choose whether it has been recorded, remains unprepared, or does not apply.
     </p>
 
     <p class="muted" style="margin-top:18px;">
@@ -870,18 +865,21 @@ function renderIntro(app){
     </p>
 
     <button id="businessBtn">
-      CONTINUE AS BUSINESS OWNER
+      Continue as Business Owner
     </button>
 
-    <button class="alt" id="individualBtn">
-      CONTINUE AS INDIVIDUAL
+    <button
+      class="alt"
+      id="individualBtn"
+    >
+      Continue as Individual
     </button>
 
   `;
 
   document
     .getElementById("businessBtn")
-    .onclick = function(){
+    .onclick = ()=>{
 
       businessOwner = true;
       step = 1;
@@ -890,7 +888,7 @@ function renderIntro(app){
 
   document
     .getElementById("individualBtn")
-    .onclick = function(){
+    .onclick = ()=>{
 
       businessOwner = false;
       step = 1;
@@ -906,7 +904,7 @@ function renderQuestions(app){
   const pillar =
     pillars[step - 1];
 
-  const totalSteps =
+  const total =
     pillars.length + 2;
 
   let html = `
@@ -915,7 +913,7 @@ function renderQuestions(app){
 
       ${
         Array.from(
-          {length:totalSteps},
+          {length:total},
           (_,i)=>`
             <div class="seg ${i <= step ? "active" : ""}"></div>
           `
@@ -928,13 +926,9 @@ function renderQuestions(app){
       ${pillar.n}
     </div>
 
-    <p class="muted" style="margin-bottom:14px;">
-      Select the option that best reflects the current state of each item.
-    </p>
-
   `;
 
-  pillar.i.forEach(function(item,idx){
+  pillar.i.forEach((item,idx)=>{
 
     const key =
       (step - 1) + "_" + idx;
@@ -946,35 +940,31 @@ function renderQuestions(app){
 
       <div class="toggle">
 
-        <div class="row">
+        <div class="item-label">
+          ${item}
+        </div>
 
-          <div class="item-label">
-            ${item}
+        <div class="opts">
+
+          <div
+            class="opt ${val==="R" ? "active" : ""}"
+            onclick="pick('${key}','R')"
+          >
+            Recorded
           </div>
 
-          <div class="opts">
+          <div
+            class="opt ${val==="U" ? "active" : ""}"
+            onclick="pick('${key}','U')"
+          >
+            Missing
+          </div>
 
-            <div
-              class="opt ${val==="R" ? "active" : ""}"
-              onclick="pick('${key}','R')"
-            >
-              RECORDED
-            </div>
-
-            <div
-              class="opt ${val==="U" ? "active" : ""}"
-              onclick="pick('${key}','U')"
-            >
-              UNPREPARED
-            </div>
-
-            <div
-              class="opt ${val==="N" ? "active" : ""}"
-              onclick="pick('${key}','N')"
-            >
-              N/A
-            </div>
-
+          <div
+            class="opt ${val==="N" ? "active" : ""}"
+            onclick="pick('${key}','N')"
+          >
+            N/A
           </div>
 
         </div>
@@ -987,23 +977,23 @@ function renderQuestions(app){
   html += `
 
     <button id="continueBtn">
-      CONTINUE
+      Continue
     </button>
 
     <div class="nav-row">
 
       <button
-        class="small alt"
+        class="alt"
         id="backBtn"
       >
-        BACK
+        Back
       </button>
 
       <button
-        class="small alt"
+        class="alt"
         id="resetBtn"
       >
-        RESET
+        Reset
       </button>
 
     </div>
@@ -1014,44 +1004,27 @@ function renderQuestions(app){
 
   document
     .getElementById("continueBtn")
-    .onclick = function(){
-
-      step++;
-
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
-
-      render();
-    };
+    .onclick = next;
 
   document
     .getElementById("backBtn")
-    .onclick = goBack;
+    .onclick = back;
 
   document
     .getElementById("resetBtn")
-    .onclick = resetAnalysis;
+    .onclick = resetAll;
 }
 
 function renderResults(app){
 
-  const scoreData =
-    calcScoreData();
+  const s = calcScore();
 
-  const score =
-    scoreData.percent;
-
-  const tier =
-    tierLabel(score);
-
-  const tierClass =
-    tierColorClass(score);
+  const t =
+    tier(s.percent);
 
   const angle =
     Math.round(
-      (score / 100) * 360
+      (s.percent / 100) * 360
     );
 
   app.innerHTML = `
@@ -1059,44 +1032,33 @@ function renderResults(app){
     <div class="ring-wrap">
 
       <div class="readiness-label">
-        CONTINUITY READINESS
+        Continuity Readiness
       </div>
 
       <div
         class="ring"
-        style="--angle:${angle}deg;"
+        style="--angle:${angle}deg"
       >
 
         <div class="score">
-          ${score}%
+          ${s.percent}%
         </div>
 
       </div>
 
     </div>
 
-    <div
-      class="${tierClass}"
-      style="
-        text-align:center;
-        font-family:'Cinzel',serif;
-        letter-spacing:2px;
-        font-size:15px;
-        text-transform:uppercase;
-        margin-bottom:10px;
-      "
-    >
-      ${tier}
+    <div class="tier ${t.class}">
+      ${t.label}
     </div>
 
     <p
       class="muted"
       style="text-align:center;"
     >
-      You have
-      ${scoreData.recorded}
+      ${s.recorded}
       of
-      ${scoreData.effectiveTotal}
+      ${s.effective}
       applicable items recorded.
     </p>
 
@@ -1104,65 +1066,47 @@ function renderResults(app){
 
       <div class="legend-row">
         <span class="tier-legend">
-          Continuity Luminary
+          Luminary
         </span>
         — 86–100%
       </div>
 
       <div class="legend-row">
         <span class="tier-stable">
-          Continuity Steward
+          Steward
         </span>
         — 71–85%
       </div>
 
       <div class="legend-row">
         <span class="tier-develop">
-          Continuity Builder
+          Builder
         </span>
         — 61–70%
       </div>
 
       <div class="legend-row">
         <span class="tier-risk">
-          Continuity Sentinel
+          Sentinel
         </span>
         — Below 61%
       </div>
 
     </div>
 
-    <p
-      class="muted"
-      style="
-        margin-top:16px;
-        text-align:center;
-      "
-    >
-      Receive a detailed report with actionable next steps.
-    </p>
-
     <div class="input-row">
 
-      <div class="input-field">
+      <input
+        type="text"
+        id="firstName"
+        placeholder="First Name (Optional)"
+      >
 
-        <input
-          type="text"
-          id="firstName"
-          placeholder="First Name (Optional)"
-        >
-
-      </div>
-
-      <div class="input-field">
-
-        <input
-          type="email"
-          id="email"
-          placeholder="Email*"
-        >
-
-      </div>
+      <input
+        type="email"
+        id="email"
+        placeholder="Email*"
+      >
 
     </div>
 
@@ -1172,7 +1116,7 @@ function renderResults(app){
     ></div>
 
     <button id="submitBtn">
-      REQUEST FULL ANALYSIS REPORT
+      Request Full Analysis Report
     </button>
 
     <div
@@ -1185,24 +1129,24 @@ function renderResults(app){
     <div class="nav-row">
 
       <button
-        class="small alt"
+        class="alt"
         id="backBtn"
       >
-        BACK
+        Back
       </button>
 
       <button
-        class="small alt"
+        class="alt"
         id="resetBtn"
       >
-        RESET
+        Reset
       </button>
 
     </div>
 
-    <p class="footnote">
-      This analysis is for informational purposes only and does not constitute legal or financial advice.
-    </p>
+    <div class="footnote">
+      Informational purposes only. Not legal or financial advice.
+    </div>
 
   `;
 
@@ -1212,24 +1156,20 @@ function renderResults(app){
 
   document
     .getElementById("shareBtn")
-    .onclick = shareScore;
+    .onclick = share;
 
   document
     .getElementById("backBtn")
-    .onclick = goBack;
+    .onclick = back;
 
   document
     .getElementById("resetBtn")
-    .onclick = resetAnalysis;
+    .onclick = resetAll;
 }
 
 document.addEventListener(
   "DOMContentLoaded",
-  function(){
-
-    render();
-
-  }
+  render
 );
 
 </script>
