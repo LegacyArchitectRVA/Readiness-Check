@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -43,7 +44,7 @@ body{
 }
 
 .card{
-  background:transparent; /* transparent as requested */
+  background:transparent;
   border-radius:18px;
   border:1px solid rgba(255,255,255,0.05);
   box-shadow:
@@ -166,14 +167,13 @@ body{
   background:radial-gradient(circle at top,rgba(227,207,138,0.16),rgba(8,8,6,0.95));
 }
 
-/* BUTTONS */
 button{
   width:100%;
   padding:16px;
   background:linear-gradient(135deg,#e3cf8a,#c1b085);
   border:none;
   font-family:'Cinzel',serif;
-  font-weight:700;          /* thicker font */
+  font-weight:700;
   letter-spacing:2px;
   margin-top:18px;
   cursor:pointer;
@@ -231,7 +231,6 @@ button.small{
   margin-top:12px;
 }
 
-/* SCORE RING */
 .ring-wrap{
   display:flex;
   flex-direction:column;
@@ -305,7 +304,6 @@ button.small{
   text-align:center;
 }
 
-/* INPUTS */
 .input-row{
   display:flex;
   gap:10px;
@@ -337,7 +335,6 @@ input:focus{
   box-shadow:0 0 10px var(--gold-soft);
 }
 
-/* LEGEND BLOCK */
 .legend-block{
   margin-top:16px;
   padding:14px 14px 12px;
@@ -363,20 +360,17 @@ input:focus{
 
 .legend-text{font-size:13px;}
 
-/* Tier colors */
 .tier-risk{color:var(--tier-risk);}
 .tier-develop{color:var(--tier-develop);}
 .tier-stable{color:var(--tier-stable);}
 .tier-legend{color:var(--tier-legend);}
 
-/* ALERT TEXT */
 .alert{
   margin-top:10px;
   font-size:13px;
   color:var(--danger);
 }
 
-/* FOOTNOTE */
 .footnote{
   margin-top:16px;
   font-size:12px;
@@ -384,7 +378,6 @@ input:focus{
   text-align:center;
 }
 
-/* SHARE LINK */
 .share-link{
   margin-top:10px;
   font-size:13px;
@@ -395,7 +388,6 @@ input:focus{
 
 .share-link span{text-decoration:underline;}
 
-/* NAV ROW (back/reset) */
 .nav-row{
   display:flex;
   justify-content:space-between;
@@ -403,7 +395,6 @@ input:focus{
   margin-top:10px;
 }
 
-/* MOBILE */
 @media(max-width:700px){
   #wrap{padding:26px 14px 60px;}
   .card{padding:20px 16px 24px;}
@@ -584,7 +575,6 @@ function submitReport(){
   const score = scoreData.percent;
   const tier = tierLabel(score);
 
-  // Logic to generate content
   let recommendation = "";
   if(score < 61) recommendation = "Focus on centralizing your scattered information into a single, secure location.";
   else if(score < 71) recommendation = "Prioritize documenting your most critical digital and financial assets.";
@@ -613,98 +603,13 @@ function submitReport(){
   })
   .then(r => r.json().catch(()=>({})))
   .then(()=>{
-    btn.innerText = "REPORT REQUESTED ✓";
+    btn.innerText = "REPORT REQUESTED";
   })
   .catch(err=>{
     console.error(err);
     btn.disabled = false;
     btn.innerText = "TRY AGAIN";
     if(alertEl) alertEl.textContent = "There was an issue sending your request. Please try again.";
-  });
-}
-
-  btn.disabled = true;
-  btn.innerText = "SENDING...";
-
-  const scoreData = calcScoreData();
-  const score = scoreData.percent;
-  const tier = tierLabel(score);
-
-  // LOGIC: Generate content for Make.com
-  let recommendation = "";
-  if(score < 61) recommendation = "Focus on centralizing your scattered information into a single, secure location.";
-  else if(score < 71) recommendation = "Prioritize documenting your most critical digital and financial assets.";
-  else if(score < 86) recommendation = "You are in a great spot; now focus on periodic reviews and testing your plan.";
-  else recommendation = "Maintain your documentation and ensure your trusted contacts know where to find it.";
-
-  const pillarSummary = activePillars().map(p => p.n).join(", ");
-
-  const payload = {
-    firstName,
-    email,
-    score,
-    maxScore: scoreData.effectiveTotal,
-    percent: score,
-    tier,
-    businessOwner: businessOwner ? "Yes" : "No",
-    answers: ANSWERS,
-    recommendation: recommendation, // NEW FIELD
-    pillarSummary: pillarSummary      // NEW FIELD
-  };
-
-  fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(payload)
-  })
-  .then(r => r.json().catch(()=>({})))
-  .then(()=>{
-    btn.innerText = "REPORT REQUESTED ✓";
-  })
-  .catch(err=>{
-    console.error(err);
-    btn.disabled = false;
-    btn.innerText = "TRY AGAIN";
-    if(alertEl) alertEl.textContent = "There was an issue sending your request. Please try again.";
-  });
-}
-
-  btn.disabled = true;
-  btn.innerText = "SENDING...";
-
-  const scoreData = calcScoreData();
-  const score = scoreData.percent;
-  const maxScore = scoreData.effectiveTotal;
-  const percent = score;
-  const tier = tierLabel(score);
-
-  const payload = {
-    firstName,
-    email,
-    score,
-    maxScore,
-    percent,
-    tier,
-    businessOwner: businessOwner ? "Yes" : "No",
-    answers: ANSWERS
-  };
-
-  fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(payload)
-  })
-  .then(r => r.json().catch(()=>({})))
-  .then(()=>{
-    btn.innerText = "REPORT REQUESTED ✓";
-  })
-  .catch(err=>{
-    console.error(err);
-    btn.disabled = false;
-    btn.innerText = "TRY AGAIN";
-    if(alertEl){
-      alertEl.textContent = "There was an issue sending your request. Please try again.";
-    }
   });
 }
 
@@ -737,6 +642,13 @@ function goBack(){
     step--;
     render();
   }
+}
+
+function render(){
+  const app = document.getElementById("app");
+  if(step === 0) renderIntro(app);
+  else if(step <= activePillars().length) renderQuestions(app);
+  else renderResults(app);
 }
 
 function renderIntro(app){
@@ -906,107 +818,66 @@ function renderResults(app){
     </div>
 
     <p class="muted" style="text-align:center;margin-top:4px;">
-      Most households fall between 40% and 65% on their first pass.
+      You have ${scoreData.recorded} of ${scoreData.effectiveTotal} items recorded.
     </p>
 
     <div class="legend-block">
       <div class="legend-row">
-        <div class="legend-name tier-legend">Continuity Luminary</div>
-        <div class="legend-range">86–100%</div>
-        <div class="legend-text">
-          Systems are documented, accessible, and resilient. Others can carry on your affairs with minimal friction.
-        </div>
+        <span class="legend-name tier-legend">Continuity Luminary</span>
+        <span class="legend-range">86-100%</span>
       </div>
-
       <div class="legend-row">
-        <div class="legend-name tier-stable">Continuity Steward</div>
-        <div class="legend-range">71–85%</div>
-        <div class="legend-text">
-          Most essentials are in place, with a few gaps. With focused effort, continuity can become very strong.
-        </div>
+        <span class="legend-name tier-stable">Continuity Steward</span>
+        <span class="legend-range">71-85%</span>
       </div>
-
       <div class="legend-row">
-        <div class="legend-name tier-develop">Continuity Builder</div>
-        <div class="legend-range">61–70%</div>
-        <div class="legend-text">
-          A foundation exists, but key details are scattered. Progress is visible, yet continuity remains fragile.
-        </div>
+        <span class="legend-name tier-develop">Continuity Builder</span>
+        <span class="legend-range">61-70%</span>
       </div>
-
       <div class="legend-row">
-        <div class="legend-name tier-risk">Continuity Sentinel</div>
-        <div class="legend-range">0–60%</div>
-        <div class="legend-text">
-          Important information lives mostly in your head. If life shifts suddenly, others would struggle to step in.
-        </div>
+        <span class="legend-name tier-risk">Continuity Sentinel</span>
+        <span class="legend-range">Below 61%</span>
       </div>
     </div>
 
+    <p class="muted" style="margin-top:16px;text-align:center;">
+      Receive a detailed report with actionable next steps.
+    </p>
+
     <div class="input-row">
       <div class="input-field">
-        <label class="muted" style="font-size:13px;">
-          First Name
-        </label>
-        <input
-          id="firstName"
-          placeholder="First name (optional)"
-        >
+        <input type="text" id="firstName" placeholder="First Name (Optional)">
       </div>
       <div class="input-field">
-        <label class="muted" style="font-size:13px;">
-          Email Address
-        </label>
-        <input
-          id="email"
-          placeholder="Email to receive your full analysis"
-        >
+        <input type="email" id="email" placeholder="Email*">
       </div>
     </div>
 
     <div id="submitAlert" class="alert"></div>
 
-    <button
-      id="submitBtn"
-      onclick="submitReport()"
-    >
+    <button id="submitBtn" onclick="submitReport()">
       REQUEST FULL ANALYSIS REPORT
     </button>
+
+    <div class="share-link" onclick="shareScore()">
+      <span>Share your score</span>
+    </div>
 
     <div class="nav-row">
       <button class="small alt" onclick="goBack()">BACK</button>
       <button class="small alt" onclick="resetAnalysis()">RESET</button>
     </div>
 
-    <div class="share-link" onclick="shareScore()">
-      <span>Share your score</span> with someone who should see this.
-    </div>
-
-    <div class="footnote">
-      Your score and selections are used to prepare a structured continuity summary for your household or business.
-    </div>
+    <p class="footnote">
+      This analysis is for informational purposes only and does not constitute legal or financial advice.
+    </p>
   `;
-}
 
-function render(){
-  const app = document.getElementById("app");
-
-  if(step === 0){
-    renderIntro(app);
-    return;
-  }
-
-  const ps = activePillars();
-
-  if(step <= ps.length){
-    renderQuestions(app);
-    return;
-  }
-
-  renderResults(app);
+  render();
 }
 
 render();
 </script>
 </body>
 </html>
+```
