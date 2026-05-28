@@ -568,20 +568,106 @@ function submitReport(){
   const email = document.getElementById("email")?.value.trim() || "";
   const alertEl = document.getElementById("submitAlert");
 
-  if(alertEl){
-    alertEl.textContent = "";
-  }
+  if(alertEl) alertEl.textContent = "";
 
   if(!email){
-    if(alertEl){
-      alertEl.textContent = "Email is required to receive your full analysis report.";
-    }
+    if(alertEl) alertEl.textContent = "Email is required to receive your full analysis report.";
     btn.innerText = "EMAIL REQUIRED";
-    setTimeout(()=>{
-      btn.innerText = "REQUEST FULL ANALYSIS REPORT";
-    },1200);
+    setTimeout(()=>{ btn.innerText = "REQUEST FULL ANALYSIS REPORT"; }, 1200);
     return;
   }
+
+  btn.disabled = true;
+  btn.innerText = "SENDING...";
+
+  const scoreData = calcScoreData();
+  const score = scoreData.percent;
+  const tier = tierLabel(score);
+
+  // Logic to generate content
+  let recommendation = "";
+  if(score < 61) recommendation = "Focus on centralizing your scattered information into a single, secure location.";
+  else if(score < 71) recommendation = "Prioritize documenting your most critical digital and financial assets.";
+  else if(score < 86) recommendation = "You are in a great spot; now focus on periodic reviews and testing your plan.";
+  else recommendation = "Maintain your documentation and ensure your trusted contacts know where to find it.";
+
+  const pillarSummary = activePillars().map(p => p.n).join(", ");
+
+  const payload = {
+    firstName: firstName,
+    email: email,
+    score: score,
+    maxScore: scoreData.effectiveTotal,
+    percent: score,
+    tier: tier,
+    businessOwner: businessOwner ? "Yes" : "No",
+    answers: ANSWERS,
+    recommendation: recommendation,
+    pillarSummary: pillarSummary
+  };
+
+  fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(payload)
+  })
+  .then(r => r.json().catch(()=>({})))
+  .then(()=>{
+    btn.innerText = "REPORT REQUESTED ✓";
+  })
+  .catch(err=>{
+    console.error(err);
+    btn.disabled = false;
+    btn.innerText = "TRY AGAIN";
+    if(alertEl) alertEl.textContent = "There was an issue sending your request. Please try again.";
+  });
+}
+
+  btn.disabled = true;
+  btn.innerText = "SENDING...";
+
+  const scoreData = calcScoreData();
+  const score = scoreData.percent;
+  const tier = tierLabel(score);
+
+  // LOGIC: Generate content for Make.com
+  let recommendation = "";
+  if(score < 61) recommendation = "Focus on centralizing your scattered information into a single, secure location.";
+  else if(score < 71) recommendation = "Prioritize documenting your most critical digital and financial assets.";
+  else if(score < 86) recommendation = "You are in a great spot; now focus on periodic reviews and testing your plan.";
+  else recommendation = "Maintain your documentation and ensure your trusted contacts know where to find it.";
+
+  const pillarSummary = activePillars().map(p => p.n).join(", ");
+
+  const payload = {
+    firstName,
+    email,
+    score,
+    maxScore: scoreData.effectiveTotal,
+    percent: score,
+    tier,
+    businessOwner: businessOwner ? "Yes" : "No",
+    answers: ANSWERS,
+    recommendation: recommendation, // NEW FIELD
+    pillarSummary: pillarSummary      // NEW FIELD
+  };
+
+  fetch("https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(payload)
+  })
+  .then(r => r.json().catch(()=>({})))
+  .then(()=>{
+    btn.innerText = "REPORT REQUESTED ✓";
+  })
+  .catch(err=>{
+    console.error(err);
+    btn.disabled = false;
+    btn.innerText = "TRY AGAIN";
+    if(alertEl) alertEl.textContent = "There was an issue sending your request. Please try again.";
+  });
+}
 
   btn.disabled = true;
   btn.innerText = "SENDING...";
