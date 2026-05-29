@@ -26,9 +26,6 @@
   --gap-yellow: #eab308;
   --gap-green: #22c55e;
   --ring-glow: rgba(198, 168, 90, 0.3);
-  --recorded-color: #34D399;
-  --missing-color: #F87171;
-  --na-color: #94A3B8;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{font-size:17.6px;}
@@ -116,9 +113,9 @@ body{
 .toggle.aR{border-color:transparent;}
 .toggle.aU{border-color:transparent;}
 .toggle.aN{border-color:transparent;}
-.trow{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;}
-.tlabel{font-size:15px;color:var(--text-primary);line-height:1.4;flex:1;min-width:140px;}
-.opts{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;}
+.trow{display:flex;flex-direction:column;gap:8px;align-items:center;}
+.tlabel{font-size:15px;color:var(--text-primary);line-height:1.4;text-align:center;width:100%;}
+.opts{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 .opt{
   padding:6px 14px;
   border:1px solid rgba(198, 168, 90, 0.3);
@@ -134,11 +131,11 @@ body{
   user-select:none;
 }
 .opt:hover{border-color:var(--btn-color);color:var(--text-primary);}
-.opt.oR{border-color:var(--recorded-color);color:var(--recorded-color);background:rgba(52, 211, 153, 0.15);}
-.opt.oU{border-color:var(--missing-color);color:var(--missing-color);background:rgba(248, 113, 113, 0.15);}
-.opt.oN{border-color:var(--na-color);color:var(--na-color);background:rgba(148, 163, 184, 0.15);}
+.opt.oR{border-color:var(--ch4);color:var(--ch4);background:rgba(52, 211, 153, 0.15);}
+.opt.oU{border-color:var(--ch2);color:var(--ch2);background:rgba(248, 113, 113, 0.15);}
+.opt.oN{border-color:var(--ch6);color:var(--ch6);background:rgba(148, 163, 184, 0.15);}
 /* COUNTER CIRCLE */
-.counter{text-align:center;}
+.counter{text-align:center;margin-bottom:8px;}
 .counter-circle{
   display:inline-block;
   padding:5px 12px;
@@ -149,23 +146,7 @@ body{
   font-size:16.25px;
   color:var(--btn-color);
   letter-spacing:1px;
-  transition: all 0.3s ease;
   box-shadow: 0 0 8px rgba(198, 168, 90, 0.2);
-}
-.counter-circle.recorded-glow{
-  border-color: var(--recorded-color);
-  color: var(--recorded-color);
-  box-shadow: 0 0 12px rgba(52, 211, 153, 0.3);
-}
-.counter-circle.missing-glow{
-  border-color: var(--missing-color);
-  color: var(--missing-color);
-  box-shadow: 0 0 12px rgba(248, 113, 113, 0.3);
-}
-.counter-circle.na-glow{
-  border-color: var(--na-color);
-  color: var(--na-color);
-  box-shadow: 0 0 12px rgba(148, 163, 184, 0.3);
 }
 /* COMPLETE BADGE */
 .cpbadge{
@@ -473,15 +454,15 @@ button.sm{
 }
 .sharelink span{
   font-size:16px;
-  color:var(--ch1);
+  color:var(--text-primary);
   letter-spacing:1px;
-  border-bottom:1px solid var(--ch1);
+  border-bottom:1px solid rgba(198, 168, 90, 0.3);
   transition:all 0.2s ease;
   padding-bottom:2px;
 }
 .sharelink:hover span{
-  color:var(--ch4);
-  border-bottom-color:var(--ch4);
+  color:var(--btn-color);
+  border-bottom-color:var(--btn-color);
 }
 .footnote{
   margin-top:16px;
@@ -547,11 +528,13 @@ button.sm{
 @media(max-width:768px){
   #wrap{padding:16px 12px 32px;}
   .card{padding:20px 16px 24px;}
-  .trow{flex-direction:column;align-items:flex-start;}
+  .trow{flex-direction:column;align-items:center;}
+  .tlabel{text-align:center;}
+  .opts{justify-content:center;}
   .ring{width:140px;height:140px;}
   .scorenum{font-size:40px;}
   .inputrow{flex-direction:column;}
-  .pname{width:100px;}
+  .pname{width:120px;}
   .gapitem{padding:8px 10px;}
 }
 </style>
@@ -665,22 +648,6 @@ function pick(key,val){
     if(b)b.style.display="flex";
   }
 }
-
-function getCounterGlowClass(){
-  const pi=step-1;
-  if(pi < 0) return '';
-  const ps=aP();
-  const lastAnswer = ps[pi].i.reduce((last, _, idx) => {
-    const key = pi+"_"+idx;
-    if(ANS[key]) return ANS[key];
-    return last;
-  }, '');
-  
-  if(lastAnswer === 'R') return 'recorded-glow';
-  if(lastAnswer === 'U') return 'missing-glow';
-  if(lastAnswer === 'N') return 'na-glow';
-  return '';
-}
 function goN(){step++;isBack=false;render();}
 function goB(){if(step>0){step--;isBack=true;render();}}
 function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();}
@@ -757,8 +724,8 @@ function renderIntro(app,ps){
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
     <p class="heading">Legacy Architect RVA</p>
     <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
-    <p class="sub gold" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.9;">
+    <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>You will review seven pillars:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.9;color:var(--text-primary);">
       01: Digital Life<br>
       02: Financial & Assets<br>
       03: Household & Property<br>
@@ -767,8 +734,8 @@ function renderIntro(app,ps){
       06: Business Continuity<br>
       07: Legacy & Wishes
     </p>
-    <p class="sub gold" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.8;">
+    <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>For each item, simply select one of the following:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-primary);">
       <strong>Recorded</strong> – It is documented and someone else could access it.<br>
       <strong>Missing</strong> – It exists but is not documented.<br>
       <strong>Not Applicable</strong> – It does not apply to your situation.
@@ -782,14 +749,13 @@ function renderQ(app,ps){
   // Calculate running total for current pillar
   const answered = p.i.filter((_,ii)=>ANS[pi+"_"+ii]).length;
   const total = p.i.length;
-  const glowClass = getCounterGlowClass();
   let html=`<div>
     <div class="stepbar">${segs(tot,step,false)}</div>
     <p class="mark" style="margin-bottom:8px;">${p.n}</p>
     <p class="heading" style="font-size:17px;">${p.n.replace(/^\d+: /,"")}</p>
-    <p class="sub" style="font-size:14px;margin-bottom:18px;">${p.d}</p>
-    <div class="counter" style="margin-bottom:12px;">
-      <span class="counter-circle ${glowClass}">${answered}/${total}</span>
+    <p class="sub" style="font-size:14px;margin-bottom:12px;">${p.d}</p>
+    <div class="counter">
+      <span class="counter-circle">${answered}/${total}</span>
     </div>`;
   p.i.forEach((item,idx)=>{
     const key=pi+"_"+idx;const val=ANS[key]||"";
@@ -896,6 +862,7 @@ function renderSuccess(){
       <span style="color:${tierColor};font-size:19px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset()">Begin a New Analysis</button>
+    <div class="sharelink" onclick="window.shareScore()"><span>Share your readiness score</span></div>
     <div class="footnote">Legacy Architect RVA</div>
   </div>`;}
 window.pick=pick;window.goN=goN;window.goB=goB;window.reset=reset;window.submit=submit;window.shareScore=shareScore;
