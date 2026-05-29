@@ -15,102 +15,48 @@
   --ghost:#4a4238;
   --bronze:#c4aa6e;
   --bronze-deep:#8a7448;
-  --bronze-trace:rgba(196,170,110,0.09);
   --rule:rgba(196,170,110,0.14);
   --rule-strong:rgba(196,170,110,0.28);
   --danger:#9e5a4a;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{font-size:16px;}
-body{
-  margin:0;
-  background:#0b0907;
-  background-image:radial-gradient(ellipse at 50% 0%,rgba(40,30,16,0.6) 0%,transparent 65%);
-  color:var(--vellum);font-family:'Lora',serif;
-  -webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;
-}
+body{margin:0;background:#0b0907;background-image:radial-gradient(ellipse at 50% 0%,rgba(40,30,16,0.6) 0%,transparent 65%);color:var(--vellum);font-family:'Lora',serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;}
 #wrap{max-width:740px;margin:0 auto;padding:44px 20px 88px;}
-.card{
-  background:var(--surface);
-  border:1px solid var(--rule);
-  border-radius:4px;
-  padding:32px 28px 36px;
-  position:relative;
-}
-.card::before{
-  content:"";position:absolute;top:0;left:40px;right:40px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--bronze-deep),transparent);
-  opacity:0.5;
-}
-/* STEP MARKS */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:32px 28px 36px;position:relative;}
+.card::before{content:"";position:absolute;top:0;left:40px;right:40px;height:1px;background:linear-gradient(90deg,transparent,var(--bronze-deep),transparent);opacity:0.5;}
 .stepbar{display:flex;gap:4px;margin-bottom:28px;}
 .seg{flex:1;height:2px;background:var(--ghost);}
 .seg.done{background:var(--bronze-deep);}
 .seg.active{background:var(--bronze);}
-/* ANIMATIONS */
 @keyframes veilIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 @keyframes veilFade{from{opacity:0;}to{opacity:1;}}
 @keyframes barRise{from{transform:scaleX(0);}to{transform:scaleX(1);}}
 .appear{animation:veilIn .45s cubic-bezier(.22,1,.36,1) forwards;}
-/* TYPOGRAPHY */
-.mark{
-  font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;
-  text-transform:uppercase;color:var(--bronze);opacity:0.7;
-}
+.mark{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--bronze);opacity:0.7;}
 .heading{font-family:'Cinzel',serif;font-size:18px;margin:0 0 10px;color:var(--vellum);font-weight:600;}
 .sub{color:var(--sepia);line-height:1.85;font-size:15px;}
 .rule{border:none;border-top:1px solid var(--rule);margin:22px 0;}
-/* ITEM TOGGLES */
-.toggle{
-  border:1px solid var(--rule);padding:14px 16px;border-radius:2px;margin:8px 0;
-  background:var(--lift);transition:border-color .2s ease;
-}
-.toggle.aR{border-color:rgba(74,106,76,0.45);}
-.toggle.aU{border-color:rgba(158,90,74,0.3);}
+.toggle{border:1px solid var(--rule);padding:14px 16px;border-radius:2px;margin:8px 0;background:var(--lift);transition:border-color .2s ease;animation:veilIn .35s ease backwards;}
+.toggle.aR{border-color:rgba(74,106,76,0.45);}.toggle.aU{border-color:rgba(158,90,74,0.3);}
 .trow{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;}
 .tlabel{font-size:15px;color:var(--vellum);line-height:1.4;flex:1;min-width:160px;}
 .opts{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;}
-.opt{
-  padding:6px 14px;border:1px solid var(--ghost);cursor:pointer;border-radius:2px;
-  font-family:'Lora',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-  transition:all .15s ease;color:var(--sepia);background:transparent;user-select:none;
-}
-.opt.oR{border-color:rgba(74,120,78,0.7);color:#7aaa7e;background:rgba(74,120,78,0.06);}
-.opt.oU{border-color:rgba(158,90,74,0.6);color:#b87a6a;background:rgba(158,90,74,0.06);}
-.opt.oN{border-color:rgba(196,170,110,0.45);color:#c4aa6e;background:rgba(196,170,110,0.07);}
-/* COMPLETE BADGE */
-.cpbadge{
-  display:flex;align-items:center;gap:8px;margin-top:14px;
-  font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:rgba(122,170,126,0.8);font-family:'Cinzel',serif;
-}
+.opt{padding:6px 14px;border:1px solid var(--ghost);cursor:pointer;border-radius:2px;font-family:'Lora',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;transition:all .15s ease;color:var(--sepia);background:transparent;user-select:none;}
+.opt.oR{border-color:rgba(74,120,78,0.7);color:#7aaa7e;background:rgba(74,120,78,0.06);}.opt.oU{border-color:rgba(158,90,74,0.6);color:#b87a6a;background:rgba(158,90,74,0.06);}.opt.oN{border-color:rgba(196,170,110,0.45);color:#c4aa6e;background:rgba(196,170,110,0.07);}
+.cpbadge{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(122,170,126,0.8);font-family:'Cinzel',serif;animation:veilFade .4s ease forwards;}
 .cpdot{width:4px;height:4px;border-radius:50%;background:rgba(122,170,126,0.8);}
-/* BUTTONS */
-button{
-  width:100%;padding:15px 18px;
-  background:var(--bronze);
-  border:none;font-family:'Cinzel',serif;font-weight:700;letter-spacing:3px;
-  margin-top:20px;cursor:pointer;font-size:12px;text-transform:uppercase;color:#13100c;
-  border-radius:2px;
-}
+button{width:100%;padding:15px 18px;background:var(--bronze);border:none;font-family:'Cinzel',serif;font-weight:700;letter-spacing:3px;margin-top:20px;cursor:pointer;font-size:12px;text-transform:uppercase;color:#13100c;border-radius:2px;transition:opacity .18s ease;}
 button.alt{background:transparent;color:var(--sepia);border:1px solid var(--rule);}
 button.sm{width:auto;padding:9px 16px;font-size:11px;margin-top:10px;}
 .navrow{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
-/* SCORE RING */
-.ring{
-  width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  position:relative;border:1px solid var(--rule);background:#0d0b08;margin:0 auto 14px;
-}
-.ringconic{position:absolute;inset:-42%;border-radius:50%;}
-.ringinner{position:relative;z-index:2;text-align:center;}
+.ring{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--rule);background:#0d0b08;margin:0 auto 14px;}
+.ringconic{position:absolute;inset:-42%;border-radius:50%;}.ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{font-family:'Cinzel',serif;font-size:50px;color:var(--bronze);line-height:1;}
 .tierbadge{text-align:center;font-family:'Cinzel',serif;letter-spacing:3px;font-size:13px;text-transform:uppercase;}
-/* PILLAR BARS */
-.prow{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.ptrack{flex:1;height:2px;background:var(--ghost);}
-.pfill{height:100%;background:linear-gradient(90deg,var(--bronze-deep),var(--bronze));}
-/* INPUTS */
-.inputfield input{width:100%;padding:12px 14px;margin-top:6px;background:rgba(8,6,4,0.9);border:1px solid var(--rule);color:var(--vellum);border-radius:2px;}
+.prow{display:flex;align-items:center;gap:10px;margin-bottom:10px;animation:veilIn .4s ease backwards;}
+.ptrack{flex:1;height:2px;background:var(--ghost);}.pfill{height:100%;background:linear-gradient(90deg,var(--bronze-deep),var(--bronze));}
+.inputfield input{width:100%;padding:12px 14px;margin-top:6px;background:rgba(8,6,4,0.9);border:1px solid var(--rule);color:var(--vellum);border-radius:2px;font-family:'Lora',serif;}
 </style>
 </head>
 <body>
@@ -126,56 +72,17 @@ const PILLARS=[
   {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
   {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
-let step=0,biz=false;
-const ANS={};
+let step=0,biz=false,ANS={};
 function aP(){return biz?PILLARS:PILLARS.filter(p=>p.n.indexOf("Business")===-1);}
-function calc(){
-  let r=0,na=0,tot=0;
-  aP().forEach((p,pi)=>{p.i.forEach((_,ii)=>{tot++;const v=ANS[pi+"_"+ii];if(v==="R")r++;if(v==="N")na++;});});
-  const eff=Math.max(1,tot-na);
-  return{pct:Math.round((r/eff)*100),rec:r,eff};
-}
-
-// Flicker-free update function
-function pick(key, val) {
-  ANS[key] = val;
-  // Update button classes locally
-  const el = document.querySelector(`[onclick="pick('${key}','${val}')"]`);
-  if(el){
-    el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('oR','oU','oN'));
-    el.classList.add(val==='R'?'oR':val==='U'?'oU':'oN');
-    el.closest('.toggle').className=`toggle a${val}`;
-  }
-  // Check completion
-  const pi = key.split('_')[0];
-  const done = aP()[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
-  const b = document.getElementById("cpbadge");
-  if(b) b.style.display=done?"flex":"none";
-}
-
-function submit() {
-  const btn = document.getElementById("s7btn");
-  const em = (document.getElementById("s7em") || {}).value?.trim();
-  if(!em){ alert("Email required."); return; }
-  btn.disabled=true; btn.innerText="Sending...";
-  fetch(WH, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({email:em, score:calc().pct, answers:ANS})
-  }).then(()=>renderSuccess()).catch(()=>{btn.disabled=false;btn.innerText="Try Again";});
-}
-
-function render(){
-  const app=document.getElementById("app");
-  if(step===0) renderIntro(app);
-  else if(step<=aP().length) renderQ(app);
-  else renderResults(app);
-}
-
-// Include your remaining helper functions (renderIntro, renderQ, renderResults, renderSuccess) below this line exactly as you had them...
-// ... (I have omitted them here to ensure brevity in this response, but keep your original versions) ...
-
-window.pick=pick; window.render=render; window.submit=submit;
+function calc(){let r=0,na=0,tot=0;aP().forEach((p,pi)=>{p.i.forEach((_,ii)=>{tot++;const v=ANS[pi+"_"+ii];if(v==="R")r++;if(v==="N")na++;});});const eff=Math.max(1,tot-na);return{pct:Math.round((r/eff)*100),rec:r,eff};}
+function pick(k,v){ANS[k]=v;const buttons=document.querySelectorAll(`[onclick*="${k}"]`);buttons.forEach(btn=>{btn.classList.remove('oR','oU','oN');if(btn.innerText.includes(v==='R'?'Recorded':v==='U'?'Missing':'N/A'))btn.classList.add(v==='R'?'oR':v==='U'?'oU':'oN');});const pi=k.split('_')[0],done=aP()[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);const b=document.getElementById("cpbadge");if(b)b.style.display=done?"flex":"none";}
+function submit(){const btn=document.getElementById("s7btn"),em=(document.getElementById("s7em")||{}).value?.trim();if(!em){alert("Email is required.");return;}btn.disabled=true;btn.innerText="Sending...";fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,score:calc().pct,answers:ANS})}).then(()=>renderSuccess()).catch(()=>{btn.disabled=false;btn.innerText="Try Again";});}
+function segs(t,c){return Array.from({length:t},(_,i)=>`<div class="seg ${i<c?'done':i===c?'active':''}"></div>`).join("");}
+function render(){const app=document.getElementById("app");if(step===0)renderIntro(app);else if(step<=aP().length)renderQ(app);else renderResults(app);}
+function renderIntro(app){app.innerHTML=`<div class="appear"><div class="stepbar">${segs(aP().length+2,0)}</div><p class="mark">7-Pillar Continuity Analysis</p><p class="heading">Legacy Architect RVA</p><p class="sub">Evaluate how prepared your household is.</p><button onclick="biz=true;step=1;render();">Continue as Business Owner</button><button class="alt" onclick="biz=false;step=1;render();">Continue as Individual</button></div>`;}
+function renderQ(app){const p=aP()[step-1],pi=step-1;let h=`<div class="appear"><div class="stepbar">${segs(aP().length+2,step)}</div><p class="heading">${p.n.replace(/^\d+: /,"")}</p>`;p.i.forEach((item,idx)=>{const k=pi+"_"+idx,v=ANS[k]||"";h+=`<div class="toggle"><div class="trow"><div class="tlabel">${item}</div><div class="opts"><div class="opt ${v==='R'?'oR':''}" onclick="pick('${k}','R')">Recorded</div><div class="opt ${v==='U'?'oU':''}" onclick="pick('${k}','U')">Missing</div><div class="opt ${v==='N'?'oN':''}" onclick="pick('${k}','N')">N/A</div></div></div></div>`;});h+=`<button onclick="step++;render();">Continue</button><button class="alt sm" onclick="step--;render();">Back</button></div>`;app.innerHTML=h;}
+function renderResults(app){const d=calc();app.innerHTML=`<div class="appear"><div class="ring"><div class="scorenum">${d.pct}%</div></div><div class="inputfield"><label>Email Address</label><input id="s7em" type="email"></div><button id="s7btn" onclick="submit()">Request Full Report</button></div>`;}
+function renderSuccess(){document.getElementById("app").innerHTML=`<div class="appear"><p class="heading">Report Requested</p><p class="sub">Your personalized analysis is on its way.</p></div>`;}
 render();
 </script>
 </body>
