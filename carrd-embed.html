@@ -705,9 +705,24 @@ function renderIntro(app,ps){
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
     <p class="heading">Legacy Architect RVA</p>
-    <p class="sub" style="margin-bottom:18px;">Evaluate how prepared your household is to maintain continuity when life changes unexpectedly. For each item, indicate whether it has been documented, is absent, or does not apply.</p>
-    <p class="sub gold" style="margin-bottom:16px;"><strong>What to Expect:</strong> You'll be presented with 7 pillars covering Digital Life, Financial & Assets, Household & Property, Health & Medical, Legal & Estate, Business Continuity, and Legacy & Wishes. For each item within these pillars, simply select whether it's Recorded, Missing, or Not Applicable.</p>
-    <p class="sub gold" style="margin-bottom:20px;"><strong>Instructions:</strong> Answer honestly. There are no wrong answers - only opportunities to create order in your absence.</p>
+    <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
+    <p class="sub gold" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.9;">
+      01: Digital Life<br>
+      02: Financial & Assets<br>
+      03: Household & Property<br>
+      04: Health & Medical<br>
+      05: Legal & Estate<br>
+      06: Business Continuity<br>
+      07: Legacy & Wishes
+    </p>
+    <p class="sub gold" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.8;">
+      <strong>Recorded</strong> – It is documented and someone else could access it.<br>
+      <strong>Missing</strong> – It exists but is not documented.<br>
+      <strong>Not Applicable</strong> – It does not apply to your situation.
+    </p>
+    <p class="sub" style="margin-bottom:20px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
