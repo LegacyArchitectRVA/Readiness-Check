@@ -63,27 +63,25 @@ body{
 .rule{border:none;border-top:1px solid var(--rule);margin:22px 0;}
 /* ITEM TOGGLES */
 .toggle{
-  border:1px solid var(--rule);padding:14px 16px;border-radius:2px;margin:8px 0;
-  background:var(--lift);transition:border-color .2s ease;
-  animation:veilIn .35s ease backwards;
+  border:1px solid var(--rule);
+  padding:14px 16px;
+  border-radius:2px;
+  margin:8px 0;
+  background:var(--lift);
+  transition: border-color .25s ease, background .25s ease;
 }
-.toggle.aR{border-color:rgba(74,106,76,0.45);}
-.toggle.aU{border-color:rgba(158,90,74,0.3);}
-.toggle:nth-child(1){animation-delay:.03s;}.toggle:nth-child(2){animation-delay:.07s;}
-.toggle:nth-child(3){animation-delay:.11s;}.toggle:nth-child(4){animation-delay:.15s;}
-.toggle:nth-child(5){animation-delay:.19s;}.toggle:nth-child(6){animation-delay:.23s;}
-.trow{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;}
-.tlabel{font-size:15px;color:var(--vellum);line-height:1.4;flex:1;min-width:160px;}
-.opts{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;}
-.opt{
-  padding:6px 14px;border:1px solid var(--ghost);cursor:pointer;border-radius:2px;
-  font-family:'Lora',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-  transition:all .15s ease;color:var(--sepia);background:transparent;user-select:none;
+
+.toggle{
+  border:1px solid var(--rule);
+  padding:14px 16px;
+  border-radius:2px;
+  margin:8px 0;
+  background:var(--lift);
+  transition: border-color .25s ease, background .25s ease;
 }
-.opt:hover{border-color:var(--rule-strong);color:var(--vellum);}
-.opt.oR{border-color:rgba(74,120,78,0.7);color:#7aaa7e;background:rgba(74,120,78,0.06);}
-.opt.oU{border-color:rgba(158,90,74,0.6);color:#b87a6a;background:rgba(158,90,74,0.06);}
-.opt.oN{border-color:rgba(196,170,110,0.45);color:#c4aa6e;background:rgba(196,170,110,0.07);}
+
+.toggle.aR { border-color: rgba(74,106,76,0.45); }
+.toggle.aU { border-color: rgba(158,90,74,0.3); }
 /* COMPLETE BADGE */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:14px;
@@ -334,7 +332,23 @@ function shareScore(){
   if(navigator.share){navigator.share({title:"7-Pillar Continuity Analysis",text,url:location.href}).catch(()=>{});}
   else{navigator.clipboard.writeText(text+" "+location.href).catch(()=>{});alert("Copied.");}
 }
-
+function submit(){
+  const btn=document.getElementById("s7btn");
+  const ae=document.getElementById("s7al");
+  const fn=(document.getElementById("s7fn")||{}).value?.trim()||"";
+  const em=(document.getElementById("s7em")||{}).value?.trim()||"";
+  if(ae)ae.textContent="";
+  if(!em){if(ae)ae.textContent="An email address is required to receive your report.";return;}
+  btn.disabled=true;
+  btn.innerHTML='<span class="ldots"><span></span><span></span><span></span></span>';
+  const d=calc();const sc=d.pct;const tl=tLabel(sc);
+  const gaps=getGaps();const str=getStr();const bk=bkdown();
+  const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",answers:ANS,recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk};
+  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  .then(r=>r.json().catch(()=>({})))
+  .then(()=>renderSuccess())
+  .catch(()=>{btn.disabled=false;btn.innerText="Try Again";if(ae)ae.textContent="Something went wrong. Please try again.";});
+}
 function segs(tot,cur,allDone){
   return Array.from({length:tot},(_,i)=>{
     let c="seg";
