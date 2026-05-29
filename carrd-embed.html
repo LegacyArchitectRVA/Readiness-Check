@@ -2,1177 +2,486 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover"
->
-<title>7-Pillar Continuity Analysis</title>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;500;600&display=swap"
-  rel="stylesheet"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7-Pillar Continuity Analysis — Legacy Architect RVA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-
 :root{
-  --gold:#e3cf8a;
-  --gold-soft:rgba(227,207,138,.16);
-  --line:#2a241c;
-  --bg:#050405;
-  --card:#0d0b09;
-  --text:#f4f1ea;
-  --muted:#a59c8f;
-  --danger:#d06d61;
-
-  --risk:#d45b5b;
-  --develop:#e08b3a;
-  --stable:#e3cf8a;
-  --legend:#4bbf6b;
+  --ink:#0b0907;
+  --surface:rgba(16,13,9,0.97);
+  --lift:rgba(255,255,255,0.025);
+  --vellum:#ede8de;
+  --sepia:#8a7d6e;
+  --ghost:#4a4238;
+  --bronze:#c4aa6e;
+  --bronze-deep:#8a7448;
+  --bronze-trace:rgba(196,170,110,0.09);
+  --rule:rgba(196,170,110,0.14);
+  --rule-strong:rgba(196,170,110,0.28);
+  --danger:#9e5a4a;
 }
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html{
-  font-size:16px;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{font-size:16px;}
 body{
   margin:0;
-  background:
-    radial-gradient(circle at top,#1b1510 0,#050405 55%,#020203 100%);
-  color:var(--text);
-  font-family:'Lora',serif;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-
-button,
-input{
-  font:inherit;
-}
-
-#wrap{
-  width:100%;
-  max-width:760px;
-  margin:0 auto;
-  padding:
-    max(16px,env(safe-area-inset-top))
-    14px
-    max(40px,env(safe-area-inset-bottom));
-}
-
-.card{
-  width:100%;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.05);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(20,16,12,.92),
-      rgba(8,7,5,.98)
-    );
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,.6),
-    0 24px 60px rgba(0,0,0,.75);
-  padding:20px;
-}
-
-.stepbar{
-  display:flex;
-  gap:5px;
-  margin-bottom:22px;
-}
-
-.seg{
-  flex:1;
-  height:3px;
-  border-radius:999px;
-  background:#2a241c;
-}
-
-.seg.active{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(227,207,138,.2),
-      var(--gold)
-    );
-  box-shadow:0 0 12px var(--gold-soft);
-}
-
-.header-title,
-.section-title,
-.readiness-label{
-  font-family:'Cinzel',serif;
-}
-
-.header-title{
-  font-size:.88rem;
-  letter-spacing:2.6px;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-
-.section-title{
-  font-size:1.25rem;
-  margin:0 0 10px;
-}
-
-.readiness-label{
-  font-size:1.15rem;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  text-align:center;
-  margin-bottom:10px;
-}
-
-.muted{
-  color:var(--muted);
-  line-height:1.7;
-  font-size:.97rem;
-}
-
-.toggle{
-  margin:12px 0;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:rgba(12,10,8,.92);
-  padding:14px;
-}
-
-.item-label{
-  font-size:.98rem;
-  line-height:1.5;
-  margin-bottom:12px;
-}
-
-.opts{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.opt{
-  min-height:46px;
-  border-radius:999px;
-  border:1px solid var(--line);
   background:#0b0907;
-  color:var(--muted);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:10px 8px;
-  font-size:.72rem;
-  font-weight:600;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  cursor:pointer;
-  user-select:none;
-  transition:
-    border-color .12s ease,
-    transform .08s ease,
-    color .12s ease;
+  background-image:radial-gradient(ellipse at 50% 0%,rgba(40,30,16,0.6) 0%,transparent 65%);
+  color:var(--vellum);font-family:'Lora',serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;
 }
-
-.opt:active{
-  transform:scale(.97);
+#wrap{max-width:740px;margin:0 auto;padding:44px 20px 88px;}
+.card{
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  padding:32px 28px 36px;
+  position:relative;
 }
-
-.opt.active{
-  border-color:var(--gold);
-  color:var(--gold);
-  box-shadow:0 0 12px var(--gold-soft);
+.card::before{
+  content:"";position:absolute;top:0;left:40px;right:40px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--bronze-deep),transparent);
+  opacity:0.5;
 }
-
+/* STEP MARKS */
+.stepbar{display:flex;gap:4px;margin-bottom:28px;}
+.seg{flex:1;height:2px;background:var(--ghost);}
+.seg.done{background:var(--bronze-deep);}
+.seg.active{background:var(--bronze);}
+/* ANIMATIONS */
+@keyframes veilIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes veilFade{from{opacity:0;}to{opacity:1;}}
+@keyframes barRise{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.appear{animation:veilIn .45s cubic-bezier(.22,1,.36,1) forwards;}
+.fade-in{animation:veilFade .45s ease forwards;}
+/* TYPOGRAPHY */
+.mark{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--bronze);opacity:0.7;
+}
+.heading{font-family:'Cinzel',serif;font-size:18px;margin:0 0 10px;color:var(--vellum);font-weight:600;}
+.sub{color:var(--sepia);line-height:1.85;font-size:15px;}
+.rule{border:none;border-top:1px solid var(--rule);margin:22px 0;}
+/* ITEM TOGGLES */
+.toggle{
+  border:1px solid var(--rule);padding:14px 16px;border-radius:2px;margin:8px 0;
+  background:var(--lift);transition:border-color .2s ease;
+  animation:veilIn .35s ease backwards;
+}
+.toggle.aR{border-color:rgba(74,106,76,0.45);}
+.toggle.aU{border-color:rgba(158,90,74,0.3);}
+.toggle:nth-child(1){animation-delay:.03s;}.toggle:nth-child(2){animation-delay:.07s;}
+.toggle:nth-child(3){animation-delay:.11s;}.toggle:nth-child(4){animation-delay:.15s;}
+.toggle:nth-child(5){animation-delay:.19s;}.toggle:nth-child(6){animation-delay:.23s;}
+.trow{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;}
+.tlabel{font-size:15px;color:var(--vellum);line-height:1.4;flex:1;min-width:160px;}
+.opts{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;}
+.opt{
+  padding:6px 14px;border:1px solid var(--ghost);cursor:pointer;border-radius:2px;
+  font-family:'Lora',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  transition:all .15s ease;color:var(--sepia);background:transparent;user-select:none;
+}
+.opt:hover{border-color:var(--rule-strong);color:var(--vellum);}
+.opt.oR{border-color:rgba(74,120,78,0.7);color:#7aaa7e;background:rgba(74,120,78,0.06);}
+.opt.oU{border-color:rgba(158,90,74,0.6);color:#b87a6a;background:rgba(158,90,74,0.06);}
+.opt.oN{border-color:rgba(196,170,110,0.45);color:#c4aa6e;background:rgba(196,170,110,0.07);}
+/* COMPLETE BADGE */
+.cpbadge{
+  display:flex;align-items:center;gap:8px;margin-top:14px;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(122,170,126,0.8);font-family:'Cinzel',serif;
+  animation:veilFade .4s ease forwards;
+}
+.cpdot{width:4px;height:4px;border-radius:50%;background:rgba(122,170,126,0.8);}
+/* BUTTONS */
 button{
-  width:100%;
-  border:none;
-  border-radius:999px;
-  min-height:54px;
-  padding:14px 18px;
-  margin-top:18px;
-  background:
-    linear-gradient(
-      135deg,
-      #e3cf8a,
-      #c1b085
-    );
-  color:#18140f;
-  font-family:'Cinzel',serif;
-  font-size:.84rem;
-  font-weight:700;
-  letter-spacing:1.7px;
-  text-transform:uppercase;
-  cursor:pointer;
+  width:100%;padding:15px 18px;
+  background:var(--bronze);
+  border:none;font-family:'Cinzel',serif;font-weight:700;letter-spacing:3px;
+  margin-top:20px;cursor:pointer;font-size:12px;text-transform:uppercase;color:#13100c;
+  border-radius:2px;transition:opacity .18s ease;
 }
-
-button:active{
-  transform:scale(.985);
-}
-
+button:hover{opacity:0.88;}
+button:active{opacity:0.78;}
+button:disabled{opacity:.45;cursor:not-allowed;}
 button.alt{
-  background:#14110d;
-  color:var(--gold);
-  border:1px solid var(--line);
+  background:transparent;color:var(--sepia);
+  border:1px solid var(--rule);
 }
-
-.nav-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
-}
-
-.ring-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
+button.alt:hover{color:var(--vellum);border-color:var(--rule-strong);}
+button.sm{width:auto;padding:9px 16px;font-size:11px;margin-top:10px;}
+.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:10px;}
+/* SCORE RING */
+.ringwrap{display:flex;flex-direction:column;align-items:center;margin:10px 0 20px;}
+.ringlabel{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sepia);margin-bottom:14px;}
 .ring{
-  width:min(48vw,190px);
-  height:min(48vw,190px);
-  border-radius:50%;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:10px 0 14px;
-  background:
-    conic-gradient(
-      var(--gold) var(--angle),
-      rgba(255,255,255,.08) var(--angle)
-    );
+  width:180px;height:180px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;border:1px solid var(--rule);
+  background:#0d0b08;overflow:hidden;margin:0 auto 14px;
 }
-
-.ring::before{
-  content:"";
-  position:absolute;
-  inset:14px;
-  border-radius:50%;
-  background:var(--bg);
+.ring::after{content:"";position:absolute;inset:14px;border-radius:50%;border:1px solid var(--rule);pointer-events:none;}
+.ringconic{position:absolute;inset:-42%;border-radius:50%;}
+.ringinner{position:relative;z-index:2;text-align:center;}
+.scorenum{font-family:'Cinzel',serif;font-size:50px;color:var(--bronze);line-height:1;}
+.scoresub{font-size:12px;color:var(--sepia);margin-top:3px;letter-spacing:1px;}
+.tierbadge{
+  text-align:center;font-family:'Cinzel',serif;letter-spacing:3px;
+  font-size:13px;text-transform:uppercase;margin-bottom:6px;
 }
-
-.score{
-  position:relative;
-  z-index:2;
+.tR{color:#b07070;}.tD{color:#c09060;}.tS{color:var(--bronze);}.tL{color:#6aaa74;}
+/* LEGEND */
+.legblock{
+  margin-top:16px;padding:18px 20px;border:1px solid var(--rule);
+  border-radius:2px;background:var(--lift);
+}
+.legrow{margin-bottom:12px;}
+.legname{font-family:'Cinzel',serif;font-size:14px;letter-spacing:1px;}
+.legrange{font-size:12px;opacity:.7;margin:2px 0;}
+.legtext{font-size:13px;color:var(--sepia);line-height:1.7;}
+/* PILLAR BARS */
+.bkwrap{margin-top:20px;}
+.bktitle{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--sepia);border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:14px;}
+.prow{display:flex;align-items:center;gap:10px;margin-bottom:10px;animation:veilIn .4s ease backwards;}
+.prow:nth-child(1){animation-delay:.05s;}.prow:nth-child(2){animation-delay:.10s;}.prow:nth-child(3){animation-delay:.15s;}
+.prow:nth-child(4){animation-delay:.20s;}.prow:nth-child(5){animation-delay:.25s;}.prow:nth-child(6){animation-delay:.30s;}.prow:nth-child(7){animation-delay:.35s;}
+.pname{font-size:12px;color:var(--sepia);width:130px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ptrack{flex:1;height:2px;background:var(--ghost);}
+.pfill{height:100%;background:linear-gradient(90deg,var(--bronze-deep),var(--bronze));transform-origin:left;animation:barRise .85s cubic-bezier(.22,1,.36,1) backwards;}
+.ppct{font-family:'Cinzel',serif;font-size:11px;color:var(--bronze);width:30px;text-align:right;flex-shrink:0;}
+/* GAPS — color coded */
+.gapwrap{margin-top:20px;}
+.gaptitle{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--sepia);border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:14px;}
+.gapitem{
+  display:flex;gap:14px;margin-bottom:14px;padding-left:10px;
+  border-left:2px solid;animation:veilIn .35s ease backwards;
+}
+.gapitem:nth-child(1){animation-delay:.04s;}.gapitem:nth-child(2){animation-delay:.09s;}
+.gapitem:nth-child(3){animation-delay:.14s;}.gapitem:nth-child(4){animation-delay:.19s;}
+.gapitem:nth-child(5){animation-delay:.24s;}.gapitem:nth-child(6){animation-delay:.29s;}
+.gapname{font-size:14px;color:var(--vellum);margin-bottom:3px;}
+.gapexpl{font-size:13px;color:var(--sepia);line-height:1.65;font-style:italic;}
+.gappillar{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:4px;opacity:0.6;}
+/* INPUTS */
+.inputrow{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.inputfield{flex:1;min-width:0;}
+.inputfield label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sepia);}
+.inputfield input{
+  width:100%;padding:12px 14px;margin-top:6px;
+  background:rgba(8,6,4,0.9);border:1px solid var(--rule);
+  color:var(--vellum);border-radius:2px;font-size:15px;font-family:'Lora',serif;
+}
+.inputfield input::placeholder{color:var(--ghost);}
+.inputfield input:focus{outline:none;border-color:var(--rule-strong);}
+.alertmsg{margin-top:10px;font-size:13px;color:var(--danger);font-style:italic;}
+/* SUCCESS */
+.successwrap{text-align:center;padding:28px 0;animation:veilFade .55s ease forwards;}
+.successmark{
+  width:56px;height:56px;border-radius:50%;
+  border:1px solid rgba(106,170,116,0.35);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;font-size:20px;color:rgba(106,170,116,0.9);
   font-family:'Cinzel',serif;
-  font-size:clamp(2rem,9vw,3.3rem);
-  color:var(--gold);
 }
-
-.tier{
-  text-align:center;
-  font-family:'Cinzel',serif;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-  font-size:.85rem;
-  margin-bottom:10px;
+.successhead{font-family:'Cinzel',serif;font-size:17px;color:var(--bronze);margin-bottom:10px;letter-spacing:2px;}
+/* LOADING DOTS */
+.ldots span{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--ink);margin:0 2px;animation:dot .9s infinite;}
+.ldots span:nth-child(2){animation-delay:.18s;}.ldots span:nth-child(3){animation-delay:.36s;}
+@keyframes dot{0%,80%,100%{opacity:.25;}40%{opacity:.9;}}
+/* SHARE */
+.sharelink{margin-top:12px;font-size:12px;text-align:center;color:var(--sepia);cursor:pointer;letter-spacing:1px;}
+.sharelink span{border-bottom:1px solid var(--ghost);}
+.sharelink:hover span{border-bottom-color:var(--sepia);}
+.footnote{margin-top:18px;font-size:11px;color:var(--ghost);text-align:center;letter-spacing:1px;line-height:1.7;}
+@media(max-width:640px){
+  #wrap{padding:28px 14px 60px;}
+  .card{padding:24px 18px 28px;}
+  .trow{flex-direction:column;align-items:flex-start;}
+  .ring{width:160px;height:160px;}.scorenum{font-size:44px;}
+  .inputrow{flex-direction:column;}.pname{width:100px;}
 }
-
-.tier-risk{
-  color:var(--risk);
-}
-
-.tier-develop{
-  color:var(--develop);
-}
-
-.tier-stable{
-  color:var(--stable);
-}
-
-.tier-legend{
-  color:var(--legend);
-}
-
-.legend-block{
-  margin-top:18px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:rgba(9,8,6,.92);
-  padding:14px;
-}
-
-.legend-row{
-  font-size:.88rem;
-  line-height:1.6;
-  margin-bottom:8px;
-}
-
-.input-row{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-  margin-top:18px;
-}
-
-input{
-  width:100%;
-  min-height:52px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:#070605;
-  color:var(--text);
-  padding:14px;
-  font-size:16px;
-}
-
-input:focus{
-  outline:none;
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(227,207,138,.08);
-}
-
-input::placeholder{
-  color:#73695d;
-}
-
-.alert{
-  margin-top:10px;
-  color:var(--danger);
-  font-size:.84rem;
-}
-
-.share-link{
-  text-align:center;
-  margin-top:14px;
-  color:var(--gold);
-  font-size:.88rem;
-  cursor:pointer;
-}
-
-.share-link span{
-  text-decoration:underline;
-}
-
-.footnote{
-  margin-top:18px;
-  text-align:center;
-  color:#7f7567;
-  font-size:.72rem;
-  line-height:1.6;
-}
-
-@media (min-width:640px){
-
-  .card{
-    padding:28px;
-  }
-
-  .input-row{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .toggle{
-    padding:16px;
-  }
-
-}
-
 </style>
 </head>
-
 <body>
-
 <div id="wrap">
-  <div id="app"></div>
+  <div id="app" class="card"></div>
 </div>
-
 <script>
-
-const WEBHOOK_URL =
-  "https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
-
-const PILLARS = [
-
-  {
-    n:"01: Digital Life",
-    i:[
-      "Primary Email Access",
-      "Password Manager",
-      "Cloud Storage",
-      "2FA Recovery",
-      "Social Media Accounts",
-      "Digital Archive"
-    ]
-  },
-
-  {
-    n:"02: Financial & Assets",
-    i:[
-      "Banking Accounts",
-      "Credit Accounts",
-      "Investments & Retirement",
-      "Life Insurance",
-      "Crypto & Digital Assets",
-      "Recurring Bills"
-    ]
-  },
-
-  {
-    n:"03: Household & Property",
-    i:[
-      "Property Deeds",
-      "Vehicle Titles",
-      "Maintenance Records",
-      "Utility Accounts",
-      "Security Access",
-      "Household Inventory"
-    ]
-  },
-
-  {
-    n:"04: Health & Medical",
-    i:[
-      "Health Insurance",
-      "Medical Contacts",
-      "Prescriptions",
-      "Medical History",
-      "Healthcare Directives",
-      "Emergency Instructions"
-    ]
-  },
-
-  {
-    n:"05: Legal & Estate",
-    i:[
-      "Will & Testament",
-      "Trust Documentation",
-      "Financial POA",
-      "Healthcare POA",
-      "Beneficiaries",
-      "Estate Documents"
-    ]
-  },
-
-  {
-    n:"06: Business Continuity",
-    i:[
-      "Formation Documents",
-      "Business Banking",
-      "Operating Agreements",
-      "Vendor Relationships",
-      "Client Records",
-      "Succession Planning"
-    ]
-  },
-
-  {
-    n:"07: Legacy & Wishes",
-    i:[
-      "Personal Letters",
-      "Family Stories",
-      "Ethical Will",
-      "Funeral Preferences",
-      "Obituary Information",
-      "Personal Wishes"
-    ]
-  }
-
+const WH="https://hook.us2.make.com/8sf4ost41gkncwh2tqvspqi5h29ll41b";
+const PILLARS=[
+  {n:"01: Digital Life",d:"Credentials, accounts, and digital access.",i:["Primary Email Access","Password Manager","Cloud Storage","2-Factor Authentication Recovery","Social Media Accounts","Digital Archive"]},
+  {n:"02: Financial & Assets",d:"Banking, investments, and financial records.",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
+  {n:"03: Household & Property",d:"Property, vehicles, and household documentation.",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
+  {n:"04: Health & Medical",d:"Insurance, records, and medical directives.",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
+  {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
+  {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
+  {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
-
-let step = 0;
-let businessOwner = false;
-
-const ANSWERS = {};
-
-function activePillars(){
-
-  return businessOwner
-    ? PILLARS
-    : PILLARS.filter(
-        p => !p.n.includes("Business Continuity")
-      );
+const PILLAR_COLORS={"Digital Life":"#4a6880","Financial & Assets":"#8a7448","Household & Property":"#6a6050","Health & Medical":"#4a7868","Legal & Estate":"#7a4848","Business Continuity":"#8a6840","Legacy & Wishes":"#685878"};
+const EXPL={
+  "Primary Email Access":"The master key to all account recovery. Without it, nothing downstream is retrievable by those acting on your behalf.",
+  "Password Manager":"Every credential lives here. If undocumented, critical accounts become permanently inaccessible.",
+  "Cloud Storage":"Files and records stored here are invisible to successors without credentials.",
+  "2-Factor Authentication Recovery":"Without backup codes, two-factor barriers are absolute. No institution can override them.",
+  "Social Media Accounts":"Active, undocumented accounts remain exposed and cannot be memorialized or removed.",
+  "Digital Archive":"A repository of personal history. Left undocumented, it passes into unrecoverable silence.",
+  "Banking Accounts":"Unrecorded accounts delay estate settlement and may eventually be escheated to the state.",
+  "Credit Accounts":"Outstanding obligations and automatic payments create hidden liabilities without documented access.",
+  "Investment & Retirement Accounts":"Retirement accounts must be claimed by beneficiaries. Undocumented accounts remain dormant for years.",
+  "Life Insurance Policies":"Policies go unclaimed at a striking rate. Beneficiaries cannot file without documentation.",
+  "Cryptocurrency & Digital Assets":"There is no recovery mechanism. Undocumented wallets and keys are permanently, irrevocably inaccessible.",
+  "Recurring Bills & Subscriptions":"Automatic payments continue after death. Services require documented access to cancel.",
+  "Property Deeds & Titles":"Title transfer requires the original deed. Without it, estate settlement requires court intervention.",
+  "Vehicle Titles & Registration":"Ownership cannot transfer without the title. Vehicles become legally stranded.",
+  "Home Maintenance Records":"Service history and warranties affect value and liability. Undocumented properties carry unknown exposure.",
+  "Utility Accounts":"Access is required to transfer, pause, or cancel service during a transition.",
+  "Security Systems & Access Codes":"Undocumented codes leave property unsecured during any transition.",
+  "Household Inventory Documentation":"Insurance claims and estate valuations require documentation. Undocumented assets are routinely overlooked.",
+  "Health Insurance Information":"Coverage, policy numbers, and providers must be documented for uninterrupted care.",
+  "Medical Providers & Contacts":"Care coordination requires a contact list. Providers cannot release records without it.",
+  "Prescription Information":"Active prescriptions require documentation for continuity of care. Interruption carries real consequences.",
+  "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
+  "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
+  "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
+  "Last Will & Testament":"Without a will, assets distribute by state law — not your intentions.",
+  "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
+  "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
+  "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
+  "Beneficiary Designations":"Designations override your will entirely. Outdated entries pass assets contrary to your current wishes.",
+  "Estate Planning Documents":"Incomplete documents create delays, disputes, and unintended distributions.",
+  "Entity Formation Documents":"Formation documents are required for any transfer of ownership or operational control.",
+  "Business Banking Access":"Without documented access, operations cease immediately. Payroll and obligations go unmet.",
+  "Operating Agreements":"Undocumented agreements leave ownership and authority ambiguous during any transition.",
+  "Key Vendor Relationships":"Contract terms and contacts, if undocumented, cannot be honored or renegotiated.",
+  "Client & Contract Records":"Revenue relationships require a documented transition. Clients will not wait.",
+  "Succession & Continuity Planning":"Without a plan, the business may dissolve rather than continue.",
+  "Personal Letters":"Messages written for specific people. Once lost, they cannot be recovered or spoken.",
+  "Family History & Stories":"Stories and lineage not written down are lost with you.",
+  "Ethical Will":"Values, beliefs, and lessons for future generations. An undocumented ethical will simply vanishes.",
+  "Funeral Preferences":"Without documented preferences, family members make irreversible decisions under duress.",
+  "Obituary Information":"Biographical details required for an accurate obituary are often unknown to survivors.",
+  "Personal Wishes & Instructions":"Instructions for sentimental matters that no legal document addresses."
+};
+let step=0,biz=false,isBack=false;
+const ANS={};
+function aP(){return biz?PILLARS:PILLARS.filter(p=>p.n.indexOf("Business")===-1);}
+function calc(){
+  let r=0,na=0,tot=0;
+  aP().forEach((p,pi)=>{p.i.forEach((_,ii)=>{tot++;const v=ANS[pi+"_"+ii];if(v==="R")r++;if(v==="N")na++;});});
+  const eff=Math.max(1,tot-na);
+  return{pct:Math.round((r/eff)*100),rec:r,eff,tot};
 }
-
-function calcScore(){
-
-  let recorded = 0;
-  let na = 0;
-  let total = 0;
-
-  activePillars().forEach((pillar,pi)=>{
-
-    pillar.i.forEach((item,ii)=>{
-
-      total++;
-
-      const val =
-        ANSWERS[pi + "_" + ii];
-
-      if(val === "R"){
-        recorded++;
-      }
-
-      if(val === "N"){
-        na++;
-      }
-
-    });
-
+function bkdown(){
+  return aP().map((p,pi)=>{
+    let r=0,u=0,na=0;
+    p.i.forEach((_,ii)=>{const v=ANS[pi+"_"+ii];if(v==="R")r++;else if(v==="U")u++;else if(v==="N")na++;});
+    const e=p.i.length-na;
+    return{nm:p.n.replace(/^\d+: /,""),r,u,na,pct:e>0?Math.round((r/e)*100):0};
   });
-
-  const effective =
-    Math.max(1,total - na);
-
-  return {
-    recorded,
-    effective,
-    percent:Math.round(
-      (recorded / effective) * 100
-    )
-  };
 }
-
-function tier(score){
-
-  if(score >= 86){
-    return {
-      label:"Continuity Luminary",
-      class:"tier-legend"
-    };
-  }
-
-  if(score >= 71){
-    return {
-      label:"Continuity Steward",
-      class:"tier-stable"
-    };
-  }
-
-  if(score >= 61){
-    return {
-      label:"Continuity Builder",
-      class:"tier-develop"
-    };
-  }
-
-  return {
-    label:"Continuity Sentinel",
-    class:"tier-risk"
-  };
+function getGaps(){
+  const g=[];
+  aP().forEach((p,pi)=>{
+    p.i.forEach((item,ii)=>{
+      if(ANS[pi+"_"+ii]==="U")g.push({pl:p.n.replace(/^\d+: /,""),item});
+    });
+  });
+  return g;
 }
-
+function getStr(){
+  const s=[];
+  aP().forEach((p,pi)=>{p.i.forEach((item,ii)=>{if(ANS[pi+"_"+ii]==="R")s.push({pl:p.n.replace(/^\d+: /,""),item});});});
+  return s;
+}
+function tLabel(s){if(s>=86)return"Continuity Luminary";if(s>=71)return"Continuity Steward";if(s>=61)return"Continuity Builder";return"Continuity Sentinel";}
+function tCls(s){if(s>=86)return"tL";if(s>=71)return"tS";if(s>=61)return"tD";return"tR";}
+function rec(s){
+  if(s<61)return"Begin by centralizing your most critical digital and financial credentials into a single, secure location.";
+  if(s<71)return"A foundation exists. Prioritize Legal & Estate documentation and close your single points of failure.";
+  if(s<86)return"Strong positioning. Focus on completeness in your remaining gaps and an annual review cadence.";
+  return"Excellent posture. Ensure your successors know precisely where everything lives and how to access it.";
+}
 function pick(key,val){
-
-  if(ANSWERS[key] === val){
-
-    delete ANSWERS[key];
-
-  }else{
-
-    ANSWERS[key] = val;
-
-  }
-
+  if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
+  const pi=step-1;const ps=aP();
+  const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
   render();
-}
-
-function next(){
-
-  step++;
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  render();
-}
-
-function back(){
-
-  if(step > 0){
-
-    step--;
-
-    render();
+  if(done){
+    const b=document.getElementById("cpbadge");
+    if(b)b.style.display="flex";
+    setTimeout(()=>{step++;isBack=false;render();},800);
   }
 }
-
-function resetAll(){
-
-  Object.keys(ANSWERS).forEach(key=>{
-
-    delete ANSWERS[key];
-
-  });
-
-  businessOwner = false;
-  step = 0;
-
-  render();
+function goN(){step++;isBack=false;render();}
+function goB(){if(step>0){step--;isBack=true;render();}}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();}
+function animNum(el,tgt){
+  let st=null;
+  function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
+  requestAnimationFrame(f);
 }
-
-function share(){
-
-  const s = calcScore();
-
-  const text =
-    "My Continuity Readiness score is " +
-    s.percent +
-    "%.";
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"7-Pillar Continuity Analysis",
-      text:text,
-      url:location.href
-    });
-
-  }else{
-
-    navigator.clipboard.writeText(
-      text + " " + location.href
-    );
-
-    alert("Copied.");
+function animRing(el,tgt){
+  let st=null;
+  function f(ts){
+    if(!st)st=ts;const p=Math.min((ts-st)/1500,1);const e=1-Math.pow(1-p,3);
+    const a=Math.round(e*tgt*3.6);
+    el.style.background=`conic-gradient(rgba(40,30,16,.95) 0deg,rgba(90,68,32,.9) ${a}deg,rgba(16,12,8,.95) ${a}deg,rgba(11,9,7,.98) 360deg)`;
+    if(p<1)requestAnimationFrame(f);
   }
+  requestAnimationFrame(f);
 }
-
-function submitReport(){
-
-  const btn =
-    document.getElementById("submitBtn");
-
-  const alert =
-    document.getElementById("submitAlert");
-
-  const firstName =
-    document
-      .getElementById("firstName")
-      .value
-      .trim();
-
-  const email =
-    document
-      .getElementById("email")
-      .value
-      .trim();
-
-  alert.innerHTML = "";
-
-  if(!email){
-
-    alert.innerHTML =
-      "Email is required.";
-
-    return;
-  }
-
-  btn.disabled = true;
-  btn.innerHTML = "SENDING...";
-
-  const scoreData = calcScore();
-
-  const strengths = [];
-  const gaps = [];
-  const pillarBreakdown = [];
-
-  activePillars().forEach((pillar,pi)=>{
-
-    let recorded = 0;
-    let unprepared = 0;
-    let na = 0;
-
-    pillar.i.forEach((item,ii)=>{
-
-      const val =
-        ANSWERS[pi + "_" + ii];
-
-      if(val === "R"){
-
-        recorded++;
-
-        strengths.push({
-          pillar:pillar.n,
-          item:item
-        });
-      }
-
-      if(val === "U"){
-
-        unprepared++;
-
-        gaps.push({
-          pillar:pillar.n,
-          item:item
-        });
-      }
-
-      if(val === "N"){
-        na++;
-      }
-
-    });
-
-    const effective =
-      pillar.i.length - na;
-
-    pillarBreakdown.push({
-
-      pillar:pillar.n,
-
-      recorded:recorded,
-
-      unprepared:unprepared,
-
-      na:na,
-
-      percent:
-        effective > 0
-          ? Math.round(
-              (recorded / effective) * 100
-            )
-          : 0
-
-    });
-
-  });
-
-  const payload = {
-
-    submittedAt:
-      new Date().toISOString(),
-
-    firstName:firstName,
-
-    email:email,
-
-    businessOwner:
-      businessOwner ? "Yes" : "No",
-
-    score:
-      scoreData.percent,
-
-    recordedItems:
-      scoreData.recorded,
-
-    applicableItems:
-      scoreData.effective,
-
-    tier:
-      tier(scoreData.percent).label,
-
-    strengths:
-      strengths,
-
-    gaps:
-      gaps,
-
-    pillarBreakdown:
-      pillarBreakdown,
-
-    answers:
-      ANSWERS
-
-  };
-
-  fetch(WEBHOOK_URL,{
-
-    method:"POST",
-
-    headers:{
-      "Content-Type":"application/json"
-    },
-
-    body:JSON.stringify(payload)
-
-  })
-  .then(()=>{
-
-    btn.innerHTML =
-      "REPORT REQUESTED";
-
-  })
-  .catch(error=>{
-
-    console.error(error);
-
-    btn.disabled = false;
-
-    btn.innerHTML =
-      "TRY AGAIN";
-
-    alert.innerHTML =
-      "Unable to send request.";
-
-  });
+function shareScore(){
+  const d=calc();const text=`My Continuity Readiness score is ${d.pct}% (${tLabel(d.pct)}).`;
+  if(navigator.share){navigator.share({title:"7-Pillar Continuity Analysis",text,url:location.href}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text+" "+location.href).catch(()=>{});alert("Copied.");}
 }
-
+function submit(){
+  const btn=document.getElementById("s7btn");
+  const ae=document.getElementById("s7al");
+  const fn=(document.getElementById("s7fn")||{}).value?.trim()||"";
+  const em=(document.getElementById("s7em")||{}).value?.trim()||"";
+  if(ae)ae.textContent="";
+  if(!em){if(ae)ae.textContent="An email address is required to receive your report.";return;}
+  btn.disabled=true;
+  btn.innerHTML='<span class="ldots"><span></span><span></span><span></span></span>';
+  const d=calc();const sc=d.pct;const tl=tLabel(sc);
+  const gaps=getGaps();const str=getStr();const bk=bkdown();
+  const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",answers:ANS,recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk};
+  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  .then(r=>r.json().catch(()=>({})))
+  .then(()=>renderSuccess())
+  .catch(()=>{btn.disabled=false;btn.innerText="Try Again";if(ae)ae.textContent="Something went wrong. Please try again.";});
+}
+function segs(tot,cur,allDone){
+  return Array.from({length:tot},(_,i)=>{
+    let c="seg";
+    if(allDone||i<cur)c+=" done";
+    else if(i===cur)c+=" active";
+    return`<div class="${c}"></div>`;
+  }).join("");
+}
 function render(){
-
-  const app =
-    document.getElementById("app");
-
-  app.className = "card";
-
-  if(step === 0){
-
-    renderIntro(app);
-
-  }else if(
-    step <= activePillars().length
-  ){
-
-    renderQuestions(app);
-
-  }else{
-
-    renderResults(app);
-
-  }
+  const app=document.getElementById("app");
+  const ps=aP();
+  if(step===0){renderIntro(app,ps);}
+  else if(step<=ps.length){renderQ(app,ps);}
+  else{renderResults(app,ps);}
 }
-
-function renderIntro(app){
-
-  const total =
-    activePillars().length + 2;
-
-  app.innerHTML = `
-
-    <div class="stepbar">
-
-      ${
-        Array.from(
-          {length:total},
-          (_,i)=>`
-            <div class="seg ${i===0 ? "active" : ""}"></div>
-          `
-        ).join("")
-      }
-
-    </div>
-
-    <div class="header-title">
-      7-PILLAR CONTINUITY ANALYSIS
-    </div>
-
-    <p class="muted" style="margin-top:12px;">
-      Evaluate how prepared your household is to maintain continuity when life changes unexpectedly.
-    </p>
-
-    <p class="muted" style="margin-top:18px;">
-      Do you currently own or operate a business?
-    </p>
-
-    <button id="businessBtn">
-      Continue as Business Owner
-    </button>
-
-    <button
-      class="alt"
-      id="individualBtn"
-    >
-      Continue as Individual
-    </button>
-
-  `;
-
-  document
-    .getElementById("businessBtn")
-    .onclick = ()=>{
-
-      businessOwner = true;
-      step = 1;
-      render();
-    };
-
-  document
-    .getElementById("individualBtn")
-    .onclick = ()=>{
-
-      businessOwner = false;
-      step = 1;
-      render();
-    };
-}
-
-function renderQuestions(app){
-
-  const pillars =
-    activePillars();
-
-  const pillar =
-    pillars[step - 1];
-
-  const total =
-    pillars.length + 2;
-
-  let html = `
-
-    <div class="stepbar">
-
-      ${
-        Array.from(
-          {length:total},
-          (_,i)=>`
-            <div class="seg ${i <= step ? "active" : ""}"></div>
-          `
-        ).join("")
-      }
-
-    </div>
-
-    <div class="section-title">
-      ${pillar.n}
-    </div>
-
-  `;
-
-  pillar.i.forEach((item,idx)=>{
-
-    const key =
-      (step - 1) + "_" + idx;
-
-    const val =
-      ANSWERS[key] || "";
-
-    html += `
-
-      <div class="toggle">
-
-        <div class="item-label">
-          ${item}
-        </div>
-
+function renderIntro(app,ps){
+  const tot=ps.length+2;
+  app.innerHTML=`<div class="appear">
+    <div class="stepbar">${segs(tot,0,false)}</div>
+    <p class="mark" style="margin-bottom:14px;">7-Pillar Continuity Analysis</p>
+    <p class="heading">Legacy Architect RVA</p>
+    <p class="sub" style="margin-bottom:20px;">Evaluate how prepared your household is to maintain continuity when life changes unexpectedly. For each item, indicate whether it has been documented, is absent, or does not apply.</p>
+    <hr class="rule">
+    <p class="sub" style="font-size:14px;margin-bottom:0;">Do you currently own or operate a business?</p>
+    <button onclick="biz=true;step=1;isBack=false;render();">Continue as Business Owner</button>
+    <button class="alt" style="margin-top:10px;" onclick="biz=false;step=1;isBack=false;render();">Continue as Individual</button>
+  </div>`;}
+function renderQ(app,ps){
+  const p=ps[step-1];const pi=step-1;const tot=ps.length+2;
+  const done=p.i.every((_,ii)=>ANS[pi+"_"+ii]);
+  let html=`<div class="appear">
+    <div class="stepbar">${segs(tot,step,false)}</div>
+    <p class="mark" style="margin-bottom:8px;">${p.n}</p>
+    <p class="heading" style="font-size:17px;">${p.n.replace(/^\d+: /,"")}</p>
+    <p class="sub" style="font-size:14px;margin-bottom:18px;">${p.d}</p>`;
+  p.i.forEach((item,idx)=>{
+    const key=pi+"_"+idx;const val=ANS[key]||"";
+    const tc=val==="R"?"aR":val==="U"?"aU":"";
+    html+=`<div class="toggle ${tc}">
+      <div class="trow">
+        <div class="tlabel">${item}</div>
         <div class="opts">
-
-          <div
-            class="opt ${val==="R" ? "active" : ""}"
-            onclick="pick('${key}','R')"
-          >
-            Recorded
-          </div>
-
-          <div
-            class="opt ${val==="U" ? "active" : ""}"
-            onclick="pick('${key}','U')"
-          >
-            Missing
-          </div>
-
-          <div
-            class="opt ${val==="N" ? "active" : ""}"
-            onclick="pick('${key}','N')"
-          >
-            N/A
-          </div>
-
+          <div class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R')">Recorded</div>
+          <div class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U')">Missing</div>
+          <div class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N')">N/A</div>
         </div>
-
       </div>
-
-    `;
+    </div>`;
   });
-
-  html += `
-
-    <button id="continueBtn">
-      Continue
-    </button>
-
-    <div class="nav-row">
-
-      <button
-        class="alt"
-        id="backBtn"
-      >
-        Back
-      </button>
-
-      <button
-        class="alt"
-        id="resetBtn"
-      >
-        Reset
-      </button>
-
-    </div>
-
-  `;
-
-  app.innerHTML = html;
-
-  document
-    .getElementById("continueBtn")
-    .onclick = next;
-
-  document
-    .getElementById("backBtn")
-    .onclick = back;
-
-  document
-    .getElementById("resetBtn")
-    .onclick = resetAll;
-}
-
-function renderResults(app){
-
-  const s = calcScore();
-
-  const t =
-    tier(s.percent);
-
-  const angle =
-    Math.round(
-      (s.percent / 100) * 360
-    );
-
-  app.innerHTML = `
-
-    <div class="ring-wrap">
-
-      <div class="readiness-label">
-        Continuity Readiness
+  html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
+    <div class="cpdot"></div>All items addressed — advancing
+  </div>
+  <button onclick="goN()">Continue</button>
+  <div class="navrow">
+    <button class="sm alt" onclick="goB()">Back</button>
+    <button class="sm alt" onclick="reset()">Reset</button>
+  </div></div>`;
+  app.innerHTML=html;}
+function renderResults(app,ps){
+  const tot=ps.length+2;const d=calc();const sc=d.pct;
+  const bk=bkdown();const gaps=getGaps().slice(0,6);
+  const barsH=bk.map((b,i)=>`<div class="prow" style="animation-delay:${.04+i*.05}s;">
+    <div class="pname">${b.nm}</div>
+    <div class="ptrack"><div class="pfill" style="width:${b.pct}%;animation-delay:${.08+i*.07}s;"></div></div>
+    <div class="ppct">${b.pct}%</div>
+  </div>`).join("");
+  const gapsH=gaps.length?gaps.map((g,i)=>{
+    const col=PILLAR_COLORS[g.pl]||"#8a7448";
+    const expl=EXPL[g.item]||"";
+    return`<div class="gapitem" style="border-left-color:${col};animation-delay:${.04+i*.06}s;">
+      <div>
+        <div class="gapname">${g.item}</div>
+        ${expl?`<div class="gapexpl">${expl}</div>`:""}
+        <div class="gappillar" style="color:${col};">${g.pl}</div>
       </div>
-
-      <div
-        class="ring"
-        style="--angle:${angle}deg"
-      >
-
-        <div class="score">
-          ${s.percent}%
+    </div>`;
+  }).join(""):`<p class="sub" style="font-size:14px;">No unprepared items recorded.</p>`;
+  app.innerHTML=`<div class="appear">
+    <div class="stepbar">${segs(tot,tot,true)}</div>
+    <div class="ringwrap">
+      <div class="ringlabel">Continuity Readiness</div>
+      <div class="ring">
+        <div id="r7conic" class="ringconic"></div>
+        <div class="ringinner">
+          <div class="scorenum" id="r7num">0%</div>
+          <div class="scoresub">${d.rec} of ${d.eff} recorded</div>
         </div>
-
       </div>
-
     </div>
-
-    <div class="tier ${t.class}">
-      ${t.label}
+    <div class="tierbadge ${tCls(sc)}">${tLabel(sc)}</div>
+    <p class="sub" style="text-align:center;font-size:14px;">Most households score between 40 and 65% on their first pass.</p>
+    <div class="legblock">
+      <div class="legrow"><div class="legname tL">Continuity Luminary</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71–85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61–70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0–60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
-
-    <p
-      class="muted"
-      style="text-align:center;"
-    >
-      ${s.recorded}
-      of
-      ${s.effective}
-      applicable items recorded.
-    </p>
-
-    <div class="legend-block">
-
-      <div class="legend-row">
-        <span class="tier-legend">
-          Luminary
-        </span>
-        — 86–100%
-      </div>
-
-      <div class="legend-row">
-        <span class="tier-stable">
-          Steward
-        </span>
-        — 71–85%
-      </div>
-
-      <div class="legend-row">
-        <span class="tier-develop">
-          Builder
-        </span>
-        — 61–70%
-      </div>
-
-      <div class="legend-row">
-        <span class="tier-risk">
-          Sentinel
-        </span>
-        — Below 61%
-      </div>
-
+    <hr class="rule">
+    <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
+    ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
+    <hr class="rule">
+    <div class="inputrow">
+      <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
+      <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To receive your full report"></div>
     </div>
-
-    <div class="input-row">
-
-      <input
-        type="text"
-        id="firstName"
-        placeholder="First Name (Optional)"
-      >
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Email*"
-      >
-
+    <div id="s7al" class="alertmsg"></div>
+    <button id="s7btn" onclick="submit()">Request Full Analysis Report</button>
+    <div class="navrow">
+      <button class="sm alt" onclick="goB()">Back</button>
+      <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-
-    <div
-      id="submitAlert"
-      class="alert"
-    ></div>
-
-    <button id="submitBtn">
-      Request Full Analysis Report
-    </button>
-
-    <div
-      class="share-link"
-      id="shareBtn"
-    >
-      <span>Share your score</span>
+    <div class="sharelink" onclick="shareScore()"><span>Share your readiness score</span></div>
+    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA — legacyarchitectrva.com</div>
+  </div>`;
+  setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc);},90);}
+function renderSuccess(){
+  const d=calc();
+  document.getElementById("app").innerHTML=`<div class="successwrap">
+    <div class="successmark">✦</div>
+    <div class="successhead">Report Requested</div>
+    <p class="sub" style="font-size:14px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
+    <div style="padding:16px 20px;border:1px solid var(--rule);border-radius:2px;background:var(--lift);">
+      <p class="sub" style="font-size:13px;text-align:center;margin:0;letter-spacing:1px;">
+        <span style="color:var(--bronze);font-family:'Cinzel',serif;">${d.pct}% — ${tLabel(d.pct)}</span>
+      </p>
     </div>
-
-    <div class="nav-row">
-
-      <button
-        class="alt"
-        id="backBtn"
-      >
-        Back
-      </button>
-
-      <button
-        class="alt"
-        id="resetBtn"
-      >
-        Reset
-      </button>
-
-    </div>
-
-    <div class="footnote">
-      Informational purposes only. Not legal or financial advice.
-    </div>
-
-  `;
-
-  document
-    .getElementById("submitBtn")
-    .onclick = submitReport;
-
-  document
-    .getElementById("shareBtn")
-    .onclick = share;
-
-  document
-    .getElementById("backBtn")
-    .onclick = back;
-
-  document
-    .getElementById("resetBtn")
-    .onclick = resetAll;
-}
-
-document.addEventListener(
-  "DOMContentLoaded",
-  render
-);
-
+    <button style="margin-top:22px;" onclick="reset()">Begin a New Analysis</button>
+    <div class="footnote">Legacy Architect RVA</div>
+  </div>`;}
+window.pick=pick;window.goN=goN;window.goB=goB;window.reset=reset;window.submit=submit;window.shareScore=shareScore;
+render();
 </script>
-
 </body>
 </html>
