@@ -70,23 +70,65 @@ body{
   background:var(--lift);
   transition: border-color .25s ease, background .25s ease;
 }
-.toggle.aR{border-color:rgba(74,106,76,0.45);}
-.toggle.aU{border-color:rgba(158,90,74,0.3);}
-.toggle:nth-child(1){animation-delay:.03s;}.toggle:nth-child(2){animation-delay:.07s;}
-.toggle:nth-child(3){animation-delay:.11s;}.toggle:nth-child(4){animation-delay:.15s;}
-.toggle:nth-child(5){animation-delay:.19s;}.toggle:nth-child(6){animation-delay:.23s;}
-.trow{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;}
-.tlabel{font-size:15px;color:var(--vellum);line-height:1.4;flex:1;min-width:160px;}
-.opts{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;}
-.opt{
-  padding:6px 14px;border:1px solid var(--ghost);cursor:pointer;border-radius:2px;
-  font-family:'Lora',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-  transition:all .15s ease;color:var(--sepia);background:transparent;user-select:none;
+
+/* Removed animation delays that were causing flicker on re-render */
+.toggle.aR { border-color: rgba(74,106,76,0.45); }
+.toggle.aU { border-color: rgba(158,90,74,0.3); }
+
+/* Row layout */
+.trow{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
 }
-.opt:hover{border-color:var(--rule-strong);color:var(--vellum);}
-.opt.oR{border-color:rgba(74,120,78,0.7);color:#7aaa7e;background:rgba(74,120,78,0.06);}
-.opt.oU{border-color:rgba(158,90,74,0.6);color:#b87a6a;background:rgba(158,90,74,0.06);}
-.opt.oN{border-color:rgba(196,170,110,0.45);color:#c4aa6e;background:rgba(196,170,110,0.07);}
+.tlabel{
+  font-size:15px;
+  color:var(--vellum);
+  line-height:1.4;
+  flex:1;
+  min-width:160px;
+}
+.opts{
+  display:flex;
+  gap:6px;
+  flex-shrink:0;
+  flex-wrap:wrap;
+}
+.opt{
+  padding:6px 14px;
+  border:1px solid var(--ghost);
+  cursor:pointer;
+  border-radius:2px;
+  font-family:'Lora',serif;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  transition:all .15s ease;
+  color:var(--sepia);
+  background:transparent;
+  user-select:none;
+}
+.opt:hover{
+  border-color:var(--rule-strong);
+  color:var(--vellum);
+}
+.opt.oR{
+  border-color:rgba(74,120,78,0.7);
+  color:#7aaa7e;
+  background:rgba(74,120,78,0.06);
+}
+.opt.oU{
+  border-color:rgba(158,90,74,0.6);
+  color:#b87a6a;
+  background:rgba(158,90,74,0.06);
+}
+.opt.oN{
+  border-color:rgba(196,170,110,0.45);
+  color:#c4aa6e;
+  background:rgba(196,170,110,0.07);
+}
 /* COMPLETE BADGE */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:14px;
