@@ -334,22 +334,29 @@ function shareScore(){
   if(navigator.share){navigator.share({title:"7-Pillar Continuity Analysis",text,url:location.href}).catch(()=>{});}
   else{navigator.clipboard.writeText(text+" "+location.href).catch(()=>{});alert("Copied.");}
 }
-function submit(){
-  const btn=document.getElementById("s7btn");
-  const ae=document.getElementById("s7al");
-  const fn=(document.getElementById("s7fn")||{}).value?.trim()||"";
-  const em=(document.getElementById("s7em")||{}).value?.trim()||"";
-  if(ae)ae.textContent="";
-  if(!em){if(ae)ae.textContent="An email address is required to receive your report.";return;}
-  btn.disabled=true;
-  btn.innerHTML='<span class="ldots"><span></span><span></span><span></span></span>';
-  const d=calc();const sc=d.pct;const tl=tLabel(sc);
-  const gaps=getGaps();const str=getStr();const bk=bkdown();
-  const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",answers:ANS,recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk};
-  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
-  .then(r=>r.json().catch(()=>({})))
-  .then(()=>renderSuccess())
-  .catch(()=>{btn.disabled=false;btn.innerText="Try Again";if(ae)ae.textContent="Something went wrong. Please try again.";});
+function submit() {
+  const fn = document.getElementById("s7fn").value;
+  const em = document.getElementById("s7em").value;
+  if (!em) { alert("Email is required"); return; }
+
+  // Create a hidden form dynamically
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = WH; // This is your webhook URL
+
+  const data = { firstName: fn, email: em, answers: ANS };
+
+  for (const key in data) {
+    const hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = key;
+    hiddenField.value = JSON.stringify(data[key]);
+    form.appendChild(hiddenField);
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+  renderSuccess();
 }
 function segs(tot,cur,allDone){
   return Array.from({length:tot},(_,i)=>{
