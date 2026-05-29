@@ -26,6 +26,9 @@
   --gap-yellow: #eab308;
   --gap-green: #22c55e;
   --ring-glow: rgba(198, 168, 90, 0.3);
+  --recorded-color: #34D399;
+  --missing-color: #F87171;
+  --na-color: #94A3B8;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{font-size:17.6px;}
@@ -131,21 +134,38 @@ body{
   user-select:none;
 }
 .opt:hover{border-color:var(--btn-color);color:var(--text-primary);}
-.opt.oR{border-color:var(--btn-color);color:var(--btn-color);background:rgba(198, 168, 90, 0.15);}
-.opt.oU{border-color:var(--btn-color);color:var(--btn-color);background:rgba(198, 168, 90, 0.15);}
-.opt.oN{border-color:var(--btn-color);color:var(--btn-color);background:rgba(198, 168, 90, 0.15);}
+.opt.oR{border-color:var(--recorded-color);color:var(--recorded-color);background:rgba(52, 211, 153, 0.15);}
+.opt.oU{border-color:var(--missing-color);color:var(--missing-color);background:rgba(248, 113, 113, 0.15);}
+.opt.oN{border-color:var(--na-color);color:var(--na-color);background:rgba(148, 163, 184, 0.15);}
 /* COUNTER CIRCLE */
 .counter{text-align:center;}
 .counter-circle{
   display:inline-block;
-  padding:4px 10px;
-  background:rgba(198, 168, 90, 0.1);
+  padding:5px 12px;
+  background:transparent;
   border:1px solid rgba(198, 168, 90, 0.3);
   border-radius:12px;
   font-family:'Cinzel',serif;
-  font-size:13px;
+  font-size:16.25px;
   color:var(--btn-color);
   letter-spacing:1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(198, 168, 90, 0.2);
+}
+.counter-circle.recorded-glow{
+  border-color: var(--recorded-color);
+  color: var(--recorded-color);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.3);
+}
+.counter-circle.missing-glow{
+  border-color: var(--missing-color);
+  color: var(--missing-color);
+  box-shadow: 0 0 12px rgba(248, 113, 113, 0.3);
+}
+.counter-circle.na-glow{
+  border-color: var(--na-color);
+  color: var(--na-color);
+  box-shadow: 0 0 12px rgba(148, 163, 184, 0.3);
 }
 /* COMPLETE BADGE */
 .cpbadge{
@@ -309,9 +329,9 @@ button.sm{
   font-size:11px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:var(--gold);
+  color:var(--btn-color);
   opacity:0.8;
-  border-bottom:1px solid rgba(212, 175, 55, 0.2);
+  border-bottom:1px solid rgba(198, 168, 90, 0.2);
   padding-bottom:6px;
   margin-bottom:12px;
 }
@@ -322,24 +342,24 @@ button.sm{
   margin-bottom:8px;
 }
 .pname{
-  font-size:13px;
-  color:var(--text-secondary);
-  width:120px;
+  font-size:14px;
+  color:var(--text-primary);
+  width:180px;
   flex-shrink:0;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  overflow:visible;
+  text-overflow:clip;
+  white-space:normal;
 }
 .ptrack{
   flex:1;
-  height:3px;
+  height:4px;
   background:rgba(212, 175, 55, 0.1);
   border-radius:2px;
   overflow:hidden;
 }
 .pfill{
   height:100%;
-  background:linear-gradient(90deg, var(--gold), #fff, var(--gold));
+  background:linear-gradient(90deg, var(--btn-color), #fff, var(--btn-color));
   background-size:200% 100%;
   transform-origin:left;
   animation:barRise .85s cubic-bezier(.22,1,.36,1) forwards, shimmer 2s linear infinite;
@@ -347,9 +367,9 @@ button.sm{
 }
 .ppct{
   font-family:'Cinzel',serif;
-  font-size:12px;
-  color:var(--gold);
-  width:28px;
+  font-size:13px;
+  color:var(--btn-color);
+  width:35px;
   text-align:right;
   flex-shrink:0;
 }
@@ -551,7 +571,7 @@ const PILLARS=[
   {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
   {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
-const PILLAR_COLORS={"Digital Life":"#60A5FA","Financial & Assets":"#F87171","Household & Property":"#E2E8F0","Health & Medical":"#34D399","Legal & Estate":"#D4AF37","Business Continuity":"#94A3B8","Legacy & Wishes":"#C084FC"};
+const PILLAR_COLORS={"Digital Life":"var(--ch1)","Financial & Assets":"var(--ch2)","Household & Property":"var(--ch4)","Health & Medical":"var(--ch5)","Legal & Estate":"var(--ch6)","Business Continuity":"var(--ch7)","Legacy & Wishes":"var(--ch3)"};
 const EXPL={
   "Primary Email Access":"The master key to all account recovery. Without it, nothing downstream is retrievable by those acting on your behalf.",
   "Password Manager":"Every credential lives here. If undocumented, critical accounts become permanently inaccessible.",
@@ -645,6 +665,22 @@ function pick(key,val){
     if(b)b.style.display="flex";
   }
 }
+
+function getCounterGlowClass(){
+  const pi=step-1;
+  if(pi < 0) return '';
+  const ps=aP();
+  const lastAnswer = ps[pi].i.reduce((last, _, idx) => {
+    const key = pi+"_"+idx;
+    if(ANS[key]) return ANS[key];
+    return last;
+  }, '');
+  
+  if(lastAnswer === 'R') return 'recorded-glow';
+  if(lastAnswer === 'U') return 'missing-glow';
+  if(lastAnswer === 'N') return 'na-glow';
+  return '';
+}
 function goN(){step++;isBack=false;render();}
 function goB(){if(step>0){step--;isBack=true;render();}}
 function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();}
@@ -653,12 +689,27 @@ function animNum(el,tgt){
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
   requestAnimationFrame(f);
 }
-function animRing(el,tgt){
+function animRing(el,tgt,color="var(--btn-color)"){
   let st=null;
   function f(ts){
     if(!st)st=ts;const p=Math.min((ts-st)/1500,1);const e=1-Math.pow(1-p,3);
     const a=Math.round(e*tgt*3.6);
-    el.style.background=`conic-gradient(rgba(40,30,16,.95) 0deg,rgba(90,68,32,.9) ${a}deg,rgba(16,12,8,.95) ${a}deg,rgba(11,9,7,.98) 360deg)`;
+    // Convert CSS variable to RGB for conic gradient
+    const colorMap = {
+      "var(--ch1)": "rgba(96, 165, 250, 0.9)",
+      "var(--ch2)": "rgba(248, 113, 113, 0.9)",
+      "var(--ch3)": "rgba(226, 232, 240, 0.9)",
+      "var(--ch4)": "rgba(52, 211, 153, 0.9)",
+      "var(--ch5)": "rgba(212, 175, 55, 0.9)",
+      "var(--ch6)": "rgba(148, 163, 184, 0.9)",
+      "var(--ch7)": "rgba(192, 132, 252, 0.9)",
+      "var(--btn-color)": "rgba(198, 168, 90, 0.9)"
+    };
+    const baseColor = colorMap[color] || "rgba(198, 168, 90, 0.9)";
+    const darkColor = baseColor.replace("0.9", "0.7");
+    const darkerColor = baseColor.replace("0.9", "0.5");
+    const darkestColor = baseColor.replace("0.9", "0.3");
+    el.style.background=`conic-gradient(${darkestColor} 0deg,${baseColor} ${a}deg,${darkerColor} ${a}deg,${darkestColor} 360deg)`;
     if(p<1)requestAnimationFrame(f);
   }
   requestAnimationFrame(f);
@@ -731,13 +782,14 @@ function renderQ(app,ps){
   // Calculate running total for current pillar
   const answered = p.i.filter((_,ii)=>ANS[pi+"_"+ii]).length;
   const total = p.i.length;
+  const glowClass = getCounterGlowClass();
   let html=`<div>
     <div class="stepbar">${segs(tot,step,false)}</div>
     <p class="mark" style="margin-bottom:8px;">${p.n}</p>
     <p class="heading" style="font-size:17px;">${p.n.replace(/^\d+: /,"")}</p>
     <p class="sub" style="font-size:14px;margin-bottom:18px;">${p.d}</p>
     <div class="counter" style="margin-bottom:12px;">
-      <span class="counter-circle">${answered}/${total}</span>
+      <span class="counter-circle ${glowClass}">${answered}/${total}</span>
     </div>`;
   p.i.forEach((item,idx)=>{
     const key=pi+"_"+idx;const val=ANS[key]||"";
@@ -765,24 +817,18 @@ function renderQ(app,ps){
 function renderResults(app,ps){
   const tot=ps.length+1;const d=calc();const sc=d.pct;
   const bk=bkdown();const gaps=getGaps().slice(0,6);
+  const tierCls = tCls(sc);
+  const tierColor = sc >= 86 ? "var(--ch7)" : sc >= 71 ? "var(--ch5)" : sc >= 61 ? "var(--ch6)" : "var(--ch2)";
+  
   const barsH=bk.map((b,i)=>`<div class="prow">
     <div class="pname">${b.nm}</div>
-    <div class="ptrack"><div class="pfill" style="width:${b.pct}%;"></div></div>
+    <div class="ptrack"><div class="pfill" style="width:${b.pct}%;background:linear-gradient(90deg, ${PILLAR_COLORS[b.nm] || tierColor}, #fff, ${PILLAR_COLORS[b.nm] || tierColor});"></div></div>
     <div class="ppct">${b.pct}%</div>
   </div>`).join("");
-  // Map pillar names to chapter colors
-  const pillarToColor = {
-    "Digital Life": "var(--ch1)",
-    "Emergency & Successor Access": "var(--ch2)",
-    "Financial & Assets": "var(--ch3)",
-    "Household & Property": "var(--ch4)",
-    "Health & Medical": "var(--ch5)",
-    "Legal & Estate": "var(--ch6)",
-    "Business Continuity": "var(--ch7)"
-  };
+  
   const gapsH=gaps.length?gaps.map((g,i)=>{
     const expl=EXPL[g.item]||"";
-    const col = pillarToColor[g.pl] || "var(--ch1)";
+    const col = PILLAR_COLORS[g.pl] || "var(--ch1)";
     return`<div class="gapitem" style="border-left-color:${col};">
       <div>
         <div class="gapname">${g.pl}: ${g.item}</div>
@@ -794,15 +840,15 @@ function renderResults(app,ps){
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
       <div class="ringlabel">Continuity Readiness</div>
-      <div class="ring">
+      <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
-          <div class="scorenum" id="r7num">0%</div>
+          <div class="scorenum" id="r7num" style="color:${tierColor};text-shadow:0 0 8px ${tierColor}40;">0%</div>
           <div class="scoresub">${d.rec} of ${d.eff} recorded</div>
         </div>
       </div>
     </div>
-    <div class="tierbadge ${tCls(sc)}">${tLabel(sc)}</div>
+    <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;font-size:14px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
       <div class="legrow"><div class="legname tL">Continuity Luminary</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
@@ -827,17 +873,27 @@ function renderResults(app,ps){
     <div class="sharelink" onclick="window.shareScore()"><span>Share your readiness score</span></div>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA — legacyarchitectrva.com</div>
   </div>`;
-  setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc);},90);}
+  setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);}
 function renderSuccess(){
   const d=calc();
   const tierLabel = tLabel(d.pct);
   const tierColor = d.pct >= 86 ? "var(--ch7)" : d.pct >= 71 ? "var(--ch4)" : d.pct >= 61 ? "var(--ch5)" : "var(--ch2)";
+  const colorMap = {
+    "var(--ch1)": "rgba(96, 165, 250, 0.4)",
+    "var(--ch2)": "rgba(248, 113, 113, 0.4)",
+    "var(--ch3)": "rgba(226, 232, 240, 0.4)",
+    "var(--ch4)": "rgba(52, 211, 153, 0.4)",
+    "var(--ch5)": "rgba(212, 175, 55, 0.4)",
+    "var(--ch6)": "rgba(148, 163, 184, 0.4)",
+    "var(--ch7)": "rgba(192, 132, 252, 0.4)"
+  };
+  const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark">✓</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
     <div class="successhead">Report Requested</div>
     <p class="sub" style="font-size:15px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore">
-      <span style="color:${tierColor};">${d.pct}% — ${tierLabel}</span>
+      <span style="color:${tierColor};font-size:19px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset()">Begin a New Analysis</button>
     <div class="footnote">Legacy Architect RVA</div>
