@@ -30,7 +30,7 @@
   --subtle-glow: rgba(212, 175, 55, 0.1);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{font-size:16px;}
+html{font-size:17.6px;}
 body{
   margin:0;
   background:transparent;
@@ -198,35 +198,26 @@ body{
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:var(--text-secondary);
-  font-family:'Cormorant Garamond',serif;
-  font-size:12px;
+  color:var(--accent-gold);
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.5px;
 }
 .share-btn:hover,
 .share-action-btn:hover{
   background:rgba(212, 175, 55, 0.08);
   border-color:var(--accent-gold);
-  color:var(--accent-gold);
 }
 .share-icon{
   width:24px;
   height:24px;
-  opacity:0.8;
-  transition:opacity 0.2s ease;
+  transition:transform 0.2s ease;
 }
 .share-btn:hover .share-icon,
 .share-action-btn:hover .share-icon{
-  opacity:1;
+  transform:scale(1.1);
 }
-/* Platform specific colors */
-.share-btn.linkedin:hover{background:rgba(0, 119, 181, 0.1);border-color:#0077B5;color:#0077B5;}
-.share-btn.facebook:hover{background:rgba(59, 89, 152, 0.1);border-color:#3B5998;color:#3B5998;}
-.share-btn.nextdoor:hover{background:rgba(0, 153, 153, 0.1);border-color:#009999;color:#009999;}
-.share-btn.instagram:hover{background:rgba(196, 58, 157, 0.1);border-color:#C43A9A;color:#C43A9A;}
-.share-btn.threads:hover{background:rgba(100, 100, 100, 0.1);border-color:#646464;color:#646464;}
-.share-btn.x:hover{background:rgba(0, 0, 0, 0.1);border-color:#000000;color:#000000;}
-.share-action-btn.email:hover{background:rgba(100, 100, 100, 0.1);border-color:#646464;color:#646464;}
-.share-action-btn.copy:hover{background:rgba(212, 175, 55, 0.1);border-color:var(--accent-gold);color:var(--accent-gold);}
 
 .share-actions{
   display:grid;
@@ -236,8 +227,8 @@ body{
 /* TYPOGRAPHY - Refined */
 .mark{
   font-family:'Montserrat',sans-serif;
-  font-size:10px;
-  letter-spacing:4px;
+  font-size:11px;
+  letter-spacing:4.4px;
   text-transform:uppercase;
   color:var(--accent-gold);
   opacity:0.7;
@@ -245,16 +236,16 @@ body{
 }
 .heading{
   font-family:'Playfair Display',serif;
-  font-size:22px;
-  margin:0 0 12px;
+  font-size:24.2px;
+  margin:0 0 13.2px;
   color:var(--text-primary);
   font-weight:500;
   font-style:italic;
 }
 .sub{
   color:var(--text-secondary);
-  line-height:1.8;
-  font-size:15px;
+  line-height:1.98;
+  font-size:16.5px;
   font-family:'Cormorant Garamond',serif;
 }
 .rule{
@@ -265,7 +256,7 @@ body{
 /* ITEM TOGGLES - Elegant */
 .toggle{
   border:none;
-  padding:12px 0;
+  padding:12.6px 0;
   margin:0;
   background:transparent;
   transition:all 0.3s ease;
@@ -275,17 +266,41 @@ body{
 .toggle.aR{border-color:transparent;}
 .toggle.aU{border-color:transparent;}
 .toggle.aN{border-color:transparent;}
-.trow{display:flex;flex-direction:column;gap:10px;align-items:center;}
+.trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
 .tlabel{
-  font-size:15px;
+  font-size:16.5px;
   color:var(--text-primary);
-  line-height:1.5;
+  line-height:1.575;
   text-align:center;
   width:100%;
   font-family:'Cormorant Garamond',serif;
   font-weight:400;
 }
-.opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
+.opts{display:flex;gap:8.4px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
+
+/* Not a business owner button */
+.not-business-owner-btn{
+  width:auto;
+  padding:10px 20px;
+  background:transparent;
+  border:1px solid rgba(212, 175, 55, 0.4);
+  border-radius:0;
+  font-family:'Montserrat',sans-serif;
+  font-weight:500;
+  letter-spacing:1px;
+  margin:15px auto;
+  cursor:pointer;
+  font-size:12px;
+  text-transform:uppercase;
+  color:var(--text-secondary);
+  transition:all 0.2s ease;
+  display:block;
+}
+.not-business-owner-btn:hover{
+  background:rgba(212, 175, 55, 0.08);
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
+}
 .opt{
   padding:8px 16px;
   border:1px solid rgba(212, 175, 55, 0.4);
@@ -885,6 +900,19 @@ function animRing(el,tgt,color="var(--btn-color)"){
   }
   requestAnimationFrame(f);
 }
+function markAllAsNA(){
+  const pi=step-1;
+  const ps=aP();
+  if(pi >= 0 && pi < ps.length){
+    ps[pi].i.forEach((_,ii)=>{
+      ANS[pi+"_"+ii]="N";
+    });
+    render();
+    const b=document.getElementById("cpbadge");
+    if(b)b.style.display="flex";
+  }
+}
+
 function shareScore(){
   const d=calc();
   const tierLabel = tLabel(d.pct);
@@ -910,32 +938,32 @@ function showShareModal(score, tierLabel, text, url) {
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=7-Pillar%20Continuity%20Analysis&summary=${encodeURIComponent(text)}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#0077B5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             <span>LinkedIn</span>
           </a>
           <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}" 
              target="_blank" class="share-btn facebook" onclick="trackShare('facebook')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             <span>Facebook</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodeURIComponent(url)}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(text)}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2zm0 4h2v6h-2z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M18.36 5.222c-1.799 0-3.255.99-4.09 2.545l-1.03-1.03C13.17.99 11.714 0 9.99 0 8.266 0 6.81 1.01 5.86 2.625l-1.03 1.03C4.74 3.212 3.43 4.25 2.545 5.86 1.01 8.266 0 9.714 0 11.438c0 1.724.99 3.18 2.545 4.09l1.03 1.03c1.615-1.04 2.625-2.495 2.625-4.222 0-1.724-.99-3.18-2.625-4.09l1.03-1.03c.81.78 1.95 1.23 3.21 1.23 1.724 0 3.18-.99 4.09-2.545l1.03 1.03c1.04 1.615 2.495 2.625 4.222 2.625 1.724 0 3.18-.99 4.09-2.625l1.03-1.03c.78-.81 1.23-1.95 1.23-3.21 0-1.724-.99-3.18-2.545-4.09zM12 15.89c-2.735 0-4.95-2.215-4.95-4.95s2.215-4.95 4.95-4.95 4.95 2.215 4.95 4.95-2.215 4.95-4.95 4.95z"/></svg>
             <span>NextDoor</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodeURIComponent(url)}&caption=${encodeURIComponent(text)}" 
              target="_blank" class="share-btn instagram" onclick="trackShare('instagram')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram</span>
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(text + ' ' + url)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' ' + url)}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span>X</span>
           </a>
         </div>
@@ -1059,14 +1087,22 @@ function renderQ(app,ps){
   // Calculate running total for current pillar
   const answered = p.i.filter((_,ii)=>ANS[pi+"_"+ii]).length;
   const total = p.i.length;
+  const isBusinessPillar = pi === 5; // Pillar 6 (index 5) is Business Continuity
   let html=`<div>
     <div class="stepbar">${segs(tot,step,false)}</div>
     <p class="mark" style="margin-bottom:8px;">${p.n}</p>
-    <p class="heading" style="font-size:17px;">${p.n.replace(/^\d+: /,"")}</p>
-    <p class="sub" style="font-size:14px;margin-bottom:12px;">${p.d}</p>
+    <p class="heading" style="font-size:18.7px;">${p.n.replace(/^\d+: /,"")}</p>
+    <p class="sub" style="font-size:15.4px;margin-bottom:12px;">${p.d}</p>
     <div class="counter">
       <span class="counter-circle">${answered}/${total}</span>
     </div>`;
+  
+  // Add "Not a business owner" button for Business Continuity pillar
+  if(isBusinessPillar && answered < total){
+    html += `<button class="not-business-owner-btn" onclick="markAllAsNA()">Not a business owner</button>`;
+  }
+  
+  html += ``;
   p.i.forEach((item,idx)=>{
     const key=pi+"_"+idx;const val=ANS[key]||"";
     const tc=val==="R"?"aR":val==="U"?"aU":"";
@@ -1095,6 +1131,13 @@ function renderResults(app,ps){
   const bk=bkdown();const gaps=getGaps().slice(0,6);
   const tierCls = tCls(sc);
   const tierColor = sc >= 86 ? "var(--ch7)" : sc >= 71 ? "var(--ch5)" : sc >= 61 ? "var(--ch6)" : "var(--ch2)";
+  
+  // Scroll to top of results
+  setTimeout(() => {
+    const appElement = document.getElementById('app');
+    if(appElement) appElement.scrollTop = 0;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, 10);
   
   const barsH=bk.map((b,i)=>`<div class="prow">
     <div class="pname">${b.nm}</div>
@@ -1187,6 +1230,7 @@ window.trackShare=trackShare;
 window.shareViaEmail=shareViaEmail;
 window.copyToClipboard=copyToClipboard;
 window.handleModalClick=handleModalClick;
+window.markAllAsNA=markAllAsNA;
 render();
 </script>
 </body>
