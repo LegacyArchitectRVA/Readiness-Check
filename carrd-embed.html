@@ -167,6 +167,40 @@ body{
 .share-modal-close:hover{
   color:var(--accent-gold);
 }
+
+/* Close/Back to Site Button */
+.back-to-site-btn{
+  width:100%;
+  padding:14px 20px;
+  background:transparent;
+  border:1px solid rgba(212, 175, 55, 0.4);
+  border-radius:0;
+  font-family:'Montserrat',sans-serif;
+  font-weight:500;
+  letter-spacing:2px;
+  margin-top:20px;
+  cursor:pointer;
+  font-size:12px;
+  text-transform:uppercase;
+  color:var(--text-secondary);
+  transition:all 0.2s ease;
+}
+.back-to-site-btn:hover{
+  background:rgba(212, 175, 55, 0.08);
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
+}
+
+/* Company Logo */
+.company-logo{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  color:var(--accent-gold);
+  font-weight:500;
+  font-style:italic;
+  letter-spacing:1px;
+  margin:0 0 15px;
+}
 .share-modal-content{
   padding:25px;
 }
@@ -281,25 +315,52 @@ body{
 /* Not a business owner button */
 .not-business-owner-btn{
   width:auto;
-  padding:10px 20px;
-  background:transparent;
-  border:1px solid rgba(212, 175, 55, 0.4);
+  padding:14px 24px;
+  background:var(--accent-gold);
+  border:1px solid var(--accent-gold);
   border-radius:0;
   font-family:'Montserrat',sans-serif;
-  font-weight:500;
-  letter-spacing:1px;
-  margin:15px auto;
+  font-weight:600;
+  letter-spacing:2px;
+  margin:20px auto;
   cursor:pointer;
-  font-size:12px;
+  font-size:13px;
   text-transform:uppercase;
-  color:var(--text-secondary);
+  color:#0f0f14;
   transition:all 0.2s ease;
   display:block;
+  box-shadow:0 2px 8px rgba(0, 0, 0, 0.2);
 }
 .not-business-owner-btn:hover{
-  background:rgba(212, 175, 55, 0.08);
-  border-color:var(--accent-gold);
+  background:var(--accent-gold-light);
+  border-color:var(--accent-gold-dark);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.not-business-owner-btn:disabled{
+  opacity:0.4;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* All items addressed badge - more standout */
+.cpbadge{
+  display:flex;align-items:center;gap:8px;margin-top:25px;
+  font-size:12.1px;letter-spacing:2.2px;text-transform:uppercase;
   color:var(--accent-gold);
+  font-family:'Montserrat',sans-serif;
+  font-weight:600;
+  padding:12px 16px;
+  background:rgba(212, 175, 55, 0.1);
+  border:1px solid rgba(212, 175, 55, 0.4);
+  border-radius:0;
+}
+.cpdot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent-gold);
+  box-shadow:0 0 8px var(--subtle-glow);
 }
 .opt{
   padding:8px 16px;
@@ -908,23 +969,33 @@ function markAllAsNA(){
       ANS[pi+"_"+ii]="N";
     });
     render();
-    const b=document.getElementById("cpbadge");
-    if(b)b.style.display="flex";
+    // Force show the badge
+    setTimeout(() => {
+      const b=document.getElementById("cpbadge");
+      if(b)b.style.display="flex";
+    }, 10);
   }
 }
 
 function shareScore(){
   const d=calc();
   const tierLabel = tLabel(d.pct);
-  const scoreText = `My Continuity Readiness score is ${d.pct}% (${tierLabel}).`;
-  const shareUrl = encodeURIComponent(location.href);
+  const scoreText = `My Continuity Readiness score is ${d.pct}% (${tierLabel}). Take the 7-Pillar Continuity Analysis at https://legacyarchitectrva.com/#analysis`;
+  const shareUrl = encodeURIComponent('https://legacyarchitectrva.com/#analysis');
   const shareText = encodeURIComponent(scoreText);
+  const shareImage = encodeURIComponent('https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png');
   
-  // Show the social share modal
-  showShareModal(d.pct, tierLabel, scoreText, location.href);
+  // Show the social share modal with updated URLs
+  showShareModal(d.pct, tierLabel, scoreText, 'https://legacyarchitectrva.com/#analysis');
 }
 
 function showShareModal(score, tierLabel, text, url) {
+  const analysisUrl = 'https://legacyarchitectrva.com/#analysis';
+  const imageUrl = 'https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png';
+  const encodedUrl = encodeURIComponent(analysisUrl);
+  const encodedText = encodeURIComponent(text);
+  const encodedImage = encodeURIComponent(imageUrl);
+  
   const modal = document.createElement('div');
   modal.className = 'share-modal-overlay';
   modal.innerHTML = `
@@ -936,32 +1007,32 @@ function showShareModal(score, tierLabel, text, url) {
       <div class="share-modal-content">
         <p class="share-score-display">${score}% — ${tierLabel}</p>
         <div class="share-platforms">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=7-Pillar%20Continuity%20Analysis&summary=${encodeURIComponent(text)}" 
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#0077B5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             <span>LinkedIn</span>
           </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}" 
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}&picture=${encodedImage}" 
              target="_blank" class="share-btn facebook" onclick="trackShare('facebook')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             <span>Facebook</span>
           </a>
-          <a href="https://nextdoor.com/share?url=${encodeURIComponent(url)}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(text)}" 
+          <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M18.36 5.222c-1.799 0-3.255.99-4.09 2.545l-1.03-1.03C13.17.99 11.714 0 9.99 0 8.266 0 6.81 1.01 5.86 2.625l-1.03 1.03C4.74 3.212 3.43 4.25 2.545 5.86 1.01 8.266 0 9.714 0 11.438c0 1.724.99 3.18 2.545 4.09l1.03 1.03c1.615-1.04 2.625-2.495 2.625-4.222 0-1.724-.99-3.18-2.625-4.09l1.03-1.03c.81.78 1.95 1.23 3.21 1.23 1.724 0 3.18-.99 4.09-2.545l1.03 1.03c1.04 1.615 2.495 2.625 4.222 2.625 1.724 0 3.18-.99 4.09-2.625l1.03-1.03c.78-.81 1.23-1.95 1.23-3.21 0-1.724-.99-3.18-2.545-4.09zM12 15.89c-2.735 0-4.95-2.215-4.95-4.95s2.215-4.95 4.95-4.95 4.95 2.215 4.95 4.95-2.215 4.95-4.95 4.95z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M12 2L2 8.5v7L12 22l10-6.5V8.5L12 2zm0 2.31L19.5 9.5v5l-7.5 4.39-7.5-4.39v-5L12 4.31zM12 6.89l-6 3.45v1.3l6 3.45 6-3.45v-1.3l-6-3.45z"/></svg>
             <span>NextDoor</span>
           </a>
-          <a href="https://www.instagram.com/intent/post?url=${encodeURIComponent(url)}&caption=${encodeURIComponent(text)}" 
+          <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
              target="_blank" class="share-btn instagram" onclick="trackShare('instagram')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram</span>
           </a>
-          <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(text + ' ' + url)}" 
+          <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M17.6 2H6.4C4.97 2 4 2.97 4 4.4v15.2C4 21.03 4.97 22 6.4 22h11.2c1.43 0 2.4-1.03 2.4-2.4V4.4C20 2.97 19.03 2 17.6 2zM8.8 6.4h-2v11.2h2V6.4zM14 6.4h-2v11.2h2V6.4zM17.6 18H6.4V8.8h11.2v9.2z"/></svg>
             <span>Threads</span>
           </a>
-          <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' ' + url)}" 
+          <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span>X</span>
@@ -969,7 +1040,7 @@ function showShareModal(score, tierLabel, text, url) {
         </div>
         <div class="share-actions">
           <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(text)}', '${encodeURIComponent(url)}')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#ffffff"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Email</span>
           </button>
           <button class="share-action-btn copy" onclick="copyToClipboard('${encodeURIComponent(text + ' ' + url)}')">
@@ -1060,7 +1131,7 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
-    <p class="heading">Legacy Architect RVA</p>
+    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo">
     <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
     <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>You will review seven pillars:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.9;color:var(--text-primary);">
@@ -1156,6 +1227,7 @@ function renderResults(app,ps){
     </div>`;
   }).join(""):`<p class="sub">No unprepared items recorded.</p>`;
   app.innerHTML=`<div>
+    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo">
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
       <div class="ringlabel">Continuity Readiness</div>
@@ -1168,7 +1240,7 @@ function renderResults(app,ps){
       </div>
     </div>
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};">${tLabel(sc)}</div>
-    <p class="sub" style="text-align:center;font-size:14px;">Most households score between 40 and 65% on their first pass.</p>
+    <p class="sub" style="text-align:center;font-size:15.4px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
       <div class="legrow"><div class="legname tL">Continuity Luminary</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
       <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71–85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
@@ -1190,7 +1262,8 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="reset()">Reset</button>
     </div>
     <div class="sharelink" onclick="window.shareScore()"><span>Share your readiness score</span></div>
-    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA — legacyarchitectrva.com</div>
+    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#analysis', '_blank')">Back to Legacy Architect RVA</button>
+    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);}
 function renderSuccess(){
@@ -1208,14 +1281,16 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
+    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo">
     <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
     <div class="successhead">Report Requested</div>
-    <p class="sub" style="font-size:15px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
+    <p class="sub" style="font-size:16.5px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore">
-      <span style="color:${tierColor};font-size:19px;">${d.pct}% — ${tierLabel}</span>
+      <span style="color:${tierColor};font-size:20.9px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset()">Begin a New Analysis</button>
     <div class="sharelink" onclick="window.shareScore()"><span>Share your readiness score</span></div>
+    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#analysis', '_blank')">Back to Legacy Architect RVA</button>
     <div class="footnote">Legacy Architect RVA</div>
   </div>`;}
 window.pick=pick;
