@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis — Legacy Architect RVA</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -28,6 +31,16 @@
   --na: #696969;
   --ring-glow: rgba(212, 175, 55, 0.2);
   --subtle-glow: rgba(212, 175, 55, 0.1);
+}
+
+/* Hide Carrd's parent logo on landing page */
+body:not(.has-logo)::before,
+body:not(.has-logo)::after,
+.logo-container,
+.site-logo,
+img[src*="Logos/Correct.png"]:not(.company-logo),
+img[alt*="Legacy Architect"]:not(.company-logo) {
+  display: none !important;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{font-size:17.6px;}
@@ -342,10 +355,17 @@ body{
 }
 .opts{display:flex;gap:8.4px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
-/* Mobile spacing fix for landing page */
+/* Mobile spacing fix for landing page - remove gap where logo was */
 @media(max-width:768px){
-  .card{padding:20px 16px 24px;}
+  .card{padding:16px 12px 24px;}
   .sub{line-height:1.7;}
+  /* Reduce top margin on landing page content */
+  #app > div:first-child > p:first-child {
+    margin-bottom: 8px !important;
+  }
+  #app > div:first-child > p:nth-child(2) {
+    margin-bottom: 12px !important;
+  }
 }
 
 /* Not a business owner button */
@@ -911,6 +931,8 @@ button.sm{
   }
   /* Fix gap above checkmark on success page */
   .successwrap{padding:10px 0 28px;}
+  /* Remove gap where logo was on results page */
+  .ringwrap{margin-top:0 !important;}
   /* Scroll to top on start */
   .start-btn{margin-top:20px;}
 }
