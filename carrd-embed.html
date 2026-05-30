@@ -43,7 +43,7 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{font-size:17.6px;}
+html{font-size:20.24px;}
 body{
   margin:0;
   background:transparent;
@@ -303,8 +303,8 @@ body{
 }
 /* TYPOGRAPHY - Refined */
 .mark{
-  font-family:'Montserrat',sans-serif;
-  font-size:11px;
+  font-family:'Cinzel',serif;
+  font-size:13px;
   letter-spacing:4.4px;
   text-transform:uppercase;
   color:var(--accent-gold);
@@ -312,12 +312,12 @@ body{
   font-weight:500;
 }
 .heading{
-  font-family:'Playfair Display',serif;
-  font-size:24.2px;
+  font-family:'Cinzel',serif;
+  font-size:30.25px;
   margin:0 0 13.2px;
   color:var(--text-primary);
   font-weight:500;
-  font-style:italic;
+  font-style:normal;
 }
 .sub{
   color:var(--text-secondary);
@@ -502,9 +502,9 @@ body{
   background:rgba(178, 34, 34, 0.15);
 }
 .opt.oN{
-  border-color:var(--na);
-  color:var(--na);
-  background:rgba(255, 255, 255, 0.2);
+  border-color:#E0E0E0;
+  color:#E0E0E0;
+  background:rgba(255, 255, 255, 0.3);
 }
 /* COUNTER CIRCLE - Elegant */
 .counter{text-align:center;margin:15px 0 20px;}
@@ -542,7 +542,7 @@ button{
   padding:16px 20px;
   background:var(--accent-gold);
   border:none;
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-weight:600;
   letter-spacing:3px;
   margin-top:25px;
@@ -553,7 +553,7 @@ button{
   border-radius:0;
   transition:all 0.3s ease;
   box-shadow:0 2px 10px rgba(0, 0, 0, 0.2);
-  border:1px solid var(--accent-gold);
+  border:1px solid var(--accent-gold-dark);
 }
 button:hover{
   background:var(--accent-gold-light);
@@ -659,10 +659,10 @@ button.sm{
   margin-bottom:4px;
   color:var(--btn-color);
 }
-.tR{color:var(--ch2);}
-.tD{color:var(--ch6);}
-.tS{color:var(--ch5);}
-.tL{color:var(--ch7);}
+.tR{color:#B22222;}
+.tD{color:#8B4513;}
+.tS{color:#D4AF37;}
+.tL{color:#4B0082;}
 /* LEGEND */
 .legblock{
   margin-top:20px;
@@ -674,18 +674,17 @@ button.sm{
 .legrow{margin-bottom:10px;}
 .legname{
   font-family:'Cinzel',serif;
-  font-size:14px;
+  font-size:16.8px;
   letter-spacing:1px;
-  color:var(--gold);
 }
 .legrange{
-  font-size:12px;
+  font-size:14.4px;
   opacity:.7;
   margin:1px 0;
   color:var(--text-secondary);
 }
 .legtext{
-  font-size:13px;
+  font-size:15.6px;
   color:var(--text-secondary);
   line-height:1.6;
 }
@@ -1138,7 +1137,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M13.5 2H18v7h-4.5V2zm-2.25 0H9v7H6.75V2zm-2.25 0H4.5v7H2.25V2zM13.5 9.5H18V16h-4.5V9.5zm-2.25 0H9V16H6.75V9.5zm-2.25 0H4.5V16H2.25V9.5zM13.5 17H18v7h-4.5v-7zm-2.25 0H9v7H6.75v-7zm-2.25 0H4.5v7H2.25v-7z"/></svg>
             <span>NextDoor</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
@@ -1148,7 +1147,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.25 16.25c-2.44 0-4.41-1.97-4.41-4.41s1.97-4.41 4.41-4.41 4.41 1.97 4.41 4.41-1.97 4.41-4.41 4.41zm0-7.17c-1.48 0-2.68 1.2-2.68 2.68s1.2 2.68 2.68 2.68 2.68-1.2 2.68-2.68-1.2-2.68-2.68-2.68z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
@@ -1347,17 +1346,17 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:var(--accent-gold);">Continuity Readiness</div>
+      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
-          <div class="scorenum" id="r7num" style="color:${tierColor};text-shadow:0 0 8px ${tierColor}40;">0%</div>
+          <div class="scorenum" id="r7num" style="color:#D4AF37;text-shadow:0 0 8px rgba(212, 175, 55, 0.8);font-size:24px;">0%</div>
           <div class="scoresub">${d.rec} of ${d.eff} recorded</div>
         </div>
       </div>
     </div>
-    <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};">${tLabel(sc)}</div>
-    <p class="sub" style="text-align:center;font-size:15.4px;">Most households score between 40 and 65% on their first pass.</p>
+    <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
+    <p class="sub" style="text-align:center;font-size:18.48px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
       <div class="legrow"><div class="legname tL">Continuity Luminary</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
       <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71–85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
@@ -1399,17 +1398,16 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo">
     <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
-    <div class="successhead">Report Requested</div>
-    <p class="sub" style="font-size:16.5px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
-    <div class="successscore">
-      <span style="color:${tierColor};font-size:20.9px;">${d.pct}% — ${tierLabel}</span>
+    <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
+    <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
+    <div class="successscore" style="border:none;box-shadow:none;">
+      <span style="color:#D4AF37;text-shadow:0 0 8px rgba(212, 175, 55, 0.8);font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
-    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;">
+    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.45);">
     <div class="footnote">Legacy Architect RVA</div>
   </div>`;
   window.scrollTo({top:0,behavior:'smooth'});}
