@@ -193,13 +193,12 @@ body{
 
 /* Company Logo */
 .company-logo{
-  font-family:'Playfair Display',serif;
-  font-size:24px;
-  color:var(--accent-gold);
-  font-weight:500;
-  font-style:italic;
-  letter-spacing:1px;
-  margin:0 0 15px;
+  width:60%;
+  max-width:200px;
+  height:auto;
+  margin:0 auto 20px;
+  display:block;
+  opacity:0.9;
 }
 .share-modal-content{
   padding:25px;
@@ -242,6 +241,15 @@ body{
 .share-action-btn:hover{
   background:rgba(212, 175, 55, 0.08);
   border-color:var(--accent-gold);
+}
+.share-btn.x{
+  background:rgba(0, 0, 0, 0.3);
+}
+.share-btn.x:hover{
+  background:rgba(0, 0, 0, 0.4);
+}
+.share-btn.x .share-icon{
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 .share-icon{
   width:24px;
@@ -1019,7 +1027,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M12 2L2 8.5v7L12 22l10-6.5V8.5L12 2zm0 2.31L19.5 9.5v5l-7.5 4.39-7.5-4.39v-5L12 4.31zM12 6.89l-6 3.45v1.3l6 3.45 6-3.45v-1.3l-6-3.45z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M13.5 2H18v7h-4.5V2zm-2.25 0H9v7H6.75V2zm-2.25 0H4.5v7H2.25V2zM13.5 9.5H18V16h-4.5V9.5zm-2.25 0H9V16H6.75V9.5zm-2.25 0H4.5V16H2.25V9.5zM13.5 17H18v7h-4.5v-7zm-2.25 0H9v7H6.75v-7zm-2.25 0H4.5v7H2.25v-7z"/></svg>
             <span>NextDoor</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
@@ -1029,12 +1037,12 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M17.6 2H6.4C4.97 2 4 2.97 4 4.4v15.2C4 21.03 4.97 22 6.4 22h11.2c1.43 0 2.4-1.03 2.4-2.4V4.4C20 2.97 19.03 2 17.6 2zM8.8 6.4h-2v11.2h2V6.4zM14 6.4h-2v11.2h2V6.4zM17.6 18H6.4V8.8h11.2v9.2z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.25 16.25c-2.44 0-4.41-1.97-4.41-4.41s1.97-4.41 4.41-4.41 4.41 1.97 4.41 4.41-1.97 4.41-4.41 4.41zm0-7.17c-1.48 0-2.68 1.2-2.68 2.68s1.2 2.68 2.68 2.68 2.68-1.2 2.68-2.68-1.2-2.68-2.68-2.68z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#ffffff"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
             <span>X</span>
           </a>
         </div>
@@ -1131,7 +1139,6 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
-    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo">
     <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
     <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>You will review seven pillars:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.9;color:var(--text-primary);">
@@ -1227,7 +1234,6 @@ function renderResults(app,ps){
     </div>`;
   }).join(""):`<p class="sub">No unprepared items recorded.</p>`;
   app.innerHTML=`<div>
-    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo">
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
       <div class="ringlabel">Continuity Readiness</div>
