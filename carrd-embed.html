@@ -1046,7 +1046,32 @@ function pick(key,val){
     if(b)b.style.display="flex";
   }
 }
-function goN(){step++;isBack=false;render();}
+function goN(){
+  // Check if all questions in current pillar are answered
+  const pi=step-1;
+  const ps=aP();
+  if(pi >= 0 && pi < ps.length){
+    const currentPillar = ps[pi];
+    const allAnswered = currentPillar.i.every((_,ii)=>ANS[pi+"_"+ii]);
+    if(!allAnswered){
+      // Find first unanswered question in this pillar
+      const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
+      if(firstUnanswered !== -1){
+        // Mark unanswered questions and stay on page
+        render();
+        // Scroll to first unanswered
+        setTimeout(()=>{
+          const unansweredElements = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
+          if(unansweredElements.length > 0){
+            unansweredElements[0].scrollIntoView({behavior:'smooth', block:'center'});
+          }
+        }, 100);
+        return;
+      }
+    }
+  }
+  step++;isBack=false;render();
+}
 function goB(){if(step>0){step--;isBack=true;render();}}
 function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();}
 function animNum(el,tgt){
@@ -1137,7 +1162,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M13.5 2H18v7h-4.5V2zm-2.25 0H9v7H6.75V2zm-2.25 0H4.5v7H2.25V2zM13.5 9.5H18V16h-4.5V9.5zm-2.25 0H9V16H6.75V9.5zm-2.25 0H4.5V16H2.25V9.5zM13.5 17H18v7h-4.5v-7zm-2.25 0H9v7H6.75v-7zm-2.25 0H4.5v7H2.25v-7z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M12 2L2 8.5v7L12 22l10-6.5V8.5L12 2zm0 2.31L19.5 9.5v5l-7.5 4.39-7.5-4.39v-5L12 4.31zM12 6.89l-6 3.45v1.3l6 3.45 6-3.45v-1.3l-6-3.45z"/></svg>
             <span>NextDoor</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
@@ -1147,7 +1172,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.25 16.25c-2.44 0-4.41-1.97-4.41-4.41s1.97-4.41 4.41-4.41 4.41 1.97 4.41 4.41-1.97 4.41-4.41 4.41zm0-7.17c-1.48 0-2.68 1.2-2.68 2.68s1.2 2.68 2.68 2.68 2.68-1.2 2.68-2.68-1.2-2.68-2.68-2.68z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M17.6 2H6.4C4.97 2 4 2.97 4 4.4v15.2C4 21.03 4.97 22 6.4 22h11.2c1.43 0 2.4-1.03 2.4-2.4V4.4C20 2.97 19.03 2 17.6 2zM8.8 6.4h-2v11.2h2V6.4zM14 6.4h-2v11.2h2V6.4zM17.6 18H6.4V8.8h11.2v9.2z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
@@ -1243,7 +1268,32 @@ function render(){
   const ps=aP();
   if(step===0){renderIntro(app,ps);}
   else if(step<=ps.length){renderQ(app,ps);}
-  else{renderResults(app,ps);}
+  else{
+    // Check if all questions are answered before showing results
+    const allAnswered = ps.every((p,pi)=>p.i.every((_,ii)=>ANS[pi+"_"+ii]));
+    if(!allAnswered){
+      // Find first pillar with unanswered questions
+      const firstUnfinishedPillar = ps.findIndex((p,pi)=>!p.i.every((_,ii)=>ANS[pi+"_"+ii]));
+      if(firstUnfinishedPillar !== -1){
+        step = firstUnfinishedPillar + 1;
+        isBack = false;
+        renderQ(app, ps);
+        // Add visual marker to unanswered questions
+        setTimeout(()=>{
+          const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
+          unansweredToggles.forEach(el => {
+            el.style.borderLeft = '3px solid #B22222';
+            el.style.backgroundColor = 'rgba(178, 34, 34, 0.05)';
+          });
+          if(unansweredToggles.length > 0){
+            unansweredToggles[0].scrollIntoView({behavior:'smooth', block:'center'});
+          }
+        }, 100);
+        return;
+      }
+    }
+    renderResults(app,ps);
+  }
 }
 function renderIntro(app,ps){
   const tot=ps.length+1;
