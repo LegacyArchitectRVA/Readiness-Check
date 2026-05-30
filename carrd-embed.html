@@ -42,7 +42,7 @@ body{
   line-height:1.6;
 }
 #wrap{
-  max-width:800px;
+  max-width:1000px;
   margin:0 auto;
   padding:30px 20px 40px;
 }
@@ -193,12 +193,34 @@ body{
 
 /* Company Logo */
 .company-logo{
-  width:60%;
-  max-width:200px;
+  width:auto;
   height:auto;
+  max-width:30%;
+  max-height:30%;
   margin:0 auto 20px;
   display:block;
   opacity:0.9;
+  transform:scale(0.3);
+  transform-origin:center;
+}
+.company-logo-mobile{
+  display:none;
+}
+@media(max-width:768px){
+  .company-logo{
+    display:none;
+  }
+  .company-logo-mobile{
+    display:block;
+    width:auto;
+    height:auto;
+    max-width:30%;
+    max-height:30%;
+    margin:0 auto 20px;
+    opacity:0.9;
+    transform:scale(0.3);
+    transform-origin:center;
+  }
 }
 .share-modal-content{
   padding:25px;
@@ -320,6 +342,12 @@ body{
 }
 .opts{display:flex;gap:8.4px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
+/* Mobile spacing fix for landing page */
+@media(max-width:768px){
+  .card{padding:20px 16px 24px;}
+  .sub{line-height:1.7;}
+}
+
 /* Not a business owner button */
 .not-business-owner-btn{
   width:auto;
@@ -349,6 +377,59 @@ body{
   opacity:0.4;
   cursor:not-allowed;
   transform:none;
+}
+
+/* Info icon and tooltip */
+.info-icon{
+  width:16px;
+  height:16px;
+  cursor:pointer;
+  margin-left:6px;
+  opacity:0.6;
+  transition:opacity 0.2s ease;
+  flex-shrink:0;
+}
+.info-icon:hover{
+  opacity:1;
+}
+.info-tooltip{
+  position:relative;
+  display:inline-block;
+}
+.info-tooltip .tooltip-content{
+  visibility:hidden;
+  position:absolute;
+  bottom:100%;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--card-bg);
+  border:1px solid rgba(212, 175, 55, 0.3);
+  border-radius:4px;
+  padding:12px 14px;
+  width:280px;
+  max-width:90vw;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--text-primary);
+  box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
+  z-index:1000;
+  opacity:0;
+  transition:opacity 0.2s ease, visibility 0.2s ease;
+  font-family:'Cormorant Garamond',serif;
+}
+.info-tooltip:hover .tooltip-content,
+.info-tooltip:focus .tooltip-content{
+  visibility:visible;
+  opacity:1;
+}
+.info-tooltip .tooltip-content::before{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:rgba(212, 175, 55, 0.3);
 }
 
 /* All items addressed badge - more standout */
@@ -393,17 +474,17 @@ body{
 .opt.oR{
   border-color:var(--recorded);
   color:var(--recorded);
-  background:rgba(46, 139, 87, 0.1);
+  background:rgba(46, 139, 87, 0.15);
 }
 .opt.oU{
-  border-color:var(--missing);
-  color:var(--missing);
-  background:rgba(139, 69, 19, 0.1);
+  border-color:#B22222;
+  color:#B22222;
+  background:rgba(178, 34, 34, 0.15);
 }
 .opt.oN{
   border-color:var(--na);
   color:var(--na);
-  background:rgba(105, 105, 105, 0.1);
+  background:rgba(255, 255, 255, 0.2);
 }
 /* COUNTER CIRCLE - Elegant */
 .counter{text-align:center;margin:15px 0 20px;}
@@ -824,6 +905,14 @@ button.sm{
   .inputrow{flex-direction:column;}
   .pname{width:120px;}
   .gapitem{padding:8px 10px;}
+  /* Mobile font size increase for results section */
+  .legblock, .bkwrap, .gapwrap, .sub, .legtext, .legrow, .bktitle, .gaptitle{
+    font-size:115% !important;
+  }
+  /* Fix gap above checkmark on success page */
+  .successwrap{padding:10px 0 28px;}
+  /* Scroll to top on start */
+  .start-btn{margin-top:20px;}
 }
 </style>
 </head>
@@ -1027,7 +1116,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M13.5 2H18v7h-4.5V2zm-2.25 0H9v7H6.75V2zm-2.25 0H4.5v7H2.25V2zM13.5 9.5H18V16h-4.5V9.5zm-2.25 0H9V16H6.75V9.5zm-2.25 0H4.5V16H2.25V9.5zM13.5 17H18v7h-4.5v-7zm-2.25 0H9v7H6.75v-7zm-2.25 0H4.5v7H2.25v-7z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
             <span>NextDoor</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
@@ -1037,7 +1126,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.25 16.25c-2.44 0-4.41-1.97-4.41-4.41s1.97-4.41 4.41-4.41 4.41 1.97 4.41 4.41-1.97 4.41-4.41 4.41zm0-7.17c-1.48 0-2.68 1.2-2.68 2.68s1.2 2.68 2.68 2.68 2.68-1.2 2.68-2.68-1.2-2.68-2.68-2.68z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
@@ -1153,11 +1242,11 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-primary);">
       <strong style="color:var(--ch4);">Recorded</strong> – It is documented and someone else could access it.<br>
-      <strong style="color:var(--ch2);">Missing</strong> – It exists but is not documented.<br>
+      <strong style="color:#B22222;">Undocumented</strong> – It exists but is not documented.<br>
       <strong style="color:var(--ch6);">Not Applicable</strong> – It does not apply to your situation.
     </p>
     <p class="sub" style="margin-bottom:20px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
-    <button class="start-btn" onclick="biz=false;step=1;isBack=false;render();">Start Analysis</button>
+    <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -1189,7 +1278,7 @@ function renderQ(app,ps){
         <div class="tlabel">${item}</div>
         <div class="opts">
           <div class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R')">Recorded</div>
-          <div class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U')">Missing</div>
+          <div class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U')">Undocumented</div>
           <div class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N')">N/A</div>
         </div>
       </div>
@@ -1236,7 +1325,7 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel">Continuity Readiness</div>
+      <div class="ringlabel" style="color:var(--accent-gold);">Continuity Readiness</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
@@ -1267,11 +1356,12 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="goB()">Back</button>
       <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-    <div class="sharelink" onclick="window.shareScore()"><span>Share your readiness score</span></div>
-    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#analysis', '_blank')">Back to Legacy Architect RVA</button>
+    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
+    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);}
+  window.scrollTo({top:0,behavior:'smooth'});
 function renderSuccess(){
   const d=calc();
   const tierLabel = tLabel(d.pct);
@@ -1294,11 +1384,13 @@ function renderSuccess(){
     <div class="successscore">
       <span style="color:${tierColor};font-size:20.9px;">${d.pct}% — ${tierLabel}</span>
     </div>
-    <button style="margin-top:20px;" onclick="reset()">Begin a New Analysis</button>
-    <div class="sharelink" onclick="window.shareScore()"><span>Share your readiness score</span></div>
-    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#analysis', '_blank')">Back to Legacy Architect RVA</button>
+    <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
+    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
+    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
+    <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;">
     <div class="footnote">Legacy Architect RVA</div>
-  </div>`;}
+  </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});}
 window.pick=pick;
 window.goN=goN;
 window.goB=goB;
