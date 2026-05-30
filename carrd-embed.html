@@ -662,7 +662,7 @@ button.sm{
 .tR{color:#B22222;}
 .tD{color:#8B4513;}
 .tS{color:#D4AF37;}
-.tL{color:#4B0082;}
+.tL{color:#008000;}
 /* LEGEND */
 .legblock{
   margin-top:20px;
@@ -1028,7 +1028,7 @@ function getStr(){
   aP().forEach((p,pi)=>{p.i.forEach((item,ii)=>{if(ANS[pi+"_"+ii]==="R")s.push({pl:p.n.replace(/^\d+: /,""),item});});});
   return s;
 }
-function tLabel(s){if(s>=86)return"Continuity Luminary";if(s>=71)return"Continuity Steward";if(s>=61)return"Continuity Builder";return"Continuity Sentinel";}
+function tLabel(s){if(s>=86)return"Continuity Legend";if(s>=71)return"Continuity Steward";if(s>=61)return"Continuity Builder";return"Continuity Sentinel";}
 function tCls(s){if(s>=86)return"tL";if(s>=71)return"tS";if(s>=61)return"tD";return"tR";}
 function rec(s){
   if(s<61)return"Begin by centralizing your most critical digital and financial credentials into a single, secure location.";
@@ -1358,7 +1358,7 @@ function renderResults(app,ps){
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;font-size:18.48px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Luminary</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
       <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71–85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
       <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61–70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
       <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0–60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
