@@ -1306,26 +1306,26 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
-    <p class="sub" style="margin-bottom:18px;color:var(--text-gold);">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
-    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>You will review seven pillars:</strong></p>
-    <div class="pillars-container">
-    <p class="sub" style="margin:0;line-height:2.3;font-size:17px;color:var(--text-gold);">
-      <span style="color:var(--ch1);">01: Digital Life</span><br>
-      <span style="color:var(--ch2);">02: Financial & Assets</span><br>
-      <span style="color:var(--ch4);">03: Household & Property</span><br>
-      <span style="color:var(--ch5);">04: Health & Medical</span><br>
-      <span style="color:var(--ch6);">05: Legal & Estate</span><br>
-      <span style="color:var(--ch7);">06: Business Continuity</span><br>
-      <span style="color:var(--ch3);">07: Legacy & Wishes</span>
+    <p class="sub" style="margin-bottom:18px;color:var(--text-gold);font-size:17px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);font-size:17px;"><strong>You will review seven pillars:</strong></p>
+    <div class="pillars-showcase">
+    <p class="sub" style="margin:0;line-height:2.4;font-size:17.5px;color:var(--text-gold);">
+      <span class="pillar-item" style="color:var(--ch1);">01: Digital Life</span><br>
+      <span class="pillar-item" style="color:var(--ch2);">02: Financial & Assets</span><br>
+      <span class="pillar-item" style="color:var(--ch4);">03: Household & Property</span><br>
+      <span class="pillar-item" style="color:var(--ch5);">04: Health & Medical</span><br>
+      <span class="pillar-item" style="color:var(--ch6);">05: Legal & Estate</span><br>
+      <span class="pillar-item" style="color:var(--ch7);">06: Business Continuity</span><br>
+      <span class="pillar-item" style="color:var(--ch3);">07: Legacy & Wishes</span>
     </p>
     </div>
-    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>For each item, simply select one of the following:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold);">
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);font-size:17px;"><strong>For each item, simply select one of the following:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold);font-size:17px;">
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
       <strong style="color:#B22222;">Undocumented</strong> — It exists but is not documented.<br>
       <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
     </p>
-    <p class="sub" style="margin-bottom:20px;color:var(--text-gold);">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
+    <p class="sub" style="margin-bottom:20px;color:var(--text-gold);font-size:17px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
