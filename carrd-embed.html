@@ -594,6 +594,8 @@ button.start-btn{
   padding:18px 24px;
   letter-spacing:4px;
 }
+.continue-btn { background: var(--accent-gold); color: #0f0f14; border: 1px solid var(--accent-gold); padding: 14px 24px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+.continue-btn:hover { background: var(--accent-gold-light); border-color: var(--accent-gold-dark); }
 button.alt{
   background:transparent;
   color:var(--text-gold);
@@ -1086,7 +1088,7 @@ function goN(){
         setTimeout(()=>{
           const unansweredElements = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
           if(unansweredElements.length > 0){
-            unansweredElements[0].scrollIntoView({behavior:'smooth', block:'center'});
+            unansweredElements[0].scrollIntoView({behavior: 'auto', block: 'center'});
           }
         }, 100);
         return;
@@ -1350,7 +1352,7 @@ function renderIntro(app,ps){
       <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
     </p>
     <p class="sub" style="margin-bottom:20px;color:var(--text-gold);font-size:17px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
-    <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
+    <button class="start-btn" onclick="biz=false;step=1;isBack=false;scrollToTop();render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -1391,7 +1393,7 @@ function renderQ(app,ps){
   html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
     <div class="cpdot"></div>All items addressed
   </div>
-  <button onclick="goN()">Continue</button>
+  <button class="continue-btn" onclick="goN()">Continue</button>
   <div class="navrow">
     <button class="sm alt" onclick="goB()">Back</button>
     <button class="sm alt" onclick="reset()">Reset</button>
