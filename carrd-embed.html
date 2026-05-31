@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>7-Pillar Continuity Analysis â Legacy Architect RVA</title>
+<title>7-Pillar Continuity Analysis Ã¢ÂÂ Legacy Architect RVA</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -19,6 +19,7 @@
   --accent-gold: #D4AF37;
   --accent-gold-light: #F4E4BC;
   --accent-gold-dark: #B8860B;
+  --text-gold: #F4E4BC;
   --ch1: #4A90A4;
   --ch2: #8B4513;
   --ch3: #E8E8E8;
@@ -47,7 +48,7 @@ html{font-size:20.24px;}
 body{
   margin:0;
   background:transparent;
-  color:var(--text-primary);
+  color:var(--text-gold);
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
@@ -304,7 +305,7 @@ body{
 /* TYPOGRAPHY - Refined */
 .mark{
   font-family:'Cinzel',serif;
-  font-size:13px;
+  font-size:26px;
   letter-spacing:4.4px;
   text-transform:uppercase;
   color:var(--accent-gold);
@@ -315,7 +316,7 @@ body{
   font-family:'Cinzel',serif;
   font-size:30.25px;
   margin:0 0 13.2px;
-  color:var(--text-primary);
+  color:var(--text-gold);
   font-weight:500;
   font-style:normal;
 }
@@ -346,7 +347,7 @@ body{
 .trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
 .tlabel{
   font-size:16.5px;
-  color:var(--text-primary);
+  color:var(--text-gold);
   line-height:1.575;
   text-align:center;
   width:100%;
@@ -430,7 +431,7 @@ body{
   max-width:90vw;
   font-size:13px;
   line-height:1.5;
-  color:var(--text-primary);
+  color:var(--text-gold);
   box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
   z-index:1000;
   opacity:0;
@@ -709,7 +710,7 @@ button.sm{
 }
 .pname{
   font-size:14px;
-  color:var(--text-primary);
+  color:var(--text-gold);
   width:180px;
   flex-shrink:0;
   overflow:visible;
@@ -739,7 +740,7 @@ button.sm{
   text-align:right;
   flex-shrink:0;
 }
-/* GAPS â color coded by severity */
+/* GAPS Ã¢ÂÂ color coded by severity */
 .gapwrap{margin-top:20px;}
 .gaptitle{
   font-family:'Cinzel',serif;
@@ -765,7 +766,7 @@ button.sm{
 .gapitem:hover{background:rgba(212, 175, 55, 0.06);}
 .gapname{
   font-size:14px;
-  color:var(--text-primary);
+  color:var(--text-gold);
   margin-bottom:2px;
   flex:1;
 }
@@ -784,6 +785,15 @@ button.sm{
   opacity:0.7;
   color:var(--text-secondary);
 }
+/* PILLARS CONTAINER */
+.pillars-container{
+  background:rgba(212, 175, 55, 0.05);
+  border:1px solid rgba(212, 175, 55, 0.3);
+  border-radius:0;
+  padding:20px 15px;
+  margin:16px 0;
+  box-shadow:0 0 10px rgba(212, 175, 55, 0.1);
+}
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
 .inputfield{flex:1;min-width:0;}
@@ -800,7 +810,7 @@ button.sm{
   margin-top:5px;
   background:rgba(10, 10, 15, 0.7);
   border:1px solid rgba(212, 175, 55, 0.2);
-  color:var(--text-primary);
+  color:var(--text-gold);
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
@@ -840,7 +850,7 @@ button.sm{
 .sharelink span{
   font-family:'Montserrat',sans-serif;
   font-size:13px;
-  color:var(--text-primary);
+  color:var(--text-gold);
   letter-spacing:3px;
   text-transform:uppercase;
   border-bottom:1px solid rgba(212, 175, 55, 0.3);
@@ -882,7 +892,7 @@ button.sm{
 .successhead{
   font-family:'Cinzel',serif;
   font-size:18.4px;
-  color:var(--text-primary);
+  color:var(--text-gold);
   margin-bottom:10px;
   letter-spacing:1.5px;
 }
@@ -978,7 +988,7 @@ const EXPL={
   "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
   "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
   "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
-  "Last Will & Testament":"Without a will, assets distribute by state law â not your intentions.",
+  "Last Will & Testament":"Without a will, assets distribute by state law Ã¢ÂÂ not your intentions.",
   "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
   "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
   "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
@@ -1153,7 +1163,7 @@ function showShareModal(score, tierLabel, text, url) {
         <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
       </div>
       <div class="share-modal-content">
-        <p class="share-score-display">${score}% â ${tierLabel}</p>
+        <p class="share-score-display">${score}% Ã¢ÂÂ ${tierLabel}</p>
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
@@ -1304,9 +1314,10 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
-    <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
-    <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>You will review seven pillars:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.9;color:var(--text-primary);">
+    <p class="sub" style="margin-bottom:18px;color:var(--text-gold);">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>You will review seven pillars:</strong></p>
+    <div class="pillars-container">
+    <p class="sub" style="margin-bottom:16px;line-height:1.9;color:var(--text-gold);">
       <span style="color:var(--ch1);">01: Digital Life</span><br>
       <span style="color:var(--ch2);">02: Financial & Assets</span><br>
       <span style="color:var(--ch4);">03: Household & Property</span><br>
@@ -1315,13 +1326,14 @@ function renderIntro(app,ps){
       <span style="color:var(--ch7);">06: Business Continuity</span><br>
       <span style="color:var(--ch3);">07: Legacy & Wishes</span>
     </p>
-    <p class="sub" style="margin-bottom:8px;color:var(--text-primary);"><strong>For each item, simply select one of the following:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-primary);">
-      <strong style="color:var(--ch4);">Recorded</strong> â It is documented and someone else could access it.<br>
-      <strong style="color:#B22222;">Undocumented</strong> â It exists but is not documented.<br>
-      <strong style="color:var(--ch6);">Not Applicable</strong> â It does not apply to your situation.
+    </div>
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>For each item, simply select one of the following:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold);">
+      <strong style="color:var(--ch4);">Recorded</strong> Ã¢ÂÂ It is documented and someone else could access it.<br>
+      <strong style="color:#B22222;">Undocumented</strong> Ã¢ÂÂ It exists but is not documented.<br>
+      <strong style="color:var(--ch6);">Not Applicable</strong> Ã¢ÂÂ It does not apply to your situation.
     </p>
-    <p class="sub" style="margin-bottom:20px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
+    <p class="sub" style="margin-bottom:20px;color:var(--text-gold);">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
@@ -1413,10 +1425,10 @@ function renderResults(app,ps){
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;font-size:18.48px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86â100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71â85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61â70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0â60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86Ã¢ÂÂ100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71Ã¢ÂÂ85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61Ã¢ÂÂ70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0Ã¢ÂÂ60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
     <hr class="rule">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
@@ -1453,11 +1465,11 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">â</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">Ã¢ÂÂ</div>
     <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
     <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
-      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% â ${tierLabel}</span>
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% Ã¢ÂÂ ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
@@ -1483,4 +1495,5 @@ render();
 </script>
 </body>
 </html>
+
 
