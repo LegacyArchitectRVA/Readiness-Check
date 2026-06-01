@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T04:07:48.550Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:06:37.501Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:05:40.289Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:02:03.852Z -->
@@ -1015,6 +1016,42 @@ button.sm{
   padding: 8px 12px;
   border-left: 1px solid rgba(212, 175, 55, 0.3);
   margin-left: 18px;
+}
+
+/* FAQ-style info sections */
+.pillar-faq {
+  margin-top: 4px;
+}
+.pillar-faq-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.pillar-faq-content {
+  display: none;
+  padding: 8px 12px;
+  margin-top: 6px;
+  background: rgba(212, 175, 55, 0.03);
+  border-left: 2px solid var(--accent-gold);
+  border-right: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-gold);
+  font-family: 'Cormorant Garamond', serif;
+}
+.pillar-faq.active .pillar-faq-content {
+  display: block;
+}
+.pillar-faq-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+}
+.pillar-faq.active .pillar-faq-icon {
+  transform: rotate(45deg);
 }
 </style>
 </head>
