@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T03:45:07.162Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:44:16.383Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:35:32.792Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:31:31.556Z -->
@@ -1138,6 +1139,14 @@ function animRing(el,tgt,color="var(--btn-color)"){
   }
   requestAnimationFrame(f);
 }
+function markAllAsNAAndScroll(){
+  markAllAsNA();
+  setTimeout(() => {
+    const btn = document.querySelector('button[onclick="goN()"]');
+    if(btn) btn.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 100);
+}
+
 function markAllAsNA(){
   const pi=step-1;
   const ps=aP();
@@ -1412,8 +1421,8 @@ function renderIntro(app,ps){
     </div>`;
   
   // Add "Not a business owner" button for Business Continuity pillar
-  if(isBusinessPillar && answered < total){
-    html += `<button class="not-business-owner-btn" onclick="markAllAsNA(); setTimeout(() => { const btn = document.querySelector('button[onclick=\"goN()\"]'); if(btn) btn.scrollIntoView({behavior:'smooth', block:'center'}); }, 100);">Not a business owner</button>`;
+  if(isBusinessPillar){
+    html += `<button class="not-business-owner-btn" onclick="markAllAsNAAndScroll()"('button[onclick="goN()" ]'); if(btn) btn.scrollIntoView({behavior:'smooth', block:'center'}); }, 100);">Not a business owner</button>`;
   }
   
   html += ``;
