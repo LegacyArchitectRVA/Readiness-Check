@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T18:10:47.139Z -->
 <!-- Rebuild timestamp: 2026-06-01T18:07:53.878Z -->
 <!-- Rebuild timestamp: 2026-06-01T18:01:11.944Z -->
 <!-- Rebuild timestamp: 2026-06-01T17:11:57.864Z -->
@@ -646,18 +647,18 @@ button.sm{
   margin-bottom:12px;
 }
 .ring{
-  width:160px;
-  height:160px;
+  width:240px;
+  height:240px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  border:2px solid rgba(198, 168, 90, 0.3);
-  background:rgba(10, 10, 15, 0.8);
+  border:4px solid var(--accent-gold);
+  background:rgba(10, 10, 15, 0.9);
   overflow:hidden;
-  margin:0 auto 12px;
-  box-shadow:0 0 24px var(--ring-glow);
+  margin:0 auto 24px;
+  box-shadow:0 0 30px var(--ring-glow);
   animation:float 4s ease-in-out infinite, ringGlow 2s ease-in-out infinite;
 }
 .ring::after{
@@ -672,10 +673,10 @@ button.sm{
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:64px;
+  font-size:72px;
   color:#FFFFFF;
   line-height:1;
-  text-shadow:0 0 15px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+  text-shadow:0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
   font-weight:600;
 }
 .scoresub{
@@ -810,34 +811,9 @@ margin-bottom:10px;}
   padding-bottom:6px;
   margin-bottom:12px;
 }
-.gapitem{
-  padding:12px 16px;
-  margin-bottom:12px;
-  background:rgba(212, 175, 55, 0.03);
-  border-left:3px solid var(--accent-gold);
-  border-radius:0;
 
-  display:flex;
-  gap:12px;
-  margin-bottom:12px;
-  padding:10px 12px;
-  border-radius:8px;
-  background:rgba(212, 175, 55, 0.03);
-  border-left:3px solid;
-  transition:all 0.2s ease;
-}
 .gapitem:hover{background:rgba(212, 175, 55, 0.06);}
-.gapname{
-  font-size:16px;
-  color:var(--text-gold);
-  font-weight:500;
-  margin-bottom:4px;
 
-  font-size:14px;
-  color:var(--accent-gold);
-  margin-bottom:2px;
-  flex:1;
-}
 .gapexpl{
   font-size:15px;
   color:var(--text-gold);
@@ -997,76 +973,17 @@ margin-bottom:10px;}
   .scorenum{font-size:40px;}
   .inputrow{flex-direction:column;}
   .pname{width:120px;}
-  .gapitem{padding:8px 10px;}
-  /* Mobile font size increase for results section */
-  .legblock, .bkwrap, .gapwrap, .sub, .legtext, .legrow, .bktitle, .gaptitle{
-    font-size:115% !important;
-  }
-  /* Fix gap above checkmark on success page */
-  .successwrap{padding:10px 0 28px;}
-  /* Remove gap where logo was on results page */
-  .ringwrap{margin-top:0 !important;}
-  /* Scroll to top on start */
-  .start-btn{margin-top:20px;}
-}
-
-/* PILLAR ITEMS - Consistent sizing and spacing */
-.pillars-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.pillar-item {
-  margin: 0;
-  padding: 0;
-}
-.pillar-item .info-tooltip {
-  display: inline-block;
-  font-size: 16.5px;
-  line-height: 1.575;
-}
-
-
-
-
-.pillar-faq.active .pillar-faq-icon {
-  transform: rotate(45deg);
-}
-
-/* FAQ-style info sections */
-.pillar-faq {
-  margin-top: 4px;
-}
-.pillar-faq-header {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 4px 0;
-}
-.pillar-faq-content {
-  display: none;
-  padding: 10px 0;
-  margin-top: 8px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-gold);
-  font-family: 'Cormorant Garamond', serif;
-  opacity: 0.9;
-}
-.pillar-faq.active .pillar-faq-content {
-  display: block;
-}
-.pillar-faq-icon {
-  width: 20px;
-  height: 20px;
-  margin-left: 8px;
-  transition: transform 0.2s ease;
-}
-.pillar-faq.active .pillar-faq-icon {
-  transform: rotate(45deg);
-}
-</style>
+  .gapitem{
+  display:flex;
+  gap:12px;
+  margin-bottom:16px;
+  padding:16px 20px;
+  border-radius:0;
+  background:rgba(212, 175, 55, 0.05);
+  border-left:4px solid var(--accent-gold);
+  color:var(--text-gold);
+  transition:all 0.2s ease;
+}</style>
 </head>
 <body>
 <div id="wrap">
@@ -1079,7 +996,14 @@ const PILLARS=[
   {n:"02: Financial & Assets",d:"Banking, investments, and financial records.",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
   {n:"03: Household & Property",d:"Property, vehicles, and household documentation.",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
   {n:"04: Health & Medical",d:"Insurance, records, and medical directives.",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
-  {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
+  {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attor.gapname{
+  font-size:17px;
+  color:var(--text-gold);
+  font-weight:600;
+  margin-bottom:6px;
+  line-height:1.5;
+  flex:1;
+}ney","Beneficiary Designations","Estate Planning Documents"]},
   {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
   {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
