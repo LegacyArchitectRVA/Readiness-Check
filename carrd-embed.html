@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T04:05:40.289Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:02:03.852Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:00:55.108Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:56:27.854Z -->
@@ -972,38 +973,47 @@ button.sm{
   line-height: 1.575;
 }
 
-/* Info tooltip - click to toggle */
-.info-tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
+
+
+/* FAQ-style info sections */
+.faq-item {
+  margin-bottom: 8px;
 }
-.info-tooltip .tooltip-content {
-  display: none;
-  position: static;
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: rgba(212, 175, 55, 0.05);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 0;
+.faq-question {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: all 0.2s ease;
+}
+.faq-question:hover {
+  opacity: 0.8;
+}
+.faq-question .faq-icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+  fill: var(--text-gold);
+}
+.faq-question.active .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 12px;
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-gold);
   font-family: 'Cormorant Garamond', serif;
-  max-width: 300px;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  z-index: 10;
 }
-.info-tooltip.active .tooltip-content {
-  display: block;
-}
-.info-icon {
-  width: 18px;
-  height: 18px;
-  margin-left: 6px;
-  vertical-align: middle;
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  padding: 8px 12px;
+  border-left: 1px solid rgba(212, 175, 55, 0.3);
+  margin-left: 18px;
 }
 </style>
 </head>
@@ -1070,8 +1080,10 @@ const EXPL={
 let step=0,biz=false,isBack=false;
 const ANS={};
 
-function toggleTooltip(el) {
-  el.classList.toggle('active');
+
+function toggleFAQ(el) {
+  const item = el.closest('.faq-item');
+  item.classList.toggle('active');
 }
 function aP(){return PILLARS;}
 function calc(){
@@ -1394,54 +1406,54 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
-      <div class="pillar-item">
-        <span class="info-tooltip" onclick="toggleTooltip(this)">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch1);">01: Digital Life</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Credentials, accounts, and digital access.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Credentials, accounts, and digital access.</div>
       </div>
-      <div class="pillar-item">
-        <span class="info-tooltip">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch2);">02: Financial & Assets</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Banking, investments, and financial records.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Banking, investments, and financial records.</div>
       </div>
-      <div class="pillar-item">
-        <span class="info-tooltip">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch4);">03: Household & Property</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Property, vehicles, and household documentation.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Property, vehicles, and household documentation.</div>
       </div>
-      <div class="pillar-item">
-        <span class="info-tooltip">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch5);">04: Health & Medical</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Insurance, records, and medical directives.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Insurance, records, and medical directives.</div>
       </div>
-      <div class="pillar-item">
-        <span class="info-tooltip">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch6);">05: Legal & Estate</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Wills, trusts, and legal authority.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Wills, trusts, and legal authority.</div>
       </div>
-      <div class="pillar-item">
-        <span class="info-tooltip">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch7);">06: Business Continuity</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Operations, agreements, and succession.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Operations, agreements, and succession.</div>
       </div>
-      <div class="pillar-item">
-        <span class="info-tooltip">
+      <div class="faq-item pillar-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
           <span style="color:var(--ch3);">07: Legacy & Wishes</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <div class="tooltip-content">Personal instructions, history, and wishes.</div>
-        </span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <div class="faq-answer">Personal instructions, history, and wishes.</div>
       </div>
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
