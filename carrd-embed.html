@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>7-Pillar Continuity Analysis â Legacy Architect RVA</title>
+<title>7-Pillar Continuity Analysis — Legacy Architect RVA</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -740,7 +740,7 @@ button.sm{
   text-align:right;
   flex-shrink:0;
 }
-/* GAPS â color coded by severity */
+/* GAPS — color coded by severity */
 .gapwrap{margin-top:20px;}
 .gaptitle{
   font-family:'Cinzel',serif;
@@ -988,7 +988,7 @@ const EXPL={
   "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
   "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
   "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
-  "Last Will & Testament":"Without a will, assets distribute by state law â not your intentions.",
+  "Last Will & Testament":"Without a will, assets distribute by state law — not your intentions.",
   "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
   "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
   "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
@@ -1163,7 +1163,7 @@ function showShareModal(score, tierLabel, text, url) {
         <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
       </div>
       <div class="share-modal-content">
-        <p class="share-score-display">${score}% â ${tierLabel}</p>
+        <p class="share-score-display">${score}% — ${tierLabel}</p>
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
@@ -1329,9 +1329,9 @@ function renderIntro(app,ps){
     </div>
     <p class="sub" style="margin-bottom:8px;color:#F4E4BC !important;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;color:#F4E4BC !important;">
-      <strong style="color:#F4E4BC !important;">Recorded</strong> â It is documented and someone else could access it.<br>
-      <strong style="color:#F4E4BC !important;">Undocumented</strong> â It exists but is not documented.<br>
-      <strong style="color:#F4E4BC !important;">Not Applicable</strong> â It does not apply to your situation.
+      <strong style="color:#F4E4BC !important;">Recorded</strong> – It is documented and someone else could access it.<br>
+      <strong style="color:#F4E4BC !important;">Undocumented</strong> – It exists but is not documented.<br>
+      <strong style="color:#F4E4BC !important;">Not Applicable</strong> – It does not apply to your situation.
     </p>
     <p class="sub" style="margin-bottom:20px;color:#F4E4BC !important;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
@@ -1425,10 +1425,10 @@ function renderResults(app,ps){
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;font-size:18.48px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86â100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71â85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61â70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0â60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71–85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61–70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0–60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
     <hr class="rule">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
@@ -1465,11 +1465,11 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">â</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
     <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
     <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
-      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% â ${tierLabel}</span>
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:#F4E4BC !important;">Share your readiness score</span></div>
