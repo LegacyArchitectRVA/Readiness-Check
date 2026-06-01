@@ -241,7 +241,7 @@ body{
 }
 .share-score-display{
   font-family:'Playfair Display',serif;
-  font-size:20px;
+  font-size:16px;
   color:var(--accent-gold);
   text-align:center;
   margin:0 0 25px;
@@ -381,7 +381,7 @@ body{
   letter-spacing:2px;
   margin:20px auto;
   cursor:pointer;
-  font-size:20px;
+  font-size:16px;
   text-transform:uppercase;
   color:#0f0f14;
   transition:all 0.2s ease;
@@ -434,7 +434,7 @@ body{
   line-height:1.5;
   color:var(--text-gold);
   box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
-  z-index:1000;
+  white-space:nowrap;
   opacity:0;
   transition:opacity 0.2s ease, visibility 0.2s ease;
   font-family:'Cormorant Garamond',serif;
@@ -570,7 +570,7 @@ button:active{
 button:disabled{opacity:0.4;cursor:not-allowed;}
 button.start-btn{
   margin-top:30px;
-  font-size:20px;
+  font-size:16px;
   padding:18px 24px;
   letter-spacing:4px;
 }
@@ -716,7 +716,7 @@ button.sm{
   flex-shrink:0;
   overflow:visible;
   text-overflow:clip;
-  white-space:normal;
+  white-space:nowrap;
 }
 .ptrack{
   flex:1;
@@ -1159,7 +1159,7 @@ function showShareModal(score, tierLabel, text, url) {
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#0077B5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             <span>LinkedIn</span>
           </a>
           <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}&picture=${encodedImage}" 
@@ -1169,7 +1169,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#009999"><path d="M12 2L2 8.5v7L12 22l10-6.5V8.5L12 2zm0 2.31L19.5 9.5v5l-7.5 4.39-7.5-4.39v-5L12 4.31zM12 6.89l-6 3.45v1.3l6 3.45 6-3.45v-1.3l-6-3.45z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#00A36A"><path d="M12 2L2 8.5v7L12 22l10-6.5V8.5L12 2zm0 2.31L19.5 9.5v5l-7.5 4.39-7.5-4.39v-5L12 4.31zM12 6.89l-6 3.45v1.3l6 3.45 6-3.45v-1.3l-6-3.45z"/></svg>
             <span>NextDoor</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
@@ -1184,17 +1184,17 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#ffffff"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
             <span>X</span>
           </a>
         </div>
         <div class="share-actions">
           <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(text)}', '${encodeURIComponent(url)}')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#ffffff"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Email</span>
           </button>
           <button class="share-action-btn copy" onclick="copyToClipboard('${encodeURIComponent(text + ' ' + url)}')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
             <span>Copy</span>
           </button>
         </div>
@@ -1228,7 +1228,7 @@ function copyToClipboard(text) {
   navigator.clipboard.writeText(decodeURIComponent(text)).then(() => {
     const btn = event.currentTarget;
     const originalText = btn.innerHTML;
-    btn.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
+    btn.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
     setTimeout(() => {
       btn.innerHTML = originalText;
     }, 2000);
@@ -1350,9 +1350,6 @@ function renderIntro(app,ps){
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
       <strong style="color:#B22222;">Undocumented</strong> — It exists but is not documented.<br>
       <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.<br>
-      <strong style="color:#B22222;">Undocumented</strong> — It exists but is not documented.<br>
-      <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.<br>
-    <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
