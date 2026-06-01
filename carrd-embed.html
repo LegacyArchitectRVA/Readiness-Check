@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T18:18:31.538Z -->
 <!-- Rebuild timestamp: 2026-06-01T18:14:36.121Z -->
 <!-- Force rebuild: Complete UX/UI upgrade -->
 <!-- Rebuild timestamp: 2026-06-01T18:10:47.139Z -->
@@ -47,8 +48,7 @@
   --text-primary: #f5f5f5;
   --text-secondary: #c0c0c0;
   --text-muted: #8a8a8a;
-  --text-gold: #F8E8C8;
-  --accent-gold: #D4AF37;
+    --accent-gold: #D4AF37;
   --accent-gold-light: #F4E4BC;
   --accent-gold-dark: #B8860B;
   --ch1: #4A90A4;
@@ -61,7 +61,7 @@
   --recorded: #2E8B57;
   --missing: #8B4513;
   --na: #696969;
-  --ring-glow: rgba(212, 175, 55, 0.2);
+  --ring-glow: #D4AF37;
   --subtle-glow: rgba(212, 175, 55, 0.1);
 }
 
@@ -78,8 +78,8 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
 html{font-size:20.24px;}
 body{
   margin:0;
-  background:transparent;
-  color:var(--text-gold);
+  background:#FDF5E6;
+  color:#000000;
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
@@ -92,14 +92,14 @@ body{
   padding:30px 20px 40px;
 }
 .card{
-  background:var(--card-bg);
-  border:1px solid rgba(212, 175, 55, 0.2);
+  background:#FDF5E6;
+  border:1px solid #D4AF37;
   border-radius:0;
   padding:40px 30px 45px;
   position:relative;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  border-top: 1px solid #D4AF37;
+  border-bottom: 1px solid #D4AF37;
 }
 .card::before{
   content:"";
@@ -108,7 +108,7 @@ body{
   left:0;
   right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
+  background:linear-gradient(90deg,transparent,#D4AF37,transparent);
   opacity:0.3;
 }
 .card::after{
@@ -118,7 +118,7 @@ body{
   left:0;
   right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
+  background:linear-gradient(90deg,transparent,#D4AF37,transparent);
   opacity:0.3;
 }
 /* STEP MARKS - Elegant */
@@ -131,16 +131,16 @@ body{
 .seg{
   flex:1;
   height:100%;
-  background:var(--text-muted);
+  background:#CCCCCC;
   border-radius:1px;
   transition:all 0.4s ease;
 }
 .seg.done{
-  background:var(--accent-gold);
+  background:#D4AF37;
   box-shadow:0 0 8px var(--subtle-glow);
 }
 .seg.active{
-  background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-light),var(--accent-gold));
+  background:linear-gradient(90deg,#D4AF37,var(--accent-gold-light),#D4AF37);
   background-size:200% 100%;
   animation:shimmer 3s linear infinite;
   box-shadow:0 0 12px var(--subtle-glow);
@@ -162,7 +162,7 @@ body{
   left:0;
   right:0;
   bottom:0;
-  background:rgba(15, 15, 20, 0.98);
+  background:rgba(0, 0, 0, 0.5);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -170,8 +170,8 @@ body{
   animation:modalFadeIn 0.3s ease;
 }
 .share-modal{
-  background:#0f0f14;
-  border:1px solid rgba(212, 175, 55, 0.3);
+  background:#FDF5E6;
+  border:1px solid #D4AF37;
   border-radius:0;
   width:90%;
   max-width:500px;
@@ -192,12 +192,12 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:20px 25px;
-  border-bottom:1px solid rgba(212, 175, 55, 0.2);
+  border-bottom:1px solid #D4AF37;
 }
 .share-modal-title{
   font-family:'Playfair Display',serif;
   font-size:18px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   margin:0;
   font-weight:500;
   font-style:italic;
@@ -205,21 +205,21 @@ body{
 .share-modal-close{
   font-family:'Montserrat',sans-serif;
   font-size:24px;
-  color:var(--text-gold);
+  color:#000000;
   cursor:pointer;
   line-height:1;
   transition:color 0.2s ease;
 }
 .share-modal-close:hover{
-  color:var(--accent-gold);
+  color:#D4AF37;
 }
 
 /* Close/Back to Site Button */
 .back-to-site-btn{
   width:100%;
   padding:14px 20px;
-  background:transparent;
-  border:1px solid rgba(212, 175, 55, 0.4);
+  background:#FDF5E6;
+  border:1px solid #D4AF37;
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-weight:500;
@@ -228,13 +228,13 @@ body{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:var(--text-gold);
+  color:#000000;
   transition:all 0.2s ease;
 }
 .back-to-site-btn:hover{
-  background:rgba(212, 175, 55, 0.08);
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
+  background:#FDF5E6;
+  border-color:#D4AF37;
+  color:#D4AF37;
 }
 
 /* Company Logo */
@@ -274,7 +274,7 @@ body{
 .share-score-display{
   font-family:'Playfair Display',serif;
   font-size:16px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   text-align:center;
   margin:0 0 25px;
   font-style:italic;
@@ -293,13 +293,13 @@ body{
   align-items:center;
   gap:8px;
   padding:18px 12px;
-  background:rgba(212, 175, 55, 0.05);
-  border:1px solid rgba(212, 175, 55, 0.4);
+  background:#FDF5E6;
+  border:1px solid #D4AF37;
   border-radius:0;
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:var(--text-gold);
+  color:#000000;
   font-family:'Montserrat',sans-serif;
   font-size:13px;
   font-weight:500;
@@ -308,18 +308,18 @@ body{
 .share-btn:hover,
 .share-action-btn:hover{
   background:rgba(212, 175, 55, 0.08);
-  border-color:var(--accent-gold);
+  border-color:#D4AF37;
 }
 .share-btn.x{
-  background:rgba(212, 175, 55, 0.03);
-  border-color:rgba(212, 175, 55, 0.3);
+  background:#FDF5E6;
+  border-color:#D4AF37;
 }
 .share-btn.x:hover{
   background:rgba(212, 175, 55, 0.08);
-  border-color:var(--accent-gold);
+  border-color:#D4AF37;
 }
 .share-btn.x .share-icon{
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+  
 }
 .share-icon{
   width:24px;
@@ -342,7 +342,7 @@ body{
   font-size:26px;
   letter-spacing:4.4px;
   text-transform:uppercase;
-  color:var(--accent-gold);
+  color:#D4AF37;
   opacity:0.7;
   font-weight:500;
 }
@@ -350,19 +350,19 @@ body{
   font-family:'Cinzel',serif;
   font-size:30.25px;
   margin:0 0 13.2px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   font-weight:500;
   font-style:normal;
 }
 .sub{
-  color:var(--text-gold);
+  color:#000000;
   line-height:1.98;
   font-size:16.5px;
   font-family:'Cormorant Garamond',serif;
 }
 .rule{
   border:none;
-  border-top:1px solid rgba(212, 175, 55, 0.2);
+  border-top:1px solid #D4AF37;
   margin:25px 0;
 }
 /* ITEM TOGGLES - Elegant */
@@ -372,7 +372,7 @@ body{
   margin:0;
   background:transparent;
   transition:all 0.3s ease;
-  border-bottom:1px solid rgba(212, 175, 55, 0.1);
+  border-bottom:1px solid #D4AF37;
 }
 .toggle:hover{background:rgba(212, 175, 55, 0.02);}
 .toggle.aR{border-color:transparent;}
@@ -381,7 +381,7 @@ body{
 .trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
 .tlabel{
   font-size:16.5px;
-  color:var(--text-gold);
+  color:#000000;
   line-height:1.575;
   text-align:center;
   width:100%;
@@ -407,8 +407,8 @@ body{
 .not-business-owner-btn{
   width:auto;
   padding:14px 24px;
-  background:var(--accent-gold);
-  border:1px solid var(--accent-gold);
+  background:#D4AF37;
+  border:1px solid #D4AF37;
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-weight:600;
@@ -443,7 +443,7 @@ body{
   opacity:0.6;
   transition:opacity 0.2s ease;
   flex-shrink:0;
-  fill:var(--text-gold);
+  fill:#000000;
 }
 .info-icon:hover{
   opacity:1;
@@ -459,14 +459,14 @@ body{
   left:50%;
   transform:translateX(-50%);
   background:var(--card-bg);
-  border:1px solid rgba(212, 175, 55, 0.3);
+  border:1px solid #D4AF37;
   border-radius:4px;
   padding:12px 14px;
   width:280px;
   max-width:90vw;
   font-size:14px;
   line-height:1.5;
-  color:var(--text-gold);
+  color:#000000;
   box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
   white-space:nowrap;
   opacity:0;
@@ -485,31 +485,31 @@ body{
   left:50%;
   transform:translateX(-50%);
   border:6px solid transparent;
-  border-top-color:rgba(212, 175, 55, 0.3);
+  border-top-color:#D4AF37;
 }
 
 /* All items addressed badge - more standout */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:12.1px;letter-spacing:2.2px;text-transform:uppercase;
-  color:var(--accent-gold);
+  color:#D4AF37;
   font-family:'Montserrat',sans-serif;
   font-weight:600;
   padding:12px 16px;
   background:rgba(212, 175, 55, 0.1);
-  border:1px solid rgba(212, 175, 55, 0.4);
+  border:1px solid #D4AF37;
   border-radius:0;
 }
 .cpdot{
   width:6px;
   height:6px;
   border-radius:50%;
-  background:var(--accent-gold);
+  background:#D4AF37;
   box-shadow:0 0 8px var(--subtle-glow);
 }
 .opt{
   padding:8px 16px;
-  border:1px solid rgba(212, 175, 55, 0.4);
+  border:1px solid #D4AF37;
   cursor:pointer;
   border-radius:0;
   font-family:'Montserrat',sans-serif;
@@ -517,15 +517,15 @@ body{
   letter-spacing:2px;
   text-transform:uppercase;
   transition:all 0.2s ease;
-  color:var(--accent-gold);
+  color:#D4AF37;
   background:transparent;
   user-select:none;
   font-weight:500;
 }
 .opt:hover{
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
-  background:rgba(212, 175, 55, 0.05);
+  border-color:#D4AF37;
+  color:#D4AF37;
+  background:#FDF5E6;
 }
 .opt.oR{
   border-color:var(--recorded);
@@ -547,12 +547,12 @@ body{
 .counter-circle{
   display:inline-block;
   padding:6px 14px;
-  background:rgba(212, 175, 55, 0.05);
-  border:1px solid rgba(212, 175, 55, 0.4);
+  background:#FDF5E6;
+  border:1px solid #D4AF37;
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-size:12px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   letter-spacing:2px;
   box-shadow: none;
   font-weight:600;
@@ -561,7 +561,7 @@ body{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:20px;
   font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--accent-gold);
+  color:#D4AF37;
   font-family:'Montserrat',sans-serif;
   font-weight:500;
 }
@@ -569,14 +569,14 @@ body{
   width:5px;
   height:5px;
   border-radius:50%;
-  background:var(--accent-gold);
+  background:#D4AF37;
   box-shadow:0 0 6px var(--subtle-glow);
 }
 /* BUTTONS - Elegant */
 button{
   width:100%;
   padding:16px 20px;
-  background:var(--accent-gold);
+  background:#D4AF37;
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -610,14 +610,14 @@ button.start-btn{
 }
 button.alt{
   background:transparent;
-  color:var(--accent-gold);
-  border:1px solid rgba(212, 175, 55, 0.4);
+  color:#D4AF37;
+  border:1px solid #D4AF37;
   box-shadow:none;
 }
 button.alt:hover{
-  color:var(--accent-gold);
-  border-color:var(--accent-gold);
-  background:rgba(212, 175, 55, 0.05);
+  color:#D4AF37;
+  border-color:#D4AF37;
+  background:#FDF5E6;
 }
 button.sm{
   width:auto;
@@ -656,11 +656,11 @@ button.sm{
   align-items:center;
   justify-content:center;
   position:relative;
-  border:4px solid var(--accent-gold);
+  border:4px solid #D4AF37;
   background:rgba(10, 10, 15, 0.9);
   overflow:hidden;
   margin:0 auto 24px;
-  box-shadow:0 0 30px var(--ring-glow);
+  box-shadow:0 0 30px #D4AF37;
   animation:float 4s ease-in-out infinite, ringGlow 2s ease-in-out infinite;
 }
 .ring::after{
@@ -676,7 +676,7 @@ button.sm{
 .scorenum{
   font-family:'Cinzel',serif;
   font-size:72px;
-  color:#FFFFFF;
+  color:#000000;
   line-height:1;
   text-shadow:0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
   font-weight:600;
@@ -689,11 +689,11 @@ button.sm{
   text-shadow:0 0 5px rgba(255, 255, 255, 0.5);
 
   font-size:16px;
-  color:var(--text-gold);
+  color:#000000;
   opacity:0.9;
 
   font-size:12px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   margin-top:2px;
   letter-spacing:1px;
 }
@@ -715,12 +715,12 @@ button.sm{
   margin:20px 0;
   padding:16px;
   background:rgba(212, 175, 55, 0.02);
-  border:1px solid rgba(212, 175, 55, 0.2);
+  border:1px solid #D4AF37;
   border-radius:0;
 
   margin-top:20px;
   padding:16px 18px;
-  border:1px solid rgba(212, 175, 55, 0.2);
+  border:1px solid #D4AF37;
   border-radius:8px;
   background:rgba(212, 175, 55, 0.02);
 }
@@ -740,12 +740,12 @@ margin-bottom:10px;}
   font-size:18px;
   opacity:0.8;
   margin:4px 0;
-  color:var(--accent-gold);
+  color:#D4AF37;
   font-weight:500;
 }
 .legtext{
   font-size:16px;
-  color:var(--text-gold);
+  color:#000000;
   line-height:1.6;
   opacity:0.9;
 }
@@ -770,7 +770,7 @@ margin-bottom:10px;}
 }
 .pname{
   font-size:14px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   width:180px;
   flex-shrink:0;
   overflow:visible;
@@ -809,7 +809,7 @@ margin-bottom:10px;}
   text-transform:uppercase;
   color:var(--gold);
   opacity:0.8;
-  border-bottom:1px solid rgba(212, 175, 55, 0.2);
+  border-bottom:1px solid #D4AF37;
   padding-bottom:6px;
   margin-bottom:12px;
 }
@@ -818,12 +818,12 @@ margin-bottom:10px;}
 
 .gapexpl{
   font-size:15px;
-  color:var(--text-gold);
+  color:#000000;
   opacity:0.8;
   line-height:1.6;
 
   font-size:12px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   line-height:1.55;
   font-style:italic;
   margin-bottom:2px;
@@ -834,7 +834,7 @@ margin-bottom:10px;}
   text-transform:uppercase;
   margin-top:2px;
   opacity:0.7;
-  color:var(--accent-gold);
+  color:#D4AF37;
 }
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
@@ -851,8 +851,8 @@ margin-bottom:10px;}
   padding:11px 13px;
   margin-top:5px;
   background:rgba(10, 10, 15, 0.7);
-  border:1px solid rgba(212, 175, 55, 0.2);
-  color:var(--accent-gold);
+  border:1px solid #D4AF37;
+  color:#D4AF37;
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
@@ -892,17 +892,17 @@ margin-bottom:10px;}
 .sharelink span{
   font-family:'Montserrat',sans-serif;
   font-size:26px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   letter-spacing:3px;
   text-transform:uppercase;
-  border-bottom:1px solid rgba(212, 175, 55, 0.3);
+  border-bottom:1px solid #D4AF37;
   transition:all 0.2s ease;
   padding-bottom:3px;
   font-weight:600;
 }
 .sharelink:hover span{
-  color:var(--accent-gold);
-  border-bottom-color:var(--accent-gold);
+  color:#D4AF37;
+  border-bottom-color:#D4AF37;
 }
 .footnote{
   margin-top:16px;
@@ -934,7 +934,7 @@ margin-bottom:10px;}
 .successhead{
   font-family:'Cinzel',serif;
   font-size:18.4px;
-  color:var(--accent-gold);
+  color:#D4AF37;
   margin-bottom:10px;
   letter-spacing:1.5px;
 }
@@ -981,9 +981,9 @@ margin-bottom:10px;}
   margin-bottom:16px;
   padding:16px 20px;
   border-radius:0;
-  background:rgba(212, 175, 55, 0.05);
-  border-left:4px solid var(--accent-gold);
-  color:var(--text-gold);
+  background:#FDF5E6;
+  border-left:4px solid #D4AF37;
+  color:#000000;
   transition:all 0.2s ease;
 }</style>
 </head>
@@ -1000,7 +1000,7 @@ const PILLARS=[
   {n:"04: Health & Medical",d:"Insurance, records, and medical directives.",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
   {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attor.gapname{
   font-size:17px;
-  color:var(--text-gold);
+  color:#000000;
   font-weight:600;
   margin-bottom:6px;
   line-height:1.5;
@@ -1532,7 +1532,7 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
+      <div class="ringlabel" style="color:#D4AF37;font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
@@ -1542,7 +1542,7 @@ function renderResults(app,ps){
       </div>
     </div>
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
-    <p class="sub" style="text-align:center;font-size:18px;margin:20px 0 30px;color:var(--text-gold);">Most households score between 40 and 65% on their first pass.</p>
+    <p class="sub" style="text-align:center;font-size:18px;margin:20px 0 30px;color:#000000;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
       <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86—100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
       <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71—85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
@@ -1563,7 +1563,7 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="goB()">Back</button>
       <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore()"><span style="color:#D4AF37;">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA</div>
   </div>`;
@@ -1578,7 +1578,7 @@ function renderSuccess(){
     "var(--ch2)": "rgba(248, 113, 113, 0.4)",
     "var(--ch3)": "rgba(226, 232, 240, 0.4)",
     "var(--ch4)": "rgba(52, 211, 153, 0.4)",
-    "var(--ch5)": "rgba(212, 175, 55, 0.4)",
+    "var(--ch5)": "#D4AF37",
     "var(--ch6)": "rgba(148, 163, 184, 0.4)",
     "var(--ch7)": "rgba(192, 132, 252, 0.4)"
   };
@@ -1591,7 +1591,7 @@ function renderSuccess(){
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
-    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:#D4AF37;">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
     <div class="footnote">Legacy Architect RVA</div>
