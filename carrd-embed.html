@@ -173,7 +173,7 @@ body{
 .share-modal-close{
   font-family:'Montserrat',sans-serif;
   font-size:24px;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   cursor:pointer;
   line-height:1;
   transition:color 0.2s ease;
@@ -196,7 +196,7 @@ body{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   transition:all 0.2s ease;
 }
 .back-to-site-btn:hover{
@@ -321,7 +321,7 @@ body{
   font-style:normal;
 }
 .sub{
-  color:var(--text-secondary);
+  color:var(--text-gold);
   line-height:1.98;
   font-size:16.5px;
   font-family:'Cormorant Garamond',serif;
@@ -482,7 +482,7 @@ body{
   letter-spacing:2px;
   text-transform:uppercase;
   transition:all 0.2s ease;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   background:transparent;
   user-select:none;
   font-weight:500;
@@ -575,7 +575,7 @@ button.start-btn{
 }
 button.alt{
   background:transparent;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   border:1px solid rgba(212, 175, 55, 0.4);
   box-shadow:none;
 }
@@ -647,7 +647,7 @@ button.sm{
 }
 .scoresub{
   font-size:12px;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   margin-top:2px;
   letter-spacing:1px;
 }
@@ -682,11 +682,11 @@ button.sm{
   font-size:14.4px;
   opacity:.7;
   margin:1px 0;
-  color:var(--text-secondary);
+  color:var(--text-gold);
 }
 .legtext{
   font-size:15.6px;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   line-height:1.6;
 }
 /* PILLAR BARS */
@@ -740,7 +740,7 @@ button.sm{
   text-align:right;
   flex-shrink:0;
 }
-/* GAPS Ã¢ÂÂ color coded by severity */
+/* GAPS — color coded by severity */
 .gapwrap{margin-top:20px;}
 .gaptitle{
   font-family:'Cinzel',serif;
@@ -772,7 +772,7 @@ button.sm{
 }
 .gapexpl{
   font-size:12px;
-  color:var(--text-secondary);
+  color:var(--text-gold);
   line-height:1.55;
   font-style:italic;
   margin-bottom:2px;
@@ -783,7 +783,7 @@ button.sm{
   text-transform:uppercase;
   margin-top:2px;
   opacity:0.7;
-  color:var(--text-secondary);
+  color:var(--text-gold);
 }
 /* PILLARS CONTAINER */
 .pillars-container{
@@ -988,7 +988,7 @@ const EXPL={
   "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
   "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
   "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
-  "Last Will & Testament":"Without a will, assets distribute by state law Ã¢ÂÂ not your intentions.",
+  "Last Will & Testament":"Without a will, assets distribute by state law — not your intentions.",
   "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
   "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
   "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
@@ -1163,7 +1163,7 @@ function showShareModal(score, tierLabel, text, url) {
         <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
       </div>
       <div class="share-modal-content">
-        <p class="share-score-display">${score}% Ã¢ÂÂ ${tierLabel}</p>
+        <p class="share-score-display">${score}% — ${tierLabel}</p>
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
@@ -1329,9 +1329,9 @@ function renderIntro(app,ps){
     </div>
     <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold);">
-      <strong style="color:var(--ch4);">Recorded</strong> Ã¢ÂÂ It is documented and someone else could access it.<br>
-      <strong style="color:#B22222;">Undocumented</strong> Ã¢ÂÂ It exists but is not documented.<br>
-      <strong style="color:var(--ch6);">Not Applicable</strong> Ã¢ÂÂ It does not apply to your situation.
+      <strong style="color:var(--ch4);">Recorded</strong> – It is documented and someone else could access it.<br>
+      <strong style="color:#B22222;">Undocumented</strong> – It exists but is not documented.<br>
+      <strong style="color:var(--ch6);">Not Applicable</strong> – It does not apply to your situation.
     </p>
     <p class="sub" style="margin-bottom:20px;color:var(--text-gold);">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
@@ -1425,10 +1425,10 @@ function renderResults(app,ps){
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;font-size:18.48px;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86Ã¢ÂÂ100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71Ã¢ÂÂ85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61Ã¢ÂÂ70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0Ã¢ÂÂ60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86–100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71–85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61–70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0–60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
     <hr class="rule">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
@@ -1465,11 +1465,11 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">Ã¢ÂÂ</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
     <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
     <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
-      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% Ã¢ÂÂ ${tierLabel}</span>
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
@@ -1495,6 +1495,7 @@ render();
 </script>
 </body>
 </html>
+
 
 
 
