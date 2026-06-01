@@ -1349,8 +1349,10 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
-      <strong style="color:#B22222;">Undocumented</strong> — It exists but is not documented.<br>
-      <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.<br>
+      <strong style="color:var(--ch2);">Undocumented</strong> — It exists but is not documented.
+      <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
+    </p>
+    <button onclick="goN()">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
