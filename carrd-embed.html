@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T03:19:36.248Z -->
 <!-- Rebuild timestamp: 2026-06-01T14:30:00Z -->
 <!-- Rebuild timestamp: 2026-06-01T14:45:00Z -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1306,47 +1307,62 @@ function render(){
 }
 function renderIntro(app,ps){
   const tot=ps.length+1;
-  app.innerHTML=`<div>
+  app.innerHTML=`
+<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
     <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.9;">
-      <span class="info-tooltip">
-        <span style="color:var(--ch1);">01: Digital Life</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Credentials, accounts, and digital access.</div>
-      </span><br>
-      <span class="info-tooltip">
-        <span style="color:var(--ch2);">02: Financial & Assets</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Banking, investments, and financial records.</div>
-      </span><br>
-      <span class="info-tooltip">
-        <span style="color:var(--ch4);">03: Household & Property</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Property, vehicles, and household documentation.</div>
-      </span><br>
-      <span class="info-tooltip">
-        <span style="color:var(--ch5);">04: Health & Medical</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Insurance, records, and medical directives.</div>
-      </span><br>
-      <span class="info-tooltip">
-        <span style="color:var(--ch6);">05: Legal & Estate</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Wills, trusts, and legal authority.</div>
-      </span><br>
-      <span class="info-tooltip">
-        <span style="color:var(--ch7);">06: Business Continuity</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Operations, agreements, and succession.</div>
-      </span><br>
-      <span class="info-tooltip">
-        <span style="color:var(--ch3);">07: Legacy & Wishes</span>
-        <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <div class="tooltip-content">Personal instructions, history, and wishes.</div>
-      </span>
-    </p>
+    <div class="pillars-container">
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch1);">01: Digital Life</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Credentials, accounts, and digital access.</div>
+        </span>
+      </div>
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch2);">02: Financial & Assets</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Banking, investments, and financial records.</div>
+        </span>
+      </div>
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch4);">03: Household & Property</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Property, vehicles, and household documentation.</div>
+        </span>
+      </div>
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch5);">04: Health & Medical</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Insurance, records, and medical directives.</div>
+        </span>
+      </div>
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch6);">05: Legal & Estate</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Wills, trusts, and legal authority.</div>
+        </span>
+      </div>
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch7);">06: Business Continuity</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Operations, agreements, and succession.</div>
+        </span>
+      </div>
+      <div class="pillar-item">
+        <span class="info-tooltip">
+          <span style="color:var(--ch3);">07: Legacy & Wishes</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Personal instructions, history, and wishes.</div>
+        </span>
+      </div>
+    </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
@@ -1354,8 +1370,8 @@ function renderIntro(app,ps){
       <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
     </p>
     <button onclick="goN()">Start Analysis</button>
-  </div>`;}
-function renderQ(app,ps){
+  </div>`;
+}function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
   const done=p.i.every((_,ii)=>ANS[pi+"_"+ii]);
   // Calculate running total for current pillar
