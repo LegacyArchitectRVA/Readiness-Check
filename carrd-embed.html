@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T17:05:01.471Z -->
 <!-- Rebuild timestamp: 2026-06-01T16:31:34.917Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:10:25.788Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:09:48.263Z -->
@@ -664,12 +665,17 @@ button.sm{
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:36px;
+  font-size:48px;
   color:var(--btn-color);
   line-height:1;
-  text-shadow:0 0 8px var(--ring-glow);
+  text-shadow:0 0 12px var(--ring-glow);
+  font-weight:500;
 }
 .scoresub{
+  font-size:16px;
+  color:var(--text-gold);
+  opacity:0.9;
+
   font-size:12px;
   color:var(--accent-gold);
   margin-top:2px;
@@ -690,28 +696,42 @@ button.sm{
 .tL{color:#008000;}
 /* LEGEND */
 .legblock{
+  margin:20px 0;
+  padding:16px;
+  background:rgba(212, 175, 55, 0.02);
+  border:1px solid rgba(212, 175, 55, 0.2);
+  border-radius:0;
+
   margin-top:20px;
   padding:16px 18px;
   border:1px solid rgba(212, 175, 55, 0.2);
   border-radius:8px;
   background:rgba(212, 175, 55, 0.02);
 }
-.legrow{margin-bottom:10px;}
+.legrow{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:16px;
+margin-bottom:10px;}
 .legname{
   font-family:'Cinzel',serif;
-  font-size:11.25px;
+  font-size:18px;
   letter-spacing:1px;
+  font-weight:500;
 }
 .legrange{
-  font-size:21.6px;
-  opacity:.7;
-  margin:1px 0;
+  font-size:18px;
+  opacity:0.8;
+  margin:4px 0;
   color:var(--accent-gold);
+  font-weight:500;
 }
 .legtext{
-  font-size:7.8px;
-  color:var(--accent-gold);
+  font-size:16px;
+  color:var(--text-gold);
   line-height:1.6;
+  opacity:0.9;
 }
 /* PILLAR BARS */
 .bkwrap{margin-top:20px;}
@@ -778,6 +798,12 @@ button.sm{
   margin-bottom:12px;
 }
 .gapitem{
+  padding:12px 16px;
+  margin-bottom:12px;
+  background:rgba(212, 175, 55, 0.03);
+  border-left:3px solid var(--accent-gold);
+  border-radius:0;
+
   display:flex;
   gap:12px;
   margin-bottom:12px;
@@ -789,12 +815,22 @@ button.sm{
 }
 .gapitem:hover{background:rgba(212, 175, 55, 0.06);}
 .gapname{
+  font-size:16px;
+  color:var(--text-gold);
+  font-weight:500;
+  margin-bottom:4px;
+
   font-size:14px;
   color:var(--accent-gold);
   margin-bottom:2px;
   flex:1;
 }
 .gapexpl{
+  font-size:15px;
+  color:var(--text-gold);
+  opacity:0.8;
+  line-height:1.6;
+
   font-size:12px;
   color:var(--accent-gold);
   line-height:1.55;
@@ -993,26 +1029,25 @@ button.sm{
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 2px 0;
+  padding: 4px 0;
 }
 .pillar-faq-content {
   display: none;
-  padding: 6px 0;
-  margin-top: 4px;
-  font-size: 14px;
-  line-height: 1.5;
+  padding: 10px 0;
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--text-gold);
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .pillar-faq.active .pillar-faq-content {
   display: block;
 }
 .pillar-faq-icon {
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
   transition: transform 0.2s ease;
 }
 .pillar-faq.active .pillar-faq-icon {
