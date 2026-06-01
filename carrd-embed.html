@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T18:07:53.878Z -->
 <!-- Rebuild timestamp: 2026-06-01T18:01:11.944Z -->
 <!-- Rebuild timestamp: 2026-06-01T17:11:57.864Z -->
 <!-- Force rebuild for live version -->
@@ -43,7 +44,7 @@
   --text-primary: #f5f5f5;
   --text-secondary: #c0c0c0;
   --text-muted: #8a8a8a;
-  --text-gold: #F4E4BC;
+  --text-gold: #F8E8C8;
   --accent-gold: #D4AF37;
   --accent-gold-light: #F4E4BC;
   --accent-gold-dark: #B8860B;
@@ -177,6 +178,7 @@ body{
   box-shadow:0 0 40px rgba(0, 0, 0, 0.7);
   opacity:0;
   transform:translateY(-20px);
+  -webkit-overflow-scrolling:touch;
 }
 .share-modal-visible{
   opacity:1;
@@ -240,7 +242,7 @@ body{
   max-height:30%;
   margin:0 auto 20px;
   display:block;
-  opacity:0.9;
+  opacity:0.95;
   transform:scale(0.3);
   transform-origin:center;
 }
@@ -287,16 +289,16 @@ body{
   flex-direction:column;
   align-items:center;
   gap:8px;
-  padding:15px 10px;
-  background:rgba(212, 175, 55, 0.03);
-  border:1px solid rgba(212, 175, 55, 0.3);
+  padding:18px 12px;
+  background:rgba(212, 175, 55, 0.05);
+  border:1px solid rgba(212, 175, 55, 0.4);
   border-radius:0;
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:var(--accent-gold);
+  color:var(--text-gold);
   font-family:'Montserrat',sans-serif;
-  font-size:11px;
+  font-size:13px;
   font-weight:500;
   letter-spacing:0.5px;
 }
@@ -640,7 +642,7 @@ button.sm{
   letter-spacing:3px;
   text-transform:uppercase;
   color:var(--btn-color);
-  opacity:0.8;
+  opacity:0.9;
   margin-bottom:12px;
 }
 .ring{
