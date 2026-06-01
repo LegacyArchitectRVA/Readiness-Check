@@ -44,8 +44,8 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{font-size:20.24px;}
-body{margin:0;background:transparent;color:var(--text-gold);font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;line-height:1.6;}
+html{font-size:20.24px;overflow-y:auto;}
+body{margin:0;background:transparent;color:var(--text-gold) !important;overflow-y:auto;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;line-height:1.6;}
 #wrap{
   max-width:1000px;
   margin:0 auto;
@@ -228,10 +228,16 @@ body{margin:0;background:transparent;color:var(--text-gold);font-family:'Cormora
     transform-origin:center;
   }
   .card{padding:16px 12px 24px;}
-  .sub{color:var(--text-gold);line-height:1.98;font-size:16.5px;font-family:'Cormorant Garamond',serif;}
+  .sub{color:var(--text-gold) !important;line-height:1.98;font-size:16.5px;font-family:'Cormorant Garamond',serif;}
   .pillars-showcase {
+    background: linear-gradient(145deg, rgba(212, 175, 55, 0.04) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(212, 175, 55, 0.04) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 0;
     padding: 24px 16px;
     margin: 16px 0 20px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.03);
+    overflow: hidden;
   }
   .pillars-showcase .pillar-item {
     padding-left: 14px;
@@ -1332,8 +1338,8 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
-    <p class="sub" style="margin-bottom:18px;color:var(--text-gold);font-size:17px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
-    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);font-size:17px;"><strong>You will review seven pillars:</strong></p>
+    <p class="sub" style="margin-bottom:18px;color:var(--text-gold) !important;font-size:17px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold) !important;font-size:17px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-showcase">
     <p class="sub" style="margin:0;line-height:2.4;font-size:17.5px;color:var(--text-gold);">
       <span class="pillar-item" style="color:var(--ch1);">01: Digital Life</span><br>
@@ -1345,13 +1351,13 @@ function renderIntro(app,ps){
       <span class="pillar-item" style="color:var(--ch3);">07: Legacy & Wishes</span>
     </p>
     </div>
-    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);font-size:17px;"><strong>For each item, simply select one of the following:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold);font-size:17px;">
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold) !important;font-size:17px;"><strong>For each item, simply select one of the following:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold) !important;font-size:17px;">
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
       <strong style="color:#B22222;">Undocumented</strong> — It exists but is not documented.<br>
       <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
     </p>
-    <p class="sub" style="margin-bottom:20px;color:var(--text-gold);font-size:17px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
+    <p class="sub" style="margin-bottom:20px;color:var(--text-gold) !important;font-size:17px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;scrollToTop();render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
