@@ -66,7 +66,7 @@ body{
   border-radius:0;
   padding:40px 30px 45px;
   position:relative;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
   border-top: 1px solid rgba(212, 175, 55, 0.3);
   border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
@@ -220,22 +220,16 @@ body{
 .company-logo-mobile{
   display:none;
 }
+
 @media(max-width:768px){
-  .company-logo{
-    display:none;
-  }
-  .company-logo-mobile{
-    display:block;
-    width:auto;
-    height:auto;
-    max-width:30%;
-    max-height:30%;
-    margin:0 auto 20px;
-    opacity:0.9;
-    transform:scale(0.3);
-    transform-origin:center;
-  }
+  .company-logo{display:none;}
+  .company-logo-mobile{display:block;width:auto;height:auto;max-width:30%;max-height:30%;margin:0 auto 20px;opacity:0.9;transform:scale(0.3);transform-origin:center;}
+  .card{padding:12px 8px 16px;}
+  .sub{line-height:1.7;}
+  .pillars-container{padding:20px 12px;margin:12px 0 16px;}
+  .mark{font-size:22px !important;}
 }
+
 .share-modal-content{
   padding:25px;
 }
@@ -794,6 +788,43 @@ button.sm{
   margin:16px 0;
   box-shadow:0 0 10px rgba(212, 175, 55, 0.1);
 }
+
+/* PILLARS CONTAINER */
+.pillars-container {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 0;
+  padding: 24px 20px;
+  margin: 16px 0 20px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.03);
+}
+.pillars-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.5;
+}
+.pillars-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.5;
+}
+.pillars-container p { margin: 0; line-height: 2.2; }
+
+
+.continue-btn {background:var(--accent-gold) !important;color:#0f0f14 !important;border:1px solid var(--accent-gold) !important;padding:14px 24px;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+button {font-family:'Montserrat',sans-serif;cursor:pointer;transition:all 0.2s ease;border:none;border-radius:0;}
+
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
 .inputfield{flex:1;min-width:0;}
@@ -1375,7 +1406,7 @@ function renderQ(app,ps){
   html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
     <div class="cpdot"></div>All items addressed
   </div>
-  <button onclick="goN()">Continue</button>
+  <button class="continue-btn" onclick="goN()">Continue</button>
   <div class="navrow">
     <button class="sm alt" onclick="goB()">Back</button>
     <button class="sm alt" onclick="reset()">Reset</button>
