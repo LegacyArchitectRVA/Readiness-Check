@@ -7,6 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<!-- Rebuild timestamp: 2026-06-01T16:31:34.917Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:10:25.788Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:09:48.263Z -->
 <!-- Rebuild timestamp: 2026-06-01T04:07:48.550Z -->
@@ -151,7 +152,7 @@ body{
   left:0;
   right:0;
   bottom:0;
-  background:rgba(15, 15, 20, 0.95);
+  background:rgba(15, 15, 20, 0.98);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -159,7 +160,7 @@ body{
   animation:modalFadeIn 0.3s ease;
 }
 .share-modal{
-  background:var(--card-bg);
+  background:#0f0f14;
   border:1px solid rgba(212, 175, 55, 0.3);
   border-radius:0;
   width:90%;
@@ -1277,12 +1278,12 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16.94 3.06h-3.44c-1.14 0-2.06.92-2.06 2.06v1.59h-2.06V5.12h-2.06v7.92h2.06v-2.06h2.06c1.14 0 2.06-.92 2.06-2.06V17.06h2.06l.28-2.06h-2.34V8.12h2.34l.28-2.06h2.06v13.94c0 1.14-.92 2.06-2.06 2.06zm-10.94 0H5.06c-1.14 0-2.06.92-2.06 2.06v13.94c0 1.14.92 2.06 2.06 2.06h2.06v-2.06h-2.06V5.12h2.06v1.59c0 1.14.92 2.06 2.06 2.06h2.06V3.06zm-10.94 0C3.28 3.06 2.34 3.98 2.34 5.12v13.94c0 1.14.92 2.06 2.06 2.06h13.94c1.14 0 2.06-.92 2.06-2.06V5.12c0-1.14-.92-2.06-2.06-2.06H5.06zm-5.06 2.06h2.06v13.94H0V5.12z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M17.6 2H6.4C4.97 2 4 2.97 4 4.4v15.2C4 21.03 4.97 22 6.4 22h11.2c1.43 0 2.4-1.03 2.4-2.4V4.4C20 2.97 19.03 2 17.6 2zM12 6.8c-2.47 0-4.4 1.98-4.4 4.4s1.93 4.4 4.4 4.4 4.4-1.98 4.4-4.4-1.93-4.4-4.4-4.4zm0 7.2c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M19.65 9.04l-4.84-.42-1.89-4.45c-.34-.81-.96-1.43-1.89-1.86-.93-.43-1.98-.66-3.13-.66-1.15 0-2.2.23-3.13.66-.93.43-1.55 1.05-1.89 1.86L9.55 8.62l-4.84.42c-.88.07-1.54.57-1.87 1.37-.33.8-.37 1.75-.1 2.65l4.84.42 1.89 4.45c.34.81.96 1.43 1.89 1.86.93.43 1.98.66 3.13.66 1.15 0 2.2-.23 3.13-.66.93-.43 1.55-1.05 1.89-1.86l4.84-.42c.88-.07 1.54-.57 1.87-1.37.33-.8.37-1.75.1-2.65zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M18.99 2.01c-.48-.48-1.08-.73-1.7-.73h-3.98c-.62 0-1.22.25-1.7.73L12 7.84 8.81.01c-.62-.48-1.22-.73-1.7-.73H4.01C3.39 0 2.79.25 2.01.73L.01 3.91l3.19 3.19L0 10.1l.01 3.91 3.19 3.19L0 19.99h1.7c.62 0 1.22-.25 1.7-.73L7.84 15.16l3.19 3.19 3.19-3.19 3.19 3.19 1.7-.73h3.98c.62 0 1.22.25 1.7.73l3.19 3.19.01-3.91L21.99 10.1l-3.19-3.19L24 3.91l-3.19-3.19Z"/></svg>
             <span>X</span>
           </a>
         </div>
