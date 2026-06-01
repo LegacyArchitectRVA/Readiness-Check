@@ -7,30 +7,6 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
-<!-- Rebuild timestamp: 2026-06-01T18:18:48.359Z -->
-<!-- Force rebuild: Creme background redesign -->
-<!-- Rebuild timestamp: 2026-06-01T18:18:31.538Z -->
-<!-- Rebuild timestamp: 2026-06-01T18:14:36.121Z -->
-<!-- Force rebuild: Complete UX/UI upgrade -->
-<!-- Rebuild timestamp: 2026-06-01T18:10:47.139Z -->
-<!-- Rebuild timestamp: 2026-06-01T18:07:53.878Z -->
-<!-- Rebuild timestamp: 2026-06-01T18:01:11.944Z -->
-<!-- Rebuild timestamp: 2026-06-01T17:11:57.864Z -->
-<!-- Force rebuild for live version -->
-<!-- Rebuild timestamp: 2026-06-01T17:09:27.371Z -->
-<!-- Rebuild timestamp: 2026-06-01T17:07:32.768Z -->
-<!-- Rebuild timestamp: 2026-06-01T17:05:01.471Z -->
-<!-- Rebuild timestamp: 2026-06-01T16:31:34.917Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:10:25.788Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:09:48.263Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:07:48.550Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:06:37.501Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:05:40.289Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:02:03.852Z -->
-<!-- Rebuild timestamp: 2026-06-01T04:00:55.108Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:56:27.854Z -->
-<!-- Force rebuild: 2026-06-01T03:56:27.854Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:51:56.377Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:45:59.369Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:45:07.162Z -->
 <!-- Rebuild timestamp: 2026-06-01T03:44:16.383Z -->
@@ -50,7 +26,8 @@
   --text-primary: #f5f5f5;
   --text-secondary: #c0c0c0;
   --text-muted: #8a8a8a;
-    --accent-gold: #D4AF37;
+  --text-gold: #F4E4BC;
+  --accent-gold: #D4AF37;
   --accent-gold-light: #F4E4BC;
   --accent-gold-dark: #B8860B;
   --ch1: #4A90A4;
@@ -63,7 +40,7 @@
   --recorded: #2E8B57;
   --missing: #8B4513;
   --na: #696969;
-  --ring-glow: #D4AF37;
+  --ring-glow: rgba(212, 175, 55, 0.2);
   --subtle-glow: rgba(212, 175, 55, 0.1);
 }
 
@@ -80,8 +57,8 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
 html{font-size:20.24px;}
 body{
   margin:0;
-  background:#FDF5E6;
-  color:#000000;
+  background:transparent;
+  color:var(--text-gold);
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
@@ -94,14 +71,14 @@ body{
   padding:30px 20px 40px;
 }
 .card{
-  background:#FDF5E6;
-  border:1px solid #D4AF37;
+  background:var(--card-bg);
+  border:1px solid rgba(212, 175, 55, 0.2);
   border-radius:0;
   padding:40px 30px 45px;
   position:relative;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  border-top: 1px solid #D4AF37;
-  border-bottom: 1px solid #D4AF37;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 .card::before{
   content:"";
@@ -110,7 +87,7 @@ body{
   left:0;
   right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
   opacity:0.3;
 }
 .card::after{
@@ -120,7 +97,7 @@ body{
   left:0;
   right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,#D4AF37,transparent);
+  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
   opacity:0.3;
 }
 /* STEP MARKS - Elegant */
@@ -133,16 +110,16 @@ body{
 .seg{
   flex:1;
   height:100%;
-  background:#CCCCCC;
+  background:var(--text-muted);
   border-radius:1px;
   transition:all 0.4s ease;
 }
 .seg.done{
-  background:#D4AF37;
+  background:var(--accent-gold);
   box-shadow:0 0 8px var(--subtle-glow);
 }
 .seg.active{
-  background:linear-gradient(90deg,#D4AF37,var(--accent-gold-light),#D4AF37);
+  background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-light),var(--accent-gold));
   background-size:200% 100%;
   animation:shimmer 3s linear infinite;
   box-shadow:0 0 12px var(--subtle-glow);
@@ -164,7 +141,7 @@ body{
   left:0;
   right:0;
   bottom:0;
-  background:rgba(0, 0, 0, 0.5);
+  background:rgba(15, 15, 20, 0.95);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -172,8 +149,8 @@ body{
   animation:modalFadeIn 0.3s ease;
 }
 .share-modal{
-  background:#FDF5E6;
-  border:1px solid #D4AF37;
+  background:var(--card-bg);
+  border:1px solid rgba(212, 175, 55, 0.3);
   border-radius:0;
   width:90%;
   max-width:500px;
@@ -183,7 +160,6 @@ body{
   box-shadow:0 0 40px rgba(0, 0, 0, 0.7);
   opacity:0;
   transform:translateY(-20px);
-  -webkit-overflow-scrolling:touch;
 }
 .share-modal-visible{
   opacity:1;
@@ -194,12 +170,12 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:20px 25px;
-  border-bottom:1px solid #D4AF37;
+  border-bottom:1px solid rgba(212, 175, 55, 0.2);
 }
 .share-modal-title{
   font-family:'Playfair Display',serif;
   font-size:18px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   margin:0;
   font-weight:500;
   font-style:italic;
@@ -207,21 +183,21 @@ body{
 .share-modal-close{
   font-family:'Montserrat',sans-serif;
   font-size:24px;
-  color:#000000;
+  color:var(--text-gold);
   cursor:pointer;
   line-height:1;
   transition:color 0.2s ease;
 }
 .share-modal-close:hover{
-  color:#D4AF37;
+  color:var(--accent-gold);
 }
 
 /* Close/Back to Site Button */
 .back-to-site-btn{
   width:100%;
   padding:14px 20px;
-  background:#FDF5E6;
-  border:1px solid #D4AF37;
+  background:transparent;
+  border:1px solid rgba(212, 175, 55, 0.4);
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-weight:500;
@@ -230,13 +206,13 @@ body{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:#000000;
+  color:var(--text-gold);
   transition:all 0.2s ease;
 }
 .back-to-site-btn:hover{
-  background:#FDF5E6;
-  border-color:#D4AF37;
-  color:#D4AF37;
+  background:rgba(212, 175, 55, 0.08);
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
 }
 
 /* Company Logo */
@@ -247,7 +223,7 @@ body{
   max-height:30%;
   margin:0 auto 20px;
   display:block;
-  opacity:0.95;
+  opacity:0.9;
   transform:scale(0.3);
   transform-origin:center;
 }
@@ -276,7 +252,7 @@ body{
 .share-score-display{
   font-family:'Playfair Display',serif;
   font-size:16px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   text-align:center;
   margin:0 0 25px;
   font-style:italic;
@@ -294,34 +270,34 @@ body{
   flex-direction:column;
   align-items:center;
   gap:8px;
-  padding:18px 12px;
-  background:#FDF5E6;
-  border:1px solid #D4AF37;
+  padding:15px 10px;
+  background:rgba(212, 175, 55, 0.03);
+  border:1px solid rgba(212, 175, 55, 0.3);
   border-radius:0;
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:#000000;
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
-  font-size:13px;
+  font-size:11px;
   font-weight:500;
   letter-spacing:0.5px;
 }
 .share-btn:hover,
 .share-action-btn:hover{
   background:rgba(212, 175, 55, 0.08);
-  border-color:#D4AF37;
+  border-color:var(--accent-gold);
 }
 .share-btn.x{
-  background:#FDF5E6;
-  border-color:#D4AF37;
+  background:rgba(212, 175, 55, 0.03);
+  border-color:rgba(212, 175, 55, 0.3);
 }
 .share-btn.x:hover{
   background:rgba(212, 175, 55, 0.08);
-  border-color:#D4AF37;
+  border-color:var(--accent-gold);
 }
 .share-btn.x .share-icon{
-  
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 .share-icon{
   width:24px;
@@ -344,7 +320,7 @@ body{
   font-size:26px;
   letter-spacing:4.4px;
   text-transform:uppercase;
-  color:#D4AF37;
+  color:var(--accent-gold);
   opacity:0.7;
   font-weight:500;
 }
@@ -352,19 +328,19 @@ body{
   font-family:'Cinzel',serif;
   font-size:30.25px;
   margin:0 0 13.2px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   font-weight:500;
   font-style:normal;
 }
 .sub{
-  color:#000000;
+  color:var(--text-gold);
   line-height:1.98;
   font-size:16.5px;
   font-family:'Cormorant Garamond',serif;
 }
 .rule{
   border:none;
-  border-top:1px solid #D4AF37;
+  border-top:1px solid rgba(212, 175, 55, 0.2);
   margin:25px 0;
 }
 /* ITEM TOGGLES - Elegant */
@@ -374,7 +350,7 @@ body{
   margin:0;
   background:transparent;
   transition:all 0.3s ease;
-  border-bottom:1px solid #D4AF37;
+  border-bottom:1px solid rgba(212, 175, 55, 0.1);
 }
 .toggle:hover{background:rgba(212, 175, 55, 0.02);}
 .toggle.aR{border-color:transparent;}
@@ -383,7 +359,7 @@ body{
 .trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
 .tlabel{
   font-size:16.5px;
-  color:#000000;
+  color:var(--text-gold);
   line-height:1.575;
   text-align:center;
   width:100%;
@@ -409,8 +385,8 @@ body{
 .not-business-owner-btn{
   width:auto;
   padding:14px 24px;
-  background:#D4AF37;
-  border:1px solid #D4AF37;
+  background:var(--accent-gold);
+  border:1px solid var(--accent-gold);
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-weight:600;
@@ -445,7 +421,7 @@ body{
   opacity:0.6;
   transition:opacity 0.2s ease;
   flex-shrink:0;
-  fill:#000000;
+  fill:var(--text-gold);
 }
 .info-icon:hover{
   opacity:1;
@@ -461,14 +437,14 @@ body{
   left:50%;
   transform:translateX(-50%);
   background:var(--card-bg);
-  border:1px solid #D4AF37;
+  border:1px solid rgba(212, 175, 55, 0.3);
   border-radius:4px;
   padding:12px 14px;
   width:280px;
   max-width:90vw;
   font-size:14px;
   line-height:1.5;
-  color:#000000;
+  color:var(--text-gold);
   box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
   white-space:nowrap;
   opacity:0;
@@ -487,31 +463,31 @@ body{
   left:50%;
   transform:translateX(-50%);
   border:6px solid transparent;
-  border-top-color:#D4AF37;
+  border-top-color:rgba(212, 175, 55, 0.3);
 }
 
 /* All items addressed badge - more standout */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:12.1px;letter-spacing:2.2px;text-transform:uppercase;
-  color:#D4AF37;
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-weight:600;
   padding:12px 16px;
   background:rgba(212, 175, 55, 0.1);
-  border:1px solid #D4AF37;
+  border:1px solid rgba(212, 175, 55, 0.4);
   border-radius:0;
 }
 .cpdot{
   width:6px;
   height:6px;
   border-radius:50%;
-  background:#D4AF37;
+  background:var(--accent-gold);
   box-shadow:0 0 8px var(--subtle-glow);
 }
 .opt{
   padding:8px 16px;
-  border:1px solid #D4AF37;
+  border:1px solid rgba(212, 175, 55, 0.4);
   cursor:pointer;
   border-radius:0;
   font-family:'Montserrat',sans-serif;
@@ -519,15 +495,15 @@ body{
   letter-spacing:2px;
   text-transform:uppercase;
   transition:all 0.2s ease;
-  color:#D4AF37;
+  color:var(--accent-gold);
   background:transparent;
   user-select:none;
   font-weight:500;
 }
 .opt:hover{
-  border-color:#D4AF37;
-  color:#D4AF37;
-  background:#FDF5E6;
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
+  background:rgba(212, 175, 55, 0.05);
 }
 .opt.oR{
   border-color:var(--recorded);
@@ -549,12 +525,12 @@ body{
 .counter-circle{
   display:inline-block;
   padding:6px 14px;
-  background:#FDF5E6;
-  border:1px solid #D4AF37;
+  background:rgba(212, 175, 55, 0.05);
+  border:1px solid rgba(212, 175, 55, 0.4);
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-size:12px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   letter-spacing:2px;
   box-shadow: none;
   font-weight:600;
@@ -563,7 +539,7 @@ body{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:20px;
   font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:#D4AF37;
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-weight:500;
 }
@@ -571,14 +547,14 @@ body{
   width:5px;
   height:5px;
   border-radius:50%;
-  background:#D4AF37;
+  background:var(--accent-gold);
   box-shadow:0 0 6px var(--subtle-glow);
 }
 /* BUTTONS - Elegant */
 button{
   width:100%;
   padding:16px 20px;
-  background:#D4AF37;
+  background:var(--accent-gold);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -612,14 +588,14 @@ button.start-btn{
 }
 button.alt{
   background:transparent;
-  color:#D4AF37;
-  border:1px solid #D4AF37;
+  color:var(--accent-gold);
+  border:1px solid rgba(212, 175, 55, 0.4);
   box-shadow:none;
 }
 button.alt:hover{
-  color:#D4AF37;
-  border-color:#D4AF37;
-  background:#FDF5E6;
+  color:var(--accent-gold);
+  border-color:var(--accent-gold);
+  background:rgba(212, 175, 55, 0.05);
 }
 button.sm{
   width:auto;
@@ -647,22 +623,22 @@ button.sm{
   letter-spacing:3px;
   text-transform:uppercase;
   color:var(--btn-color);
-  opacity:0.9;
+  opacity:0.8;
   margin-bottom:12px;
 }
 .ring{
-  width:240px;
-  height:240px;
+  width:160px;
+  height:160px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  border:4px solid #D4AF37;
-  background:rgba(10, 10, 15, 0.9);
+  border:2px solid rgba(198, 168, 90, 0.3);
+  background:rgba(10, 10, 15, 0.8);
   overflow:hidden;
-  margin:0 auto 24px;
-  box-shadow:0 0 30px #D4AF37;
+  margin:0 auto 12px;
+  box-shadow:0 0 24px var(--ring-glow);
   animation:float 4s ease-in-out infinite, ringGlow 2s ease-in-out infinite;
 }
 .ring::after{
@@ -677,25 +653,14 @@ button.sm{
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:72px;
-  color:#000000;
+  font-size:48px;
+  color:var(--btn-color);
   line-height:1;
-  text-shadow:0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-  font-weight:600;
+  text-shadow:0 0 8px var(--ring-glow);
 }
 .scoresub{
-  font-family:'Cinzel',serif;
-  font-size:18px;
-  color:#FFFFFF;
-  opacity:0.9;
-  text-shadow:0 0 5px rgba(255, 255, 255, 0.5);
-
-  font-size:16px;
-  color:#000000;
-  opacity:0.9;
-
   font-size:12px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   margin-top:2px;
   letter-spacing:1px;
 }
@@ -714,42 +679,28 @@ button.sm{
 .tL{color:#008000;}
 /* LEGEND */
 .legblock{
-  margin:20px 0;
-  padding:16px;
-  background:rgba(212, 175, 55, 0.02);
-  border:1px solid #D4AF37;
-  border-radius:0;
-
   margin-top:20px;
   padding:16px 18px;
-  border:1px solid #D4AF37;
+  border:1px solid rgba(212, 175, 55, 0.2);
   border-radius:8px;
   background:rgba(212, 175, 55, 0.02);
 }
-.legrow{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  margin-bottom:16px;
-margin-bottom:10px;}
+.legrow{margin-bottom:10px;}
 .legname{
   font-family:'Cinzel',serif;
-  font-size:18px;
+  font-size:22.5px;
   letter-spacing:1px;
-  font-weight:500;
 }
 .legrange{
-  font-size:18px;
-  opacity:0.8;
-  margin:4px 0;
-  color:#D4AF37;
-  font-weight:500;
+  font-size:14.4px;
+  opacity:.7;
+  margin:1px 0;
+  color:var(--accent-gold);
 }
 .legtext{
-  font-size:16px;
-  color:#000000;
+  font-size:9px;
+  color:var(--accent-gold);
   line-height:1.6;
-  opacity:0.9;
 }
 /* PILLAR BARS */
 .bkwrap{margin-top:20px;}
@@ -772,7 +723,7 @@ margin-bottom:10px;}
 }
 .pname{
   font-size:14px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   width:180px;
   flex-shrink:0;
   overflow:visible;
@@ -811,21 +762,30 @@ margin-bottom:10px;}
   text-transform:uppercase;
   color:var(--gold);
   opacity:0.8;
-  border-bottom:1px solid #D4AF37;
+  border-bottom:1px solid rgba(212, 175, 55, 0.2);
   padding-bottom:6px;
   margin-bottom:12px;
 }
-
+.gapitem{
+  display:flex;
+  gap:12px;
+  margin-bottom:12px;
+  padding:10px 12px;
+  border-radius:8px;
+  background:rgba(212, 175, 55, 0.03);
+  border-left:3px solid;
+  transition:all 0.2s ease;
+}
 .gapitem:hover{background:rgba(212, 175, 55, 0.06);}
-
+.gapname{
+  font-size:14px;
+  color:var(--accent-gold);
+  margin-bottom:2px;
+  flex:1;
+}
 .gapexpl{
-  font-size:15px;
-  color:#000000;
-  opacity:0.8;
-  line-height:1.6;
-
   font-size:12px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   line-height:1.55;
   font-style:italic;
   margin-bottom:2px;
@@ -836,7 +796,7 @@ margin-bottom:10px;}
   text-transform:uppercase;
   margin-top:2px;
   opacity:0.7;
-  color:#D4AF37;
+  color:var(--accent-gold);
 }
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
@@ -853,8 +813,8 @@ margin-bottom:10px;}
   padding:11px 13px;
   margin-top:5px;
   background:rgba(10, 10, 15, 0.7);
-  border:1px solid #D4AF37;
-  color:#D4AF37;
+  border:1px solid rgba(212, 175, 55, 0.2);
+  color:var(--accent-gold);
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
@@ -894,17 +854,17 @@ margin-bottom:10px;}
 .sharelink span{
   font-family:'Montserrat',sans-serif;
   font-size:26px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   letter-spacing:3px;
   text-transform:uppercase;
-  border-bottom:1px solid #D4AF37;
+  border-bottom:1px solid rgba(212, 175, 55, 0.3);
   transition:all 0.2s ease;
   padding-bottom:3px;
   font-weight:600;
 }
 .sharelink:hover span{
-  color:#D4AF37;
-  border-bottom-color:#D4AF37;
+  color:var(--accent-gold);
+  border-bottom-color:var(--accent-gold);
 }
 .footnote{
   margin-top:16px;
@@ -936,7 +896,7 @@ margin-bottom:10px;}
 .successhead{
   font-family:'Cinzel',serif;
   font-size:18.4px;
-  color:#D4AF37;
+  color:var(--accent-gold);
   margin-bottom:10px;
   letter-spacing:1.5px;
 }
@@ -977,17 +937,36 @@ margin-bottom:10px;}
   .scorenum{font-size:40px;}
   .inputrow{flex-direction:column;}
   .pname{width:120px;}
-  .gapitem{
-  display:flex;
-  gap:12px;
-  margin-bottom:16px;
-  padding:16px 20px;
-  border-radius:0;
-  background:#FDF5E6;
-  border-left:4px solid #D4AF37;
-  color:#000000;
-  transition:all 0.2s ease;
-}</style>
+  .gapitem{padding:8px 10px;}
+  /* Mobile font size increase for results section */
+  .legblock, .bkwrap, .gapwrap, .sub, .legtext, .legrow, .bktitle, .gaptitle{
+    font-size:115% !important;
+  }
+  /* Fix gap above checkmark on success page */
+  .successwrap{padding:10px 0 28px;}
+  /* Remove gap where logo was on results page */
+  .ringwrap{margin-top:0 !important;}
+  /* Scroll to top on start */
+  .start-btn{margin-top:20px;}
+}
+
+/* PILLAR ITEMS - Consistent sizing and spacing */
+.pillars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.pillar-item {
+  margin: 0;
+  padding: 0;
+}
+.pillar-item .info-tooltip {
+  display: inline-block;
+  font-size: 16.5px;
+  line-height: 1.575;
+}
+</style>
 </head>
 <body>
 <div id="wrap">
@@ -1000,14 +979,7 @@ const PILLARS=[
   {n:"02: Financial & Assets",d:"Banking, investments, and financial records.",i:["Banking Accounts","Credit Accounts","Investment & Retirement Accounts","Life Insurance Policies","Cryptocurrency & Digital Assets","Recurring Bills & Subscriptions"]},
   {n:"03: Household & Property",d:"Property, vehicles, and household documentation.",i:["Property Deeds & Titles","Vehicle Titles & Registration","Home Maintenance Records","Utility Accounts","Security Systems & Access Codes","Household Inventory Documentation"]},
   {n:"04: Health & Medical",d:"Insurance, records, and medical directives.",i:["Health Insurance Information","Medical Providers & Contacts","Prescription Information","Medical History & Records","Advance Healthcare Directives","Emergency Medical Instructions"]},
-  {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attor.gapname{
-  font-size:17px;
-  color:#000000;
-  font-weight:600;
-  margin-bottom:6px;
-  line-height:1.5;
-  flex:1;
-}ney","Beneficiary Designations","Estate Planning Documents"]},
+  {n:"05: Legal & Estate",d:"Wills, trusts, and legal authority.",i:["Last Will & Testament","Trust Documentation","Financial Power of Attorney","Healthcare Power of Attorney","Beneficiary Designations","Estate Planning Documents"]},
   {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
   {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
@@ -1058,17 +1030,6 @@ const EXPL={
 };
 let step=0,biz=false,isBack=false;
 const ANS={};
-
-
-function toggleFAQ(el) {
-  const item = el.closest('.faq-item');
-  item.classList.toggle('active');
-}
-
-function toggleFAQ(el) {
-  const faq = el.closest('.pillar-faq');
-  faq.classList.toggle('active');
-}
 function aP(){return PILLARS;}
 function calc(){
   let r=0,na=0,tot=0;
@@ -1109,13 +1070,14 @@ function rec(s){
 function pick(key,val){
   if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
   const pi=step-1;const ps=aP();
-  const done=ps[pi].i.every((_,ii)=>ANS[pi+'_'+ii]);
+  const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
   render();
   if(done){
     const b=document.getElementById("cpbadge");
     if(b)b.style.display="flex";
   }
-}function goN(){
+}
+function goN(){
   // Check if all questions in current pillar are answered
   const pi=step-1;
   const ps=aP();
@@ -1254,12 +1216,12 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M17.6 2H6.4C4.97 2 4 2.97 4 4.4v15.2C4 21.03 4.97 22 6.4 22h11.2c1.43 0 2.4-1.03 2.4-2.4V4.4C20 2.97 19.03 2 17.6 2zM12 6.8c-2.47 0-4.4 1.98-4.4 4.4s1.93 4.4 4.4 4.4 4.4-1.98 4.4-4.4-1.93-4.4-4.4-4.4zm0 7.2c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16.5 3.5c-.9 0-1.8.3-2.5.8-.7.5-1.3 1.2-1.7 2-.4.8-.6 1.8-.6 2.8 0 .6.1 1.2.2 1.8.1.6.4 1.1.7 1.5.3.4.7.7 1.2.9.5.2.9.4 1.4.5.5.1 1 .2 1.5.2.5 0 .9.1 1.4.2 2 .2.6 0 1.2-.2 1.8-.5.6-.9 1.2-1.5 1.7-.6.5-1.3.8-2.1.8-.9 0-1.8-.3-2.5-.8-.7-.5-1.3-1.2-1.7-2-.4-.8-.6-1.8-.6-2.8 0-.6-.1-1.2-.2-1.8-.1-.6-.4-1.1-.7-1.5-.3-.4-.7-.7-1.2-.9-.5-.2-.9-.4-1.4-.5-.5-.1-1-.2-1.5-.2-.6 0-1.2.2-1.8.5-.6.3-1.2.5-2 .5-.6 0-1.2-.2-1.8-.5-.6-.9-1.2-1.5-1.7-.6-.5-1.3-.8-2.1-.8zm-3.5 1.5c.5 0 1 .1 1.5.2.5.1 1 .3 1.4.5.4.2.7.5 1 .8.3.3.5.7.5 1.2 0 .5-.2 1-.5 1.5-.5.5-.8 1.2-1.2.4-.4.7-.8 1-1.2.3-.4.5-.8.5-1.2 0-.5.2-1 .5-1.5.5-.5.8-1.2 1.2-1.2.4-.4.7-.8 1-1.2.3-.3.7-.5 1-.8.4-.2.9-.3 1.4-.5.5-.1 1-.2 1.5-.2zm-8 8c1.1 0 2.2-.2 3.2-.5 1-.3 1.9-.8 2.7-1.5.8-.7 1.4-1.6 1.8-2.7.4-1.1.5-2.2.5-3.2 0-1.1-.1-2.2-.5-3.2-.4-1-.9-1.8-1.8-2.5-.9-.7-1.9-1.2-3-1.5-1.1-.3-2.2-.5-3.2-.5-1 0-2 .2-3 .5-1 .3-1.9.8-2.7 1.5-.8.7-1.4 1.6-1.8 2.7-.4 1.1-.5 2.2-.5 3.2 0 1.1.1 2.2.5 3.2.4 1 .9 1.8 1.8 2.5.9.7 1.9 1.2 3 1.5z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M18.99 2.01c-.48-.48-1.08-.73-1.7-.73h-3.98c-.62 0-1.22.25-1.7.73L12 7.84 8.81.01c-.62-.48-1.22-.73-1.7-.73H4.01C3.39 0 2.79.25 2.01.73L.01 3.91l3.19 3.19L0 10.1l.01 3.91 3.19 3.19L0 19.99h1.7c.62 0 1.22-.25 1.7-.73L7.84 15.16l3.19 3.19 3.19-3.19 3.19 3.19 1.7-.73h3.98c.62 0 1.22.25 1.7.73l3.19 3.19.01-3.91L21.99 10.1l-3.19-3.19L24 3.91l-3.19-3.19Z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.99 2.01c-.48-.48-1.08-.73-1.7-.73h-3.98c-.62 0-1.22.25-1.7.73L12 7.84 8.81.01c-.62-.48-1.22-.73-1.7-.73H4.01C3.39 0 2.79.25 2.01.73L.01 3.91l3.19 3.19L0 10.1l.01 3.91 3.19 3.19L0 19.99h1.7c.62 0 1.22-.25 1.7-.73L7.84 15.16l3.19 3.19 3.19-3.19 3.19 3.19 1.7-.73h3.98c.62 0 1.22.25 1.7.73l3.19 3.19.01-3.91L21.99 10.1l-3.19-3.19L24 3.91l-3.19-3.19Z"/></svg>
             <span>X</span>
           </a>
         </div>
@@ -1386,67 +1348,53 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch1);">01: Digital Life</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Credentials, accounts, and digital access.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch1);">01: Digital Life</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Credentials, accounts, and digital access.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch2);">02: Financial & Assets</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Banking, investments, and financial records.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch2);">02: Financial & Assets</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Banking, investments, and financial records.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch4);">03: Household & Property</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Property, vehicles, and household documentation.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch4);">03: Household & Property</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Property, vehicles, and household documentation.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch5);">04: Health & Medical</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Insurance, records, and medical directives.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch5);">04: Health & Medical</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Insurance, records, and medical directives.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch6);">05: Legal & Estate</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Wills, trusts, and legal authority.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch6);">05: Legal & Estate</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Wills, trusts, and legal authority.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch7);">06: Business Continuity</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Operations, agreements, and succession.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch7);">06: Business Continuity</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Operations, agreements, and succession.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <div class="pillar-faq">
-          <div class="pillar-faq-header" onclick="toggleFAQ(this)">
-            <span style="color:var(--ch3);">07: Legacy & Wishes</span>
-            <svg class="pillar-faq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <div class="pillar-faq-content">Personal instructions, history, and wishes.</div>
-        </div>
+        <span class="info-tooltip">
+          <span style="color:var(--ch3);">07: Legacy & Wishes</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Personal instructions, history, and wishes.</div>
+        </span>
       </div>
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
@@ -1534,7 +1482,7 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:#D4AF37;font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
+      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
@@ -1544,7 +1492,7 @@ function renderResults(app,ps){
       </div>
     </div>
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
-    <p class="sub" style="text-align:center;font-size:18px;margin:20px 0 30px;color:#000000;">Most households score between 40 and 65% on their first pass.</p>
+    <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
       <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86—100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
       <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71—85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
@@ -1565,7 +1513,7 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="goB()">Back</button>
       <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-    <div class="sharelink" onclick="window.shareScore()"><span style="color:#D4AF37;">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA</div>
   </div>`;
@@ -1580,7 +1528,7 @@ function renderSuccess(){
     "var(--ch2)": "rgba(248, 113, 113, 0.4)",
     "var(--ch3)": "rgba(226, 232, 240, 0.4)",
     "var(--ch4)": "rgba(52, 211, 153, 0.4)",
-    "var(--ch5)": "#D4AF37",
+    "var(--ch5)": "rgba(212, 175, 55, 0.4)",
     "var(--ch6)": "rgba(148, 163, 184, 0.4)",
     "var(--ch7)": "rgba(192, 132, 252, 0.4)"
   };
@@ -1593,7 +1541,7 @@ function renderSuccess(){
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
-    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:#D4AF37;">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
     <div class="footnote">Legacy Architect RVA</div>
