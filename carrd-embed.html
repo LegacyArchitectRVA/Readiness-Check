@@ -12,14 +12,13 @@
 :root{
   /* Elegant Color Palette */
   --bg-dark: #0f0f14;
-  --card-bg: transparent;
+  --card-bg: rgba(20, 20, 30, 0.98);
   --text-primary: #f5f5f5;
   --text-secondary: #c0c0c0;
   --text-muted: #8a8a8a;
   --accent-gold: #D4AF37;
   --accent-gold-light: #F4E4BC;
   --accent-gold-dark: #B8860B;
-  --text-gold: #F4E4BC;
   --ch1: #4A90A4;
   --ch2: #8B4513;
   --ch3: #E8E8E8;
@@ -45,10 +44,10 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{font-size:20.24px;}
-body{
+body{ color:var(--text-gold);
   margin:0;
   background:transparent;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
@@ -165,7 +164,7 @@ body{
 .share-modal-title{
   font-family:'Playfair Display',serif;
   font-size:18px;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   margin:0;
   font-weight:500;
   font-style:italic;
@@ -173,13 +172,13 @@ body{
 .share-modal-close{
   font-family:'Montserrat',sans-serif;
   font-size:24px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   cursor:pointer;
   line-height:1;
   transition:color 0.2s ease;
 }
 .share-modal-close:hover{
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
 }
 
 /* Close/Back to Site Button */
@@ -196,13 +195,13 @@ body{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   transition:all 0.2s ease;
 }
 .back-to-site-btn:hover{
   background:rgba(212, 175, 55, 0.08);
-  border-color:#F4E4BC !important;
-  color:#F4E4BC !important;
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
 }
 
 /* Company Logo */
@@ -242,7 +241,7 @@ body{
 .share-score-display{
   font-family:'Playfair Display',serif;
   font-size:20px;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   text-align:center;
   margin:0 0 25px;
   font-style:italic;
@@ -267,7 +266,7 @@ body{
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-size:11px;
   font-weight:500;
@@ -276,7 +275,7 @@ body{
 .share-btn:hover,
 .share-action-btn:hover{
   background:rgba(212, 175, 55, 0.08);
-  border-color:#F4E4BC !important;
+  border-color:var(--accent-gold);
 }
 .share-btn.x{
   background:rgba(0, 0, 0, 0.3);
@@ -305,10 +304,10 @@ body{
 /* TYPOGRAPHY - Refined */
 .mark{
   font-family:'Cinzel',serif;
-  font-size:26px;
+  font-size:13px;
   letter-spacing:4.4px;
   text-transform:uppercase;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   opacity:0.7;
   font-weight:500;
 }
@@ -316,12 +315,12 @@ body{
   font-family:'Cinzel',serif;
   font-size:30.25px;
   margin:0 0 13.2px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   font-weight:500;
   font-style:normal;
 }
 .sub{
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   line-height:1.98;
   font-size:16.5px;
   font-family:'Cormorant Garamond',serif;
@@ -347,7 +346,7 @@ body{
 .trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
 .tlabel{
   font-size:16.5px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   line-height:1.575;
   text-align:center;
   width:100%;
@@ -431,7 +430,7 @@ body{
   max-width:90vw;
   font-size:13px;
   line-height:1.5;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
   z-index:1000;
   opacity:0;
@@ -457,7 +456,7 @@ body{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:12.1px;letter-spacing:2.2px;text-transform:uppercase;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-weight:600;
   padding:12px 16px;
@@ -482,14 +481,14 @@ body{
   letter-spacing:2px;
   text-transform:uppercase;
   transition:all 0.2s ease;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   background:transparent;
   user-select:none;
   font-weight:500;
 }
 .opt:hover{
-  border-color:#F4E4BC !important;
-  color:#F4E4BC !important;
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
   background:rgba(212, 175, 55, 0.05);
 }
 .opt.oR{
@@ -498,8 +497,8 @@ body{
   background:rgba(46, 139, 87, 0.15);
 }
 .opt.oU{
-  border-color:#F4E4BC !important;
-  color:#F4E4BC !important;
+  border-color:#B22222;
+  color:#B22222;
   background:rgba(178, 34, 34, 0.15);
 }
 .opt.oN{
@@ -517,7 +516,7 @@ body{
   border-radius:0;
   font-family:'Montserrat',sans-serif;
   font-size:12px;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   letter-spacing:2px;
   box-shadow: none;
   font-weight:600;
@@ -526,7 +525,7 @@ body{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:20px;
   font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:#F4E4BC !important;
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-weight:500;
 }
@@ -575,13 +574,13 @@ button.start-btn{
 }
 button.alt{
   background:transparent;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   border:1px solid rgba(212, 175, 55, 0.4);
   box-shadow:none;
 }
 button.alt:hover{
-  color:#F4E4BC !important;
-  border-color:#F4E4BC !important;
+  color:var(--accent-gold);
+  border-color:var(--accent-gold);
   background:rgba(212, 175, 55, 0.05);
 }
 button.sm{
@@ -647,7 +646,7 @@ button.sm{
 }
 .scoresub{
   font-size:12px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   margin-top:2px;
   letter-spacing:1px;
 }
@@ -660,7 +659,7 @@ button.sm{
   margin-bottom:4px;
   color:var(--btn-color);
 }
-.tR{color:#F4E4BC !important;}
+.tR{color:#B22222;}
 .tD{color:#8B4513;}
 .tS{color:#D4AF37;}
 .tL{color:#008000;}
@@ -682,11 +681,11 @@ button.sm{
   font-size:14.4px;
   opacity:.7;
   margin:1px 0;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
 }
 .legtext{
   font-size:15.6px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   line-height:1.6;
 }
 /* PILLAR BARS */
@@ -710,7 +709,7 @@ button.sm{
 }
 .pname{
   font-size:14px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   width:180px;
   flex-shrink:0;
   overflow:visible;
@@ -766,13 +765,13 @@ button.sm{
 .gapitem:hover{background:rgba(212, 175, 55, 0.06);}
 .gapname{
   font-size:14px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   margin-bottom:2px;
   flex:1;
 }
 .gapexpl{
   font-size:12px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   line-height:1.55;
   font-style:italic;
   margin-bottom:2px;
@@ -783,16 +782,7 @@ button.sm{
   text-transform:uppercase;
   margin-top:2px;
   opacity:0.7;
-  color:#F4E4BC !important;
-}
-/* PILLARS CONTAINER */
-.pillars-container{
-  background:rgba(212, 175, 55, 0.05);
-  border:1px solid rgba(212, 175, 55, 0.3);
-  border-radius:0;
-  padding:20px 15px;
-  margin:16px 0;
-  box-shadow:0 0 10px rgba(212, 175, 55, 0.1);
+  color:var(--text-gold);
 }
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
@@ -810,7 +800,7 @@ button.sm{
   margin-top:5px;
   background:rgba(10, 10, 15, 0.7);
   border:1px solid rgba(212, 175, 55, 0.2);
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
@@ -850,7 +840,7 @@ button.sm{
 .sharelink span{
   font-family:'Montserrat',sans-serif;
   font-size:13px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   letter-spacing:3px;
   text-transform:uppercase;
   border-bottom:1px solid rgba(212, 175, 55, 0.3);
@@ -859,8 +849,8 @@ button.sm{
   font-weight:600;
 }
 .sharelink:hover span{
-  color:#F4E4BC !important;
-  border-bottom-color:#F4E4BC !important;
+  color:var(--accent-gold);
+  border-bottom-color:var(--accent-gold);
 }
 .footnote{
   margin-top:16px;
@@ -892,7 +882,7 @@ button.sm{
 .successhead{
   font-family:'Cinzel',serif;
   font-size:18.4px;
-  color:#F4E4BC !important;
+  color:var(--text-gold);
   margin-bottom:10px;
   letter-spacing:1.5px;
 }
@@ -1314,26 +1304,24 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`<div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
-    <p class="sub" style="margin-bottom:18px;color:#F4E4BC !important;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
-    <p class="sub" style="margin-bottom:8px;color:#F4E4BC !important;"><strong>You will review seven pillars:</strong></p>
-    <div class="pillars-container">
-    <p class="sub" style="margin-bottom:16px;line-height:1.9;color:#F4E4BC !important;">
+    <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>You will review seven pillars:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.9;color:var(--text-gold);">
       <span style="color:var(--ch1);">01: Digital Life</span><br>
       <span style="color:var(--ch2);">02: Financial & Assets</span><br>
-      <span style="color:#F4E4BC !important;">03: Household & Property</span><br>
+      <span style="color:var(--ch4);">03: Household & Property</span><br>
       <span style="color:var(--ch5);">04: Health & Medical</span><br>
-      <span style="color:#F4E4BC !important;">05: Legal & Estate</span><br>
+      <span style="color:var(--ch6);">05: Legal & Estate</span><br>
       <span style="color:var(--ch7);">06: Business Continuity</span><br>
       <span style="color:var(--ch3);">07: Legacy & Wishes</span>
     </p>
-    </div>
-    <p class="sub" style="margin-bottom:8px;color:#F4E4BC !important;"><strong>For each item, simply select one of the following:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:#F4E4BC !important;">
-      <strong style="color:#F4E4BC !important;">Recorded</strong> – It is documented and someone else could access it.<br>
-      <strong style="color:#F4E4BC !important;">Undocumented</strong> – It exists but is not documented.<br>
-      <strong style="color:#F4E4BC !important;">Not Applicable</strong> – It does not apply to your situation.
+    <p class="sub" style="margin-bottom:8px;color:var(--text-gold);"><strong>For each item, simply select one of the following:</strong></p>
+    <p class="sub" style="margin-bottom:16px;line-height:1.8;color:var(--text-gold);">
+      <strong style="color:var(--ch4);">Recorded</strong> – It is documented and someone else could access it.<br>
+      <strong style="color:#B22222;">Undocumented</strong> – It exists but is not documented.<br>
+      <strong style="color:var(--ch6);">Not Applicable</strong> – It does not apply to your situation.
     </p>
-    <p class="sub" style="margin-bottom:20px;color:#F4E4BC !important;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
+    <p class="sub" style="margin-bottom:20px;">There are no wrong answers. This is simply a clear picture of where things stand today and where order can be added.</p>
     <button class="start-btn" onclick="biz=false;step=1;isBack=false;window.scrollTo({top:0,behavior:'smooth'});render();">Start Analysis</button>
   </div>`;}
 function renderQ(app,ps){
@@ -1413,7 +1401,7 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:#F4E4BC !important;font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
+      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
@@ -1444,7 +1432,7 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="goB()">Back</button>
       <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-    <div class="sharelink" onclick="window.shareScore()"><span style="color:#F4E4BC !important;">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>Legacy Architect RVA</div>
   </div>`;
@@ -1472,7 +1460,7 @@ function renderSuccess(){
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
-    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:#F4E4BC !important;">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
     <div class="footnote">Legacy Architect RVA</div>
@@ -1495,8 +1483,5 @@ render();
 </script>
 </body>
 </html>
-
-
-
 
 
