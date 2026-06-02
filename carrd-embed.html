@@ -505,20 +505,12 @@ body{
   color:var(--accent-gold);
   background:rgba(212, 175, 55, 0.05);
 }
-.opt.oR{
-  border-color:var(--recorded);
-  color:var(--recorded);
-  background:rgba(46, 139, 87, 0.15);
-}
-.opt.oU{
-  border-color:#B22222;
-  color:#B22222;
-  background:rgba(178, 34, 34, 0.15);
-}
-.opt.oN{
-  border-color:#E0E0E0;
-  color:#E0E0E0;
-  background:rgba(255, 255, 255, 0.3);
+.opt.oR,
+.opt.oU,
+.opt.oN {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-gold) !important;
 }
 /* COUNTER CIRCLE - Elegant */
 .counter{text-align:center;margin:15px 0 20px;}
@@ -1564,6 +1556,7 @@ render();
 </script>
 </body>
 </html>
+
 
 
 
