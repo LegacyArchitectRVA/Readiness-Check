@@ -20,25 +20,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Elegant Color Palette */
-  --bg-dark: #0f0f14;
-  --card-bg: transparent;
-  --text-primary: #f5f5f5;
-  --text-secondary: #c0c0c0;
-  --text-muted: #8a8a8a;
-  --text-gold: #F4E4BC;
+  --bg-light: #F4E4BC;
+  --card-bg: #F4E4BC;
+  --text-black: #000000;
+  --text-gold: #000000;
+  --text-secondary: #333333;
+  --text-muted: #555555;
   --accent-gold: #D4AF37;
   --accent-gold-light: #F4E4BC;
   --accent-gold-dark: #B8860B;
-  --ch1: #4A90A4;
-  --ch2: #8B4513;
-  --ch3: #E8E8E8;
-  --ch4: #2E8B57;
-  --ch5: #D4AF37;
-  --ch6: #696969;
+  --metallic-gold: #FFD700;
+  --ch1: #004080;
+  --ch2: #8B0000;
+  --ch3: #000000;
+  --ch4: #006400;
+  --ch5: #8B4513;
+  --ch6: #333333;
   --ch7: #4B0082;
-  --recorded: #2E8B57;
-  --missing: #8B4513;
+  --recorded: #006400;
+  --missing: #8B0000;
+  --na: #333333;
+  --ring-glow: rgba(212, 175, 55, 0.2);
+  --subtle-glow: rgba(212, 175, 55, 0.1);
+}
+  --subtle-glow: rgba(212, 175, 55, 0.1);
+}
+  --subtle-glow: rgba(212, 175, 55, 0.1);
+}
   --na: #696969;
   --ring-glow: rgba(212, 175, 55, 0.2);
   --subtle-glow: rgba(212, 175, 55, 0.1);
@@ -54,16 +62,17 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{font-size:20.24px;}
+html{font-size:18px;}
 body{
   margin:0;
-  background:transparent;
-  color:var(--text-gold);
+  background:#F4E4BC;
+  color:#000000;
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
   overflow-x:hidden;
-  line-height:1.6;
+  line-height:1.8;
+  font-size:18px;
 }
 #wrap{
   max-width:1000px;
@@ -71,14 +80,15 @@ body{
   padding:30px 20px 40px;
 }
 .card{
-  background:var(--card-bg);
-  border:1px solid rgba(212, 175, 55, 0.2);
+  background:#F4E4BC;
+  border:2px solid #FFD700;
   border-radius:0;
   padding:40px 30px 45px;
   position:relative;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  border-top: 2px solid #FFD700;
+  border-bottom: 2px solid #FFD700;
+}
 }
 .card::before{
   content:"";
@@ -86,9 +96,8 @@ body{
   top:0;
   left:0;
   right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
-  opacity:0.3;
+  height:2px;
+  background:#FFD700;
 }
 .card::after{
   content:"";
@@ -96,8 +105,9 @@ body{
   bottom:0;
   left:0;
   right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
+  height:2px;
+  background:#FFD700;
+}
   opacity:0.3;
 }
 /* STEP MARKS - Elegant */
@@ -317,25 +327,27 @@ body{
 /* TYPOGRAPHY - Refined */
 .mark{
   font-family:'Cinzel',serif;
-  font-size:26px;
+  font-size:28px;
   letter-spacing:4.4px;
   text-transform:uppercase;
-  color:var(--accent-gold);
-  opacity:0.7;
-  font-weight:500;
+  color:#000000;
+  font-weight:bold;
+  opacity:0.9;
+  margin-bottom:12px;
+}
 }
 .heading{
   font-family:'Cinzel',serif;
-  font-size:30.25px;
+  font-size:32px;
   margin:0 0 13.2px;
-  color:var(--accent-gold);
-  font-weight:500;
+  color:#000000;
+  font-weight:bold;
   font-style:normal;
 }
 .sub{
-  color:var(--text-gold);
-  line-height:1.98;
-  font-size:16.5px;
+  color:#000000;
+  line-height:2;
+  font-size:18px;
   font-family:'Cormorant Garamond',serif;
 }
 .rule{
@@ -358,13 +370,14 @@ body{
 .toggle.aN{border-color:transparent;}
 .trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
 .tlabel{
-  font-size:16.5px;
-  color:var(--text-gold);
+  font-size:18px;
+  color:#000000;
   line-height:1.575;
   text-align:center;
   width:100%;
   font-family:'Cormorant Garamond',serif;
-  font-weight:400;
+  font-weight:bold;
+}
 }
 .opts{display:flex;gap:8.4px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
@@ -753,7 +766,7 @@ button.sm{
   text-align:right;
   flex-shrink:0;
 }
-/* GAPS — color coded by severity */
+/* GAPS  color coded by severity */
 .gapwrap{margin-top:20px;}
 .gaptitle{
   font-family:'Cinzel',serif;
@@ -1009,7 +1022,7 @@ const EXPL={
   "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
   "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
   "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
-  "Last Will & Testament":"Without a will, assets distribute by state law — not your intentions.",
+  "Last Will & Testament":"Without a will, assets distribute by state law  not your intentions.",
   "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
   "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
   "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
@@ -1122,14 +1135,14 @@ function animRing(el,tgt,color="var(--btn-color)"){
     const a=Math.round(e*tgt*3.6);
     // Convert CSS variable to RGB for conic gradient
     const colorMap = {
-      "var(--ch1)": "rgba(96, 165, 250, 0.9)",
-      "var(--ch2)": "rgba(248, 113, 113, 0.9)",
-      "var(--ch3)": "rgba(226, 232, 240, 0.9)",
-      "var(--ch4)": "rgba(52, 211, 153, 0.9)",
-      "var(--ch5)": "rgba(212, 175, 55, 0.9)",
-      "var(--ch6)": "rgba(148, 163, 184, 0.9)",
-      "var(--ch7)": "rgba(192, 132, 252, 0.9)",
-      "var(--btn-color)": "rgba(198, 168, 90, 0.9)"
+      "var(--ch1)": "rgba(0, 64, 128, 0.9)",
+      "var(--ch2)": "rgba(139, 0, 0, 0.9)",
+      "var(--ch3)": "rgba(0, 0, 0, 0.9)",
+      "var(--ch4)": "rgba(0, 100, 0, 0.9)",
+      "var(--ch5)": "rgba(139, 69, 19, 0.9)",
+      "var(--ch6)": "rgba(51, 51, 51, 0.9)",
+      "var(--ch7)": "rgba(75, 0, 130, 0.9)",
+      "var(--btn-color)": "rgba(212, 175, 55, 0.9)"
     };
     const baseColor = colorMap[color] || "rgba(198, 168, 90, 0.9)";
     const darkColor = baseColor.replace("0.9", "0.7");
@@ -1192,7 +1205,7 @@ function showShareModal(score, tierLabel, text, url) {
         <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
       </div>
       <div class="share-modal-content">
-      <p class="share-score-display">${score}% — ${tierLabel}</p>
+      <p class="share-score-display">${score}%  ${tierLabel}</p>
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
@@ -1399,9 +1412,9 @@ function renderIntro(app,ps){
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
-      <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
-      <strong style="color:var(--ch2);">Undocumented</strong> — It exists but is not documented.<br>
-      <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
+      <strong style="color:var(--ch4);">Recorded</strong>  It is documented and someone else could access it.<br>
+      <strong style="color:var(--ch2);">Undocumented</strong>  It exists but is not documented.<br>
+      <strong style="color:var(--ch6);">Not Applicable</strong>  It does not apply to your situation.
     </p>
     <button onclick="goN()">Start Analysis</button>
   </div>`;
@@ -1494,10 +1507,10 @@ function renderResults(app,ps){
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86—100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71—85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61—70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0—60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">7185%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">6170%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">060%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
     <hr class="rule">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
@@ -1524,21 +1537,20 @@ function renderSuccess(){
   const tierLabel = tLabel(d.pct);
   const tierColor = d.pct >= 86 ? "var(--ch4)" : d.pct >= 71 ? "var(--ch5)" : d.pct >= 61 ? "var(--ch2)" : "#B22222";
   const colorMap = {
-    "var(--ch1)": "rgba(96, 165, 250, 0.4)",
-    "var(--ch2)": "rgba(248, 113, 113, 0.4)",
-    "var(--ch3)": "rgba(226, 232, 240, 0.4)",
-    "var(--ch4)": "rgba(52, 211, 153, 0.4)",
-    "var(--ch5)": "rgba(212, 175, 55, 0.4)",
-    "var(--ch6)": "rgba(148, 163, 184, 0.4)",
-    "var(--ch7)": "rgba(192, 132, 252, 0.4)"
+  const colorMap = {
+    "var(--ch1)": "rgba(0, 64, 128, 0.4)",
+    "var(--ch2)": "rgba(139, 0, 0, 0.4)",
+    "var(--ch3)": "rgba(0, 0, 0, 0.4)",
+    "var(--ch4)": "rgba(0, 100, 0, 0.4)",
+    "var(--ch5)": "rgba(139, 69, 19, 0.4)",
+    "var(--ch6)": "rgba(51, 51, 51, 0.4)",
+    "var(--ch7)": "rgba(75, 0, 130, 0.4)"
   };
-  const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
-  document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};"></div>
     <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
     <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
-      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}%  ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
@@ -1564,6 +1576,7 @@ render();
 </script>
 </body>
 </html>
+
 
 
 
