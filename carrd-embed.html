@@ -673,6 +673,12 @@ button:active{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;
 }
+.roman-numeral{
+  font-family:'Cinzel',serif;
+  color:var(--accent-gold);
+  font-weight:600;
+  margin-right:8px;
+}
 .tlabel .info-tooltip{
   display:inline-block;
 }
@@ -1562,6 +1568,12 @@ function rec(s){
   if(s<86)return"Strong positioning. Focus on completeness in your remaining gaps and an annual review cadence.";
   return"Excellent posture. Ensure your successors know precisely where everything lives and how to access it.";
 }
+// Convert number to Roman numeral (1-6)
+function toRoman(num) {
+  const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+  return romanNumerals[num - 1] || '';
+}
+
 function pick(key,val){
   const previousValue = ANS[key];
   if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
@@ -2080,7 +2092,7 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
       <strong style="color:var(--missing);">Undocumented</strong> — It exists but is not documented.<br>
-      <strong style="color:var(--na);">Not Applicable</strong> — It does not apply to your situation.
+      <strong style="color:var(--accent-gold);">Not Applicable</strong> — It does not apply to your situation.
     </p>
     
     <!-- Social proof -->
@@ -2131,11 +2143,12 @@ function renderIntro(app,ps){
     const key=pi+"_"+idx;const val=ANS[key]||"";
     const tc=val==="R"?"aR":val==="U"?"aU":"";
     const expl=EXPL[item]||"";
+    const romanNumeral = toRoman(idx + 1);
     html+=`<div class="toggle ${tc}" id="toggle-${key}">
       <div class="trow">
         <div class="tlabel">
           <span class="info-tooltip">
-            ${item}
+            <span class="roman-numeral">${romanNumeral}. </span>${item}
             <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             <div class="tooltip-content">${expl}</div>
           </span>
