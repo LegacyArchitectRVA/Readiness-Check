@@ -20,28 +20,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Elegant Color Palette */
-  --bg-dark: #0f0f14;
-  --card-bg: transparent;
-  --text-primary: #f5f5f5;
-  --text-secondary: #c0c0c0;
-  --text-muted: #8a8a8a;
-  --text-gold: #F4E4BC;
-  --accent-gold: #D4AF37;
-  --accent-gold-light: #F4E4BC;
-  --accent-gold-dark: #B8860B;
-  --ch1: #4A90A4;
-  --ch2: #8B4513;
-  --ch3: #E8E8E8;
-  --ch4: #2E8B57;
-  --ch5: #D4AF37;
-  --ch6: #696969;
-  --ch7: #4B0082;
-  --recorded: #2E8B57;
-  --missing: #8B4513;
-  --na: #696969;
-  --ring-glow: rgba(212, 175, 55, 0.2);
-  --subtle-glow: rgba(212, 175, 55, 0.1);
+  /* Professional Color Palette - Legacy Architect RVA */
+  --bg-dark: #1a1a2e;
+  --card-bg: rgba(26, 26, 46, 0.95);
+  --text-primary: #f8f8f8;
+  --text-secondary: #d0d0d0;
+  --text-muted: #9a9a9a;
+  --text-gold: #F5E6CA;
+  --accent-gold: #C9A227;
+  --accent-gold-light: #F5E6CA;
+  --accent-gold-dark: #A67C02;
+  --ch1: #3B82F6;
+  --ch2: #6B46C1;
+  --ch3: #E5E7EB;
+  --ch4: #10B981;
+  --ch5: #F59E0B;
+  --ch6: #6B7280;
+  --ch7: #8B5CF6;
+  --recorded: #10B981;
+  --missing: #EF4444;
+  --na: #6B7280;
+  --ring-glow: rgba(201, 162, 39, 0.3);
+  --subtle-glow: rgba(201, 162, 39, 0.15);
 }
 
 /* Hide Carrd's parent logo on landing page */
@@ -57,7 +57,7 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
 html{font-size:20.24px;}
 body{
   margin:0;
-  background:transparent;
+  background:var(--bg-dark);
   color:var(--text-gold);
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
@@ -68,17 +68,17 @@ body{
 #wrap{
   max-width:1000px;
   margin:0 auto;
-  padding:30px 20px 40px;
+  padding:20px 15px 30px;
 }
 .card{
   background:var(--card-bg);
-  border:1px solid rgba(212, 175, 55, 0.2);
+  border:1px solid rgba(201, 162, 39, 0.25);
   border-radius:0;
-  padding:40px 30px 45px;
+  padding:30px 20px 35px;
   position:relative;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(201, 162, 39, 0.35);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.35);
 }
 .card::before{
   content:"";
@@ -141,7 +141,7 @@ body{
   left:0;
   right:0;
   bottom:0;
-  background:rgba(15, 15, 20, 0.95);
+  background:rgba(26, 26, 46, 0.98);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -150,14 +150,14 @@ body{
 }
 .share-modal{
   background:var(--card-bg);
-  border:1px solid rgba(212, 175, 55, 0.3);
+  border:1px solid rgba(201, 162, 39, 0.35);
   border-radius:0;
   width:90%;
-  max-width:500px;
-  max-height:90vh;
+  max-width:480px;
+  max-height:85vh;
   overflow-y:auto;
   animation:modalSlideIn 0.3s ease;
-  box-shadow:0 0 40px rgba(0, 0, 0, 0.7);
+  box-shadow:0 0 40px rgba(0, 0, 0, 0.8);
   opacity:0;
   transform:translateY(-20px);
 }
@@ -169,12 +169,12 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 25px;
-  border-bottom:1px solid rgba(212, 175, 55, 0.2);
+  padding:16px 20px;
+  border-bottom:1px solid rgba(201, 162, 39, 0.25);
 }
 .share-modal-title{
   font-family:'Playfair Display',serif;
-  font-size:18px;
+  font-size:17px;
   color:var(--accent-gold);
   margin:0;
   font-weight:500;
@@ -182,7 +182,7 @@ body{
 }
 .share-modal-close{
   font-family:'Montserrat',sans-serif;
-  font-size:24px;
+  font-size:22px;
   color:var(--text-gold);
   cursor:pointer;
   line-height:1;
@@ -247,53 +247,71 @@ body{
   }
 }
 .share-modal-content{
-  padding:25px;
+  padding:20px;
+  text-align:center;
 }
 .share-score-display{
   font-family:'Playfair Display',serif;
-  font-size:16px;
+  font-size:17px;
   color:var(--accent-gold);
   text-align:center;
-  margin:0 0 25px;
+  margin:0 0 16px;
   font-style:italic;
   font-weight:500;
+}
+/* Official Logo in Share Modal */
+.share-modal-logo{
+  width:auto;
+  height:auto;
+  max-width:80%;
+  max-height:60px;
+  margin:0 auto 20px;
+  display:block;
+  opacity:0.95;
+  filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.4));
 }
 .share-platforms{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:12px;
-  margin-bottom:20px;
+  gap:8px;
+  margin-bottom:16px;
+}
+@media(max-width:480px){
+  .share-platforms{
+    grid-template-columns:repeat(2, 1fr);
+    gap:6px;
+  }
 }
 .share-btn,
 .share-action-btn{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:8px;
-  padding:15px 10px;
-  background:rgba(212, 175, 55, 0.03);
-  border:1px solid rgba(212, 175, 55, 0.3);
+  gap:6px;
+  padding:12px 8px;
+  background:rgba(201, 162, 39, 0.05);
+  border:1px solid rgba(201, 162, 39, 0.3);
   border-radius:0;
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
   color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
-  font-size:11px;
+  font-size:10px;
   font-weight:500;
   letter-spacing:0.5px;
 }
 .share-btn:hover,
 .share-action-btn:hover{
-  background:rgba(212, 175, 55, 0.08);
+  background:rgba(201, 162, 39, 0.12);
   border-color:var(--accent-gold);
 }
 .share-btn.x{
-  background:rgba(212, 175, 55, 0.03);
-  border-color:rgba(212, 175, 55, 0.3);
+  background:rgba(201, 162, 39, 0.05);
+  border-color:rgba(201, 162, 39, 0.3);
 }
 .share-btn.x:hover{
-  background:rgba(212, 175, 55, 0.08);
+  background:rgba(201, 162, 39, 0.12);
   border-color:var(--accent-gold);
 }
 .share-btn.x .share-icon{
@@ -312,7 +330,8 @@ body{
 .share-actions{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
-  gap:12px;
+  gap:8px;
+  margin-top:12px;
 }
 /* TYPOGRAPHY - Refined */
 .mark{
@@ -370,14 +389,14 @@ body{
 
 /* Mobile spacing fix for landing page - remove gap where logo was */
 @media(max-width:768px){
-  .card{padding:16px 12px 24px;}
-  .sub{line-height:1.7;}
+  .card{padding:12px 10px 20px;}
+  .sub{line-height:1.6;}
   /* Reduce top margin on landing page content */
   #app > div:first-child > p:first-child {
-    margin-bottom: 8px !important;
+    margin-bottom: 6px !important;
   }
   #app > div:first-child > p:nth-child(2) {
-    margin-bottom: 12px !important;
+    margin-bottom: 10px !important;
   }
 }
 
@@ -619,58 +638,59 @@ button.sm{
 }
 .ringlabel{
   font-family:'Cinzel',serif;
-  font-size:17px;
-  letter-spacing:3px;
+  font-size:16px;
+  letter-spacing:2px;
   text-transform:uppercase;
-  color:var(--btn-color);
-  opacity:0.8;
+  color:var(--accent-gold);
+  opacity:0.9;
   margin-bottom:12px;
 }
 .ring{
-  width:160px;
-  height:160px;
+  width:140px;
+  height:140px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  border:2px solid rgba(198, 168, 90, 0.3);
-  background:rgba(10, 10, 15, 0.8);
+  border:2px solid rgba(201, 162, 39, 0.4);
+  background:rgba(26, 26, 46, 0.9);
   overflow:hidden;
-  margin:0 auto 12px;
-  box-shadow:0 0 24px var(--ring-glow);
+  margin:0 auto 10px;
+  box-shadow:0 0 20px var(--ring-glow);
   animation:float 4s ease-in-out infinite, ringGlow 2s ease-in-out infinite;
 }
 .ring::after{
   content:"";
   position:absolute;
-  inset:10px;
+  inset:8px;
   border-radius:50%;
-  border:1px solid rgba(198, 168, 90, 0.2);
+  border:1px solid rgba(201, 162, 39, 0.25);
   pointer-events:none;
 }
 .ringconic{position:absolute;inset:-42%;border-radius:50%;}
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:48px;
-  color:var(--btn-color);
+  font-size:40px;
+  color:var(--accent-gold);
   line-height:1;
   text-shadow:0 0 8px var(--ring-glow);
 }
 .scoresub{
-  font-size:12px;
-  color:var(--accent-gold);
+  font-size:11px;
+  color:var(--accent-gold-light);
   margin-top:2px;
   letter-spacing:1px;
 }
 .tierbadge{
   text-align:center;
   font-family:'Cinzel',serif;
-  letter-spacing:2px;
-  font-size:26px;
+  letter-spacing:1.5px;
+  font-size:24px;
   text-transform:uppercase;
   margin-bottom:4px;
+  color:var(--accent-gold);
   color:var(--btn-color);
 }
 .tR{color:#B22222;}
@@ -933,8 +953,10 @@ button.sm{
   .trow{flex-direction:column;align-items:center;}
   .tlabel{text-align:center;}
   .opts{justify-content:center;}
-  .ring{width:140px;height:140px;}
-  .scorenum{font-size:40px;}
+  .ring{width:120px;height:120px;}
+  .scorenum{font-size:32px;}
+  .ringlabel{font-size:18px !important;}
+  .tierbadge{font-size:20px !important;}
   .inputrow{flex-direction:column;}
   .pname{width:120px;}
   .gapitem{padding:8px 10px;}
@@ -1192,7 +1214,8 @@ function showShareModal(score, tierLabel, text, url) {
         <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
       </div>
       <div class="share-modal-content">
-      <p class="share-score-display">${score}% — ${tierLabel}</p>
+        <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="share-modal-logo">
+        <p class="share-score-display">${score}% — ${tierLabel}</p>
         <div class="share-platforms">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
