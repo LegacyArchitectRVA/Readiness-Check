@@ -1650,11 +1650,10 @@ function markAllAsNAAndScroll(){
   markAllAsNA();
   setTimeout(() => {
     // Try multiple selectors to find the continue button
-    let btn = document.querySelector('button[onclick="goN()"]');
-    if(!btn) btn = document.querySelector('button[onclick*="goN"]');
-    if(!btn) btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.includes('Continue'));
+    let btn = document.querySelector('button[onclick*="goN"]');
+    if(!btn) btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'Continue');
     if(btn) btn.scrollIntoView({behavior:'smooth', block:'center'});
-  }, 300);
+  }, 400);
 }
 
 // Focus next toggle after selecting an answer
@@ -2029,49 +2028,49 @@ function renderIntro(app,ps){
     <div class="pillars-container">
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch1);">01: Digital Life</span>
+          <span style="color:#ffffff;">01: Digital Life</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Credentials, accounts, and digital access.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch2);">02: Financial & Assets</span>
+          <span style="color:#ffffff;">02: Financial & Assets</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Banking, investments, and financial records.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch4);">03: Household & Property</span>
+          <span style="color:#ffffff;">03: Household & Property</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Property, vehicles, and household documentation.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch5);">04: Health & Medical</span>
+          <span style="color:#ffffff;">04: Health & Medical</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Insurance, records, and medical directives.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch6);">05: Legal & Estate</span>
+          <span style="color:#ffffff;">05: Legal & Estate</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Wills, trusts, and legal authority.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch7);">06: Business Continuity</span>
+          <span style="color:#ffffff;">06: Business Continuity</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Operations, agreements, and succession.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:var(--ch3);">07: Legacy & Wishes</span>
+          <span style="color:#ffffff;">07: Legacy & Wishes</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Personal instructions, history, and wishes.</div>
         </span>
@@ -2117,7 +2116,6 @@ function renderIntro(app,ps){
   let html=`<div>
     <div class="stepbar">${segs(tot,step,false)}</div>
     <p class="mark" style="margin-bottom:8px;">${p.n}</p>
-    <p class="heading" style="font-size:20px;">${p.n.replace(/^\d+: /,"")}</p>
     <p class="sub" style="font-size:17px;margin-bottom:14px;">${p.d}</p>
     <div class="counter">
       <span class="counter-circle">${answered}/${total}</span>
