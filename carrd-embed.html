@@ -1102,7 +1102,7 @@ button.sm{
 }
 .ringlabel{
   font-family:'Cinzel',serif;
-  font-size:16px;
+  font-size:30px;
   letter-spacing:2px;
   text-transform:uppercase;
   color:var(--accent-gold);
@@ -1136,13 +1136,13 @@ button.sm{
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:44px;
+  font-size:48px;
   color:var(--accent-gold);
   line-height:1;
   text-shadow:0 0 8px var(--ring-glow);
 }
 .scoresub{
-  font-size:12px;
+  font-size:13px;
   color:var(--accent-gold-light);
   margin-top:2px;
   letter-spacing:1px;
@@ -1151,7 +1151,7 @@ button.sm{
   text-align:center;
   font-family:'Cinzel',serif;
   letter-spacing:1.5px;
-  font-size:24px;
+  font-size:28px;
   text-transform:uppercase;
   margin-bottom:4px;
   color:var(--accent-gold);
@@ -1172,18 +1172,18 @@ button.sm{
 .legrow{margin-bottom:12px;}
 .legname{
   font-family:'Cinzel',serif;
-  font-size:24px;
+  font-size:28px;
   letter-spacing:1px;
 }
 .legrange{
-  font-size:16px;
+  font-size:18px;
   opacity:.8;
   margin:2px 0;
   color:var(--accent-gold);
   font-weight:500;
 }
 .legtext{
-  font-size:14px;
+  font-size:16px;
   color:var(--accent-gold);
   line-height:1.7;
 }
@@ -1191,7 +1191,7 @@ button.sm{
 .bkwrap{margin-top:20px;}
 .bktitle{
   font-family:'Cinzel',serif;
-  font-size:11px;
+  font-size:13px;
   letter-spacing:2px;
   text-transform:uppercase;
   color:var(--btn-color);
@@ -1207,7 +1207,7 @@ button.sm{
   margin-bottom:8px;
 }
 .pname{
-  font-size:14px;
+  font-size:16px;
   color:var(--accent-gold);
   width:180px;
   flex-shrink:0;
@@ -1232,7 +1232,7 @@ button.sm{
 }
 .ppct{
   font-family:'Cinzel',serif;
-  font-size:26px;
+  font-size:30px;
   color:var(--btn-color);
   width:35px;
   text-align:right;
@@ -1242,7 +1242,7 @@ button.sm{
 .gapwrap{margin-top:24px;}
 .gaptitle{
   font-family:'Cinzel',serif;
-  font-size:18px;
+  font-size:21px;
   letter-spacing:1.5px;
   text-transform:uppercase;
   color:var(--accent-gold);
@@ -1263,20 +1263,20 @@ button.sm{
 }
 .gapitem:hover{background:rgba(212, 175, 55, 0.06);}
 .gapname{
-  font-size:15px;
+  font-size:17px;
   color:var(--accent-gold);
   margin-bottom:4px;
   flex:1;
 }
 .gapexpl{
-  font-size:14px;
+  font-size:16px;
   color:var(--accent-gold-light);
   line-height:1.65;
   font-style:normal;
   margin-bottom:4px;
 }
 .gappillar{
-  font-size:10px;
+  font-size:12px;
   letter-spacing:1.5px;
   text-transform:uppercase;
   margin-top:2px;
@@ -1353,7 +1353,7 @@ button.sm{
 }
 .footnote{
   margin-top:20px;
-  font-size:14px;
+  font-size:16px;
   color:var(--text-secondary);
   text-align:center;
   letter-spacing:0.5px;
@@ -1770,10 +1770,10 @@ function showShareModal(score, tierLabel, text, url) {
             <svg class="share-icon" viewBox="0 0 24 24" fill="#00A36A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             <span>NextDoor</span>
           </a>
-          <a href="https://wa.me/?text=${encodeURIComponent(shareText)}" 
-             target="_blank" class="share-btn whatsapp" onclick="trackShare('whatsapp')" aria-label="Share on WhatsApp">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-            <span>WhatsApp</span>
+          <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>Threads</span>
           </a>
         </div>
         
@@ -1786,10 +1786,6 @@ function showShareModal(score, tierLabel, text, url) {
           <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(shareText)}', '${encodeURIComponent(url)}')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Email</span>
-          </button>
-          <button class="share-action-btn sms" onclick="window.open('sms:?body=${encodeURIComponent(shareText)}', '_blank')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#646464"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span>Text</span>
           </button>
         </div>
         
@@ -2203,7 +2199,7 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:24px;">Continuity Readiness</div>
+      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:30px;">Continuity Readiness</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
