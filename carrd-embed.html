@@ -469,28 +469,6 @@ button:active{
   color:var(--text-muted);
 }
 
-/* Download as image button */
-.share-download-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:12px 20px;
-  background:rgba(201, 162, 39, 0.1);
-  border:1px solid rgba(201, 162, 39, 0.3);
-  border-radius:var(--radius-sm);
-  font-family:'Montserrat',sans-serif;
-  font-size:12px;
-  color:var(--accent-gold);
-  cursor:pointer;
-  transition:all var(--transition-normal);
-  text-decoration:none;
-  margin:8px 0;
-}
-.share-download-btn:hover{
-  background:rgba(201, 162, 39, 0.2);
-  border-color:var(--accent-gold);
-}
-
 /* More platforms with official brand colors */
 .share-btn.whatsapp{
   background:rgba(37, 211, 102, 0.05);
@@ -526,6 +504,19 @@ button:active{
 }
 .share-btn.copy-link .share-icon{
   fill:#646464;
+}
+
+/* SMS button in share actions */
+.share-action-btn.sms{
+  background:rgba(0, 128, 0, 0.05);
+  border-color:rgba(0, 128, 0, 0.3);
+}
+.share-action-btn.sms:hover{
+  background:rgba(0, 128, 0, 0.12);
+  border-color:#008000;
+}
+.share-action-btn.sms .share-icon{
+  fill:#008000;
 }
 
 /* Share modal content */
@@ -1696,7 +1687,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')" aria-label="Share on X">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.99 2.01c-.48-.48-1.08-.73-1.7-.73h-3.98c-.62 0-1.22.25-1.7.73L12 7.84 8.81.01c-.62-.48-1.22-.73-1.7-.73H4.01C3.39 0 2.79.25 2.01.73L.01 3.91l3.19 3.19L0 10.1l.01 3.91 3.19 3.19L0 19.99h1.7c.62 0 1.22-.25 1.7-.73L7.84 15.16l3.19 3.19 3.19-3.19 3.19 3.19 1.7-.73h3.98c.62 0 1.22.25 1.7.73l3.19 3.19.01-3.91L21.99 10.1l-3.19-3.19L24 3.91l-3.19-3.19Z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
             <span>X</span>
           </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodeURIComponent(shareText)}" 
@@ -1706,7 +1697,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16.5 3.5c-.9 0-1.8.3-2.5.8-.7.5-1.3 1.2-1.7 2-.4.8-.6 1.8-.6 2.8 0 .6.1 1.2.2 1.8.1.6.4 1.1.7 1.5.3.4.7.7 1.2.9.5.2.9.4 1.4.5.5.1 1 .2 1.5.2.5 0 .9.1 1.4.2 2 .2.6 0 1.2-.2 1.8-.5.6-.9 1.2-1.5 1.7-.6.5-1.3.8-2.1.8-.9 0-1.8-.3-2.5-.8-.7-.5-1.3-1.2-1.7-2-.4-.8-.6-1.8-.6-2.8 0-.6-.1-1.2-.2-1.8-.1-.6-.4-1.1-.7-1.5-.3-.4-.7-.7-1.2-.9-.5-.2-.9-.4-1.4-.5-.5-.1-1-.2-1.5-.2-.6 0-1.2.2-1.8.5-.6.3-1.2.5-2 .5-.6 0-1.2-.2-1.8-.5-.6-.9-1.2-1.5-1.7-.6-.5-1.3-.8-2.1-.8zm-3.5 1.5c.5 0 1 .1 1.5.2.5.1 1 .3 1.4.5.4.2.7.5 1 .8.3.3.5.7.5 1.2 0 .5-.2 1-.5 1.5-.5.5-.8 1.2-1.2.4-.4.7-.8 1-1.2.3-.4.5-.8.5-1.2 0-.5.2-1 .5-1.5.5-.5.8-1.2 1.2-1.2.4-.4.7-.8 1-1.2.3-.3.7-.5 1-.8.4-.2.9-.3 1.4-.5.5-.1 1-.2 1.5-.2zm-8 8c1.1 0 2.2-.2 3.2-.5 1-.3 1.9-.8 2.7-1.5.8-.7 1.4-1.6 1.8-2.7.4-1.1.5-2.2.5-3.2 0-1.1-.1-2.2-.5-3.2-.4-1-.9-1.8-1.8-2.5-.9-.7-1.9-1.2-3-1.5-1.1-.3-2.2-.5-3.2-.5-1 0-2 .2-3 .5-1 .3-1.9.8-2.7 1.5-.8.7-1.4 1.6-1.8 2.7-.4 1.1-.5 2.2-.5 3.2 0 1.1.1 2.2.5 3.2.4 1 .9 1.8 1.8 2.5.9.7 1.9 1.2 3 1.5z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M17.18 2.01c-1.18.23-2.3.8-3.28 1.65-1.05.92-1.87 2.05-2.4 3.35-.58 1.4-.88 2.9-.88 4.51 0 1.9.65 3.68 1.78 5.08 1.22 1.53 3.05 2.48 5.18 2.48 1.4 0 2.75-.42 3.98-1.18.9-.55 1.62-1.3 2.1-2.2.53-.98.8-2.1.8-3.35 0-1.65-.48-3.18-1.3-4.48-.82-1.3-.25-2.48.4-3.55.65-.98 1.6-1.78 2.75-2.25.9-.35 1.7-.88 2.3-1.58.65-.75 1.05-1.65 1.18-2.65.15-1.1-.12-2.15-.75-3.08-.62-.9-1.5-1.6-2.55-2.05zm-1.6 3.85c-.15.9-.65 1.7-1.4 2.3-.8.65-1.75 1.05-2.8 1.05-1.15 0-2.2-.5-3.05-1.4-.85-.9-1.35-2.1-1.35-3.45 0-1.2.45-2.3 1.3-3.2.9-.95 2.05-1.4 3.4-1.4 1.45 0 2.8.6 3.95 1.75.9.9 1.45 2.1 1.45 3.45zM12 18.5c-2.75 0-5.18-1.05-7.05-2.85-.9-.95-1.5-2.15-1.75-3.55-.25-1.4.1-2.8.9-4.05.85-1.3 2.1-2.35 3.65-2.95 1.75-.68 3.75-.85 5.9-.45 1.45.25 2.8.95 3.9 2 .95.9 1.6 2.1 1.85 3.5.2 1.25-.1 2.45-.8 3.5-.75 1.15-1.85 2.05-3.2 2.55z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -1728,10 +1719,6 @@ function showShareModal(score, tierLabel, text, url) {
         
         <!-- Additional actions -->
         <div class="share-actions">
-          <a href="#" class="share-download-btn" onclick="downloadAsImage();return false;">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#C9A227"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            <span>Download as Image</span>
-          </a>
           <button class="share-action-btn copy-link" onclick="copyToClipboard('${analysisUrl}')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#646464"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
             <span>Copy Link</span>
@@ -1739,6 +1726,10 @@ function showShareModal(score, tierLabel, text, url) {
           <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(shareText)}', '${encodeURIComponent(url)}')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Email</span>
+          </button>
+          <button class="share-action-btn sms" onclick="window.open('sms:?body=${encodeURIComponent(shareText)}', '_blank')">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#008000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>SMS</span>
           </button>
         </div>
         
@@ -1838,32 +1829,6 @@ function generateQRCode(url, elementId) {
     }
   } catch (e) {
     console.log('QR code generation failed:', e);
-  }
-}
-
-// Download as image
-function downloadAsImage() {
-  const modal = document.querySelector('.share-modal');
-  if (!modal) return;
-  
-  trackShare('download');
-  
-  // Use html2canvas if available, otherwise simple approach
-  if (typeof html2canvas !== 'undefined') {
-    html2canvas(modal, {
-      backgroundColor: '#1a1a2e',
-      scale: 2,
-      logging: false,
-      useCORS: true
-    }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = 'continuity-analysis-results.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
-  } else {
-    // Fallback: alert user
-    alert('To download as image, please take a screenshot of this modal.');
   }
 }
 
