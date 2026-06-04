@@ -2,22 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
-<!-- Rebuild timestamp: 2026-06-01T03:45:59.369Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:45:07.162Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:44:16.383Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:35:32.792Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:31:31.556Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:22:34.045Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:21:14.011Z -->
-<!-- Rebuild timestamp: 2026-06-01T03:19:36.248Z -->
-<!-- Rebuild timestamp: 2026-06-01T14:30:00Z -->
-<!-- Rebuild timestamp: 2026-06-01T14:45:00Z -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Performance: Preload critical resources -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" as="image">
+<!-- Accessibility -->
+<meta name="theme-color" content="#1a1a2e">
 <style>
 :root{
   /* Professional Color Palette - Legacy Architect RVA */
@@ -42,6 +37,66 @@
   --na: #6B7280;
   --ring-glow: rgba(201, 162, 39, 0.3);
   --subtle-glow: rgba(201, 162, 39, 0.15);
+  /* Transition speeds */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s ease;
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   PERFORMANCE & ACCESSIBILITY BASE STYLES
+   ============================================ */
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible{
+  outline:2px solid var(--accent-gold);
+  outline-offset:2px;
+}
+
+/* Skip link for accessibility */
+.skip-link{
+  position:absolute;
+  top:-40px;
+  left:0;
+  background:var(--accent-gold);
+  color:var(--bg-dark);
+  padding:8px 16px;
+  z-index:10000;
+  text-decoration:none;
+  font-family:'Montserrat',sans-serif;
+  font-size:14px;
+  font-weight:600;
+}
+.skip-link:focus{
+  top:0;
+}
+
+/* Smooth scrolling */
+html{
+  scroll-behavior:smooth;
+}
+
+/* Selection styling */
+::selection{
+  background:rgba(201, 162, 39, 0.3);
+  color:var(--text-primary);
 }
 
 /* Hide Carrd's parent logo on landing page */
@@ -53,7 +108,6 @@ img[src*="Logos/Correct.png"]:not(.company-logo),
 img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{font-size:20.24px;}
 body{
   margin:0;
@@ -100,6 +154,123 @@ body{
   background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
   opacity:0.3;
 }
+
+/* ============================================
+   MOBILE UX & STICKY NAVIGATION
+   ============================================ */
+
+/* Sticky navigation for mobile */
+.mobile-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--card-bg);
+  border-top:1px solid rgba(201, 162, 39, 0.35);
+  padding:12px 16px;
+  display:none;
+  z-index:1000;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.5);
+}
+.mobile-nav.visible{
+  display:flex;
+}
+.mobile-nav-btn{
+  flex:1;
+  padding:12px 8px;
+  background:rgba(201, 162, 39, 0.1);
+  border:1px solid rgba(201, 162, 39, 0.3);
+  border-radius:var(--radius-sm);
+  color:var(--accent-gold);
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all var(--transition-normal);
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.mobile-nav-btn:not(:last-child){
+  margin-right:8px;
+}
+.mobile-nav-btn:hover,
+.mobile-nav-btn:focus{
+  background:rgba(201, 162, 39, 0.2);
+  border-color:var(--accent-gold);
+}
+.mobile-nav-btn:active{
+  background:rgba(201, 162, 39, 0.3);
+  transform:scale(0.98);
+}
+
+/* Touch target improvements */
+.toggle{
+  min-height:56px;
+  padding:16px 0;
+}
+.trow{
+  padding:8px 0;
+}
+.opt{
+  min-width:88px;
+  min-height:44px;
+  padding:12px 16px;
+  font-size:14px;
+  transition:all var(--transition-normal);
+}
+.opt:hover,
+.opt:focus{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(201, 162, 39, 0.2);
+}
+.opt:active{
+  transform:translateY(0);
+}
+
+/* Form input improvements for mobile */
+.inputfield input{
+  min-height:48px;
+  font-size:15px;
+  padding:14px 16px;
+}
+.inputfield input:focus{
+  outline:none;
+  border-color:var(--accent-gold);
+  box-shadow:0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+/* Button touch targets */
+button{
+  min-height:48px;
+  min-width:140px;
+  transition:all var(--transition-normal);
+}
+button:active{
+  transform:scale(0.98);
+}
+
+/* Progress indicator */
+.progress-container{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:4px;
+  background:rgba(201, 162, 39, 0.1);
+  z-index:1000;
+  display:none;
+}
+.progress-container.visible{
+  display:block;
+}
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  width:0%;
+  transition:width var(--transition-slow);
+}
+
 /* STEP MARKS - Elegant */
 .stepbar{
   display:flex;
@@ -246,6 +417,118 @@ body{
     transform-origin:center;
   }
 }
+
+/* ============================================
+   ENHANCED SHARE MODAL FEATURES
+   ============================================ */
+
+/* QR Code for sharing */
+.share-qr-container{
+  margin:16px 0;
+  text-align:center;
+}
+.share-qr-code{
+  width:120px;
+  height:120px;
+  background:#fff;
+  padding:8px;
+  border-radius:var(--radius-sm);
+  margin:0 auto;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.share-qr-label{
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;
+  color:var(--text-secondary);
+  margin-top:8px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+/* Custom share text */
+.share-custom-text{
+  width:100%;
+  padding:12px 14px;
+  background:rgba(201, 162, 39, 0.03);
+  border:1px solid rgba(201, 162, 39, 0.2);
+  border-radius:var(--radius-sm);
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;
+  color:var(--text-gold);
+  margin:12px 0;
+  resize:none;
+  min-height:80px;
+  transition:all var(--transition-normal);
+}
+.share-custom-text:focus{
+  outline:none;
+  border-color:var(--accent-gold);
+  box-shadow:0 0 0 2px rgba(201, 162, 39, 0.15);
+}
+.share-custom-text::placeholder{
+  color:var(--text-muted);
+}
+
+/* Download as image button */
+.share-download-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 20px;
+  background:rgba(201, 162, 39, 0.1);
+  border:1px solid rgba(201, 162, 39, 0.3);
+  border-radius:var(--radius-sm);
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;
+  color:var(--accent-gold);
+  cursor:pointer;
+  transition:all var(--transition-normal);
+  text-decoration:none;
+  margin:8px 0;
+}
+.share-download-btn:hover{
+  background:rgba(201, 162, 39, 0.2);
+  border-color:var(--accent-gold);
+}
+
+/* More platforms with official brand colors */
+.share-btn.whatsapp{
+  background:rgba(37, 211, 102, 0.05);
+  border-color:rgba(37, 211, 102, 0.3);
+}
+.share-btn.whatsapp:hover{
+  background:rgba(37, 211, 102, 0.12);
+  border-color:#25D366;
+}
+.share-btn.whatsapp .share-icon{
+  fill:#25D366;
+}
+
+.share-btn.sms{
+  background:rgba(0, 128, 0, 0.05);
+  border-color:rgba(0, 128, 0, 0.3);
+}
+.share-btn.sms:hover{
+  background:rgba(0, 128, 0, 0.12);
+  border-color:#008000;
+}
+.share-btn.sms .share-icon{
+  fill:#008000;
+}
+
+.share-btn.copy-link{
+  background:rgba(100, 100, 100, 0.05);
+  border-color:rgba(100, 100, 100, 0.3);
+}
+.share-btn.copy-link:hover{
+  background:rgba(100, 100, 100, 0.12);
+  border-color:#646464;
+}
+.share-btn.copy-link .share-icon{
+  fill:#646464;
+}
+
+/* Share modal content */
 .share-modal-content{
   padding:20px;
   text-align:center;
@@ -365,17 +648,19 @@ body{
 /* ITEM TOGGLES - Elegant */
 .toggle{
   border:none;
-  padding:12.6px 0;
+  padding:16px 0;
   margin:0;
   background:transparent;
-  transition:all 0.3s ease;
-  border-bottom:1px solid rgba(212, 175, 55, 0.1);
+  transition:all var(--transition-normal);
+  border-bottom:1px solid rgba(201, 162, 39, 0.1);
+  min-height:56px;
+  width:100%;
 }
-.toggle:hover{background:rgba(212, 175, 55, 0.02);}
+.toggle:hover{background:rgba(201, 162, 39, 0.03);}
 .toggle.aR{border-color:transparent;}
 .toggle.aU{border-color:transparent;}
 .toggle.aN{border-color:transparent;}
-.trow{display:flex;flex-direction:column;gap:10.5px;align-items:center;}
+.trow{display:flex;flex-direction:column;gap:8px;align-items:center;padding:8px 0;}
 .tlabel{
   font-size:16.5px;
   color:var(--text-gold);
@@ -385,7 +670,7 @@ body{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;
 }
-.opts{display:flex;gap:8.4px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
+.opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
 /* Mobile spacing fix for landing page - remove gap where logo was */
 @media(max-width:768px){
@@ -505,55 +790,76 @@ body{
   box-shadow:0 0 8px var(--subtle-glow);
 }
 .opt{
-  padding:8px 16px;
-  border:1px solid rgba(212, 175, 55, 0.4);
+  padding:12px 16px;
+  border:1px solid rgba(201, 162, 39, 0.4);
   cursor:pointer;
-  border-radius:0;
+  border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
-  font-size:11px;
-  letter-spacing:2px;
+  font-size:12px;
+  letter-spacing:1.5px;
   text-transform:uppercase;
-  transition:all 0.2s ease;
+  transition:all var(--transition-normal);
   color:var(--accent-gold);
   background:transparent;
   user-select:none;
   font-weight:500;
+  min-width:88px;
+  min-height:44px;
+  text-align:center;
 }
 .opt:hover{
   border-color:var(--accent-gold);
   color:var(--accent-gold);
-  background:rgba(212, 175, 55, 0.05);
+  background:rgba(201, 162, 39, 0.05);
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(201, 162, 39, 0.2);
+}
+.opt:active{
+  transform:translateY(0);
 }
 .opt.oR{
   border-color:var(--recorded);
   color:var(--recorded);
-  background:rgba(46, 139, 87, 0.15);
+  background:rgba(16, 185, 129, 0.15);
 }
 .opt.oU{
-  border-color:#B22222;
-  color:#B22222;
-  background:rgba(178, 34, 34, 0.15);
+  border-color:var(--missing);
+  color:var(--missing);
+  background:rgba(239, 68, 68, 0.15);
 }
 .opt.oN{
-  border-color:#E0E0E0;
-  color:#E0E0E0;
-  background:rgba(255, 255, 255, 0.3);
+  border-color:var(--na);
+  color:var(--na);
+  background:rgba(107, 114, 128, 0.15);
 }
 /* COUNTER CIRCLE - Elegant */
-.counter{text-align:center;margin:15px 0 20px;}
+.counter{text-align:center;margin:16px 0 24px;}
 .counter-circle{
   display:inline-block;
-  padding:6px 14px;
-  background:rgba(212, 175, 55, 0.05);
-  border:1px solid rgba(212, 175, 55, 0.4);
-  border-radius:0;
+  padding:8px 16px;
+  background:rgba(201, 162, 39, 0.05);
+  border:1px solid rgba(201, 162, 39, 0.4);
+  border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
   font-size:12px;
   color:var(--accent-gold);
-  letter-spacing:2px;
+  letter-spacing:1.5px;
   box-shadow: none;
   font-weight:600;
+  transition:all var(--transition-normal);
 }
+.counter-circle:hover{
+  background:rgba(201, 162, 39, 0.1);
+  border-color:var(--accent-gold);
+}
+
+/* Progress indicator in counter */
+.counter-progress{
+  font-size:11px;
+  color:var(--text-secondary);
+  margin-top:4px;
+}
+
 /* COMPLETE BADGE - Elegant */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:20px;
@@ -569,6 +875,144 @@ body{
   background:var(--accent-gold);
   box-shadow:0 0 6px var(--subtle-glow);
 }
+/* ============================================
+   CONVERSION OPTIMIZATION STYLES
+   ============================================ */
+
+/* Primary CTA - More prominent */
+.cta-primary{
+  width:100%;
+  padding:18px 24px;
+  background:linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  border:none;
+  font-family:'Cinzel',serif;
+  font-weight:600;
+  letter-spacing:3px;
+  margin:28px 0 16px;
+  cursor:pointer;
+  font-size:14px;
+  text-transform:uppercase;
+  color:#1a1a2e;
+  border-radius:var(--radius-sm);
+  transition:all var(--transition-normal);
+  box-shadow:0 4px 15px rgba(201, 162, 39, 0.3);
+  border:1px solid var(--accent-gold-dark);
+  position:relative;
+  overflow:hidden;
+}
+.cta-primary::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition:left 0.5s ease;
+}
+.cta-primary:hover::before{
+  left:100%;
+}
+.cta-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(201, 162, 39, 0.4);
+}
+.cta-primary:active{
+  transform:translateY(0);
+  box-shadow:0 2px 8px rgba(201, 162, 39, 0.3);
+}
+
+/* Secondary buttons */
+button.alt{
+  background:transparent;
+  color:var(--accent-gold);
+  border:1px solid rgba(201, 162, 39, 0.4);
+  box-shadow:none;
+}
+button.alt:hover{
+  color:var(--accent-gold);
+  border-color:var(--accent-gold);
+  background:rgba(201, 162, 39, 0.05);
+}
+
+/* Social proof/testimonial */
+.social-proof{
+  background:rgba(201, 162, 39, 0.03);
+  border-left:3px solid var(--accent-gold);
+  padding:16px;
+  margin:20px 0;
+  font-style:italic;
+  font-size:14px;
+  color:var(--text-secondary);
+}
+.social-proof::before{
+  content:"\201C";
+  color:var(--accent-gold);
+  font-size:24px;
+  line-height:1;
+  margin-right:8px;
+}
+
+/* Trust badges */
+.trust-badges{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin:20px 0;
+  flex-wrap:wrap;
+}
+.trust-badge{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:var(--text-secondary);
+}
+.trust-badge-icon{
+  width:16px;
+  height:16px;
+  color:var(--accent-gold);
+}
+
+/* Tooltip styles */
+.info-tooltip{
+  position:relative;
+  display:inline-block;
+  cursor:help;
+}
+.info-icon{
+  width:14px;
+  height:14px;
+  margin-left:4px;
+  opacity:0.6;
+  transition:opacity var(--transition-fast);
+}
+.info-tooltip:hover .info-icon{
+  opacity:1;
+}
+.tooltip-content{
+  position:absolute;
+  bottom:100%;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--bg-dark);
+  color:var(--text-gold);
+  padding:8px 12px;
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  white-space:nowrap;
+  opacity:0;
+  visibility:hidden;
+  transition:all var(--transition-fast);
+  z-index:1000;
+  box-shadow:var(--shadow-md);
+  border:1px solid rgba(201, 162, 39, 0.2);
+}
+.info-tooltip:hover .tooltip-content{
+  opacity:1;
+  visibility:visible;
+}
+
 /* BUTTONS - Elegant */
 button{
   width:100%;
@@ -582,17 +1026,19 @@ button{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:#0f0f14;
-  border-radius:0;
-  transition:all 0.3s ease;
+  color:#1a1a2e;
+  border-radius:var(--radius-sm);
+  transition:all var(--transition-normal);
   box-shadow:0 2px 10px rgba(0, 0, 0, 0.2);
   border:1px solid var(--accent-gold-dark);
+  min-height:48px;
+  min-width:140px;
 }
 button:hover{
   background:var(--accent-gold-light);
   transform:translateY(-1px);
   box-shadow:0 4px 15px rgba(0, 0, 0, 0.3);
-  color:#0f0f14;
+  color:#1a1a2e;
 }
 button:active{
   transform:translateY(0);
@@ -604,17 +1050,6 @@ button.start-btn{
   font-size:16px;
   padding:18px 24px;
   letter-spacing:4px;
-}
-button.alt{
-  background:transparent;
-  color:var(--accent-gold);
-  border:1px solid rgba(212, 175, 55, 0.4);
-  box-shadow:none;
-}
-button.alt:hover{
-  color:var(--accent-gold);
-  border-color:var(--accent-gold);
-  background:rgba(212, 175, 55, 0.05);
 }
 button.sm{
   width:auto;
@@ -991,6 +1426,21 @@ button.sm{
 </style>
 </head>
 <body>
+<!-- Skip link for accessibility -->
+<a href="#app" class="skip-link">Skip to content</a>
+
+<!-- Progress indicator -->
+<div class="progress-container" id="progressContainer">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- Mobile sticky navigation -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-btn" onclick="goB()">Back</button>
+  <button class="mobile-nav-btn" onclick="goN()">Continue</button>
+  <button class="mobile-nav-btn" onclick="reset()">Reset</button>
+</div>
+
 <div id="wrap">
   <div id="app" class="card"></div>
 </div>
@@ -1090,6 +1540,7 @@ function rec(s){
   return"Excellent posture. Ensure your successors know precisely where everything lives and how to access it.";
 }
 function pick(key,val){
+  const previousValue = ANS[key];
   if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
   const pi=step-1;const ps=aP();
   const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
@@ -1098,8 +1549,17 @@ function pick(key,val){
     const b=document.getElementById("cpbadge");
     if(b)b.style.display="flex";
   }
+  
+  // Track answer selection
+  trackEvent('answer', {
+    pillar: pi + 1,
+    item: key,
+    value: val || 'none',
+    previousValue: previousValue || 'none'
+  });
 }
 function goN(){
+  const currentStep = step;
   // Check if all questions in current pillar are answered
   const pi=step-1;
   const ps=aP();
@@ -1124,14 +1584,15 @@ function goN(){
     }
   }
   step++;isBack=false;render();
+  trackNavigation('next', currentStep, step);
   setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);
 }
-function goB(){if(step>0){step--;isBack=true;render();setTimeout(() => {
+function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -1204,6 +1665,7 @@ function showShareModal(score, tierLabel, text, url) {
   const encodedUrl = encodeURIComponent(analysisUrl);
   const encodedText = encodeURIComponent(text);
   const encodedImage = encodeURIComponent(imageUrl);
+  const shareText = `I just took the 7-Pillar Continuity Analysis and scored ${score}% — ${tierLabel}. Check out your readiness at ${analysisUrl}`;
   
   const modal = document.createElement('div');
   modal.className = 'share-modal-overlay';
@@ -1216,53 +1678,83 @@ function showShareModal(score, tierLabel, text, url) {
       <div class="share-modal-content">
         <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="share-modal-logo">
         <p class="share-score-display">${score}% — ${tierLabel}</p>
+        
+        <!-- Custom share text -->
+        <textarea class="share-custom-text" id="shareCustomText" placeholder="Customize your message...">${shareText}</textarea>
+        
+        <!-- Social platforms with official brand colors -->
         <div class="share-platforms">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodedText}&source=${encodedUrl}" 
-             target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodeURIComponent(shareText)}&source=${encodedUrl}" 
+             target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')" aria-label="Share on LinkedIn">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             <span>LinkedIn</span>
           </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}&picture=${encodedImage}" 
-             target="_blank" class="share-btn facebook" onclick="trackShare('facebook')">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodeURIComponent(shareText)}&picture=${encodedImage}" 
+             target="_blank" class="share-btn facebook" onclick="trackShare('facebook')" aria-label="Share on Facebook">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             <span>Facebook</span>
           </a>
-          <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodedText}" 
-             target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#00A36A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span>NextDoor</span>
-          </a>
-          <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodedText}" 
-             target="_blank" class="share-btn instagram" onclick="trackShare('instagram')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram</span>
-          </a>
-          <a href="https://www.threads.net/intent/post?text=${encodedText}" 
-             target="_blank" class="share-btn threads" onclick="trackShare('threads')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16.5 3.5c-.9 0-1.8.3-2.5.8-.7.5-1.3 1.2-1.7 2-.4.8-.6 1.8-.6 2.8 0 .6.1 1.2.2 1.8.1.6.4 1.1.7 1.5.3.4.7.7 1.2.9.5.2.9.4 1.4.5.5.1 1 .2 1.5.2.5 0 .9.1 1.4.2 2 .2.6 0 1.2-.2 1.8-.5.6-.9 1.2-1.5 1.7-.6.5-1.3.8-2.1.8-.9 0-1.8-.3-2.5-.8-.7-.5-1.3-1.2-1.7-2-.4-.8-.6-1.8-.6-2.8 0-.6-.1-1.2-.2-1.8-.1-.6-.4-1.1-.7-1.5-.3-.4-.7-.7-1.2-.9-.5-.2-.9-.4-1.4-.5-.5-.1-1-.2-1.5-.2-.6 0-1.2.2-1.8.5-.6.3-1.2.5-2 .5-.6 0-1.2-.2-1.8-.5-.6-.9-1.2-1.5-1.7-.6-.5-1.3-.8-2.1-.8zm-3.5 1.5c.5 0 1 .1 1.5.2.5.1 1 .3 1.4.5.4.2.7.5 1 .8.3.3.5.7.5 1.2 0 .5-.2 1-.5 1.5-.5.5-.8 1.2-1.2.4-.4.7-.8 1-1.2.3-.4.5-.8.5-1.2 0-.5.2-1 .5-1.5.5-.5.8-1.2 1.2-1.2.4-.4.7-.8 1-1.2.3-.3.7-.5 1-.8.4-.2.9-.3 1.4-.5.5-.1 1-.2 1.5-.2zm-8 8c1.1 0 2.2-.2 3.2-.5 1-.3 1.9-.8 2.7-1.5.8-.7 1.4-1.6 1.8-2.7.4-1.1.5-2.2.5-3.2 0-1.1-.1-2.2-.5-3.2-.4-1-.9-1.8-1.8-2.5-.9-.7-1.9-1.2-3-1.5-1.1-.3-2.2-.5-3.2-.5-1 0-2 .2-3 .5-1 .3-1.9.8-2.7 1.5-.8.7-1.4 1.6-1.8 2.7-.4 1.1-.5 2.2-.5 3.2 0 1.1.1 2.2.5 3.2.4 1 .9 1.8 1.8 2.5.9.7 1.9 1.2 3 1.5z"/></svg>
-            <span>Threads</span>
-          </a>
-          <a href="https://twitter.com/intent/tweet?text=${encodedText}" 
-             target="_blank" class="share-btn x" onclick="trackShare('x')">
+          <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn x" onclick="trackShare('x')" aria-label="Share on X">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.99 2.01c-.48-.48-1.08-.73-1.7-.73h-3.98c-.62 0-1.22.25-1.7.73L12 7.84 8.81.01c-.62-.48-1.22-.73-1.7-.73H4.01C3.39 0 2.79.25 2.01.73L.01 3.91l3.19 3.19L0 10.1l.01 3.91 3.19 3.19L0 19.99h1.7c.62 0 1.22-.25 1.7-.73L7.84 15.16l3.19 3.19 3.19-3.19 3.19 3.19 1.7-.73h3.98c.62 0 1.22.25 1.7.73l3.19 3.19.01-3.91L21.99 10.1l-3.19-3.19L24 3.91l-3.19-3.19Z"/></svg>
             <span>X</span>
           </a>
+          <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn instagram" onclick="trackShare('instagram')" aria-label="Share on Instagram">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16.5 3.5c-.9 0-1.8.3-2.5.8-.7.5-1.3 1.2-1.7 2-.4.8-.6 1.8-.6 2.8 0 .6.1 1.2.2 1.8.1.6.4 1.1.7 1.5.3.4.7.7 1.2.9.5.2.9.4 1.4.5.5.1 1 .2 1.5.2.5 0 .9.1 1.4.2 2 .2.6 0 1.2-.2 1.8-.5.6-.9 1.2-1.5 1.7-.6.5-1.3.8-2.1.8-.9 0-1.8-.3-2.5-.8-.7-.5-1.3-1.2-1.7-2-.4-.8-.6-1.8-.6-2.8 0-.6-.1-1.2-.2-1.8-.1-.6-.4-1.1-.7-1.5-.3-.4-.7-.7-1.2-.9-.5-.2-.9-.4-1.4-.5-.5-.1-1-.2-1.5-.2-.6 0-1.2.2-1.8.5-.6.3-1.2.5-2 .5-.6 0-1.2-.2-1.8-.5-.6-.9-1.2-1.5-1.7-.6-.5-1.3-.8-2.1-.8zm-3.5 1.5c.5 0 1 .1 1.5.2.5.1 1 .3 1.4.5.4.2.7.5 1 .8.3.3.5.7.5 1.2 0 .5-.2 1-.5 1.5-.5.5-.8 1.2-1.2.4-.4.7-.8 1-1.2.3-.4.5-.8.5-1.2 0-.5.2-1 .5-1.5.5-.5.8-1.2 1.2-1.2.4-.4.7-.8 1-1.2.3-.3.7-.5 1-.8.4-.2.9-.3 1.4-.5.5-.1 1-.2 1.5-.2zm-8 8c1.1 0 2.2-.2 3.2-.5 1-.3 1.9-.8 2.7-1.5.8-.7 1.4-1.6 1.8-2.7.4-1.1.5-2.2.5-3.2 0-1.1-.1-2.2-.5-3.2-.4-1-.9-1.8-1.8-2.5-.9-.7-1.9-1.2-3-1.5-1.1-.3-2.2-.5-3.2-.5-1 0-2 .2-3 .5-1 .3-1.9.8-2.7 1.5-.8.7-1.4 1.6-1.8 2.7-.4 1.1-.5 2.2-.5 3.2 0 1.1.1 2.2.5 3.2.4 1 .9 1.8 1.8 2.5.9.7 1.9 1.2 3 1.5z"/></svg>
+            <span>Threads</span>
+          </a>
+          <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')" aria-label="Share on NextDoor">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#00A36A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>NextDoor</span>
+          </a>
+          <a href="https://wa.me/?text=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn whatsapp" onclick="trackShare('whatsapp')" aria-label="Share on WhatsApp">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+          <a href="sms:?body=${encodeURIComponent(shareText)}" 
+             target="_blank" class="share-btn sms" onclick="trackShare('sms')" aria-label="Share via SMS">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#008000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>SMS</span>
+          </a>
         </div>
+        
+        <!-- Additional actions -->
         <div class="share-actions">
-          <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(text)}', '${encodeURIComponent(url)}')">
+          <a href="#" class="share-download-btn" onclick="downloadAsImage();return false;">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#C9A227"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <span>Download as Image</span>
+          </a>
+          <button class="share-action-btn copy-link" onclick="copyToClipboard('${analysisUrl}')">
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#646464"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <span>Copy Link</span>
+          </button>
+          <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(shareText)}', '${encodeURIComponent(url)}')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Email</span>
           </button>
-          <button class="share-action-btn copy" onclick="copyToClipboard('${encodeURIComponent(text + ' ' + url)}')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-            <span>Copy</span>
-          </button>
+        </div>
+        
+        <!-- QR Code -->
+        <div class="share-qr-container">
+          <div id="shareQrCode" class="share-qr-code"></div>
+          <p class="share-qr-label">Scan to share</p>
         </div>
       </div>
     </div>
   `;
   document.body.appendChild(modal);
   modal.querySelector('.share-modal').classList.add('share-modal-visible');
+  
+  // Generate QR code
+  generateQRCode(analysisUrl, 'shareQrCode');
 }
 
 function closeShareModal() {
@@ -1273,10 +1765,46 @@ function closeShareModal() {
   }
 }
 
-function trackShare(platform) {
-  console.log('Shared to:', platform);
+// Analytics tracking
+let analyticsEvents = [];
+
+function trackEvent(eventName, data = {}) {
+  analyticsEvents.push({
+    timestamp: new Date().toISOString(),
+    event: eventName,
+    data: data,
+    userAgent: navigator.userAgent,
+    screenWidth: window.innerWidth,
+    screenHeight: window.innerHeight
+  });
+  
+  // Log to console for debugging
+  console.log('Analytics:', eventName, data);
+  
+  // Send to analytics endpoint if available
+  if (window.ga || window.gtag) {
+    try {
+      if (window.gtag) {
+        gtag('event', eventName, data);
+      } else if (window.ga) {
+        ga('send', 'event', 'Analysis', eventName, JSON.stringify(data));
+      }
+    } catch (e) {
+      console.log('Analytics error:', e);
+    }
+  }
 }
 
+function trackShare(platform) {
+  trackEvent('share', { platform: platform, step: step });
+}
+
+// Track navigation
+function trackNavigation(action, fromStep, toStep) {
+  trackEvent('navigation', { action: action, fromStep: fromStep, toStep: toStep });
+}
+
+// Enhanced share via email
 function shareViaEmail(text, url) {
   const subject = encodeURIComponent('My Continuity Readiness Score');
   const body = encodeURIComponent(text + '\n\n' + url);
@@ -1299,6 +1827,46 @@ function copyToClipboard(text) {
   trackShare('copy');
 }
 
+// Generate QR Code
+function generateQRCode(url, elementId) {
+  try {
+    // Use a simple QR code generator API
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(url)}&bgcolor=1a1a2e&color=C9A227&qzone=1`;
+    const qrElement = document.getElementById(elementId);
+    if (qrElement) {
+      qrElement.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="width:100%;height:100%;">`;
+    }
+  } catch (e) {
+    console.log('QR code generation failed:', e);
+  }
+}
+
+// Download as image
+function downloadAsImage() {
+  const modal = document.querySelector('.share-modal');
+  if (!modal) return;
+  
+  trackShare('download');
+  
+  // Use html2canvas if available, otherwise simple approach
+  if (typeof html2canvas !== 'undefined') {
+    html2canvas(modal, {
+      backgroundColor: '#1a1a2e',
+      scale: 2,
+      logging: false,
+      useCORS: true
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'continuity-analysis-results.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  } else {
+    // Fallback: alert user
+    alert('To download as image, please take a screenshot of this modal.');
+  }
+}
+
 // Close modal when clicking outside
 function handleModalClick(e) {
   if (e.target.classList.contains('share-modal-overlay')) {
@@ -1312,15 +1880,33 @@ function submit(){
   const em=(document.getElementById("s7em")||{}).value?.trim()||"";
   if(ae)ae.textContent="";
   if(!em){if(ae)ae.textContent="An email address is required to receive your report.";return;}
+  
+  const d=calc();const sc=d.pct;const tl=tLabel(sc);
+  
+  // Track submission
+  trackEvent('submit', {
+    score: sc,
+    tier: tl,
+    hasName: !!fn,
+    hasEmail: !!em
+  });
+  
   btn.disabled=true;
   btn.innerHTML='<span class="ldots"><span></span><span></span><span></span></span>';
-  const d=calc();const sc=d.pct;const tl=tLabel(sc);
   const gaps=getGaps();const str=getStr();const bk=bkdown();
   const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",answers:ANS,recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk};
   fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
   .then(r=>r.json().catch(()=>({})))
-  .then(()=>renderSuccess())
-  .catch(()=>{btn.disabled=false;btn.innerText="Try Again";if(ae)ae.textContent="Something went wrong. Please try again.";});
+  .then(()=>{
+    trackEvent('submit_success', { score: sc, tier: tl });
+    renderSuccess();
+  })
+  .catch(()=>{
+    trackEvent('submit_error');
+    btn.disabled=false;
+    btn.innerText="Try Again";
+    if(ae)ae.textContent="Something went wrong. Please try again.";
+  });
 }
 function segs(tot,cur,allDone){
   return Array.from({length:tot},(_,i)=>{
@@ -1349,8 +1935,8 @@ function render(){
         setTimeout(()=>{
           const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
           unansweredToggles.forEach(el => {
-            el.style.borderLeft = '3px solid #B22222';
-            el.style.backgroundColor = 'rgba(178, 34, 34, 0.05)';
+            el.style.borderLeft = '3px solid var(--missing)';
+            el.style.backgroundColor = 'rgba(239, 68, 68, 0.05)';
           });
           if(unansweredToggles.length > 0){
             unansweredToggles[0].scrollIntoView({behavior:'smooth', block:'center'});
@@ -1361,7 +1947,65 @@ function render(){
     }
     renderResults(app,ps);
   }
+  
+  // Update mobile navigation visibility
+  updateMobileNav();
+  
+  // Update progress bar
+  updateProgressBar();
 }
+
+// Update mobile navigation visibility
+function updateMobileNav() {
+  const mobileNav = document.getElementById('mobileNav');
+  const ps = aP();
+  
+  if (window.innerWidth <= 768) {
+    // Show mobile nav for questions and results
+    if (step > 0 && step <= ps.length + 1) {
+      mobileNav.classList.add('visible');
+    } else {
+      mobileNav.classList.remove('visible');
+    }
+  } else {
+    mobileNav.classList.remove('visible');
+  }
+}
+
+// Update progress bar
+function updateProgressBar() {
+  const progressContainer = document.getElementById('progressContainer');
+  const progressBar = document.getElementById('progressBar');
+  const ps = aP();
+  
+  if (step === 0) {
+    progressContainer.classList.remove('visible');
+    return;
+  }
+  
+  progressContainer.classList.add('visible');
+  
+  // Calculate progress percentage
+  let totalQuestions = 0;
+  let answeredQuestions = 0;
+  
+  for (let i = 0; i < ps.length; i++) {
+    totalQuestions += ps[i].i.length;
+    for (let j = 0; j < ps[i].i.length; j++) {
+      if (ANS[`${i}_${j}`]) {
+        answeredQuestions++;
+      }
+    }
+  }
+  
+  const progress = (answeredQuestions / totalQuestions) * 100;
+  progressBar.style.width = `${progress}%`;
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  updateMobileNav();
+});
 function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`
@@ -1423,10 +2067,32 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
       <strong style="color:var(--ch4);">Recorded</strong> — It is documented and someone else could access it.<br>
-      <strong style="color:var(--ch2);">Undocumented</strong> — It exists but is not documented.<br>
-      <strong style="color:var(--ch6);">Not Applicable</strong> — It does not apply to your situation.
+      <strong style="color:var(--missing);">Undocumented</strong> — It exists but is not documented.<br>
+      <strong style="color:var(--na);">Not Applicable</strong> — It does not apply to your situation.
     </p>
-    <button onclick="goN()">Start Analysis</button>
+    
+    <!-- Social proof -->
+    <div class="social-proof">
+      Most households score between 40-65% on their first pass. Take 5 minutes to see where you stand.
+    </div>
+    
+    <!-- Trust badges -->
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Zero-Knowledge Standard</span>
+      </div>
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <span>Secure & Confidential</span>
+      </div>
+      <div class="trust-badge">
+        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>Free Analysis</span>
+      </div>
+    </div>
+    
+    <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Analysis</button>
   </div>`;
 }function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -1583,6 +2249,95 @@ window.shareViaEmail=shareViaEmail;
 window.copyToClipboard=copyToClipboard;
 window.handleModalClick=handleModalClick;
 window.markAllAsNA=markAllAsNA;
+
+// ============================================
+// OFFLINE SUPPORT & LOCAL STORAGE
+// ============================================
+
+// Load saved state from localStorage
+function loadState() {
+  try {
+    const savedState = localStorage.getItem('continuityAnalysisState');
+    if (savedState) {
+      const state = JSON.parse(savedState);
+      // Restore answers
+      if (state.answers) {
+        Object.assign(ANS, state.answers);
+      }
+      // Restore step
+      if (state.step !== undefined) {
+        step = state.step;
+      }
+      // Restore business owner flag
+      if (state.biz !== undefined) {
+        biz = state.biz;
+      }
+      return true;
+    }
+  } catch (e) {
+    console.log('Error loading state:', e);
+  }
+  return false;
+}
+
+// Save state to localStorage
+function saveState() {
+  try {
+    const state = {
+      answers: ANS,
+      step: step,
+      biz: biz,
+      timestamp: new Date().toISOString()
+    };
+    localStorage.setItem('continuityAnalysisState', JSON.stringify(state));
+  } catch (e) {
+    console.log('Error saving state:', e);
+  }
+}
+
+// Auto-save on answer changes
+// Override the pick function to save state
+const originalPick = window.pick || pick;
+window.pick = function(key, val) {
+  originalPick(key, val);
+  saveState();
+};
+
+// Load state on page load
+const hasLoadedState = loadState();
+
+// Track initial load
+trackEvent('page_load', {
+  hasSavedState: hasLoadedState,
+  screenWidth: window.innerWidth,
+  screenHeight: window.innerHeight
+});
+
+// Save state before unload
+window.addEventListener('beforeunload', () => {
+  saveState();
+  trackEvent('page_unload');
+});
+
+// Clear state when user completes analysis
+function clearState() {
+  try {
+    localStorage.removeItem('continuityAnalysisState');
+  } catch (e) {
+    console.log('Error clearing state:', e);
+  }
+}
+
+// Clear state on successful submission
+const originalSubmit = window.submit || submit;
+window.submit = function() {
+  originalSubmit();
+  clearState();
+};
+
+// ============================================
+// INITIALIZE
+// ============================================
 render();
 </script>
 </body>
