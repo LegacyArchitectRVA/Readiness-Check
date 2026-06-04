@@ -750,13 +750,12 @@ button:active{
   border:1px solid rgba(212, 175, 55, 0.3);
   border-radius:4px;
   padding:12px 14px;
-  width:280px;
-  max-width:90vw;
+  max-width:280px;
   font-size:14px;
   line-height:1.5;
   color:var(--text-gold);
   box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
-  white-space:nowrap;
+  white-space:normal;
   opacity:0;
   transition:opacity 0.2s ease, visibility 0.2s ease;
   font-family:'Cormorant Garamond',serif;
@@ -1006,13 +1005,14 @@ button.alt:hover{
   padding:8px 12px;
   border-radius:var(--radius-sm);
   font-size:12px;
-  white-space:nowrap;
+  white-space:normal;
   opacity:0;
   visibility:hidden;
   transition:all var(--transition-fast);
   z-index:1000;
   box-shadow:var(--shadow-md);
   border:1px solid rgba(212, 175, 55, 0.2);
+  max-width:280px;
 }
 .info-tooltip:hover .tooltip-content{
   opacity:1;
@@ -1633,9 +1633,12 @@ function animRing(el,tgt,color="var(--btn-color)"){
 function markAllAsNAAndScroll(){
   markAllAsNA();
   setTimeout(() => {
-    const btn = document.querySelector('button[onclick="goN()"]');
+    // Try multiple selectors to find the continue button
+    let btn = document.querySelector('button[onclick="goN()"]');
+    if(!btn) btn = document.querySelector('button[onclick*="goN"]');
+    if(!btn) btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.includes('Continue'));
     if(btn) btn.scrollIntoView({behavior:'smooth', block:'center'});
-  }, 100);
+  }, 300);
 }
 
 // Focus next toggle after selecting an answer
@@ -1668,7 +1671,7 @@ function markAllAsNA(){
     setTimeout(() => {
       const b=document.getElementById("cpbadge");
       if(b)b.style.display="flex";
-    }, 10);
+    }, 50);
   }
 }
 
