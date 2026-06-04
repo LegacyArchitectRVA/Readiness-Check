@@ -482,6 +482,18 @@ button:active{
   fill:#25D366;
 }
 
+.share-btn.threads{
+  background:rgba(0, 0, 0, 0.05);
+  border-color:rgba(0, 0, 0, 0.3);
+}
+.share-btn.threads:hover{
+  background:rgba(0, 0, 0, 0.12);
+  border-color:#000000;
+}
+.share-btn.threads .share-icon{
+  fill:#000000;
+}
+
 .share-btn.sms{
   background:rgba(0, 128, 0, 0.05);
   border-color:rgba(0, 128, 0, 0.3);
@@ -506,17 +518,17 @@ button:active{
   fill:#646464;
 }
 
-/* SMS button in share actions */
+/* SMS button in share actions - match other action buttons */
 .share-action-btn.sms{
-  background:rgba(0, 128, 0, 0.05);
-  border-color:rgba(0, 128, 0, 0.3);
+  background:rgba(100, 100, 100, 0.05);
+  border-color:rgba(100, 100, 100, 0.3);
 }
 .share-action-btn.sms:hover{
-  background:rgba(0, 128, 0, 0.12);
-  border-color:#008000;
+  background:rgba(100, 100, 100, 0.12);
+  border-color:#646464;
 }
 .share-action-btn.sms .share-icon{
-  fill:#008000;
+  fill:#646464;
 }
 
 /* Share modal content */
@@ -1095,7 +1107,7 @@ button.sm{
   justify-content:center;
   position:relative;
   border:2px solid rgba(212, 175, 55, 0.4);
-  background:rgba(26, 26, 46, 0.9);
+  background:#ffffff;
   overflow:hidden;
   margin:0 auto 10px;
   box-shadow:0 0 20px var(--ring-glow);
@@ -1113,13 +1125,13 @@ button.sm{
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:40px;
+  font-size:44px;
   color:var(--accent-gold);
   line-height:1;
   text-shadow:0 0 8px var(--ring-glow);
 }
 .scoresub{
-  font-size:11px;
+  font-size:12px;
   color:var(--accent-gold-light);
   margin-top:2px;
   letter-spacing:1px;
@@ -1734,7 +1746,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M17.25 2.5h-3.5c-1.5 0-2.85.9-3.5 2.25-.65 1.35-.65 2.85 0 4.2 3.55 1.35 7.45.9 11.25-.95v-3.55c0-1.5-.05-3.05-1.85-3.05-1.8 0-3.2 1.4-4.35 2.85-.15.2-.35.25-.5.35-.15.1-.3.2-.45.25-.15.05-.3.1-.45.15-.6.2-1.2.3-1.8.3-.6 0-1.2-.1-1.8-.25-.6-.15-1.2-.35-1.8-.6-.6-.25-1.2-.55-1.8-.85-.6-.3-1.2-.6-1.8-1C7.35 10.1 6.05 9.45 4.55 8.45c-.6-.4-1.2-.85-1.8-1.35-.6-.5-1.2-1-1.8-1.55-.6-.55-1.2-1.05-1.8-1.5-.6-.45-1.2-.85-1.8-1.2-.6-.35-1.2-.65-1.8-.9-.6-.25-1.2-.45-1.8-.6-.6-.15-1.2-.25-1.8-.35-.6-.1-1.2-.15-1.8-.2-1.5-.2-3-.4-4.5-.55v3.55c0 1.5.05 3.05 1.85 3.05 1.8 0 3.2-1.4 4.35-2.85.15-.2.35-.25.5-.35.15-.1.3-.2.45-.25.15-.05.3-.1.45-.15.6-.2 1.2-.3 1.8-.3.6 0 1.2.1 1.8.25.6.15 1.2.35 1.8.6.6.3 1.2.6 1.8.85.6.3 1.2.55 1.8.85.6.3 1.2.5 1.8.65.6.15 1.2.25 1.8.35.6.1 1.2.15 1.8.2z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -1744,7 +1756,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://wa.me/?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn whatsapp" onclick="trackShare('whatsapp')" aria-label="Share on WhatsApp">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h.002c.413 0 .794-.022 1.137-.066.343-.044.767-.131 1.22-.298.495-.177.897-.398 1.226-.792.328-.394.494-.889.494-1.523 0-.634-.166-1.129-.494-1.524-.329-.395-.831-.615-1.226-.793-.453-.166-.877-.253-1.137-.298-.264-.045-.552-.067-.825-.067-.273 0-.596.022-.825.067-.264.045-.767.132-1.137.298-.371.177-.557.408-.557.707 0 .298.186.529.557.708.371.176.874.264 1.137.298.263.044.551.066.825.066.273 0 .596-.022.825-.066m-2.849-2.482c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
             <span>WhatsApp</span>
           </a>
         </div>
@@ -1760,8 +1772,8 @@ function showShareModal(score, tierLabel, text, url) {
             <span>Email</span>
           </button>
           <button class="share-action-btn sms" onclick="window.open('sms:?body=${encodeURIComponent(shareText)}', '_blank')">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#008000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span>SMS</span>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#646464"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>Text</span>
           </button>
         </div>
         
