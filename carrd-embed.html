@@ -166,9 +166,9 @@ body{
   bottom:0;
   left:0;
   right:0;
-  background:var(--card-bg);
-  border-top:1px solid rgba(212, 175, 55, 0.35);
-  padding:12px 16px;
+  background:rgba(26, 26, 46, 0.98);
+  border-top:1px solid rgba(201, 162, 39, 0.4);
+  padding:10px 8px;
   display:none;
   z-index:1000;
   box-shadow:0 -4px 20px rgba(0,0,0,0.5);
@@ -178,14 +178,14 @@ body{
 }
 .mobile-nav-btn{
   flex:1;
-  padding:12px 8px;
-  background:rgba(212, 175, 55, 0.1);
-  border:1px solid rgba(212, 175, 55, 0.3);
+  padding:14px 6px;
+  background:rgba(201, 162, 39, 0.15);
+  border:1px solid #C9A227;
   border-radius:var(--radius-sm);
-  color:var(--accent-gold);
+  color:#C9A227;
   font-family:'Montserrat',sans-serif;
-  font-size:13px;
-  font-weight:500;
+  font-size:12px;
+  font-weight:600;
   cursor:pointer;
   transition:all var(--transition-normal);
   text-align:center;
@@ -193,15 +193,16 @@ body{
   letter-spacing:0.5px;
 }
 .mobile-nav-btn:not(:last-child){
-  margin-right:8px;
+  margin-right:4px;
 }
 .mobile-nav-btn:hover,
 .mobile-nav-btn:focus{
-  background:rgba(212, 175, 55, 0.2);
-  border-color:var(--accent-gold);
+  background:rgba(201, 162, 39, 0.25);
+  border-color:#F0D890;
+  color:#F0D890;
 }
 .mobile-nav-btn:active{
-  background:rgba(212, 175, 55, 0.3);
+  background:rgba(201, 162, 39, 0.35);
   transform:scale(0.98);
 }
 
@@ -1548,7 +1549,6 @@ button.sm{
 <!-- Mobile sticky navigation -->
 <div class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-btn" onclick="goB()">Back</button>
-  <button class="mobile-nav-btn" onclick="goN()">Continue</button>
   <button class="mobile-nav-btn" onclick="reset()">Reset</button>
 </div>
 
