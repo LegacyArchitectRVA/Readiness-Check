@@ -6,8 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>7-Pillar Continuity Analysis - Legacy Architect RVA</title>
+<title>7-Pillar Readiness Check - Legacy Architect RVA</title>
 <!-- Performance: Preload critical resources -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" href="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" as="image">
@@ -111,7 +112,7 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
 html{font-size:20.24px;}
 body{
   margin:0;
-  background:var(--bg-dark);
+  background:#000000;
   color:var(--text-gold);
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
@@ -125,7 +126,7 @@ body{
   padding:20px 15px 30px;
 }
 .card{
-  background:var(--card-bg);
+  background:rgba(26, 26, 46, 0.95);
   border:1px solid rgba(212, 175, 55, 0.25);
   border-radius:0;
   padding:30px 20px 35px;
@@ -312,7 +313,7 @@ button:active{
   left:0;
   right:0;
   bottom:0;
-  background:rgba(26, 26, 46, 0.98);
+  background:rgba(0, 0, 0, 0.98);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -320,7 +321,7 @@ button:active{
   animation:modalFadeIn 0.3s ease;
 }
 .share-modal{
-  background:var(--card-bg);
+  background:rgba(26, 26, 46, 0.95);
   border:1px solid rgba(212, 175, 55, 0.35);
   border-radius:0;
   width:90%;
@@ -479,7 +480,7 @@ button:active{
   border-color:#000000;
 }
 .share-btn.threads .share-icon{
-  fill:#000000;
+  color:#000000;
 }
 
 .share-btn.copy-link{
@@ -1140,7 +1141,7 @@ button.sm{
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:48px;
+  font-size:64px;
   color:#000000;
   line-height:1;
   text-shadow:0 0 8px rgba(0,0,0,0.2);
@@ -1723,7 +1724,7 @@ function markAllAsNA(){
 function shareScore(){
   const d=calc();
   const tierLabel = tLabel(d.pct);
-  const scoreText = `My Continuity Readiness score is ${d.pct}% (${tierLabel}). Take the 7-Pillar Continuity Analysis at https://legacyarchitectrva.com/#analysis`;
+  const scoreText = `My Continuity Readiness score is ${d.pct}% (${tierLabel}). Take the 7-Pillar Readiness Check at https://legacyarchitectrva.com/#analysis`;
   const shareUrl = encodeURIComponent('https://legacyarchitectrva.com/#analysis');
   const shareText = encodeURIComponent(scoreText);
   const shareImage = encodeURIComponent('https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png');
@@ -1738,7 +1739,7 @@ function showShareModal(score, tierLabel, text, url) {
   const encodedUrl = encodeURIComponent(analysisUrl);
   const encodedText = encodeURIComponent(text);
   const encodedImage = encodeURIComponent(imageUrl);
-  const shareText = `I just took the 7-Pillar Continuity Analysis and scored ${score}% — ${tierLabel}. Check out your readiness at ${analysisUrl}`;
+  const shareText = `I just took the 7-Pillar Readiness Check and scored ${score}% — ${tierLabel}. Check out your readiness at ${analysisUrl}`;
   
   const modal = document.createElement('div');
   modal.className = 'share-modal-overlay';
@@ -1779,7 +1780,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <i class="fa-brands fa-threads share-icon" style="color:#000000;font-size:24px;"></i>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -2043,7 +2044,7 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`
 <div>
-    <p class="mark" style="margin-bottom:12px;">7-Pillar Continuity Analysis</p>
+    <p class="mark" style="margin-bottom:12px;">7-Pillar Readiness Check</p>
     <p class="sub" style="margin-bottom:18px;">This short analysis shows how prepared your household is to maintain continuity if you were not available.</p>
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
@@ -2125,7 +2126,7 @@ function renderIntro(app,ps){
       </div>
     </div>
     
-    <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Analysis</button>
+    <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Checking</button>
   </div>`;
 }function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -2244,7 +2245,7 @@ function renderResults(app,ps){
     </div>
     <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
-    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Continuity Analysis™ — Legacy Architect RVA</div>
+    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check™ — Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);}
   window.scrollTo({top:0,behavior:'smooth'});
