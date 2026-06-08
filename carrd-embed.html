@@ -173,6 +173,10 @@ body{
   z-index:1000;
   box-shadow:0 -4px 20px rgba(0,0,0,0.5);
 }
+/* Add bottom padding when mobile nav is visible */
+.mobile-nav.visible ~ #wrap {
+  padding-bottom: 60px !important;
+}
 .mobile-nav.visible{
   display:flex;
 }
