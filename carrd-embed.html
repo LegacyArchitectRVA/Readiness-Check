@@ -160,55 +160,7 @@ body{
    MOBILE UX & STICKY NAVIGATION
    ============================================ */
 
-/* Sticky navigation for mobile */
-.mobile-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:rgba(26, 26, 46, 0.98);
-  border-top:1px solid rgba(201, 162, 39, 0.4);
-  padding:10px 8px;
-  display:none;
-  z-index:1000;
-  box-shadow:0 -4px 20px rgba(0,0,0,0.5);
-}
-/* Add bottom padding when mobile nav is visible */
-.mobile-nav.visible ~ #wrap {
-  padding-bottom: 60px !important;
-}
-.mobile-nav.visible{
-  display:flex;
-}
-.mobile-nav-btn{
-  flex:1;
-  padding:14px 6px;
-  background:rgba(201, 162, 39, 0.15);
-  border:1px solid #C9A227;
-  border-radius:var(--radius-sm);
-  color:#C9A227;
-  font-family:'Montserrat',sans-serif;
-  font-size:12px;
-  font-weight:600;
-  cursor:pointer;
-  transition:all var(--transition-normal);
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-}
-.mobile-nav-btn:not(:last-child){
-  margin-right:4px;
-}
-.mobile-nav-btn:hover,
-.mobile-nav-btn:focus{
-  background:rgba(201, 162, 39, 0.25);
-  border-color:#F0D890;
-  color:#F0D890;
-}
-.mobile-nav-btn:active{
-  background:rgba(201, 162, 39, 0.35);
-  transform:scale(0.98);
-}
+
 
 /* Touch target improvements */
 .toggle{
@@ -1096,11 +1048,6 @@ button.sm{
   gap:10px;
   margin-top:20px;
 }
-@media (max-width: 768px) {
-  .navrow {
-    display: none !important;
-  }
-}
 /* SCORE RING */
 .ringwrap{
   display:flex;
@@ -1555,11 +1502,7 @@ button.sm{
   <div class="progress-bar" id="progressBar"></div>
 </div>
 
-<!-- Mobile sticky navigation -->
-<div class="mobile-nav" id="mobileNav">
-  <button class="mobile-nav-btn" onclick="goB()">Back</button>
-  <button class="mobile-nav-btn" onclick="reset()">Reset</button>
-</div>
+
 
 <div id="wrap">
   <div id="app" class="card"></div>
@@ -2066,28 +2009,8 @@ function render(){
     renderResults(app,ps);
   }
   
-  // Update mobile navigation visibility
-  updateMobileNav();
-  
   // Update progress bar
   updateProgressBar();
-}
-
-// Update mobile navigation visibility
-function updateMobileNav() {
-  const mobileNav = document.getElementById('mobileNav');
-  const ps = aP();
-  
-  if (window.innerWidth <= 768) {
-    // Show mobile nav for questions and results
-    if (step > 0 && step <= ps.length + 1) {
-      mobileNav.classList.add('visible');
-    } else {
-      mobileNav.classList.remove('visible');
-    }
-  } else {
-    mobileNav.classList.remove('visible');
-  }
 }
 
 // Update progress bar
@@ -2122,7 +2045,7 @@ function updateProgressBar() {
 
 // Handle window resize
 window.addEventListener('resize', () => {
-  updateMobileNav();
+  updateProgressBar();
 });
 function renderIntro(app,ps){
   const tot=ps.length+1;
