@@ -639,7 +639,7 @@ button:active{
 .not-business-owner-btn{
   width:auto;
   padding:14px 24px;
-  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
+  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
   border:1px solid #8A721A;
   border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
@@ -670,7 +670,7 @@ button:active{
   left:100%;
 }
 .not-business-owner-btn:hover{
-  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
+  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
   border-color:var(--accent-gold);
   transform:translateY(-1px);
   box-shadow:0 4px 12px rgba(212, 175, 55, 0.3);
@@ -849,7 +849,7 @@ button:active{
 .cta-primary{
   width:100%;
   padding:18px 24px;
-  background:linear-gradient(135deg, #A68B1E, #C9A227, #F0D890);
+  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -880,6 +880,7 @@ button:active{
   left:100%;
 }
 .cta-primary:hover{
+  background:linear-gradient(135deg, #A68B1E, #C9A227, #F0D890);
   transform:translateY(-2px);
   box-shadow:0 6px 20px rgba(201, 162, 39, 0.4);
 }
@@ -979,7 +980,7 @@ button.alt:hover{
 button{
   width:100%;
   padding:16px 20px;
-  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
+  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -1012,13 +1013,13 @@ button:hover::before{
   left:100%;
 }
 button:hover{
-  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
+  background:linear-gradient(135deg, #A68B1E, #C9A227, #F0D890);
   transform:translateY(-1px);
   box-shadow:0 4px 15px rgba(212, 175, 55, 0.4);
   color:#1a1a2e;
 }
 button:hover{
-  background:var(--accent-gold-light);
+  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
   transform:translateY(-1px);
   box-shadow:0 4px 15px rgba(212, 175, 55, 0.3);
   color:#1a1a2e;
@@ -1807,7 +1808,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <i class="fa-brands fa-threads share-icon" style="color:#000000;font-size:24px;"></i>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02 2.5.06 4.13 1.04 4.96 3.29 1.11 3.02.37 6.11-.56 8.89-1.67 4.97-5.17 7.46-9.16 7.49-1.29.02-2.58.01-3.88.02-2.63.03-5.22-.32-7.5-1.64-1.87-1.09-2.9-3.2-2.91-5.62-.02-4.03.01-8.06.01-12.08 0-1.22.02-2.44.02-3.66.01-1.62.63-3.1 1.96-4.23C5.75.32 7.78-.22 9.99.01c1.5.14 3.01.2 4.51.02zm-7.3 6.44c.14-.3.27-.62.38-.94.17-.45.09-1.17-.23-1.58-.43-.55-1.22-.79-1.88-.53-.61.24-1.03.9-1.02 1.69.02.8.01 1.59.02 2.39.01.39.09.78.24 1.14.19.45.55.72.97.79.41.06.84.03 1.26-.09.43-.29.83-.58 1.18-.34.4-.83.62-1.34.66-.57.05-1.14-.12-1.62-.54zm4.89 1.42c.33.1.68.18 1.02.23.43.07.87.06 1.29.02.5-.05 1-.14 1.46-.33.41-.17.79-.44 1.12-.8.3-.33.5-.73.59-1.18.12-.56.01-1.13-.28-1.64-.22-.41-.62-.72-1.12-.83-.55-.12-1.12.03-1.66.37-.5.32-.89.8-.1.12-.2.25-.28.42-.05.13-.01.27.05.4zm-1.02 6.45c.18.3.27.63.27.97 0 .33-.08.66-.27.97-.18.3-.45.53-.78.68-.3.13-.63.18-.97.14-.32-.04-.66-.17-.97-.37-.3-.19-.53-.47-.68-.83-.14-.34-.18-.7-.12-1.05.07-.37.23-.72.47-1.02.23-.28.53-.48.88-.58.34-.09.7-.09 1.05-.02.37.07.72.22 1.02.45zM18.8 8.28c.18.3.27.63.27.97 0 .33-.08.66-.27.97-.18.3-.45.53-.78.68-.3.13-.63.18-.97.14-.32-.04-.66-.17-.97-.37-.3-.19-.53-.47-.68-.83-.14-.34-.18-.7-.12-1.05.07-.37.23-.72.47-1.02.23-.28.53-.48.88-.58.34-.09.7-.09 1.05-.02.37.07.72.22 1.02.45z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -2277,7 +2278,7 @@ function renderSuccess(){
     <div class="successscore" style="border:none;box-shadow:none;">
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
-    <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Begin a New Analysis</button>
+    <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">

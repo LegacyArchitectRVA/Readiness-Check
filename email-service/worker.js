@@ -585,135 +585,301 @@ function tierEmoji(tier) {
   return '🔴';
 }
 
+// Map tier labels to risk levels for the risk bar
+function getRiskLevel(tier) {
+  if (tier === 'Fully Documented' || tier === 'Nearly Complete') return 'low';
+  if (tier === 'Needs Attention') return 'moderate';
+  return 'high';
+}
+
+// Map pillar names to colors (matching Make.com template)
+const PILLAR_COLORS = {
+  'Digital Life': '#60A5FA',
+  'Financial & Assets': '#F87171',
+  'Household & Property': '#34D399',
+  'Health & Medical': '#D4AF37',
+  'Legal & Estate': '#94A3B8',
+  'Business Continuity': '#C084FC',
+  'Legacy & Wishes': '#A78BFA',
+};
+
+// Map tier labels to match website terminology
+function getTierLabel(percent) {
+  if (percent >= 86) return 'Continuity Legend';
+  if (percent >= 71) return 'Continuity Steward';
+  if (percent >= 61) return 'Continuity Builder';
+  return 'Continuity Sentinel';
+}
+
+// Get risk bar position based on risk level
+function getRiskBarPosition(riskLevel) {
+  if (riskLevel === 'low') return '33.33%';
+  if (riskLevel === 'moderate') return '66.66%';
+  return '66.66%';
+}
+
+// Get situation summary based on tier
+function getSituationSummary(tier, percent) {
+  if (percent >= 86) {
+    return {
+      borderColor: '#34D399',
+      title: 'YOUR SITUATION SUMMARY',
+      text: 'Your continuity planning is excellent. You have a comprehensive system in place.',
+      riskText: 'Minimal risk. Your successors will have clear guidance.'
+    };
+  }
+  if (percent >= 71) {
+    return {
+      borderColor: '#D4AF37',
+      title: 'YOUR SITUATION SUMMARY',
+      text: 'You have a strong foundation with some minor gaps to address.',
+      riskText: 'Low risk. Most areas are well-documented.'
+    };
+  }
+  if (percent >= 61) {
+    return {
+      borderColor: '#D4AF37',
+      title: 'YOUR SITUATION SUMMARY',
+      text: 'You have a foundation but critical gaps remain.',
+      riskText: 'Moderate risk. Some areas need immediate attention.'
+    };
+  }
+  return {
+    borderColor: '#F87171',
+    title: 'YOUR SITUATION SUMMARY',
+    text: 'You have significant gaps in your continuity planning.',
+    riskText: 'High risk. Your family could face legal delays, asset loss, and emotional stress.'
+  };
+}
+
+// Get top gaps to close first
+function getTopGaps(pillars) {
+  const gaps = [];
+  pillars.forEach(p => {
+    if (p.items) {
+      p.items.forEach(item => {
+        if (!item.checked && !item.na) {
+          gaps.push({ pillar: p.name, item: item.name, priority: 1 });
+        }
+      });
+    }
+  });
+  return gaps.slice(0, 3);
+}
+
+// Get highest risk pillar
+function getHighestRiskPillar(pillars) {
+  let highestRisk = { name: '', score: 100, checked: 0, max: 0 };
+  pillars.forEach(p => {
+    const pct = p.max > 0 ? Math.round((p.checked / p.max) * 100) : 100;
+    if (pct < highestRisk.score) {
+      highestRisk = { name: p.name, score: pct, checked: p.checked, max: p.max };
+    }
+  });
+  return highestRisk;
+}
+
+// Pillar descriptions and without text
+const PILLAR_INFO = {
+  'Digital Life': {
+    description: 'Secures digital accounts, passwords, and online presence.',
+    without: 'Without this: Loss of access to online accounts, identity theft vulnerability, digital assets become inaccessible to heirs.'
+  },
+  'Financial & Assets': {
+    description: 'Tracks bank accounts, investments, and insurance policies.',
+    without: 'Without this: Assets may be lost, beneficiaries unclear, financial chaos for survivors.'
+  },
+  'Household & Property': {
+    description: 'Manages property deeds, maintenance records, and utilities.',
+    without: 'Without this: Property transfers delayed, maintenance history lost, utility disruptions.'
+  },
+  'Health & Medical': {
+    description: 'Covers healthcare directives, insurance, and medical history.',
+    without: 'Without this: Family cannot make informed medical decisions, treatment preferences unknown.'
+  },
+  'Legal & Estate': {
+    description: 'Will, trusts, and power of attorney documents.',
+    without: 'Without this: Estate distribution contested, legal battles, prolonged probate, family conflict.'
+  },
+  'Business Continuity': {
+    description: 'Ensures business operations continue smoothly.',
+    without: 'Without this: Business operations halt, employees uncertain, clients left without service.'
+  },
+  'Legacy & Wishes': {
+    description: 'Documents final wishes, funeral plans, and ethical will.',
+    without: 'Without this: Final wishes unknown, family disputes over ceremonies, values not passed on.'
+  }
+};
+
 function buildEmail({ email, firstName, score, maxScore, percent, tier, businessOwner, pillars, recommendation }) {
   const name = firstName || email.split('@')[0];
   const tc = tierColor(tier);
+  const tierLabel = getTierLabel(percent);
+  const riskLevel = getRiskLevel(tier);
+  const riskPosition = getRiskBarPosition(riskLevel);
+  const situation = getSituationSummary(tier, percent);
+  const topGaps = getTopGaps(pillars);
+  const highestRiskPillar = getHighestRiskPillar(pillars);
 
-  let pillarRows = '';
-  for (const p of pillars) {
-    const pTier = p.tier || 'Critical Gaps';
-    const pColor = tierColor(pTier);
-    const pEmoji = tierEmoji(pTier);
-    const barWidth = p.max > 0 ? Math.round((p.checked / p.max) * 100) : 0;
-
-    let itemRows = '';
-    if (p.items && p.items.length) {
-      for (const item of p.items) {
-        const icon = item.na ? '➖' : (item.checked ? '✅' : '❌');
-        const label = item.na ? `<span style="color:#888;">${item.name} (N/A)</span>` : item.name;
-        itemRows += `<tr><td style="padding:4px 0 4px 12px;font-family:Georgia,'Bodoni Moda',serif;font-size:14px;color:#d4d0c8;border:0;">${icon}&nbsp; ${label}</td></tr>`;
-      }
+  // Count critical, unrecorded, and N/A for each pillar
+  function getPillarCounts(p) {
+    let critical = 0, unrecorded = 0, na = 0;
+    if (p.items) {
+      p.items.forEach(item => {
+        if (item.na) na++;
+        else if (!item.checked) unrecorded++;
+        else critical++;
+      });
     }
-
-    pillarRows += `
-      <tr><td style="padding:20px 0 6px;border:0;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="border:0;">
-          <tr>
-            <td style="font-family:'Cinzel',Georgia,serif;font-size:13px;font-weight:700;letter-spacing:2px;color:#fdfcfa;text-transform:uppercase;padding-bottom:4px;border:0;">${p.name}</td>
-            <td align="right" style="font-family:'Cinzel',Georgia,serif;font-size:18px;font-weight:700;color:#c1b085;border:0;">${p.checked}/${p.max}</td>
-          </tr>
-          <tr><td colspan="2" style="padding:4px 0;border:0;">
-            <div style="background:#1a1510;border-radius:4px;height:8px;width:100%;">
-              <div style="background:linear-gradient(90deg,${pColor},#c1b085);height:8px;border-radius:4px;width:${barWidth}%;"></div>
-            </div>
-          </td></tr>
-          <tr><td colspan="2" style="padding:2px 0 0;border:0;">
-            <span style="font-family:Georgia,serif;font-size:12px;font-weight:600;color:${pColor};letter-spacing:1px;">${pEmoji} ${pTier.toUpperCase()}</span>
-          </td></tr>
-          ${itemRows ? `<tr><td colspan="2" style="border:0;"><table width="100%" cellpadding="0" cellspacing="0" style="border:0;">${itemRows}</table></td></tr>` : ''}
-        </table>
-      </td></tr>`;
+    return { critical, unrecorded, na };
   }
+
+  // Build pillar sections
+  let pillarSections = '';
+  const pillarOrder = ['Digital Life', 'Financial & Assets', 'Household & Property', 'Health & Medical', 'Legal & Estate', 'Business Continuity', 'Legacy & Wishes'];
+  
+  pillarOrder.forEach(pillarName => {
+    const p = pillars.find(pi => pi.name === pillarName);
+    if (!p) return;
+    
+    const pct = p.max > 0 ? Math.round((p.checked / p.max) * 100) : 0;
+    const counts = getPillarCounts(p);
+    const color = PILLAR_COLORS[pillarName] || '#C6A85A';
+    const info = PILLAR_INFO[pillarName] || { description: '', without: '' };
+    
+    pillarSections += `
+    <div style="margin-bottom:20px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+        <div style="font-family:'Cinzel',serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; color:#e0d8c8;">${pillarName}</div>
+        <div style="font-family:'Cinzel',serif; font-size:14px; color:#C6A85A;">${pct}%</div>
+      </div>
+      <div class="pillar-bar-base"><div class="pillar-bar" style="width:${pct}%; background:${color};"></div></div>
+      <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px;">
+        <span style="color:#F87171;">${counts.critical} CRITICAL</span> &nbsp;&nbsp;
+        <span style="color:#94A3B8;">${counts.unrecorded} UNRECORDED</span> &nbsp;&nbsp;
+        <span style="color:#8a7d6e;">${counts.na} NOT APPLICABLE</span>
+      </div>
+      <p style="font-size:13px; color:#c8b8a8; line-height:1.5; margin-bottom:4px;">${info.description}</p>
+      <p style="font-size:13px; color:#D4AF37; line-height:1.5; margin-bottom:0; font-style:italic;">${info.without}</p>
+    </div>`;
+  });
+
+  // Build top gaps list
+  let gapsList = '';
+  topGaps.forEach((gap, index) => {
+    gapsList += `<li style="margin-bottom:${index < topGaps.length - 1 ? '8px' : '0'}; color:#e0d8c8;">${gap.item}</li>`;
+  });
 
   return `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#0a0806;font-family:Georgia,'Bodoni Moda',serif;">
-<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0806;border:0;">
-<tr><td align="center" style="padding:20px 10px;border:0;">
-<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border:0;">
-
-  <!-- Header -->
-  <tr><td align="center" style="padding:40px 30px 20px;border:0;">
-    <div style="font-family:'Cinzel',Georgia,serif;font-size:11px;letter-spacing:6px;color:#b8984e;text-transform:uppercase;margin-bottom:20px;">Legacy Architect RVA</div>
-    <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,#4a3d28,transparent);margin:0 auto 20px;"></div>
-    <div style="font-family:'Cinzel',Georgia,serif;font-size:13px;letter-spacing:5px;color:#b8984e;text-transform:uppercase;margin-bottom:14px;">7 Pillar Audit</div>
-    <div style="font-family:'Cinzel',Georgia,serif;font-size:26px;font-weight:700;color:#fdfcfa;letter-spacing:2px;line-height:1.3;">Your Continuity Score</div>
-  </td></tr>
-
-  <!-- Score Ring -->
-  <tr><td align="center" style="padding:20px 30px;border:0;">
-    <table cellpadding="0" cellspacing="0" style="border:0;">
-      <tr><td align="center" style="width:140px;height:140px;border-radius:50%;border:3px solid ${tc};text-align:center;vertical-align:middle;">
-        <div style="font-family:'Cinzel',Georgia,serif;font-size:48px;font-weight:700;color:#fdfcfa;line-height:1;">${percent}<span style="font-size:22px;color:#c1b085;">%</span></div>
-        <div style="font-family:Georgia,serif;font-size:12px;color:#c1b085;margin-top:2px;">${score} of ${maxScore}</div>
-      </td></tr>
-    </table>
-    <div style="margin-top:14px;font-family:'Cinzel',Georgia,serif;font-size:12px;font-weight:600;letter-spacing:2px;color:${tc};text-transform:uppercase;">${tier}</div>
-    ${businessOwner !== undefined ? `<div style="margin-top:8px;font-family:Georgia,serif;font-size:13px;color:#888;">Business Owner: ${businessOwner ? 'Yes' : 'No'}</div>` : ''}
-  </td></tr>
-
-  <!-- Divider -->
-  <tr><td align="center" style="padding:10px 0;border:0;">
-    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,#4a3d28,transparent);"></div>
-  </td></tr>
-
-  <!-- Pillar Breakdown -->
-  <tr><td style="padding:10px 30px 20px;border:0;">
-    <div style="font-family:'Cinzel',Georgia,serif;font-size:12px;letter-spacing:4px;color:#b8984e;margin-bottom:10px;text-transform:uppercase;">Pillar Breakdown</div>
-    <table width="100%" cellpadding="0" cellspacing="0" style="border:0;">
-      ${pillarRows}
-    </table>
-  </td></tr>
-
-  <!-- Recommendation -->
-  ${recommendation ? `
-  <tr><td style="padding:20px 30px;border:0;">
-    <div style="background:#13100c;border:1px solid #2a2218;border-radius:6px;padding:24px;">
-      <div style="font-family:'Cinzel',Georgia,serif;font-size:11px;letter-spacing:4px;color:#b8984e;margin-bottom:12px;text-transform:uppercase;">Your Recommended Next Step</div>
-      <div style="font-family:Georgia,serif;font-size:16px;font-style:italic;color:#fdfcfa;line-height:1.6;">${recommendation}</div>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Cinzel:wght@400;600;700&display=swap');
+  body { margin: 0; padding: 10px; background: #000000; color: #e0d8c8; font-family: 'Lora', serif; font-size: 15px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+  .container { max-width: 500px; margin: 0 auto; background: #000000; border: 1px solid #2a2a2a; border-radius: 12px; padding: 20px; }
+  .score-outer { width: 180px; height: 180px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: relative; background: #1a1a1a; margin: 0 auto 12px; }
+  .score-outer-border { position: absolute; inset: 0; border-radius: 50%; border: 3px solid #C6A85A; pointer-events: none; }
+  .score-inner { width: 140px; height: 140px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: relative; background: #000000; }
+  .score-inner-border { position: absolute; inset: 0; border-radius: 50%; border: 1px solid #C6A85A; pointer-events: none; }
+  .score-content { position: relative; z-index: 2; text-align: center; }
+  .score-pct { font-family: 'Cinzel', serif; font-size: 50px; color: #C6A85A; line-height: 1; font-weight: 700; }
+  .score-detail { font-size: 13px; color: #c8b8a8; margin-top: 4px; letter-spacing: 0.5px; }
+  .risk-bar-base { width: 100%; height: 6px; background: #2a2a2a; border-radius: 3px; position: relative; margin-bottom: 8px; }
+  .risk-bar-low { position: absolute; left: 0; top: 0; bottom: 0; width: 33.33%; background: #34D399; border-radius: 10px 0 0 10px; }
+  .risk-bar-moderate { position: absolute; left: 33.33%; top: 0; bottom: 0; width: 33.33%; background: #D4AF37; }
+  .risk-bar-high { position: absolute; left: 66.66%; top: 0; bottom: 0; width: 33.34%; background: #F87171; border-radius: 0 10px 10px 0; }
+  .risk-pointer { position: absolute; left: ${riskPosition}; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; background: #C6A85A; border: 2px solid #000; z-index: 2; }
+  .pillar-bar-base { height: 4px; width: 100%; background: #2a2a2a; border-radius: 2px; margin-bottom: 8px; }
+  .pillar-bar { height: 100%; border-radius: 2px; }
+  @media screen and (max-width: 500px) {
+    .container { padding: 15px; }
+    .score-outer { width: 160px; height: 160px; }
+    .score-outer-border { border-width: 2px; }
+    .score-inner { width: 120px; height: 120px; }
+    .score-pct { font-size: 45px; }
+    .score-detail { font-size: 12px; }
+    body { font-size: 14px; padding: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div style="text-align:center; margin-bottom:24px;">
+    <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA Shield" style="display:block; margin:0 auto 16px; width:60px; height:auto;">
+    <p style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:#C6A85A; margin-bottom:4px;">LEGACY ARCHITECT RVA</p>
+    <p style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#d4c9be; margin-bottom:16px;">7 PILLAR AUDIT</p>
+    <h1 style="font-family:'Cinzel',serif; font-size:26px; margin:0 0 20px; color:#e0d8c8; font-weight:600;">Your Full Results</h1>
+  </div>
+  <div style="text-align:center; margin-bottom:28px;">
+    <p style="font-family:'Cinzel',serif; font-size:30px; color:#C6A85A; margin-bottom:8px;">Continuity Readiness</p>
+    <div class="score-outer">
+      <div class="score-outer-border"></div>
+      <div class="score-inner">
+        <div class="score-inner-border"></div>
+        <div class="score-content">
+          <div class="score-pct">${percent}%</div>
+          <div class="score-detail">${score} of ${maxScore} recorded</div>
+        </div>
+      </div>
     </div>
-  </td></tr>` : ''}
-
-  <!-- Divider -->
-  <tr><td align="center" style="padding:20px 0 10px;border:0;">
-    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,#4a3d28,transparent);"></div>
-  </td></tr>
-
-  <!-- CTA: Book a Call -->
-  <tr><td align="center" style="padding:20px 30px 10px;border:0;">
-    <a href="https://cal.com/legacyarchitectrva/free-consult" style="display:inline-block;font-family:'Cinzel',Georgia,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);padding:14px 36px;border-radius:2px;text-decoration:none;text-transform:uppercase;">Book a Free Call</a>
-  </td></tr>
-  <tr><td align="center" style="padding:0 30px 10px;border:0;">
-    <div style="font-family:Georgia,serif;font-size:14px;font-style:italic;color:#c1b085;line-height:1.6;">A <strong>Life Manual</strong>&#8482; closes these gaps before someone else has to.</div>
-  </td></tr>
-
-  <!-- Secondary CTAs -->
-  <tr><td align="center" style="padding:20px 30px;border:0;">
-    <table cellpadding="0" cellspacing="0" style="border:0;">
-      <tr>
-        <td style="padding:0 8px;border:0;">
-          <a href="https://legacyarchitectrva.com/#pricing" style="font-family:'Cinzel',Georgia,serif;font-size:11px;letter-spacing:2px;color:#c1b085;text-decoration:underline;text-transform:uppercase;">View Pricing</a>
-        </td>
-        <td style="color:#4a3d28;padding:0 4px;border:0;">|</td>
-        <td style="padding:0 8px;border:0;">
-          <a href="https://legacyarchitectrva.com/#workbook" style="font-family:'Cinzel',Georgia,serif;font-size:11px;letter-spacing:2px;color:#c1b085;text-decoration:underline;text-transform:uppercase;">Download Workbook</a>
-        </td>
-      </tr>
-    </table>
-  </td></tr>
-
-  <!-- Footer -->
-  <tr><td align="center" style="padding:30px;border-top:1px solid #1a1510;border-bottom:0;border-left:0;border-right:0;">
-    <div style="font-family:Georgia,serif;font-size:12px;color:#555;line-height:1.8;">
-      Legacy Architect RVA<br>
-      <a href="https://legacyarchitectrva.com" style="color:#b8984e;text-decoration:none;">legacyarchitectrva.com</a>
+    <p style="font-family:'Cinzel',serif; letter-spacing:4px; font-size:15px; text-transform:uppercase; color:#C6A85A;">${tierLabel}</p>
+    <p style="text-align:center; font-size:14px; color:#8a7d6e; margin-top:8px;">Most households score between 40 and 65% on their first pass.</p>
+  </div>
+  <div style="background:#1a1a1a; border:1px solid #2a2a2a; border-radius:8px; padding:20px; margin-bottom:24px;">
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C6A85A; margin-bottom:12px; text-align:center;">YOUR RISK LEVEL</p>
+    <div style="position:relative; height:20px; margin-bottom:12px;">
+      <div class="risk-bar-base">
+        <div class="risk-bar-low"></div>
+        <div class="risk-bar-moderate"></div>
+        <div class="risk-bar-high"></div>
+        <div class="risk-pointer"></div>
+      </div>
     </div>
-  </td></tr>
-
-</table>
-</td></tr>
-</table>
+    <div style="display:flex; justify-content:space-between; font-size:10px; color:#8a7d6e; width:100%; position:relative; margin-bottom:8px;">
+      <span>LOW</span>
+      <span style="position:absolute; left:50%; transform:translateX(-50%);">MODERATE</span>
+      <span style="float:right;">HIGH</span>
+    </div>
+    <p style="font-family:'Cinzel',serif; font-size:14px; color:#C6A85A; font-weight:700; text-align:center; margin:0;">${riskLevel.toUpperCase()} RISK</p>
+  </div>
+  <div style="background:#1a1a1a; border:1px solid ${situation.borderColor}; border-radius:8px; padding:16px; margin-bottom:24px;">
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:${situation.borderColor}; margin-bottom:10px; text-align:center;">${situation.title}</p>
+    <p style="font-size:13px; color:#c8b8a8; line-height:1.5; text-align:center; margin-bottom:8px;">${situation.text}</p>
+    <p style="font-size:13px; color:${situation.borderColor}; line-height:1.5; font-weight:600; text-align:center; margin:0;">${situation.riskText}</p>
+  </div>
+  <div style="background:#1a1a1a; border:1px solid #C6A85A; border-radius:8px; padding:20px; margin-bottom:24px;">
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C6A85A; margin-bottom:10px;">CLOSE THESE GAPS FIRST</p>
+    <p style="font-size:14px; color:#c8b8a8; line-height:1.6; margin-bottom:12px;">These items carry the most immediate risk for your family:</p>
+    <ol style="padding-left:20px; margin:0;">
+      ${gapsList}
+    </ol>
+    <p style="text-align:center; font-family:'Cinzel',serif; letter-spacing:3px; font-size:11px; text-transform:uppercase; color:#C6A85A; margin-top:16px; margin-bottom:0;">HIGHEST RISK AREA</p>
+    <p style="text-align:center; font-size:14px; color:#e0d8c8; margin:8px 0 0 0;">${highestRiskPillar.name} scored ${highestRiskPillar.checked}/${highestRiskPillar.max}. This pillar has the most critical gaps.</p>
+  </div>
+  <div style="margin-bottom:24px;">
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C6A85A; margin-bottom:12px;">FULL PILLAR BREAKDOWN</p>
+    ${pillarSections}
+  </div>
+  <div style="background:#1a1a1a; border:1px solid #2a2a2a; border-radius:8px; padding:20px; margin-bottom:20px;">
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C6A85A; margin-bottom:12px;">WHAT THIS MEANS FOR YOU AND YOUR SUCCESSORS</p>
+    <p style="font-size:14px; color:#c8b8a8; line-height:1.6; margin-bottom:0;">${recommendation || 'Your current readiness score shows potential vulnerabilities in your digital and financial organization. Addressing these gaps will protect your assets and provide clarity for your successors. Without proper documentation, your family may face legal battles, lost assets, and emotional stress during an already difficult time.'}</p>
+  </div>
+  <div style="background:#1a1a1a; border:1px solid #2a2a2a; border-radius:8px; padding:16px; margin-bottom:20px; text-align:center;">
+    <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C6A85A; margin-bottom:10px;">LIMITED TIME OFFER</p>
+    <p style="font-size:13px; color:#c8b8a8; line-height:1.5; margin-bottom:0;">First 10 households to schedule receive $500 off their full plan plus a free initial review and update.</p>
+  </div>
+  <p style="font-size:12px; color:#8a7d6e; line-height:1.5; text-align:center; margin-bottom:20px; font-style:italic;">Every family's situation is unique. This check provides a framework for understanding their preparedness.</p>
+  <div style="text-align:center; margin-top:24px;">
+    <div style="display:block; margin-bottom:10px;">
+      <a href="https://cal.com/legacyarchitectrva/discovery-call" style="display:block; padding:16px 24px; background:#C6A85A; border:none; font-family:'Cinzel',serif; font-weight:700; letter-spacing:3px; cursor:pointer; font-size:13px; text-transform:uppercase; color:#13100c; border-radius:4px; text-decoration:none; text-align:center; min-width:200px;">START ORGANIZING</a>
+    </div>
+    <div style="display:block;">
+      <a href="https://buy.stripe.com/dRm5kw3n46D1f3O7Bs1Nu01" style="display:block; padding:16px 24px; background:transparent; border:1px solid #C6A85A; font-family:'Cinzel',serif; font-weight:700; letter-spacing:3px; cursor:pointer; font-size:13px; text-transform:uppercase; color:#C6A85A; border-radius:4px; text-decoration:none; text-align:center; min-width:200px;">SECURE YOUR WORKBOOK</a>
+    </div>
+  </div>
+  <p style="margin-top:18px; font-size:11px; color:#8a7d6e; text-align:center; letter-spacing:1px; line-height:1.6;">For informational purposes only. Not legal or financial advice.<br><a href="https://LegacyArchitectRVA.com" style="color:#C6A85A; text-decoration:none;">LegacyArchitectRVA.com</a></p>
+</div>
 </body>
 </html>`;
 }
