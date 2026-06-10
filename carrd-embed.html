@@ -1754,9 +1754,6 @@ function shareScore(){
   const d=calc();
   const tierLabel = tLabel(d.pct);
   const scoreText = `My Continuity Readiness score is ${d.pct}% (${tierLabel}). Take the 7-Pillar Readiness Check at https://legacyarchitectrva.com/#analysis`;
-  const shareUrl = encodeURIComponent('https://legacyarchitectrva.com/#analysis');
-  const shareText = encodeURIComponent(scoreText);
-  const shareImage = encodeURIComponent('https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png');
   
   // Show the social share modal with updated URLs
   showShareModal(d.pct, tierLabel, scoreText, 'https://legacyarchitectrva.com/#analysis');
