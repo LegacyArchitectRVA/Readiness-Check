@@ -122,7 +122,7 @@ body{
 #wrap{
   max-width:1000px;
   margin:0 auto;
-  padding:18px 13.5px 27px;
+  padding:0;
 }
 .card{
   background:rgba(26, 26, 46, 0.95);
@@ -133,6 +133,7 @@ body{
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   border-top: 1px solid rgba(212, 175, 55, 0.35);
   border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  overflow: hidden;
 }
 .card::before{
   content:"";
@@ -288,6 +289,7 @@ button:active{
   box-shadow:0 0 40px rgba(0, 0, 0, 0.8);
   opacity:0;
   transform:translateY(-20px);
+  contain: strict;
 }
 .share-modal-visible{
   opacity:1;
@@ -1807,7 +1809,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02 2.5.06 4.13 1.04 4.96 3.29 1.11 3.02.37 6.11-.56 8.89-1.67 4.97-5.17 7.46-9.16 7.49-1.29.02-2.58.01-3.88.02-2.63.03-5.22-.32-7.5-1.64-1.87-1.09-2.9-3.2-2.91-5.62-.02-4.03.01-8.06.01-12.08 0-1.22.02-2.44.02-3.66.01-1.62.63-3.1 1.96-4.23C5.75.32 7.78-.22 9.99.01c1.5.14 3.01.2 4.51.02z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
