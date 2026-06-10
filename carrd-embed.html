@@ -617,9 +617,14 @@ button:active{
   vertical-align:middle;
 }
 .tlabel .tooltip-content{
-  font-size:13px;
-  max-width:250px;
+  font-size:14px;
+  max-width:280px;
   text-align:left;
+  width:280px;
+  min-width:200px;
+  max-height:200px;
+  overflow-y:auto;
+  word-break:break-word;
 }
 .opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
@@ -703,21 +708,25 @@ button:active{
 .info-tooltip .tooltip-content{
   visibility:hidden;
   position:absolute;
-  bottom:100%;
+  bottom:calc(100% + 12px);
   left:50%;
   transform:translateX(-50%);
   background:var(--card-bg);
   border:1px solid rgba(212, 175, 55, 0.3);
-  border-radius:4px;
-  padding:12px 14px;
+  border-radius:6px;
+  padding:14px 16px;
   width:280px;
   max-width:90vw;
+  min-width:200px;
+  max-height:200px;
+  overflow-y:auto;
   font-size:14px;
-  line-height:1.5;
+  line-height:1.6;
   color:var(--text-gold);
-  box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
+  box-shadow:0 6px 25px rgba(0, 0, 0, 0.6);
   white-space:normal;
   word-wrap:break-word;
+  word-break:break-word;
   opacity:0;
   transition:opacity 0.2s ease, visibility 0.2s ease;
   font-family:'Cormorant Garamond',serif;
@@ -952,31 +961,7 @@ button.alt:hover{
 .info-tooltip:hover .info-icon{
   opacity:1;
 }
-.tooltip-content{
-  position:absolute;
-  bottom:100%;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--bg-dark);
-  color:var(--text-gold);
-  padding:8px 12px;
-  border-radius:var(--radius-sm);
-  font-size:12px;
-  white-space:normal;
-  word-wrap:break-word;
-  opacity:0;
-  visibility:hidden;
-  transition:all var(--transition-fast);
-  z-index:10000;
-  box-shadow:var(--shadow-md);
-  border:1px solid rgba(212, 175, 55, 0.2);
-  width:280px;
-  max-width:90vw;
-}
-.info-tooltip:hover .tooltip-content{
-  opacity:1;
-  visibility:visible;
-}
+
 
 /* BUTTONS - Elegant */
 button{
