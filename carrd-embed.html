@@ -1727,7 +1727,7 @@ function goN(){
 function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');clearState();}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -2371,19 +2371,22 @@ function loadState() {
     const savedState = localStorage.getItem('continuityAnalysisState');
     if (savedState) {
       const state = JSON.parse(savedState);
-      // Restore answers
-      if (state.answers) {
-        Object.assign(ANS, state.answers);
+      // Only load state if user was in progress (not completed)
+      if (state.step !== undefined && state.step < 7) {
+        // Restore answers
+        if (state.answers) {
+          Object.assign(ANS, state.answers);
+        }
+        // Restore step
+        if (state.step !== undefined) {
+          step = state.step;
+        }
+        // Restore business owner flag
+        if (state.biz !== undefined) {
+          biz = state.biz;
+        }
+        return true;
       }
-      // Restore step
-      if (state.step !== undefined) {
-        step = state.step;
-      }
-      // Restore business owner flag
-      if (state.biz !== undefined) {
-        biz = state.biz;
-      }
-      return true;
     }
   } catch (e) {
     console.log('Error loading state:', e);
