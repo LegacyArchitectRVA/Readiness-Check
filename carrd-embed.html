@@ -116,7 +116,6 @@ body{
   color:var(--text-gold);
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
-  min-height:100vh;
   overflow-x:hidden;
   line-height:1.6;
 }
@@ -1392,8 +1391,8 @@ button.sm{
   .ringwrap{margin-top:0 !important;}
   /* Scroll to top on start */
   .start-btn{margin-top:20px;}
-  /* Ensure Start Checking button is always visible */
-  #app { min-height: 80vh; display: flex; flex-direction: column; justify-content: space-between; }
+  /* Ensure Start Checking button is visible */
+  #app { display: block; }
   .start-btn { margin-bottom: 20px; }
 }
 
