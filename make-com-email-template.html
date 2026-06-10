@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your 7-Pillar Readiness Check Results</title>
+    <style>
+        /* Email client compatibility */
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #1a1a2e; color: #E8D5A3; padding: 20px; text-align: center; }
+        .content { background: #ffffff; padding: 25px; border: 1px solid #e0e0e0; }
+        .score-circle { 
+            width: 120px; height: 120px; border-radius: 50%; 
+            background: #ffffff; border: 3px solid #C9A227; 
+            display: flex; align-items: center; justify-content: center; 
+            margin: 20px auto; font-size: 36px; font-weight: bold; color: #000000;
+        }
+        .tier { text-align: center; font-size: 24px; color: #C9A227; margin: 15px 0; }
+        .section { margin: 25px 0; }
+        .section-title { color: #C9A227; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px; }
+        .pillar-bar { margin: 10px 0; }
+        .pillar-name { font-weight: bold; color: #333; }
+        .bar-container { height: 20px; background: #f0f0f0; border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 10px; }
+        .gap-item { padding: 10px; margin: 8px 0; background: #f9f9f9; border-left: 3px solid #C9A227; }
+        .cta-button { 
+            display: inline-block; padding: 12px 24px; 
+            background: #C9A227; color: #ffffff; text-decoration: none; 
+            border-radius: 5px; font-weight: bold; margin: 20px 0;
+        }
+        .footer { text-align: center; font-size: 12px; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1 style="color: #E8D5A3; margin: 0; font-size: 24px;">Legacy Architect RVA</h1>
+            <p style="margin: 10px 0 0 0; font-size: 16px;">Your 7-Pillar Readiness Check Results</p>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content">
+            
+            <!-- PERSONAL GREETING -->
+            <p style="font-size: 18px; margin-bottom: 20px;">
+                Hello {{1.firstName}},<br>
+                Here are your personalized results from the 7-Pillar Readiness Check.
+            </p>
+
+            <!-- SCORE CIRCLE -->
+            <div class="score-circle">
+                {{1.percent}}%
+            </div>
+            
+            <!-- TIER -->
+            <div class="tier">{{1.tier}}</div>
+            
+            <!-- SCORE SUMMARY -->
+            <p style="text-align: center; font-size: 16px; margin: 15px 0;">
+                <strong>{{1.recordedItems}} of {{1.maxScore}} recorded</strong><br>
+                <span style="font-size: 14px; color: #666;">Most households score between 40-65% on their first pass</span>
+            </p>
+
+            <!-- PERSONAL RECOMMENDATION -->
+            <div class="section">
+                <h2 class="section-title">Your Next Steps</h2>
+                <p style="font-size: 16px; line-height: 1.6; margin: 15px 0;">
+                    {{1.recommendation}}
+                </p>
+            </div>
+
+            <!-- PILLAR BREAKDOWN -->
+            <div class="section">
+                <h2 class="section-title">Pillar Breakdown</h2>
+                
+                <!-- Make.com compatible pillar breakdown -->
+                {{MAP(1.pillarBreakdown; pillar; 
+                    '<div class="pillar-bar">' +
+                    '<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">' +
+                    '<span class="pillar-name">' + pillar.nm + '</span>' +
+                    '<span style="font-weight: bold; color: #C9A227;">' + pillar.pct + '%</span>' +
+                    '</div>' +
+                    '<div class="bar-container">' +
+                    '<div class="bar-fill" style="width: ' + pillar.pct + '%; background: #C9A227;"></div>' +
+                    '</div>' +
+                    '</div>'
+                )}}
+            </div>
+
+            <!-- PRIORITY GAPS -->
+            {{IF(LENGTH(1.gaps) > 0; 
+                '<div class="section">' +
+                '<h2 class="section-title">Priority Gaps to Address</h2>' +
+                MAP(1.gaps; gap; 
+                    '<div class="gap-item">' +
+                    '<strong>' + gap.pl + ':</strong> ' + gap.item +
+                    '</div>'
+                ) +
+                '</div>'; 
+                ''
+            )}}
+
+            <!-- STRENGTHS -->
+            {{IF(LENGTH(1.strengths) > 0; 
+                '<div class="section">' +
+                '<h2 class="section-title">Your Strengths</h2>' +
+                MAP(1.strengths; strength; 
+                    '<div class="gap-item" style="border-left-color: #008000;">' +
+                    '<strong>' + strength.pl + ':</strong> ' + strength.item +
+                    '</div>'
+                ) +
+                '</div>'; 
+                ''
+            )}}
+
+            <!-- CTA -->
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://legacyarchitectrva.com/#services" class="cta-button">
+                    See Your Next Steps
+                </a>
+            </div>
+
+            <!-- DISCLAIMER -->
+            <p style="font-size: 12px; color: #666; text-align: center; margin-top: 20px;">
+                Informational purposes only. Not legal or financial advice.<br>
+                7-Pillar Readiness Check™ — Legacy Architect RVA
+            </p>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>© {{YEAR()}} Legacy Architect RVA. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
