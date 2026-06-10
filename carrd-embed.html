@@ -640,7 +640,7 @@ button:active{
 .not-business-owner-btn{
   width:auto;
   padding:14px 24px;
-  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
+  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
   border:1px solid #8A721A;
   border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
@@ -671,7 +671,7 @@ button:active{
   left:100%;
 }
 .not-business-owner-btn:hover{
-  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
+  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
   border-color:var(--accent-gold);
   transform:translateY(-1px);
   box-shadow:0 4px 12px rgba(212, 175, 55, 0.3);
@@ -721,6 +721,7 @@ button:active{
   opacity:0;
   transition:opacity 0.2s ease, visibility 0.2s ease;
   font-family:'Cormorant Garamond',serif;
+  z-index: 10000;
 }
 .info-tooltip:hover .tooltip-content,
 .info-tooltip:focus .tooltip-content{
@@ -850,7 +851,7 @@ button:active{
 .cta-primary{
   width:100%;
   padding:18px 24px;
-  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
+  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -881,7 +882,7 @@ button:active{
   left:100%;
 }
 .cta-primary:hover{
-  background:linear-gradient(135deg, #A68B1E, #C9A227, #F0D890);
+  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
   transform:translateY(-2px);
   box-shadow:0 6px 20px rgba(201, 162, 39, 0.4);
 }
@@ -966,7 +967,7 @@ button.alt:hover{
   opacity:0;
   visibility:hidden;
   transition:all var(--transition-fast);
-  z-index:1000;
+  z-index:10000;
   box-shadow:var(--shadow-md);
   border:1px solid rgba(212, 175, 55, 0.2);
   width:280px;
@@ -981,7 +982,7 @@ button.alt:hover{
 button{
   width:100%;
   padding:16px 20px;
-  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
+  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -1014,15 +1015,9 @@ button:hover::before{
   left:100%;
 }
 button:hover{
-  background:linear-gradient(135deg, #A68B1E, #C9A227, #F0D890);
+  background:linear-gradient(145deg, #F4E4BC, #D4AF37, #F4E4BC);
   transform:translateY(-1px);
   box-shadow:0 4px 15px rgba(212, 175, 55, 0.4);
-  color:#1a1a2e;
-}
-button:hover{
-  background:linear-gradient(145deg, #C9A227, #A68B1E, #C9A227);
-  transform:translateY(-1px);
-  box-shadow:0 4px 15px rgba(212, 175, 55, 0.3);
   color:#1a1a2e;
 }
 button:active{
@@ -1075,7 +1070,7 @@ button.sm{
   justify-content:center;
   position:relative;
   border:2px solid rgba(212, 175, 55, 0.4);
-  background:#F5F5DC;
+  background:#FFFFFF;
   overflow:hidden;
   margin:0 auto 10px;
   box-shadow:0 0 20px var(--ring-glow);
@@ -1088,12 +1083,13 @@ button.sm{
   border-radius:50%;
   border:1px solid rgba(212, 175, 55, 0.25);
   pointer-events:none;
+  background: transparent;
 }
 .ringconic{position:absolute;inset:-42%;border-radius:50%;}
-.ringinner{position:relative;z-index:2;text-align:center;}
+.ringinner{position:relative;z-index:2;text-align:center;background:transparent;}
 .scorenum{
   font-family:'Cinzel',serif;
-  font-size:64px;
+  font-size:70px;
   color:#000000;
   line-height:1;
   text-shadow:0 0 8px rgba(0,0,0,0.2);
@@ -1668,7 +1664,7 @@ function goN(){
 function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;clearState();render();trackEvent('reset');}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -1773,7 +1769,7 @@ function showShareModal(score, tierLabel, text, url) {
     <div class="share-modal">
       <div class="share-modal-header">
         <h3 class="share-modal-title">Share Your Results</h3>
-        <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
+        <span class="share-modal-close" onclick="window.closeShareModal()">&times;</span>
       </div>
       <div class="share-modal-content">
         <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="share-modal-logo">
@@ -1806,7 +1802,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -1839,6 +1835,7 @@ function showShareModal(score, tierLabel, text, url) {
   document.body.appendChild(modal);
   modal.querySelector('.share-modal').classList.add('share-modal-visible');
   document.body.style.overflow = 'hidden';
+  modal.addEventListener('click', handleModalClick);
   
   // Generate QR code
   generateQRCode(analysisUrl, 'shareQrCode');
@@ -1961,6 +1958,7 @@ function submit(){
   .then(r=>r.json().catch(()=>({})))
   .then(()=>{
     trackEvent('submit_success', { score: sc, tier: tl });
+    clearState();
     renderSuccess();
   })
   .catch(()=>{
@@ -2309,19 +2307,22 @@ function loadState() {
     const savedState = localStorage.getItem('continuityAnalysisState');
     if (savedState) {
       const state = JSON.parse(savedState);
-      // Restore answers
-      if (state.answers) {
-        Object.assign(ANS, state.answers);
+      // Only load in-progress data (step < 7, not completed)
+      if (state.step !== undefined && state.step < 7) {
+        // Restore answers
+        if (state.answers) {
+          Object.assign(ANS, state.answers);
+        }
+        // Restore step
+        if (state.step !== undefined) {
+          step = state.step;
+        }
+        // Restore business owner flag
+        if (state.biz !== undefined) {
+          biz = state.biz;
+        }
+        return true;
       }
-      // Restore step
-      if (state.step !== undefined) {
-        step = state.step;
-      }
-      // Restore business owner flag
-      if (state.biz !== undefined) {
-        biz = state.biz;
-      }
-      return true;
     }
   } catch (e) {
     console.log('Error loading state:', e);

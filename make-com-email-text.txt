@@ -1,0 +1,26 @@
+Hello {{1.firstName}},
+
+Here are your personalized results from the 7-Pillar Readiness Check.
+
+YOUR READINESS SCORE: {{1.percent}}%
+Tier: {{1.tier}}
+{{1.recordedItems}} of {{1.maxScore}} items recorded
+
+Most households score between 40-65% on their first pass.
+
+YOUR NEXT STEPS:
+{{1.recommendation}}
+
+PILLAR BREAKDOWN:
+{{MAP(1.pillarBreakdown; pillar; pillar.nm + ': ' + pillar.pct + '% (' + pillar.r + ' recorded, ' + pillar.u + ' undocumented, ' + pillar.na + ' not applicable)')}}
+
+PRIORITY GAPS TO ADDRESS:
+{{IF(LENGTH(1.gaps) > 0; MAP(1.gaps; gap; '- ' + gap.pl + ': ' + gap.item); 'None - all items are addressed!')}}
+
+YOUR STRENGTHS:
+{{IF(LENGTH(1.strengths) > 0; MAP(1.strengths; strength; '- ' + strength.pl + ': ' + strength.item); 'Great start!')}}
+
+See your next steps: https://legacyarchitectrva.com/#services
+
+Informational purposes only. Not legal or financial advice.
+7-Pillar Readiness Check™ — Legacy Architect RVA
