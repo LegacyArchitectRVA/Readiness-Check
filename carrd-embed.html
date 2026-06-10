@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-
+<link rel="preload" href="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" as="image">
 <!-- Accessibility -->
 <meta name="theme-color" content="#1a1a2e">
 <style>
@@ -428,6 +428,19 @@ button:active{
   color:var(--text-muted);
 }
 
+/* Threads - matching gold theme */
+.share-btn.threads{
+  background:rgba(212, 175, 55, 0.05);
+  border-color:rgba(212, 175, 55, 0.3);
+}
+.share-btn.threads:hover{
+  background:rgba(212, 175, 55, 0.12);
+  border-color:var(--accent-gold);
+}
+.share-btn.threads .share-icon{
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+}
+
 .share-btn.copy-link{
   background:rgba(100, 100, 100, 0.05);
   border-color:rgba(100, 100, 100, 0.3);
@@ -512,72 +525,6 @@ button:active{
 .share-btn.x .share-icon{
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
-
-/* LinkedIn - blue theme */
-.share-btn.linkedin{
-  background:rgba(10, 102, 194, 0.05);
-  border-color:rgba(10, 102, 194, 0.3);
-}
-.share-btn.linkedin:hover{
-  background:rgba(10, 102, 194, 0.12);
-  border-color:#0A66C2;
-}
-.share-btn.linkedin .share-icon{
-  filter: drop-shadow(0 0 2px rgba(10, 102, 194, 0.8));
-}
-
-/* Facebook - blue theme */
-.share-btn.facebook{
-  background:rgba(24, 119, 242, 0.05);
-  border-color:rgba(24, 119, 242, 0.3);
-}
-.share-btn.facebook:hover{
-  background:rgba(24, 119, 242, 0.12);
-  border-color:#1877F2;
-}
-.share-btn.facebook .share-icon{
-  filter: drop-shadow(0 0 2px rgba(24, 119, 242, 0.8));
-}
-
-/* Instagram - gradient theme */
-.share-btn.instagram{
-  background:rgba(228, 64, 95, 0.05);
-  border-color:rgba(228, 64, 95, 0.3);
-}
-.share-btn.instagram:hover{
-  background:rgba(228, 64, 95, 0.12);
-  border-color:#E4405F;
-}
-.share-btn.instagram .share-icon{
-  filter: drop-shadow(0 0 2px rgba(228, 64, 95, 0.8));
-}
-
-/* Threads - black/white theme */
-.share-btn.threads{
-  background:rgba(0, 0, 0, 0.05);
-  border-color:rgba(0, 0, 0, 0.3);
-}
-.share-btn.threads:hover{
-  background:rgba(0, 0, 0, 0.12);
-  border-color:#000000;
-}
-.share-btn.threads .share-icon{
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
-}
-
-/* NextDoor - green theme */
-.share-btn.nextdoor{
-  background:rgba(0, 163, 106, 0.05);
-  border-color:rgba(0, 163, 106, 0.3);
-}
-.share-btn.nextdoor:hover{
-  background:rgba(0, 163, 106, 0.12);
-  border-color:#00A36A;
-}
-.share-btn.nextdoor .share-icon{
-  filter: drop-shadow(0 0 2px rgba(0, 163, 106, 0.8));
-}
-
 .share-icon{
   width:24px;
   height:24px;
@@ -687,10 +634,6 @@ button:active{
   #app > div:first-child > p:nth-child(2) {
     margin-bottom: 10px !important;
   }
-  /* Pillar pages - responsive */
-  .pname{width:100% !important;text-align:center !important;font-size:15px !important;}
-  .opts{justify-content:center !important;}
-  .opt{flex:1 1 100px !important;min-width:80px !important;}
 }
 
 /* Not a business owner button */
@@ -1487,13 +1430,12 @@ button.sm{
     padding: 10px 12px !important;
     font-size: 12px !important;
     min-width: 70px !important;
-    flex:1 1 80px !important;
   }
   .ring { width: 100px !important; height: 100px !important; }
   .scorenum { font-size: 28px !important; }
   .ringlabel { font-size: 16px !important; }
   .tierbadge { font-size: 18px !important; }
-  .pname { width:100% !important; font-size: 14px !important; text-align:center !important; }
+  .pname { width: 140px !important; font-size: 14px !important; }
   .legblock, .bkwrap, .gapwrap { font-size: 14px !important; }
   button { 
     padding: 14px 18px !important;
@@ -1524,11 +1466,10 @@ button.sm{
   .opt { 
     padding: 11px 14px !important;
     font-size: 13px !important;
-    flex:1 1 120px !important;
   }
   .ring { width: 110px !important; height: 110px !important; }
   .scorenum { font-size: 30px !important; }
-  .pname { width: 140px !important; text-align:left !important; }
+  .pname { width: 160px !important; }
   button { 
     padding: 15px 19px !important;
     font-size: 11.5px !important;
@@ -1727,7 +1668,7 @@ function goN(){
 function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');clearState();}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -1815,7 +1756,7 @@ function shareScore(){
   const scoreText = `My Continuity Readiness score is ${d.pct}% (${tierLabel}). Take the 7-Pillar Readiness Check at https://legacyarchitectrva.com/#analysis`;
   const shareUrl = encodeURIComponent('https://legacyarchitectrva.com/#analysis');
   const shareText = encodeURIComponent(scoreText);
-  const shareImage = encodeURIComponent('https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499');
+  const shareImage = encodeURIComponent('https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png');
   
   // Show the social share modal with updated URLs
   showShareModal(d.pct, tierLabel, scoreText, 'https://legacyarchitectrva.com/#analysis');
@@ -2371,22 +2312,19 @@ function loadState() {
     const savedState = localStorage.getItem('continuityAnalysisState');
     if (savedState) {
       const state = JSON.parse(savedState);
-      // Only load state if user was in progress (not completed)
-      if (state.step !== undefined && state.step < 7) {
-        // Restore answers
-        if (state.answers) {
-          Object.assign(ANS, state.answers);
-        }
-        // Restore step
-        if (state.step !== undefined) {
-          step = state.step;
-        }
-        // Restore business owner flag
-        if (state.biz !== undefined) {
-          biz = state.biz;
-        }
-        return true;
+      // Restore answers
+      if (state.answers) {
+        Object.assign(ANS, state.answers);
       }
+      // Restore step
+      if (state.step !== undefined) {
+        step = state.step;
+      }
+      // Restore business owner flag
+      if (state.biz !== undefined) {
+        biz = state.biz;
+      }
+      return true;
     }
   } catch (e) {
     console.log('Error loading state:', e);
