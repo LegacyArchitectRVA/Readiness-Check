@@ -40,7 +40,7 @@ const NURTURE_EMAILS = {
     <span style="font-size: 11px; letter-spacing: 4px; color: #8B6F47; text-transform: uppercase;">Legacy Architect RVA</span>
   </div>
   <div style="font-size: 16px; line-height: 1.7; color: #c8bfad;">
-    <p>You took the 7-Pillar Digital Audit a couple of days ago, and your results showed some significant gaps.</p><p>That's not a judgment — it's information. And the fact that you took the audit at all puts you ahead of most people. Fifty-two percent of American adults have no plan at all for their digital assets, let alone the rest.</p><p>Here's what those gaps mean in real terms:</p><p>When a family loses someone unexpectedly — or when someone becomes incapacitated — the people left behind don't just grieve. They search. For passwords. For account numbers. For documents they were sure existed but can't find. On average, families spend <strong style="color:#c1b085;">over 60 hours</strong> sorting through the chaos that a simple system could have prevented.</p><p>Your audit identified exactly where those gaps are in your life. That's the first step.</p><p>The second step is closing them.</p><p>If you'd like to talk through what came up in your results — no obligation, completely confidential — I offer a free 60-minute consultation where we walk through your specific situation together.</p>
+    <p>You took the 7-Pillar Readiness Check a couple of days ago, and your results showed some significant gaps.</p><p>That's not a judgment — it's information. And the fact that you took the audit at all puts you ahead of most people. Fifty-two percent of American adults have no plan at all for their digital assets, let alone the rest.</p><p>Here's what those gaps mean in real terms:</p><p>When a family loses someone unexpectedly — or when someone becomes incapacitated — the people left behind don't just grieve. They search. For passwords. For account numbers. For documents they were sure existed but can't find. On average, families spend <strong style="color:#c1b085;">over 60 hours</strong> sorting through the chaos that a simple system could have prevented.</p><p>Your audit identified exactly where those gaps are in your life. That's the first step.</p><p>The second step is closing them.</p><p>If you'd like to talk through what came up in your results — no obligation, completely confidential — I offer a free 60-minute consultation where we walk through your specific situation together.</p>
   </div>
   <div style="text-align: center; margin: 32px 0;">
     <a href="https://legacyarchitectrva.com/legacyarchitectrva/60min" style="font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #100d0a; background-color: #c1b085; padding: 14px 28px; border-radius: 2px; text-decoration: none; display: inline-block; text-transform: uppercase;">BOOK A PRIVATE CONVERSATION</a>
@@ -114,7 +114,7 @@ const NURTURE_EMAILS = {
     <span style="font-size: 11px; letter-spacing: 4px; color: #8B6F47; text-transform: uppercase;">Legacy Architect RVA</span>
   </div>
   <div style="font-size: 16px; line-height: 1.7; color: #c8bfad;">
-    <p>Two weeks ago, you took the 7-Pillar Audit and discovered some gaps in your continuity planning.</p><p>This work doesn't get easier with time. It gets harder. Life gets more complex. Accounts multiply. The longer you wait, the more there is to organize — and the higher the stakes if something happens before you do.</p><p>But the starting point is simple: one conversation.</p><p>Right now, I'm accepting new clients through the <strong style="color:#c1b085;">Founding Families Initiative</strong> — a limited program for the first 5 households. It includes priority scheduling, your first annual review included, and <strong style="color:#c1b085;">$500 off any package</strong>.</p><p><strong style="color:#c1b085;">4 of 5 seats are still available.</strong></p><p>If you've been thinking about getting organized, this is the easiest way to start.</p><p style="font-size: 13px; color: #8a7e6a;">No obligation. 100% confidential.</p>
+    <p>Two weeks ago, you took the 7-Pillar Readiness Check and discovered some gaps in your continuity planning.</p><p>This work doesn't get easier with time. It gets harder. Life gets more complex. Accounts multiply. The longer you wait, the more there is to organize — and the higher the stakes if something happens before you do.</p><p>But the starting point is simple: one conversation.</p><p>Right now, I'm accepting new clients through the <strong style="color:#c1b085;">Founding Families Initiative</strong> — a limited program for the first 5 households. It includes priority scheduling, your first annual review included, and <strong style="color:#c1b085;">$500 off any package</strong>.</p><p><strong style="color:#c1b085;">4 of 5 seats are still available.</strong></p><p>If you've been thinking about getting organized, this is the easiest way to start.</p><p style="font-size: 13px; color: #8a7e6a;">No obligation. 100% confidential.</p>
   </div>
   <div style="text-align: center; margin: 32px 0;">
     <a href="https://legacyarchitectrva.com/legacyarchitectrva/60min" style="font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #100d0a; background-color: #c1b085; padding: 14px 28px; border-radius: 2px; text-decoration: none; display: inline-block; text-transform: uppercase;">BOOK YOUR 60-MINUTE CONSULTATION</a>
@@ -135,7 +135,7 @@ const NURTURE_EMAILS = {
     <span style="font-size: 11px; letter-spacing: 4px; color: #8B6F47; text-transform: uppercase;">Legacy Architect RVA</span>
   </div>
   <div style="font-size: 16px; line-height: 1.7; color: #c8bfad;">
-    <p>You took the 7-Pillar Digital Audit a couple of days ago, and your results landed in an interesting place.</p><p>You're not starting from zero — you've clearly taken steps. But your score suggests there's real complexity creating hidden risk.</p><p>This is the most common pattern I see. People who have <em style="color:#b0a494;">some</em> things in order but significant gaps in others. The danger isn't that nothing is done — it's that partial organization creates a <strong style="color:#c1b085;">false sense of security</strong>.</p><p>You have some accounts documented but not all. Some documents filed but not updated. Some plans made but not shared with the right people.</p><p>The result? When something happens, the people who step in find some answers quickly — and then hit walls they weren't expecting.</p><p>If you'd like to talk through what your results mean — no obligation, completely confidential — I'm here for it.</p>
+    <p>You took the 7-Pillar Readiness Check a couple of days ago, and your results landed in an interesting place.</p><p>You're not starting from zero — you've clearly taken steps. But your score suggests there's real complexity creating hidden risk.</p><p>This is the most common pattern I see. People who have <em style="color:#b0a494;">some</em> things in order but significant gaps in others. The danger isn't that nothing is done — it's that partial organization creates a <strong style="color:#c1b085;">false sense of security</strong>.</p><p>You have some accounts documented but not all. Some documents filed but not updated. Some plans made but not shared with the right people.</p><p>The result? When something happens, the people who step in find some answers quickly — and then hit walls they weren't expecting.</p><p>If you'd like to talk through what your results mean — no obligation, completely confidential — I'm here for it.</p>
   </div>
   <div style="text-align: center; margin: 32px 0;">
     <a href="https://legacyarchitectrva.com/legacyarchitectrva/60min" style="font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #100d0a; background-color: #c1b085; padding: 14px 28px; border-radius: 2px; text-decoration: none; display: inline-block; text-transform: uppercase;">BOOK A PRIVATE CONVERSATION</a>
@@ -230,7 +230,7 @@ const NURTURE_EMAILS = {
     <span style="font-size: 11px; letter-spacing: 4px; color: #8B6F47; text-transform: uppercase;">Legacy Architect RVA</span>
   </div>
   <div style="font-size: 16px; line-height: 1.7; color: #c8bfad;">
-    <p>A couple of days ago, you completed the 7-Pillar Digital Audit — and your results were impressive.</p><p>You've clearly put thought into organizing your life. <strong style="color:#c1b085;">76% of Americans</strong> say a clear plan would bring them peace, yet the majority never build one. You have.</p><p>So what's left?</p><p>Even at your level, there's a meaningful difference between <strong style="color:#c1b085;">having documents</strong> and <strong style="color:#c1b085;">having a system</strong>. A system means someone else — someone who might be overwhelmed, grieving, or just unfamiliar — can follow it step by step without guesswork.</p><p>That's the gap that even well-organized people tend to have. The information exists, but it's not structured for a successor.</p><p>If you're curious about what the next level looks like, I'd enjoy that conversation.</p>
+    <p>A couple of days ago, you completed the 7-Pillar Readiness Check — and your results were impressive.</p><p>You've clearly put thought into organizing your life. <strong style="color:#c1b085;">76% of Americans</strong> say a clear plan would bring them peace, yet the majority never build one. You have.</p><p>So what's left?</p><p>Even at your level, there's a meaningful difference between <strong style="color:#c1b085;">having documents</strong> and <strong style="color:#c1b085;">having a system</strong>. A system means someone else — someone who might be overwhelmed, grieving, or just unfamiliar — can follow it step by step without guesswork.</p><p>That's the gap that even well-organized people tend to have. The information exists, but it's not structured for a successor.</p><p>If you're curious about what the next level looks like, I'd enjoy that conversation.</p>
   </div>
   <div style="text-align: center; margin: 32px 0;">
     <a href="https://legacyarchitectrva.com/legacyarchitectrva/60min" style="font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #100d0a; background-color: #c1b085; padding: 14px 28px; border-radius: 2px; text-decoration: none; display: inline-block; text-transform: uppercase;">BOOK A PRIVATE CONVERSATION</a>
@@ -346,7 +346,11 @@ export default {
 
       const html = buildEmail({ email, firstName, score, maxScore, percent, tier, businessOwner, pillars, recommendation });
 
-      const res = await fetch('https://api.resend.com/emails', {
+      const ownerEmail = env.OWNER_EMAIL || 'info@legacyarchitectrva.com';
+      const subject = `Your 7 Pillar Readiness Check Results — ${percent}% Continuity Score`;
+
+      // Send to customer
+      const customerRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${env.RESEND_API_KEY}`,
@@ -355,15 +359,84 @@ export default {
         body: JSON.stringify({
           from: env.FROM_EMAIL || 'Legacy Architect RVA <results@legacyarchitectrva.com>',
           to: [email],
-          subject: `Your 7 Pillar Audit Results — ${percent}% Continuity Score`,
+          subject: subject,
           html: html,
         }),
       });
 
-      if (!res.ok) {
-        const err = await res.text();
-        console.error('Resend error:', err);
+      if (!customerRes.ok) {
+        const err = await customerRes.text();
+        console.error('Resend error (customer):', err);
         return jsonResponse({ error: 'Email delivery failed' }, 502, env.ALLOWED_ORIGIN);
+      }
+
+      // Send a copy to the owner (Craig) so he can see every customer result
+      const ownerRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: env.FROM_EMAIL || 'Legacy Architect RVA <results@legacyarchitectrva.com>',
+          to: [ownerEmail],
+          subject: `[New Lead] ${email} — ${percent}% — ${getTierLabel(percent)}`,
+          html: html,
+          reply_to: email,
+        }),
+      });
+
+      if (!ownerRes.ok) {
+        console.error('Resend error (owner):', await ownerRes.text());
+        // Don't fail the whole request — customer already got their email
+      }
+
+      // HubSpot: create/update contact, add a summary note, create a follow-up task
+      try {
+        const topGaps = getTopGaps(pillars).map(g => g.item).filter(Boolean).join('; ');
+        const topGapPillars = getTopGaps(pillars).map(g => g.pillar).filter(Boolean).join(', ');
+        const hsContact = await createOrUpdateHubSpotContact(env, {
+          email,
+          firstname: firstName || '',
+          lifecyclestage: 'lead',
+          hs_lead_status: 'NEW',
+          audit_score: String(percent),
+          audit_tier: getTierLabel(percent),
+          audit_score_num: Number(score),
+          audit_score_max: Number(maxScore),
+          audit_pillar_summary: Array.isArray(pillars)
+            ? pillars.map(p => `${p.name}: ${p.checked}/${p.max}`).join(' | ')
+            : '',
+          business_owner: businessOwner ? 'Yes' : 'No',
+          audit_top_gaps: topGaps,
+          audit_top_gap_pillars: topGapPillars,
+          audit_completed_at: new Date().toISOString(),
+        });
+
+        if (hsContact?.id) {
+          const noteBody =
+            `7-Pillar Readiness Check completed ${new Date().toISOString().split('T')[0]}\n` +
+            `Score: ${percent}% (${getTierLabel(percent)}) — ${score} of ${maxScore} recorded\n` +
+            `Business owner: ${businessOwner ? 'Yes' : 'No'}\n` +
+            (topGaps ? `Top gaps: ${topGaps}\n` : '') +
+            (recommendation ? `Recommendation: ${recommendation}` : '');
+          await addHubSpotNote(env, hsContact.id, noteBody);
+
+          const priority = percent < 61 ? 'HIGH' : (percent < 86 ? 'MEDIUM' : 'LOW');
+          const taskBody = {
+            body:
+              `New 7-Pillar Readiness Check lead.\n` +
+              `Score: ${percent}% — ${getTierLabel(percent)}\n` +
+              `Email: ${email}\n` +
+              `Customer already received their results email.\n` +
+              `Next step: personally reach out to introduce yourself and offer a 60-min consultation.`,
+            scorePct: percent,
+            priority,
+          };
+          await createHubSpotTask(env, hsContact.id, taskBody, 2);
+        }
+      } catch (e) {
+        console.error('HubSpot sync error (non-fatal):', e);
       }
 
       return jsonResponse({ success: true }, 200, env.ALLOWED_ORIGIN);
@@ -502,6 +575,108 @@ async function updateHubSpotContact(env, contactId, properties) {
 
   if (!res.ok) {
     console.error(`HubSpot update error (${contactId}):`, res.status, await res.text());
+  }
+  return res.ok;
+}
+
+async function createOrUpdateHubSpotContact(env, properties) {
+  // 1) Try to find an existing contact by email
+  const findRes = await fetch('https://api.hubapi.com/crm/v3/objects/contacts/search', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${env.HUBSPOT_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: properties.email }] }],
+      properties: ['email'],
+      limit: 1,
+    }),
+  });
+
+  if (!findRes.ok) {
+    console.error('HubSpot search error:', findRes.status, await findRes.text());
+    return null;
+  }
+
+  const findData = await findRes.json();
+  const existingId = findData.results?.[0]?.id;
+
+  // 2) If found, PATCH. If not, POST to create.
+  const url = existingId
+    ? `https://api.hubapi.com/crm/v3/objects/contacts/${existingId}`
+    : 'https://api.hubapi.com/crm/v3/objects/contacts';
+  const method = existingId ? 'PATCH' : 'POST';
+
+  const writeRes = await fetch(url, {
+    method,
+    headers: {
+      'Authorization': `Bearer ${env.HUBSPOT_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ properties }),
+  });
+
+  if (!writeRes.ok) {
+    console.error(`HubSpot ${method} contact error:`, writeRes.status, await writeRes.text());
+    return null;
+  }
+
+  const writeData = await writeRes.json();
+  return { id: writeData.id, created: !existingId };
+}
+
+async function addHubSpotNote(env, contactId, noteBody) {
+  const res = await fetch('https://api.hubapi.com/crm/v3/objects/notes', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${env.HUBSPOT_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      properties: {
+        hs_timestamp: Date.now().toString(),
+        hs_note_body: noteBody,
+      },
+      associations: [{
+        to: { id: contactId },
+        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }],
+      }],
+    }),
+  });
+
+  if (!res.ok) {
+    console.error('HubSpot note error:', res.status, await res.text());
+  }
+  return res.ok;
+}
+
+async function createHubSpotTask(env, contactId, taskBody, dueInDays = 2) {
+  const dueDate = new Date(Date.now() + dueInDays * 86_400_000);
+  const res = await fetch('https://api.hubapi.com/crm/v3/objects/tasks', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${env.HUBSPOT_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      properties: {
+        hs_timestamp: dueDate.getTime().toString(),
+        hs_task_subject: `Follow up on 7-Pillar Readiness Check (${taskBody.scorePct}%)`,
+        hs_task_body: taskBody.body,
+        hs_task_status: 'NOT_STARTED',
+        hs_task_priority: taskBody.priority || 'MEDIUM',
+        hs_task_type: 'CALL',
+      },
+      associations: [{
+        to: { id: contactId },
+        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }],
+      }],
+    }),
+  });
+
+  if (!res.ok) {
+    console.error('HubSpot task error:', res.status, await res.text());
   }
   return res.ok;
 }
@@ -814,7 +989,7 @@ function buildEmail({ email, firstName, score, maxScore, percent, tier, business
   <div style="text-align:center; margin-bottom:24px;">
     <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA Shield" style="display:block; margin:0 auto 16px; width:60px; height:auto;">
     <p style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:#1F4D3A; margin-bottom:4px;">LEGACY ARCHITECT RVA</p>
-    <p style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#5B6A62; margin-bottom:16px;">7 PILLAR AUDIT</p>
+    <p style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#5B6A62; margin-bottom:16px;">7 PILLAR READINESS CHECK</p>
     <h1 style="font-family:'Cinzel',serif; font-size:26px; margin:0 0 20px; color:#0E1410; font-weight:600;">Your Full Results</h1>
   </div>
   <div style="text-align:center; margin-bottom:28px;">

@@ -99,7 +99,7 @@ img[src*="Logos/Correct.png"]:not(.company-logo),
 img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
-html{font-size:21.252px;}
+html{font-size:22.3146px;}
 body{
   margin:0;
   background:var(--bg-dark);
@@ -118,7 +118,7 @@ body{
   background:rgba(255, 251, 240, 0.92);
   border:1px solid rgba(31, 77, 58, 0.25);
   border-radius:0;
-  padding:27px 18px 31.5px;
+  padding:27px 18.9px 31.5px;
   position:relative;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   border-top: 1px solid rgba(31, 77, 58, 0.35);
@@ -562,12 +562,12 @@ button:active{
 }
 /* ITEM TOGGLES - Elegant */
 .toggle{
-  border:none;
-  padding:16px 0;
-  margin:0;
-  background:transparent;
+  border:1px solid #1F4D3A;
+  padding:16px 18.9px;
+  margin:8px 0;
+  background:#FBF6EA;
+  border-radius:6px;
   transition:all var(--transition-normal);
-  border-bottom:1px solid rgba(31, 77, 58, 0.1);
   min-height:56px;
   width:100%;
 }
@@ -582,17 +582,18 @@ button:active{
 .trow{display:flex;flex-direction:column;gap:8px;align-items:center;padding:8px 0;}
 .tlabel{
   font-size:25px;
-  color:var(--text-gold);
+  color:#C28A2A;
   line-height:1.6;
   text-align:center;
   width:100%;
   font-family:'Cormorant Garamond',serif;
-  font-weight:400;
+  font-weight:600;
+  letter-spacing:0.5px;
 }
 .roman-numeral{
   font-family:'Cinzel',serif;
-  color:var(--accent-gold);
-  font-weight:600;
+  color:#0E1410;
+  font-weight:700;
   margin-right:8px;
   font-size:22.5px;
 }
@@ -608,8 +609,12 @@ button:active{
 }
 .tlabel .tooltip-content{
   font-size:13px;
-  max-width:250px;
-  text-align:left;
+  max-width:240px;
+  min-width:160px;
+  text-align:center;
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
 }
 .opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
@@ -785,8 +790,8 @@ button:active{
   background:rgba(239, 68, 68, 0.15);
 }
 .opt.oN{
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
+  border-color:var(--na);
+  color:var(--na);
   background:rgba(31, 77, 58, 0.15);
 }
 /* COUNTER CIRCLE - Elegant */
@@ -839,7 +844,7 @@ button:active{
 /* Primary CTA - More prominent */
 .cta-primary{
   width:100%;
-  padding:18px 24px;
+  padding:18.9px 24px;
   background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
   border:none;
   font-family:'Cinzel',serif;
@@ -897,7 +902,7 @@ button.alt:hover{
 .social-proof{
   background:rgba(31, 77, 58, 0.03);
   border-left:3px solid #1F4D3A;
-  padding:18px;
+  padding:18.9px;
   margin:22px 0;
   font-style:italic;
   font-size:20.4px;
@@ -908,7 +913,7 @@ button.alt:hover{
 .trust-badges{
   display:flex;
   justify-content:center;
-  gap:18px;
+  gap:18.9px;
   margin:22px 0;
   flex-wrap:wrap;
 }
@@ -920,8 +925,8 @@ button.alt:hover{
   color:#ffffff;
 }
 .trust-badge-icon{
-  width:18px;
-  height:18px;
+  width:18.9px;
+  height:18.9px;
   color:var(--accent-gold);
 }
 
@@ -943,11 +948,14 @@ button.alt:hover{
 }
 .tooltip-content{
   position:absolute;
-  bottom:100%;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--bg-dark);
-  color:var(--text-gold);
+  bottom:auto;
+  top:100%;
+  margin-top:8px;
+  left:0;
+  right:auto;
+  transform:none;
+  background:#1F4D3A;
+  color:#F4ECDC;
   padding:8px 12px;
   border-radius:var(--radius-sm);
   font-size:12px;
@@ -957,10 +965,13 @@ button.alt:hover{
   visibility:hidden;
   transition:all var(--transition-fast);
   z-index:1000;
-  box-shadow:var(--shadow-md);
-  border:1px solid rgba(31, 77, 58, 0.2);
-  width:280px;
-  max-width:90vw;
+  box-shadow:0 4px 12px rgba(20, 32, 26, 0.25);
+  border:1px solid rgba(212, 175, 55, 0.3);
+  width:max-content;
+  max-width:240px;
+  min-width:160px;
+  text-align:center;
+  line-height:1.4;
 }
 .info-tooltip:hover .tooltip-content{
   opacity:1;
@@ -1022,8 +1033,8 @@ button:active{
 button:disabled{opacity:0.4;cursor:not-allowed;}
 button.start-btn{
   margin-top:30px;
-  font-size:18px;
-  padding:18px 24px;
+  font-size:18.9px;
+  padding:18.9px 24px;
   letter-spacing:4px;
   color:#000000;
 }
@@ -1112,7 +1123,7 @@ button.sm{
 /* LEGEND */
 .legblock{
   margin-top:20px;
-  padding:16px 18px;
+  padding:16px 18.9px;
   border:1px solid rgba(31, 77, 58, 0.2);
   border-radius:8px;
   background:rgba(31, 77, 58, 0.02);
@@ -1232,7 +1243,7 @@ button.sm{
   color:var(--accent-gold);
 }
 /* INPUTS */
-.inputrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.inputrow{display:flex;gap:10px;margin-top:18.9px;flex-wrap:wrap;}
 .inputfield{flex:1;min-width:0;}
 .inputfield label{
   font-size:11px;
@@ -1270,7 +1281,7 @@ button.sm{
   width:56px;height:56px;border-radius:50%;
   border:1px solid var(--success);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 18px;font-size:21.85px;color:var(--success);
+  margin:0 auto 18.9px;font-size:21.85px;color:var(--success);
   font-family:'Cinzel',serif;
 }
 .successhead{font-family:'Cinzel',serif;font-size:19.05px;color:var(--bronze);margin-bottom:10px;letter-spacing:2px;}
@@ -1320,7 +1331,7 @@ button.sm{
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:0 auto 18px;
+  margin:0 auto 18.9px;
   font-size:22px;
   color:var(--btn-color);
   font-family:'Cinzel',serif;
@@ -1334,7 +1345,7 @@ button.sm{
   letter-spacing:1.5px;
 }
 .successscore{
-  padding:18px 22px;
+  padding:18.9px 22px;
   border:1px solid rgba(198, 168, 90, 0.3);
   border-radius:8px;
   background:rgba(198, 168, 90, 0.05);
@@ -1362,7 +1373,7 @@ button.sm{
 
 @media(max-width:768px){
   #wrap{padding:14.4px 10.8px 28.8px;}
-  .card{padding:18px 14.4px 21.6px;}
+  .card{padding:18.9px 14.4px 21.6px;}
   .trow{flex-direction:column;align-items:center;}
   .tlabel{text-align:center;}
   .opts{justify-content:center;}
@@ -1400,16 +1411,20 @@ button.sm{
   padding: 0;
 }
 .pillar-item .info-tooltip {
-  display: inline-block;
+  display: block;
   font-size: 16.5px;
   line-height: 1.575;
+  width: 100%;
+  text-align: left;
+  padding: 6px 0;
+  cursor: help;
 }
 
 /* ============================================
    COMPREHENSIVE RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 480px) {
-  html { font-size: 18px; }
+  html { font-size: 18.9px; }
   #wrap { padding: 12px 10px 20px; }
   .card { padding: 20px 15px 25px; }
   .mark { font-size: 24px !important; }
@@ -1424,11 +1439,11 @@ button.sm{
   .ring { width: 100px !important; height: 100px !important; }
   .scorenum { font-size: 28px !important; }
   .ringlabel { font-size: 16px !important; }
-  .tierbadge { font-size: 18px !important; }
+  .tierbadge { font-size: 18.9px !important; }
   .pname { width: 140px !important; font-size: 14px !important; }
   .legblock, .bkwrap, .gapwrap { font-size: 14px !important; }
   button { 
-    padding: 14px 18px !important;
+    padding: 14px 18.9px !important;
     font-size: 11px !important;
     letter-spacing: 2px !important;
   }
@@ -1449,7 +1464,7 @@ button.sm{
 @media (min-width: 481px) and (max-width: 768px) {
   html { font-size: 19px; }
   #wrap { padding: 15px 12px 25px; }
-  .card { padding: 24px 18px 30px; }
+  .card { padding: 24px 18.9px 30px; }
   .mark { font-size: 26px !important; }
   .sub { font-size: 17px !important; }
   .tlabel { font-size: 21px !important; }
@@ -1472,7 +1487,7 @@ button.sm{
   #wrap { max-width: 900px; }
   .card { padding: 28px 22px 33px; }
   .mark { font-size: 28px !important; }
-  .sub { font-size: 18px !important; }
+  .sub { font-size: 18.9px !important; }
   .tlabel { font-size: 22px !important; }
   .opt { 
     padding: 12px 16px !important;
@@ -1510,7 +1525,7 @@ const PILLARS=[
   {n:"06: Business Continuity",d:"Operations, agreements, and succession.",i:["Entity Formation Documents","Business Banking Access","Operating Agreements","Key Vendor Relationships","Client & Contract Records","Succession & Continuity Planning"]},
   {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
-const PILLAR_COLORS={"Digital Life":"var(--ch1)","Financial & Assets":"var(--ch2)","Household & Property":"var(--ch4)","Health & Medical":"var(--ch5)","Legal & Estate":"var(--ch6)","Business Continuity":"var(--ch7)","Legacy & Wishes":"var(--ch3)"};
+const PILLAR_CNEORS={"Digital Life":"var(--ch1)","Financial & Assets":"var(--ch2)","Household & Property":"var(--ch4)","Health & Medical":"var(--ch5)","Legal & Estate":"var(--ch6)","Business Continuity":"var(--ch7)","Legacy & Wishes":"var(--ch3)"};
 const EXPL={
   "Primary Email Access":"The master key to all account recovery. Without it, nothing downstream is retrievable by those acting on your behalf.",
   "Password Manager":"Every credential lives here. If undocumented, critical accounts become permanently inaccessible.",
@@ -2043,7 +2058,7 @@ function renderIntro(app,ps){
   app.innerHTML=`
 <div>
     <p class="mark" style="margin-bottom:12px;">7-Pillar Readiness Check</p>
-    <p class="sub" style="margin-bottom:18px;">After completing this short readiness check you will see the exact gaps your family will face, and the next steps to provide instant clarity.</p>
+    <p class="sub" style="margin-bottom:18.9px;">After completing this short readiness check you will see the exact gaps your family will face, and the next steps to provide instant clarity.</p>
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
       <div class="pillar-item">
@@ -2098,9 +2113,9 @@ function renderIntro(app,ps){
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
-      <strong style="color:var(--ch4);">Recorded</strong> — It's documented and someone else could access it.<br>
+      <strong style="color:var(--recorded);">Recorded</strong> — It's documented and someone else could access it.<br>
       <strong style="color:var(--missing);">Undocumented</strong> — It exists but isn't documented.<br>
-      <strong style="color:var(--accent-gold);">Not Applicable</strong> — It doesn't apply to your situation.
+      <strong style="color:var(--na);">Not Applicable</strong> — It doesn't apply to your situation.
     </p>
     
     <!-- Social proof -->
@@ -2193,13 +2208,13 @@ function renderResults(app,ps){
   
   const barsH=bk.map((b,i)=>`<div class="prow">
     <div class="pname">${b.nm}</div>
-    <div class="ptrack"><div class="pfill" style="width:${b.pct}%;background:linear-gradient(90deg, ${PILLAR_COLORS[b.nm] || tierColor}, #fff, ${PILLAR_COLORS[b.nm] || tierColor});"></div></div>
+    <div class="ptrack"><div class="pfill" style="width:${b.pct}%;background:linear-gradient(90deg, ${PILLAR_CNEORS[b.nm] || tierColor}, #fff, ${PILLAR_CNEORS[b.nm] || tierColor});"></div></div>
     <div class="ppct">${b.pct}%</div>
   </div>`).join("");
   
   const gapsH=gaps.length?gaps.map((g,i)=>{
     const expl=EXPL[g.item]||"";
-    const col = PILLAR_COLORS[g.pl] || "var(--ch1)";
+    const col = PILLAR_CNEORS[g.pl] || "var(--ch1)";
     return`<div class="gapitem" style="border-left-color:${col};">
       <div>
         <div class="gapname">${g.pl}: ${g.item}</div>
