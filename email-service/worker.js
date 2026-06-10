@@ -783,8 +783,8 @@ function buildEmail({ email, firstName, score, maxScore, percent, tier, business
   .score-inner { width: 140px; height: 140px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: relative; background: #000000; }
   .score-inner-border { position: absolute; inset: 0; border-radius: 50%; border: 1px solid #C6A85A; pointer-events: none; }
   .score-content { position: relative; z-index: 2; text-align: center; }
-  .score-pct { font-family: 'Cinzel', serif; font-size: 50px; color: #C6A85A; line-height: 1; font-weight: 700; }
-  .score-detail { font-size: 13px; color: #c8b8a8; margin-top: 4px; letter-spacing: 0.5px; }
+  .score-pct { font-family: 'Cinzel', serif; font-size: 60px; color: #C6A85A; line-height: 1; font-weight: 700; }
+  .score-detail { font-size: 14px; color: #c8b8a8; margin-top: 4px; letter-spacing: 0.5px; }
   .risk-bar-base { width: 100%; height: 6px; background: #2a2a2a; border-radius: 3px; position: relative; margin-bottom: 8px; }
   .risk-bar-low { position: absolute; left: 0; top: 0; bottom: 0; width: 33.33%; background: #34D399; border-radius: 10px 0 0 10px; }
   .risk-bar-moderate { position: absolute; left: 33.33%; top: 0; bottom: 0; width: 33.33%; background: #D4AF37; }
@@ -812,7 +812,7 @@ function buildEmail({ email, firstName, score, maxScore, percent, tier, business
     <h1 style="font-family:'Cinzel',serif; font-size:26px; margin:0 0 20px; color:#e0d8c8; font-weight:600;">Your Full Results</h1>
   </div>
   <div style="text-align:center; margin-bottom:28px;">
-    <p style="font-family:'Cinzel',serif; font-size:30px; color:#C6A85A; margin-bottom:8px;">Continuity Readiness</p>
+    <p style="font-family:'Cinzel',serif; font-size:30px; color:#C6A85A; margin-bottom:8px;">Readiness Score</p>
     <div class="score-outer">
       <div class="score-outer-border"></div>
       <div class="score-inner">
