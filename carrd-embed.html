@@ -437,7 +437,7 @@ button:active{
   border-color:var(--accent-gold);
 }
 .share-btn.threads .share-icon{
-  fill:#D4AF37;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 
 .share-btn.copy-link{
@@ -1088,8 +1088,8 @@ button.sm{
   border:1px solid rgba(212, 175, 55, 0.25);
   pointer-events:none;
 }
-.ringconic{position:absolute;inset:-42%;border-radius:50%;z-index:1;}
-.ringinner{position:relative;z-index:3;text-align:center;background:white;border-radius:50%;}
+.ringconic{position:absolute;inset:-42%;border-radius:50%;}
+.ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
   font-size:64px;
@@ -1808,7 +1808,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02 2.5.06 4.13 1.04 4.96 3.29 1.11 3.02.37 6.11-.56 8.89-1.67 4.97-5.17 7.46-9.16 7.49-1.29.02-2.58.01-3.88.02-2.63.03-5.22-.32-7.5-1.64-1.87-1.09-2.9-3.2-2.91-5.62-.02-4.03.01-8.06.01-12.08 0-1.22.02-2.44.02-3.66.01-1.62.63-3.1 1.96-4.23C5.75.32 7.78-.22 9.99.01c1.5.14 3.01.2 4.51.02z"/></svg>
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -2225,9 +2225,9 @@ function renderResults(app,ps){
       <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:30px;">Readiness Score</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
-        <div class="ringinner" style="background:white;">
-          <div class="scorenum" id="r7num" style="color:#000;font-size:35.2px;">0%</div>
-          <div class="scoresub" style="color:#000;">${d.rec} of ${d.eff} recorded</div>
+        <div class="ringinner">
+          <div class="scorenum" id="r7num" style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:32px;font-weight:bold;">0%</div>
+          <div class="scoresub">${d.rec} of ${d.eff} recorded</div>
         </div>
       </div>
     </div>
