@@ -2002,7 +2002,8 @@ function renderIntro(app,ps){
       <div class="trow">
         <div class="tlabel">
           <span class="roman-numeral">${romanNumeral}. </span>${item}
-          <p style="font-style:italic;font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;">${expl}</p></div>
+          <p style="font-style:italic;font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;">${expl}</p>
+        </div>
         <div class="opts">
           <button class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">Recorded</div>
           <button class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})" aria-label="Mark as undocumented">Undocumented</button>
