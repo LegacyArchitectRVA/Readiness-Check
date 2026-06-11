@@ -184,7 +184,7 @@ body{
 }
 .inputfield input:focus{
   outline:none;
-  border-color:var(--accent-gold);
+  border-color:var(--text-primary);
   box-shadow:0 0 0 3px rgba(31, 77, 58, 0.15);
 }
 
@@ -294,7 +294,7 @@ button:active{
 .share-modal-title{
   font-family:'Playfair Display',serif;
   font-size:17px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   margin:0;
   font-weight:500;
   font-style:italic;
@@ -308,7 +308,7 @@ button:active{
   transition:color 0.2s ease;
 }
 .share-modal-close:hover{
-  color:var(--accent-gold);
+  color:var(--text-primary);
 }
 
 /* Close/Back to Site Button */
@@ -330,8 +330,8 @@ button:active{
 }
 .back-to-site-btn:hover{
   background:rgba(31, 77, 58, 0.08);
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
+  border-color:var(--text-primary);
+  color:var(--text-primary);
 }
 
 /* Company Logo */
@@ -410,7 +410,7 @@ button:active{
 }
 .share-custom-text:focus{
   outline:none;
-  border-color:var(--accent-gold);
+  border-color:var(--text-primary);
   box-shadow:0 0 0 2px rgba(31, 77, 58, 0.15);
 }
 .share-custom-text::placeholder{
@@ -450,7 +450,7 @@ button:active{
 .share-score-display{
   font-family:'Playfair Display',serif;
   font-size:17px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   text-align:center;
   margin:0 0 16px;
   font-style:italic;
@@ -492,7 +492,7 @@ button:active{
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   font-family:'Montserrat',sans-serif;
   font-size:10px;
   font-weight:500;
@@ -501,7 +501,7 @@ button:active{
 .share-btn:hover,
 .share-action-btn:hover{
   background:rgba(31, 77, 58, 0.12);
-  border-color:var(--accent-gold);
+  border-color:var(--text-primary);
 }
 .share-btn.x{
   background:rgba(31, 77, 58, 0.05);
@@ -509,7 +509,7 @@ button:active{
 }
 .share-btn.x:hover{
   background:rgba(31, 77, 58, 0.12);
-  border-color:var(--accent-gold);
+  border-color:var(--text-primary);
 }
 .share-btn.x .share-icon{
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
@@ -536,7 +536,7 @@ button:active{
   font-size:32px;
   letter-spacing:4.4px;
   text-transform:uppercase;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   opacity:0.7;
   font-weight:500;
 }
@@ -544,12 +544,12 @@ button:active{
   font-family:'Cinzel',serif;
   font-size:32px;
   margin:0 0 14px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   font-weight:500;
   font-style:normal;
 }
 .sub{
-  color:#ffffff;
+  color:var(--text-primary);
   line-height:2.0;
   font-size:21px;
   font-family:'Cormorant Garamond',serif;
@@ -596,27 +596,6 @@ button:active{
   margin-right:8px;
   font-size:22.5px;
 }
-.tlabel .info-tooltip{
-  display:inline-block;
-}
-.tlabel .info-icon{
-  width:16px;
-  height:16px;
-  margin-left:6px;
-  opacity:0.7;
-  vertical-align:middle;
-}
-.tlabel .tooltip-content{
-  font-size:13px;
-  max-width:240px;
-  min-width:160px;
-  text-align:center;
-  left:50%;
-  right:auto;
-  transform:translateX(-50%);
-}
-.opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
-
 /* Mobile spacing fix for landing page - remove gap where logo was */
 @media(max-width:768px){
   .card{padding:12px 10px 20px;}
@@ -634,7 +613,7 @@ button:active{
 .not-business-owner-btn{
   width:auto;
   padding:14px 24px;
-  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
+  background:linear-gradient(145deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
   border:1px solid #8A6E2A;
   border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
@@ -644,7 +623,7 @@ button:active{
   cursor:pointer;
   font-size:14px;
   text-transform:uppercase;
-  color:#1a1a2e;
+  color:#FBF6EA;
   transition:all 0.2s ease;
   display:block;
   box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
@@ -666,7 +645,7 @@ button:active{
 }
 .not-business-owner-btn:hover{
   background:linear-gradient(145deg, #1F4D3A, #143326, #1F4D3A);
-  border-color:var(--accent-gold);
+  border-color:var(--text-primary);
   transform:translateY(-1px);
   box-shadow:0 4px 12px rgba(31, 77, 58, 0.3);
 }
@@ -735,7 +714,7 @@ button:active{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   font-family:'Montserrat',sans-serif;
   font-weight:600;
   padding:12px 16px;
@@ -760,7 +739,7 @@ button:active{
   letter-spacing:1.5px;
   text-transform:uppercase;
   transition:all var(--transition-normal);
-  color:var(--accent-gold);
+  color:var(--text-primary);
   background:transparent;
   user-select:none;
   font-weight:500;
@@ -769,8 +748,8 @@ button:active{
   text-align:center;
 }
 .opt:hover{
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
+  border-color:var(--text-primary);
+  color:var(--text-primary);
   background:rgba(31, 77, 58, 0.05);
   transform:translateY(-1px);
   box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
@@ -781,7 +760,7 @@ button:active{
 .opt.oR{
   border-color:var(--recorded);
   color:var(--recorded);
-  background:rgba(16, 185, 129, 0.15);
+  background:rgba(31, 77, 58, 0.15);
 }
 .opt.oU{
   border-color:var(--missing);
@@ -803,7 +782,7 @@ button:active{
   border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
   font-size:14px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   letter-spacing:1.5px;
   box-shadow: 0 0 15px rgba(31, 77, 58, 0.3);
   font-weight:600;
@@ -811,7 +790,7 @@ button:active{
 }
 .counter-circle:hover{
   background:rgba(31, 77, 58, 0.1);
-  border-color:var(--accent-gold);
+  border-color:var(--text-primary);
 }
 
 /* Progress indicator in counter */
@@ -825,7 +804,7 @@ button:active{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:20px;
   font-size:13px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   font-family:'Montserrat',sans-serif;
   font-weight:500;
 }
@@ -844,7 +823,7 @@ button:active{
 .cta-primary{
   width:100%;
   padding:18.9px 24px;
-  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
+  background:linear-gradient(145deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -853,7 +832,7 @@ button:active{
   cursor:pointer;
   font-size:14px;
   text-transform:uppercase;
-  color:#1a1a2e;
+  color:#FBF6EA;
   border-radius:var(--radius-sm);
   transition:all var(--transition-normal);
   box-shadow:0 4px 15px rgba(31, 77, 58, 0.3);
@@ -887,13 +866,13 @@ button:active{
 /* Secondary buttons */
 button.alt{
   background:transparent;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   border:1px solid rgba(31, 77, 58, 0.4);
   box-shadow:none;
 }
 button.alt:hover{
-  color:var(--accent-gold);
-  border-color:var(--accent-gold);
+  color:var(--text-primary);
+  border-color:var(--text-primary);
   background:rgba(31, 77, 58, 0.05);
 }
 
@@ -905,7 +884,7 @@ button.alt:hover{
   margin:22px 0;
   font-style:italic;
   font-size:20.4px;
-  color:#ffffff;
+  color:var(--text-primary);
 }
 
 /* Trust badges */
@@ -921,67 +900,19 @@ button.alt:hover{
   align-items:center;
   gap:8px;
   font-size:16.5px;
-  color:#ffffff;
+  color:var(--text-primary);
 }
 .trust-badge-icon{
   width:18.9px;
   height:18.9px;
-  color:var(--accent-gold);
-}
-
-/* Tooltip styles */
-.info-tooltip{
-  position:relative;
-  display:inline-block;
-  cursor:help;
-}
-.info-icon{
-  width:14px;
-  height:14px;
-  margin-left:4px;
-  opacity:0.6;
-  transition:opacity var(--transition-fast);
-}
-.info-tooltip:hover .info-icon{
-  opacity:1;
-}
-.tooltip-content{
-  position:absolute;
-  bottom:auto;
-  top:100%;
-  margin-top:8px;
-  left:0;
-  right:auto;
-  transform:none;
-  background:#1F4D3A;
-  color:#F4ECDC;
-  padding:8px 12px;
-  border-radius:var(--radius-sm);
-  font-size:12px;
-  white-space:normal;
-  word-wrap:break-word;
-  opacity:0;
-  visibility:hidden;
-  transition:all var(--transition-fast);
-  z-index:1000;
-  box-shadow:0 4px 12px rgba(20, 32, 26, 0.25);
-  border:1px solid rgba(212, 175, 55, 0.3);
-  width:max-content;
-  max-width:240px;
-  min-width:160px;
-  text-align:center;
-  line-height:1.4;
-}
-.info-tooltip:hover .tooltip-content{
-  opacity:1;
-  visibility:visible;
+  color:var(--text-primary);
 }
 
 /* BUTTONS - Elegant */
 button{
   width:100%;
   padding:16px 20px;
-  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
+  background:linear-gradient(145deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -990,7 +921,7 @@ button{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:#1a1a2e;
+  color:#FBF6EA;
   border-radius:var(--radius-sm);
   transition:all var(--transition-normal);
   box-shadow:0 2px 10px rgba(0, 0, 0, 0.2);
@@ -1062,7 +993,7 @@ button.sm{
   font-size:30px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   opacity:0.9;
   margin-bottom:12px;
 }
@@ -1112,7 +1043,7 @@ button.sm{
   font-size:28px;
   text-transform:uppercase;
   margin-bottom:4px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   color:var(--btn-color);
 }
 .tR{color:#B22222;}
@@ -1137,12 +1068,12 @@ button.sm{
   font-size:20px;
   opacity:.8;
   margin:2px 0;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   font-weight:500;
 }
 .legtext{
   font-size:16px;
-  color:#ffffff;
+  color:var(--text-primary);
   line-height:1.7;
 }
 /* PILLAR BARS */
@@ -1166,7 +1097,7 @@ button.sm{
 }
 .pname{
   font-size:16px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   width:180px;
   flex-shrink:0;
   overflow:visible;
@@ -1203,7 +1134,7 @@ button.sm{
   font-size:21px;
   letter-spacing:1.5px;
   text-transform:uppercase;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   opacity:0.9;
   border-bottom:1px solid rgba(31, 77, 58, 0.3);
   padding-bottom:8px;
@@ -1222,7 +1153,7 @@ button.sm{
 .gapitem:hover{background:rgba(31, 77, 58, 0.06);}
 .gapname{
   font-size:17px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   margin-bottom:4px;
   flex:1;
 }
@@ -1239,7 +1170,7 @@ button.sm{
   text-transform:uppercase;
   margin-top:2px;
   opacity:0.7;
-  color:var(--accent-gold);
+  color:var(--text-primary);
 }
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18.9px;flex-wrap:wrap;}
@@ -1257,7 +1188,7 @@ button.sm{
   margin-top:5px;
   background:rgba(10, 10, 15, 0.7);
   border:1px solid rgba(31, 77, 58, 0.2);
-  color:var(--accent-gold);
+  color:var(--text-primary);
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
@@ -1297,7 +1228,7 @@ button.sm{
 .sharelink span{
   font-family:'Montserrat',sans-serif;
   font-size:26px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   letter-spacing:3px;
   text-transform:uppercase;
   border-bottom:1px solid rgba(31, 77, 58, 0.3);
@@ -1306,8 +1237,8 @@ button.sm{
   font-weight:600;
 }
 .sharelink:hover span{
-  color:var(--accent-gold);
-  border-bottom-color:var(--accent-gold);
+  color:var(--text-primary);
+  border-bottom-color:var(--text-primary);
 }
 .footnote{
   margin-top:20px;
@@ -1339,7 +1270,7 @@ button.sm{
 .successhead{
   font-family:'Cinzel',serif;
   font-size:18.4px;
-  color:var(--accent-gold);
+  color:var(--text-primary);
   margin-bottom:10px;
   letter-spacing:1.5px;
 }
@@ -1409,16 +1340,6 @@ button.sm{
   margin: 0;
   padding: 0;
 }
-.pillar-item .info-tooltip {
-  display: block;
-  font-size: 16.5px;
-  line-height: 1.575;
-  width: 100%;
-  text-align: left;
-  padding: 6px 0;
-  cursor: help;
-}
-
 /* ============================================
    COMPREHENSIVE RESPONSIVE DESIGN
    ============================================ */
@@ -2065,51 +1986,44 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">01: Digital Life</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Credentials, accounts, and digital access.</div>
         </span>
       </div>
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">02: Financial & Assets</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Banking, investments, and financial records.</div>
         </span>
       </div>
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">03: Household & Property</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Property, vehicles, and household documentation.</div>
         </span>
       </div>
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">04: Health & Medical</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Insurance, records, and medical directives.</div>
         </span>
       </div>
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">05: Legal & Estate</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Wills, trusts, and legal authority.</div>
         </span>
       </div>
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">06: Business Continuity</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Operations, agreements, and succession.</div>
         </span>
       </div>
       <div class="pillar-item">
-        <span class="info-tooltip">
-          <span style="color:#ffffff;">07: Legacy & Wishes</span>
-          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+          
           <div class="tooltip-content">Personal instructions, history, and wishes.</div>
         </span>
       </div>
@@ -2173,9 +2087,8 @@ function renderIntro(app,ps){
     html+=`<div class="toggle ${tc}" id="toggle-${key}">
       <div class="trow">
         <div class="tlabel">
-          <span class="info-tooltip">
-            <span class="roman-numeral">${romanNumeral}. </span>${item}
-            <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          ${item}
+            
             <div class="tooltip-content">${expl}</div>
           </span>
         </div>
@@ -2228,7 +2141,7 @@ function renderResults(app,ps){
   app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:30px;">Readiness Score</div>
+      <div class="ringlabel" style="color:var(--text-primary);font-family:'Cinzel',serif;font-size:30px;">Readiness Score</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
@@ -2259,7 +2172,7 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="goB()">Back</button>
       <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--text-primary);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check™ — Legacy Architect RVA</div>
   </div>`;
@@ -2287,7 +2200,7 @@ function renderSuccess(){
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
-    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
+    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--text-primary);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
     <div class="footnote">Legacy Architect RVA</div>
