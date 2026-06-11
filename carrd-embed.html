@@ -1841,6 +1841,8 @@ function showShareModal(score, tierLabel, text, url) {
     </div>
   `;
   document.body.appendChild(modal);
+  // Force layout reflow
+  modal.offsetHeight;
   modal.querySelector('.share-modal').classList.add('share-modal-visible');
   document.body.style.overflow = 'hidden';
   

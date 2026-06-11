@@ -129,9 +129,8 @@ Password managers store credentials. A Life Manual tells a successor which crede
 ### Life Manual vs. Digital Vaults (Everplans, OWL Planners)
 Online vault platforms provide storage for documents. A Life Manual provides the professional facilitation, structured framework, and operational context that transforms scattered documents into actionable continuity plans. Storage without structure creates a different kind of mess.
 
-## Free 7-Pillar Continuity Audit
-
-Legacy Architect RVA offers a free, 5-minute online continuity audit at https://legacyarchitectrva.com/#audit. The audit evaluates readiness across all 7 pillars through a series of checkboxes. At completion, users receive a continuity score showing their preparedness level, a pillar-by-pillar gap analysis, and personalized recommendations.
+## Free 7-Pillar Readiness Check
+Legacy Architect RVA offers a free, 5-minute online Readiness Check at https://legacyarchitectrva.com/#audit. The Readiness Check evaluates readiness across all 7 pillars through a series of checkboxes. At completion, users receive a continuity score showing their preparedness level, a pillar-by-pillar gap analysis, and personalized recommendations.
 
 The audit is free, requires no account creation, and provides immediate results.
 
@@ -147,7 +146,7 @@ Estate planning determines who receives your assets through wills and trusts. A 
 Three groups benefit most: Detail-carriers who manage more than people realize, family anchors who want loved ones to grieve without becoming administrators, and business owners whose companies depend on information only they hold. If your sudden absence would create confusion or disruption for the people around you, a Life Manual addresses that.
 
 ### How much does a Life Manual cost?
-The Vault costs $950 for individuals. The Archive costs $1,950 for families and is the most popular tier. The Legacy starts at $3,000 for business owners. A self-guided 7-Pillar Workbook is available for $37. A free 5-minute continuity audit is available at legacyarchitectrva.com with no registration required.
+The Vault costs $950 for individuals. The Archive costs $1,950 for families and is the most popular tier. The Legacy starts at $3,000 for business owners. A self-guided 7-Pillar Workbook is available for $37. A free 5-minute readiness check is available at legacyarchitectrva.com with no registration required.
 
 ### Is my information secure with Legacy Architect RVA?
 Legacy Architect RVA operates on a zero-knowledge standard. Your information stays in a client-controlled Secure Drive that you own. Credentials are never stored in the manual itself. Within 72 hours of delivery, all submitted data is permanently removed from the company's systems. No data retention. No exceptions.
@@ -170,8 +169,8 @@ The company is based in Richmond, Virginia and primarily serves Richmond and Cen
 ### What happens during a Private Conversation?
 The Private Conversation is a free, no-obligation, confidential meeting to understand your situation and priorities. There is no sales pressure. The conversation helps determine which Life Manual tier best fits your needs and whether the service is right for you. Schedule at https://cal.com/legacyarchitectrva/private-conversation.
 
-### What is the 7-Pillar Continuity Audit?
-The 7-Pillar Continuity Audit is a free, 5-minute online assessment at legacyarchitectrva.com that evaluates your preparedness across all 7 pillars of continuity. You receive an immediate score, pillar-by-pillar gap analysis, and personalized recommendations. No account or payment required.
+### What is the 7-Pillar Readiness Check?
+The 7-Pillar Readiness Check is a free, 5-minute online assessment at legacyarchitectrva.com that evaluates your preparedness across all 7 pillars of continuity. You receive an immediate score, pillar-by-pillar gap analysis, and personalized recommendations. No account or payment required.
 
 ## Social Media
 

@@ -9,7 +9,7 @@ A Life Manual is not a will, trust, or estate plan. It is the operational layer 
 ## URLs
 
 - Website: https://legacyarchitectrva.com
-- Free Continuity Audit: https://legacyarchitectrva.com/#audit
+- Free Readiness Check: https://legacyarchitectrva.com/#audit
 - Schedule a Private Conversation: https://cal.com/legacyarchitectrva/private-conversation
 - Full details: https://raw.githubusercontent.com/LegacyArchitectRVA/la-audit/main/llms-full.txt
 
@@ -19,7 +19,7 @@ A Life Manual is not a will, trust, or estate plan. It is the operational layer 
 - The Archive ($1,950): Expanded Life Manual for families. Everything in The Vault plus asset mapping, decision context, dependency guide. Most popular.
 - The Legacy ($3,000+): Full-suite Life Manual for business owners. Everything in The Archive plus business succession integration.
 - 7-Pillar Continuity Workbook ($37): Self-guided fillable PDF workbook covering all 7 pillars.
-- Free 7-Pillar Continuity Audit: 5-minute online self-assessment at legacyarchitectrva.com.
+- Free 7-Pillar Readiness Check: 5-minute online self-assessment at legacyarchitectrva.com.
 - Annual Reviews: $400 (Vault), $800 (Archive), $1,200 (Legacy). Credited toward tier upgrades.
 - Founding Families pricing available (limited seats).
 
@@ -87,7 +87,7 @@ Estate planning determines who receives your assets through wills and trusts. A 
 Three groups benefit most: Detail-carriers who manage more than people realize, family anchors who want loved ones to grieve without becoming administrators, and business owners whose companies depend on information only they hold.
 
 ### How much does a Life Manual cost?
-The Vault costs $950 for individuals, The Archive costs $1,950 for families, and The Legacy starts at $3,000 for business owners. A self-guided 7-Pillar Workbook is $37. A free 5-minute continuity audit is available at legacyarchitectrva.com.
+The Vault costs $950 for individuals, The Archive costs $1,950 for families, and The Legacy starts at $3,000 for business owners. A self-guided 7-Pillar Workbook is $37. A free 5-minute readiness check is available at legacyarchitectrva.com.
 
 ### Is my information secure?
 Legacy Architect RVA operates on a zero-knowledge standard. Your information stays in a client-controlled Secure Drive. Credentials are never stored in the manual. Within 72 hours of delivery, all submitted data is permanently removed.
