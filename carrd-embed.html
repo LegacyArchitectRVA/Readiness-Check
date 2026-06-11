@@ -2112,8 +2112,10 @@ function renderResults(app,ps){
     ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
     <hr class="rule">
     <div class="inputrow">
-      <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
-      <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To receive your full report"></div>
+      <div class="inputfield"><label>First Name</label><label for="s7fn" style="display:block;margin-bottom:8px;color:var(--text-primary);">Name (Optional)</label>
+          <input id="s7fn" placeholder="Optional"></div>
+      <div class="inputfield"><label>Email Address</label><label for="s7em" style="display:block;margin-bottom:8px;color:var(--text-primary);">Email (To receive your full report)</label>
+          <input id="s7em" type="email" placeholder="To receive your full report"></div>
     </div>
     <div id="s7al" class="alertmsg"></div>
     <button id="s7btn" onclick="submit()">Request Full Analysis Report</button>
