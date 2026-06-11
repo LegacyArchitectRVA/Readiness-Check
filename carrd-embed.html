@@ -1929,7 +1929,7 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`
 <div>
-    <p class="mark" style="margin-bottom:12px;">7-Pillar Readiness Check</p>
+    <h1 class="mark" style="margin-bottom:12px;">7-Pillar Readiness Check</h1>
     <p class="sub" style="margin-bottom:18.9px;">After completing this short readiness check you will see the exact gaps your family will face, and the next steps to provide instant clarity.</p>
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
@@ -1991,20 +1991,20 @@ function renderIntro(app,ps){
     <!-- Trust badges -->
     <div class="trust-badges">
       <div class="trust-badge">
-        <svg class="trust-badge-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="trust-badge-icon" aria-hidden="true" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         <span>Zero-Knowledge Standard</span>
       </div>
       <div class="trust-badge">
-        <svg class="trust-badge-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <svg class="trust-badge-icon" aria-hidden="true" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
         <span>Secure & Confidential</span>
       </div>
       <div class="trust-badge">
-        <svg class="trust-badge-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <svg class="trust-badge-icon" aria-hidden="true" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         <span>Free Analysis</span>
       </div>
     </div>
     
-    <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Checking</button>
+    <button onclick="trackEvent('start_analysis');goN()" class="start-btn" aria-label="Begin 7-Pillar Readiness Check">Start Checking</button>
   </div>`;
 }function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -2015,7 +2015,7 @@ function renderIntro(app,ps){
   const isBusinessPillar = pi === 5; // Pillar 6 (index 5) is Business Continuity
   let html=`<div>
     <div class="stepbar">${segs(tot,step,false)}</div>
-    <p class="mark" style="margin-bottom:8px;">${p.n}</p>
+    <h1 class="mark" style="margin-bottom:8px;">${p.n}</h1>
     <p class="sub" style="font-size:17px;margin-bottom:14px;">${p.d}</p>
     <div class="counter">
       <span class="counter-circle">${answered}/${total}</span>
@@ -2051,10 +2051,10 @@ function renderIntro(app,ps){
   html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
     <div class="cpdot"></div>All items addressed
   </div>
-  <button onclick="goN();window.scrollTo({top:0,behavior:'smooth'});" class="start-btn">Continue</button>
+  <button onclick="goN();window.scrollTo({top:0,behavior:'smooth'});" class="start-btn" aria-label="Continue to next section">Continue</button>
   <div class="navrow">
-    <button class="sm alt" onclick="goB()">Back</button>
-    <button class="sm alt" onclick="reset()">Reset</button>
+    <button class="sm alt" onclick="goB()" aria-label="Go back to previous section">Back</button>
+    <button class="sm alt" onclick="reset()" aria-label="Reset all answers">Reset</button>
   </div></div>`;
   app.innerHTML=html;}
 function renderResults(app,ps){
@@ -2117,8 +2117,8 @@ function renderResults(app,ps){
     <div id="s7al" class="alertmsg"></div>
     <button id="s7btn" onclick="submit()">Request Full Analysis Report</button>
     <div class="navrow">
-      <button class="sm alt" onclick="goB()">Back</button>
-      <button class="sm alt" onclick="reset()">Reset</button>
+      <button class="sm alt" onclick="goB()" aria-label="Go back to previous section">Back</button>
+      <button class="sm alt" onclick="reset()" aria-label="Reset all answers">Reset</button>
     </div>
     <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--text-primary);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
