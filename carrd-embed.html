@@ -2042,8 +2042,8 @@ function renderIntro(app,ps){
         </div>
         <div class="opts">
           <button class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">Recorded</div>
-          <div class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">Undocumented</div>
-          <div class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">N/A</button>
+          <button class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})" aria-label="Mark as undocumented">Undocumented</button>
+          <button class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})" aria-label="Mark as not applicable">N/A</button>
           </button>
         </div>
     </div>`;
@@ -2121,7 +2121,7 @@ function renderResults(app,ps){
       <button class="sm alt" onclick="goB()" aria-label="Go back to previous section">Back</button>
       <button class="sm alt" onclick="reset()" aria-label="Reset all answers">Reset</button>
     </div>
-    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--text-primary);">Share your readiness score</span></div>
+    <button class="sharelink" onclick="window.shareScore()" aria-label="Share your readiness score"><span style="color:var(--text-primary);">Share your readiness score</span></button>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check™ — Legacy Architect RVA</div>
   </div>`;
@@ -2149,7 +2149,7 @@ function renderSuccess(){
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
-    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--text-primary);">Share your readiness score</span></div>
+    <button class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});" aria-label="Share your readiness score"><span style="color:var(--text-primary);">Share your readiness score</span></button>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
     <div class="footnote">Legacy Architect RVA</div>
