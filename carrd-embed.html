@@ -2032,7 +2032,7 @@ function renderIntro(app,ps){
           <button class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})" aria-label="Mark as not applicable">N/A</button>
           </button>
         </div>
-    </div>`;
+      </div>`;
   });
   html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
     <div class="cpdot"></div>All items addressed
@@ -2041,7 +2041,8 @@ function renderIntro(app,ps){
   <div class="navrow">
     <button class="sm alt" onclick="goB()" aria-label="Go back to previous section">Back</button>
     <button class="sm alt" onclick="reset()" aria-label="Reset all answers">Reset</button>
-  </div></div>`;
+        </div>
+      </div>`;
   app.innerHTML=html;}
 function renderResults(app,ps){
   const tot=ps.length+1;const d=calc();const sc=d.pct;
@@ -2083,7 +2084,7 @@ function renderResults(app,ps){
           <div class="scoresub">${d.rec} of ${d.eff} recorded</button>
           </button>
         </div>
-    </div>
+      </div>
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
