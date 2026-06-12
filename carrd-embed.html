@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#F4ECDC">
 <style>
 :root{
-  /* Cream/Forest Green Palette — matches zo.space */
+  /* Cream/Forest Green Palette â matches zo.space */
   --bg-dark: #F4ECDC;
   --card-bg: #FBF6EA;
   --text-primary: #0E1410;
@@ -45,17 +45,6 @@
   --instagram: #E4405F;
   --threads: #0E1410;
   --nextdoor: #00A36A;
-  /* Legacy variable aliases — map to current theme tokens */
-  --btn-color: var(--accent-gold);
-  --bronze: var(--accent-gold);
-  --gold: var(--accent-gold-light);
-  --success: var(--recorded);
-  --gap-red: var(--missing);
-  --vellum: var(--text-primary);
-  --bronze-light: var(--accent-gold-light);
-  --card: var(--card-bg);
-  --cream: var(--bg-dark);
-  --ink: var(--text-primary);
 }
 
 /* ============================================
@@ -118,8 +107,6 @@ body{
   font-family:'Cormorant Garamond',serif;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
-  overflow-y:auto;
-  max-height:100vh;
   line-height:1.6;
 }
 #wrap{
@@ -137,8 +124,6 @@ body{
   border-top: 1px solid rgba(31, 77, 58, 0.35);
   border-bottom: 1px solid rgba(31, 77, 58, 0.35);
   overflow: hidden;
-  max-height:100vh;
-  overflow-y:auto;
 }
 .card::before{
   content:"";
@@ -199,7 +184,7 @@ body{
 }
 .inputfield input:focus{
   outline:none;
-  border-color:var(--text-primary);
+  border-color:var(--accent-gold);
   box-shadow:0 0 0 3px rgba(31, 77, 58, 0.15);
 }
 
@@ -309,7 +294,7 @@ button:active{
 .share-modal-title{
   font-family:'Playfair Display',serif;
   font-size:17px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   margin:0;
   font-weight:500;
   font-style:italic;
@@ -323,7 +308,7 @@ button:active{
   transition:color 0.2s ease;
 }
 .share-modal-close:hover{
-  color:var(--text-primary);
+  color:var(--accent-gold);
 }
 
 /* Close/Back to Site Button */
@@ -345,8 +330,8 @@ button:active{
 }
 .back-to-site-btn:hover{
   background:rgba(31, 77, 58, 0.08);
-  border-color:var(--text-primary);
-  color:var(--text-primary);
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
 }
 
 /* Company Logo */
@@ -425,24 +410,24 @@ button:active{
 }
 .share-custom-text:focus{
   outline:none;
-  border-color:var(--text-primary);
+  border-color:var(--accent-gold);
   box-shadow:0 0 0 2px rgba(31, 77, 58, 0.15);
 }
 .share-custom-text::placeholder{
   color:var(--text-muted);
 }
 
-/* Threads - official brand mark */
+/* Threads - matching gold theme */
 .share-btn.threads{
-  background:rgba(0, 0, 0, 0.04);
-  border-color:rgba(0, 0, 0, 0.25);
+  background:rgba(31, 77, 58, 0.05);
+  border-color:rgba(31, 77, 58, 0.3);
 }
 .share-btn.threads:hover{
-  background:rgba(0, 0, 0, 0.08);
-  border-color:#000000;
+  background:rgba(31, 77, 58, 0.12);
+  border-color:var(--accent-gold);
 }
 .share-btn.threads .share-icon{
-  color:#000000;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 
 .share-btn.copy-link{
@@ -465,7 +450,7 @@ button:active{
 .share-score-display{
   font-family:'Playfair Display',serif;
   font-size:17px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   text-align:center;
   margin:0 0 16px;
   font-style:italic;
@@ -507,7 +492,7 @@ button:active{
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-size:10px;
   font-weight:500;
@@ -516,7 +501,7 @@ button:active{
 .share-btn:hover,
 .share-action-btn:hover{
   background:rgba(31, 77, 58, 0.12);
-  border-color:var(--text-primary);
+  border-color:var(--accent-gold);
 }
 .share-btn.x{
   background:rgba(31, 77, 58, 0.05);
@@ -524,7 +509,7 @@ button:active{
 }
 .share-btn.x:hover{
   background:rgba(31, 77, 58, 0.12);
-  border-color:var(--text-primary);
+  border-color:var(--accent-gold);
 }
 .share-btn.x .share-icon{
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
@@ -551,7 +536,7 @@ button:active{
   font-size:32px;
   letter-spacing:4.4px;
   text-transform:uppercase;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   opacity:0.7;
   font-weight:500;
 }
@@ -559,12 +544,12 @@ button:active{
   font-family:'Cinzel',serif;
   font-size:32px;
   margin:0 0 14px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   font-weight:500;
   font-style:normal;
 }
 .sub{
-  color:var(--text-primary);
+  color:#ffffff;
   line-height:2.0;
   font-size:21px;
   font-family:'Cormorant Garamond',serif;
@@ -611,6 +596,27 @@ button:active{
   margin-right:8px;
   font-size:22.5px;
 }
+.tlabel .info-tooltip{
+  display:inline-block;
+}
+.tlabel .info-icon{
+  width:16px;
+  height:16px;
+  margin-left:6px;
+  opacity:0.7;
+  vertical-align:middle;
+}
+.tlabel .tooltip-content{
+  font-size:13px;
+  max-width:240px;
+  min-width:160px;
+  text-align:center;
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
+}
+.opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
+
 /* Mobile spacing fix for landing page - remove gap where logo was */
 @media(max-width:768px){
   .card{padding:12px 10px 20px;}
@@ -628,7 +634,7 @@ button:active{
 .not-business-owner-btn{
   width:auto;
   padding:14px 24px;
-  background:linear-gradient(145deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
   border:1px solid #8A6E2A;
   border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
@@ -638,7 +644,7 @@ button:active{
   cursor:pointer;
   font-size:14px;
   text-transform:uppercase;
-  color:#FBF6EA;
+  color:#1a1a2e;
   transition:all 0.2s ease;
   display:block;
   box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
@@ -660,7 +666,7 @@ button:active{
 }
 .not-business-owner-btn:hover{
   background:linear-gradient(145deg, #1F4D3A, #143326, #1F4D3A);
-  border-color:var(--text-primary);
+  border-color:var(--accent-gold);
   transform:translateY(-1px);
   box-shadow:0 4px 12px rgba(31, 77, 58, 0.3);
 }
@@ -669,11 +675,67 @@ button:active{
   cursor:not-allowed;
   transform:none;
 }
+
+/* Info icon and tooltip */
+.info-icon{
+  width:12px;
+  height:12px;
+  cursor:pointer;
+  margin-left:6px;
+  opacity:0.6;
+  transition:opacity 0.2s ease;
+  flex-shrink:0;
+  fill:var(--text-gold);
+}
+.info-icon:hover{
+  opacity:1;
+}
+.info-tooltip{
+  position:relative;
+  display:inline-block;
+}
+.info-tooltip .tooltip-content{
+  visibility:hidden;
+  position:absolute;
+  bottom:100%;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--card-bg);
+  border:1px solid rgba(31, 77, 58, 0.3);
+  border-radius:4px;
+  padding:12px 14px;
+  width:280px;
+  max-width:90vw;
+  font-size:14px;
+  line-height:1.5;
+  color:var(--text-gold);
+  box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
+  white-space:normal;
+  word-wrap:break-word;
+  opacity:0;
+  transition:opacity 0.2s ease, visibility 0.2s ease;
+  font-family:'Cormorant Garamond',serif;
+}
+.info-tooltip:hover .tooltip-content,
+.info-tooltip:focus .tooltip-content{
+  visibility:visible;
+  opacity:1;
+}
+.info-tooltip .tooltip-content::before{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:rgba(31, 77, 58, 0.3);
+}
+
 /* All items addressed badge - more standout */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-weight:600;
   padding:12px 16px;
@@ -698,7 +760,7 @@ button:active{
   letter-spacing:1.5px;
   text-transform:uppercase;
   transition:all var(--transition-normal);
-  color:var(--text-primary);
+  color:var(--accent-gold);
   background:transparent;
   user-select:none;
   font-weight:500;
@@ -707,8 +769,8 @@ button:active{
   text-align:center;
 }
 .opt:hover{
-  border-color:var(--text-primary);
-  color:var(--text-primary);
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
   background:rgba(31, 77, 58, 0.05);
   transform:translateY(-1px);
   box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
@@ -719,7 +781,7 @@ button:active{
 .opt.oR{
   border-color:var(--recorded);
   color:var(--recorded);
-  background:rgba(31, 77, 58, 0.15);
+  background:rgba(16, 185, 129, 0.15);
 }
 .opt.oU{
   border-color:var(--missing);
@@ -741,7 +803,7 @@ button:active{
   border-radius:var(--radius-sm);
   font-family:'Montserrat',sans-serif;
   font-size:14px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   letter-spacing:1.5px;
   box-shadow: 0 0 15px rgba(31, 77, 58, 0.3);
   font-weight:600;
@@ -749,7 +811,7 @@ button:active{
 }
 .counter-circle:hover{
   background:rgba(31, 77, 58, 0.1);
-  border-color:var(--text-primary);
+  border-color:var(--accent-gold);
 }
 
 /* Progress indicator in counter */
@@ -763,7 +825,7 @@ button:active{
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:20px;
   font-size:13px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   font-family:'Montserrat',sans-serif;
   font-weight:500;
 }
@@ -782,7 +844,7 @@ button:active{
 .cta-primary{
   width:100%;
   padding:18.9px 24px;
-  background:linear-gradient(145deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -791,7 +853,7 @@ button:active{
   cursor:pointer;
   font-size:14px;
   text-transform:uppercase;
-  color:#FBF6EA;
+  color:#1a1a2e;
   border-radius:var(--radius-sm);
   transition:all var(--transition-normal);
   box-shadow:0 4px 15px rgba(31, 77, 58, 0.3);
@@ -825,13 +887,13 @@ button:active{
 /* Secondary buttons */
 button.alt{
   background:transparent;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   border:1px solid rgba(31, 77, 58, 0.4);
   box-shadow:none;
 }
 button.alt:hover{
-  color:var(--text-primary);
-  border-color:var(--text-primary);
+  color:var(--accent-gold);
+  border-color:var(--accent-gold);
   background:rgba(31, 77, 58, 0.05);
 }
 
@@ -843,7 +905,7 @@ button.alt:hover{
   margin:22px 0;
   font-style:italic;
   font-size:20.4px;
-  color:var(--text-primary);
+  color:#ffffff;
 }
 
 /* Trust badges */
@@ -859,19 +921,67 @@ button.alt:hover{
   align-items:center;
   gap:8px;
   font-size:16.5px;
-  color:var(--text-primary);
+  color:#ffffff;
 }
 .trust-badge-icon{
   width:18.9px;
   height:18.9px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
+}
+
+/* Tooltip styles */
+.info-tooltip{
+  position:relative;
+  display:inline-block;
+  cursor:help;
+}
+.info-icon{
+  width:14px;
+  height:14px;
+  margin-left:4px;
+  opacity:0.6;
+  transition:opacity var(--transition-fast);
+}
+.info-tooltip:hover .info-icon{
+  opacity:1;
+}
+.tooltip-content{
+  position:absolute;
+  bottom:auto;
+  top:100%;
+  margin-top:8px;
+  left:0;
+  right:auto;
+  transform:none;
+  background:#1F4D3A;
+  color:#F4ECDC;
+  padding:8px 12px;
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  white-space:normal;
+  word-wrap:break-word;
+  opacity:0;
+  visibility:hidden;
+  transition:all var(--transition-fast);
+  z-index:1000;
+  box-shadow:0 4px 12px rgba(20, 32, 26, 0.25);
+  border:1px solid rgba(212, 175, 55, 0.3);
+  width:max-content;
+  max-width:240px;
+  min-width:160px;
+  text-align:center;
+  line-height:1.4;
+}
+.info-tooltip:hover .tooltip-content{
+  opacity:1;
+  visibility:visible;
 }
 
 /* BUTTONS - Elegant */
 button{
   width:100%;
   padding:16px 20px;
-  background:linear-gradient(145deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
   border:none;
   font-family:'Cinzel',serif;
   font-weight:600;
@@ -880,7 +990,7 @@ button{
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:#FBF6EA;
+  color:#1a1a2e;
   border-radius:var(--radius-sm);
   transition:all var(--transition-normal);
   box-shadow:0 2px 10px rgba(0, 0, 0, 0.2);
@@ -952,7 +1062,7 @@ button.sm{
   font-size:30px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   opacity:0.9;
   margin-bottom:12px;
 }
@@ -1002,7 +1112,7 @@ button.sm{
   font-size:28px;
   text-transform:uppercase;
   margin-bottom:4px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   color:var(--btn-color);
 }
 .tR{color:#B22222;}
@@ -1027,12 +1137,12 @@ button.sm{
   font-size:20px;
   opacity:.8;
   margin:2px 0;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   font-weight:500;
 }
 .legtext{
   font-size:16px;
-  color:var(--text-primary);
+  color:#ffffff;
   line-height:1.7;
 }
 /* PILLAR BARS */
@@ -1056,7 +1166,7 @@ button.sm{
 }
 .pname{
   font-size:16px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   width:180px;
   flex-shrink:0;
   overflow:visible;
@@ -1086,14 +1196,14 @@ button.sm{
   text-align:right;
   flex-shrink:0;
 }
-/* GAPS — color coded by severity */
+/* GAPS â color coded by severity */
 .gapwrap{margin-top:24px;}
 .gaptitle{
   font-family:'Cinzel',serif;
   font-size:21px;
   letter-spacing:1.5px;
   text-transform:uppercase;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   opacity:0.9;
   border-bottom:1px solid rgba(31, 77, 58, 0.3);
   padding-bottom:8px;
@@ -1112,7 +1222,7 @@ button.sm{
 .gapitem:hover{background:rgba(31, 77, 58, 0.06);}
 .gapname{
   font-size:17px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   margin-bottom:4px;
   flex:1;
 }
@@ -1129,7 +1239,7 @@ button.sm{
   text-transform:uppercase;
   margin-top:2px;
   opacity:0.7;
-  color:var(--text-primary);
+  color:var(--accent-gold);
 }
 /* INPUTS */
 .inputrow{display:flex;gap:10px;margin-top:18.9px;flex-wrap:wrap;}
@@ -1147,7 +1257,7 @@ button.sm{
   margin-top:5px;
   background:rgba(10, 10, 15, 0.7);
   border:1px solid rgba(31, 77, 58, 0.2);
-  color:var(--text-primary);
+  color:var(--accent-gold);
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
@@ -1187,7 +1297,7 @@ button.sm{
 .sharelink span{
   font-family:'Montserrat',sans-serif;
   font-size:26px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   letter-spacing:3px;
   text-transform:uppercase;
   border-bottom:1px solid rgba(31, 77, 58, 0.3);
@@ -1196,8 +1306,8 @@ button.sm{
   font-weight:600;
 }
 .sharelink:hover span{
-  color:var(--text-primary);
-  border-bottom-color:var(--text-primary);
+  color:var(--accent-gold);
+  border-bottom-color:var(--accent-gold);
 }
 .footnote{
   margin-top:20px;
@@ -1229,7 +1339,7 @@ button.sm{
 .successhead{
   font-family:'Cinzel',serif;
   font-size:18.4px;
-  color:var(--text-primary);
+  color:var(--accent-gold);
   margin-bottom:10px;
   letter-spacing:1.5px;
 }
@@ -1298,7 +1408,6 @@ button.sm{
 .pillar-item {
   margin: 0;
   padding: 0;
-  color: var(--text-primary);
 }
 .pillar-item .info-tooltip {
   display: block;
@@ -1308,7 +1417,6 @@ button.sm{
   text-align: left;
   padding: 6px 0;
   cursor: help;
-  color: var(--text-primary);
 }
 
 /* ============================================
@@ -1442,7 +1550,7 @@ const EXPL={
   "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
   "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
   "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
-  "Last Will & Testament":"Without a will, assets distribute by state law — not your intentions.",
+  "Last Will & Testament":"Without a will, assets distribute by state law â not your intentions.",
   "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
   "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
   "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
@@ -1575,20 +1683,22 @@ function animRing(el,tgt,color="var(--btn-color)"){
   function f(ts){
     if(!st)st=ts;const p=Math.min((ts-st)/1500,1);const e=1-Math.pow(1-p,3);
     const a=Math.round(e*tgt*3.6);
+    // Convert CSS variable to RGB for conic gradient
     const colorMap = {
-      "var(--ch1)": "rgba(31, 77, 58, 0.9)",
-      "var(--ch2)": "rgba(45, 106, 79, 0.9)",
-      "var(--ch3)": "rgba(91, 124, 110, 0.9)",
-      "var(--ch4)": "rgba(20, 51, 38, 0.9)",
-      "var(--ch5)": "rgba(194, 138, 42, 0.9)",
-      "var(--ch6)": "rgba(91, 106, 98, 0.9)",
-      "var(--ch7)": "rgba(122, 158, 139, 0.9)",
-      "var(--btn-color)": "rgba(31, 77, 58, 0.9)",
-      "#B22222": "rgba(178, 34, 34, 0.9)"
+      "var(--ch1)": "rgba(96, 165, 250, 0.9)",
+      "var(--ch2)": "rgba(248, 113, 113, 0.9)",
+      "var(--ch3)": "rgba(226, 232, 240, 0.9)",
+      "var(--ch4)": "rgba(52, 211, 153, 0.9)",
+      "var(--ch5)": "rgba(31, 77, 58, 0.9)",
+      "var(--ch6)": "rgba(148, 163, 184, 0.9)",
+      "var(--ch7)": "rgba(192, 132, 252, 0.9)",
+      "var(--btn-color)": "rgba(198, 168, 90, 0.9)"
     };
-    const baseColor = colorMap[color] || "rgba(31, 77, 58, 0.9)";
-    const darkColor = baseColor.replace("0.9", "0.3");
-    el.style.background='conic-gradient(' + baseColor + ' 0deg ' + a + 'deg, ' + darkColor + ' ' + a + 'deg 360deg)';
+    const baseColor = colorMap[color] || "rgba(198, 168, 90, 0.9)";
+    const darkColor = baseColor.replace("0.9", "0.7");
+    const darkerColor = baseColor.replace("0.9", "0.5");
+    const darkestColor = baseColor.replace("0.9", "0.3");
+    el.style.background=`conic-gradient(${darkestColor} 0deg,${baseColor} ${a}deg,${darkerColor} ${a}deg,${darkestColor} 360deg)`;
     if(p<1)requestAnimationFrame(f);
   }
   requestAnimationFrame(f);
@@ -1659,7 +1769,7 @@ function showShareModal(score, tierLabel, text, url) {
   const encodedUrl = encodeURIComponent(analysisUrl);
   const encodedText = encodeURIComponent(text);
   const encodedImage = encodeURIComponent(imageUrl);
-  const shareText = `I just took the 7-Pillar Readiness Check and scored ${score}% — ${tierLabel}. Check out your readiness at ${analysisUrl}`;
+  const shareText = `I just took the 7-Pillar Readiness Check and scored ${score}% â ${tierLabel}. Check out your readiness at ${analysisUrl}`;
   
   const modal = document.createElement('div');
   modal.className = 'share-modal-overlay';
@@ -1667,10 +1777,11 @@ function showShareModal(score, tierLabel, text, url) {
     <div class="share-modal">
       <div class="share-modal-header">
         <h3 class="share-modal-title">Share Your Results</h3>
-        <span class="share-modal-close" onclick="closeShareModal()">&times;</div>
+        <span class="share-modal-close" onclick="closeShareModal()">&times;</span>
+      </div>
       <div class="share-modal-content">
         <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="share-modal-logo">
-        <p class="share-score-display">${score}% — ${tierLabel}</p>
+        <p class="share-score-display">${score}% â ${tierLabel}</p>
         
         <!-- Custom share text -->
         <textarea class="share-custom-text" id="shareCustomText" placeholder="Customize your message...">${shareText}</textarea>
@@ -1680,50 +1791,56 @@ function showShareModal(score, tierLabel, text, url) {
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&summary=${encodeURIComponent(shareText)}&source=${encodedUrl}" 
              target="_blank" class="share-btn linkedin" onclick="trackShare('linkedin')" aria-label="Share on LinkedIn">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            <span>LinkedIn</a>
+            <span>LinkedIn</span>
+          </a>
           <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodeURIComponent(shareText)}&picture=${encodedImage}" 
              target="_blank" class="share-btn facebook" onclick="trackShare('facebook')" aria-label="Share on Facebook">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            <span>Facebook</a>
+            <span>Facebook</span>
+          </a>
           <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn x" onclick="trackShare('x')" aria-label="Share on X">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-            <span>X</a>
+            <span>X</span>
+          </a>
           <a href="https://www.instagram.com/intent/post?url=${encodedUrl}&caption=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn instagram" onclick="trackShare('instagram')" aria-label="Share on Instagram">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram</a>
-          <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}"
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <svg class="share-icon" viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.78 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.745-1.757-.513-.586-1.308-.883-2.359-.89h-.013c-.836 0-2.192.254-2.92 1.666l-1.81-.972C9.923 4.036 11.985 3 14.118 3h.014c2.796.02 4.61 1.708 4.994 4.646 1.143.488 2.057 1.182 2.692 2.058.946 1.302 1.262 3.094.875 4.967-.385 1.853-1.413 3.418-2.99 4.553C18.21 23.121 15.95 23.98 12.93 24h-.744zM14.42 14.063c-.16 0-.325.005-.494.014-1.565.09-2.578.85-2.51 2.005.044.74.473 1.247 1.193 1.448.586.16 1.282.183 1.969.024 1.16-.27 1.86-1.075 1.984-2.34l.04-.276a8.16 8.16 0 0 0-2.182-.875z"/></svg>
-            <span>Threads</a>
+            <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            <span>Threads</span>
+          </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn nextdoor" onclick="trackShare('nextdoor')" aria-label="Share on NextDoor">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#00A36A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span>NextDoor</a>
+            <span>NextDoor</span>
+          </a>
         </div>
         
         <!-- Additional actions -->
         <div class="share-actions">
           <button class="share-action-btn copy-link" onclick="copyToClipboard('${analysisUrl}', this)">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#646464"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-            <span>Copy Link</button>
+            <span>Copy Link</span>
+          </button>
           <button class="share-action-btn email" onclick="shareViaEmail('${encodeURIComponent(shareText)}', '${encodeURIComponent(url)}')">
             <svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span>Email</button>
+            <span>Email</span>
+          </button>
         </div>
         
         <!-- QR Code -->
         <div class="share-qr-container">
           <div id="shareQrCode" class="share-qr-code"></div>
           <p class="share-qr-label">Scan to share</p>
-        </button>
-          </button>
         </div>
+      </div>
+    </div>
   `;
   document.body.appendChild(modal);
-  // Force layout reflow
-  modal.offsetHeight;
   modal.querySelector('.share-modal').classList.add('share-modal-visible');
   document.body.style.overflow = 'hidden';
   
@@ -1792,7 +1909,7 @@ function copyToClipboard(text, btn) {
     const target = btn || (typeof event !== 'undefined' && event && event.currentTarget);
     if (target) {
       const originalText = target.innerHTML;
-      target.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!';
+      target.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#000000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
       setTimeout(() => {
         target.innerHTML = originalText;
       }, 2000);
@@ -1843,7 +1960,7 @@ function submit(){
   });
   
   btn.disabled=true;
-  btn.innerHTML='<span class="ldots"><span><span><span>';
+  btn.innerHTML='<span class="ldots"><span></span><span></span><span></span></span>';
   const gaps=getGaps();const str=getStr();const bk=bkdown();
   const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",answers:ANS,recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk};
   fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
@@ -1941,66 +2058,65 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`
 <div>
-    <h1 class="mark" style="margin-bottom:12px;">7-Pillar Readiness Check</h1>
+    <p class="mark" style="margin-bottom:12px;">7-Pillar Readiness Check</p>
     <p class="sub" style="margin-bottom:18.9px;">After completing this short readiness check you will see the exact gaps your family will face, and the next steps to provide instant clarity.</p>
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>01: Digital Life</span>
+          <span style="color:#ffffff;">01: Digital Life</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Credentials, accounts, and digital access.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>02: Financial & Assets</span>
+          <span style="color:#ffffff;">02: Financial & Assets</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Banking, investments, and financial records.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>03: Household & Property</span>
+          <span style="color:#ffffff;">03: Household & Property</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Property, vehicles, and household documentation.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>04: Health & Medical</span>
+          <span style="color:#ffffff;">04: Health & Medical</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Insurance, records, and medical directives.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>05: Legal & Estate</span>
+          <span style="color:#ffffff;">05: Legal & Estate</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Wills, trusts, and legal authority.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>06: Business Continuity</span>
+          <span style="color:#ffffff;">06: Business Continuity</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Operations, agreements, and succession.</div>
         </span>
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span>07: Legacy & Wishes</span>
+          <span style="color:#ffffff;">07: Legacy & Wishes</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Personal instructions, history, and wishes.</div>
         </span>
-
       </div>
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
-      <strong style="color:var(--recorded);">Recorded</strong> — It's documented and someone else could access it.<br>
-      <strong style="color:var(--missing);">Undocumented</strong> — It exists but isn't documented.<br>
-      <strong style="color:var(--na);">Not Applicable</strong> — It doesn't apply to your situation.
+      <strong style="color:var(--recorded);">Recorded</strong> â It's documented and someone else could access it.<br>
+      <strong style="color:var(--missing);">Undocumented</strong> â It exists but isn't documented.<br>
+      <strong style="color:var(--na);">Not Applicable</strong> â It doesn't apply to your situation.
     </p>
     
     <!-- Social proof -->
@@ -2011,17 +2127,20 @@ function renderIntro(app,ps){
     <!-- Trust badges -->
     <div class="trust-badges">
       <div class="trust-badge">
-        <svg class="trust-badge-icon" aria-hidden="true" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span>Zero-Knowledge Standard</div>
+        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Zero-Knowledge Standard</span>
+      </div>
       <div class="trust-badge">
-        <svg class="trust-badge-icon" aria-hidden="true" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-        <span>Secure & Confidential</div>
+        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <span>Secure & Confidential</span>
+      </div>
       <div class="trust-badge">
-        <svg class="trust-badge-icon" aria-hidden="true" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span>Free Analysis</div>
+        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>Free Analysis</span>
+      </div>
     </div>
     
-    <button onclick="trackEvent('start_analysis');goN()" class="start-btn" aria-label="Begin 7-Pillar Readiness Check">Start Checking</button>
+    <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Checking</button>
   </div>`;
 }function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -2032,10 +2151,11 @@ function renderIntro(app,ps){
   const isBusinessPillar = pi === 5; // Pillar 6 (index 5) is Business Continuity
   let html=`<div>
     <div class="stepbar">${segs(tot,step,false)}</div>
-    <h1 class="mark" style="margin-bottom:8px;">${p.n}</h1>
+    <p class="mark" style="margin-bottom:8px;">${p.n}</p>
     <p class="sub" style="font-size:17px;margin-bottom:14px;">${p.d}</p>
     <div class="counter">
-      <span class="counter-circle">${answered}/${total}</div>`;
+      <span class="counter-circle">${answered}/${total}</span>
+    </div>`;
   
   // Add "Not a business owner" button for Business Continuity pillar
   if(isBusinessPillar){
@@ -2051,24 +2171,28 @@ function renderIntro(app,ps){
     html+=`<div class="toggle ${tc}" id="toggle-${key}">
       <div class="trow">
         <div class="tlabel">
-          <span class="roman-numeral">${romanNumeral}. </span>${item}
-          <p style="font-style:italic;font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;">${expl}</p>
+          <span class="info-tooltip">
+            <span class="roman-numeral">${romanNumeral}. </span>${item}
+            <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <div class="tooltip-content">${expl}</div>
+          </span>
         </div>
         <div class="opts">
-          <button class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">Recorded</button>
-          <button class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})" aria-label="Mark as undocumented">Undocumented</button>
-          <button class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})" aria-label="Mark as not applicable">N/A</button>
-          </div>
-        </div>`;
+          <div class="opt ${val==="R"?"oR":""}" onclick="pick('${key}','R');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">Recorded</div>
+          <div class="opt ${val==="U"?"oU":""}" onclick="pick('${key}','U');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">Undocumented</div>
+          <div class="opt ${val==="N"?"oN":""}" onclick="pick('${key}','N');focusNextToggle('${key}', ${idx}, ${p.i.length - 1})">N/A</div>
+        </div>
+      </div>
+    </div>`;
   });
   html+=`<div id="cpbadge" class="cpbadge" style="display:${done?"flex":"none"};">
     <div class="cpdot"></div>All items addressed
   </div>
-  <button onclick="goN();window.scrollTo({top:0,behavior:'smooth'});" class="start-btn" aria-label="Continue to next section">Continue</button>
+  <button onclick="goN();window.scrollTo({top:0,behavior:'smooth'});" class="start-btn">Continue</button>
   <div class="navrow">
-    <button class="sm alt" onclick="goB()" aria-label="Go back to previous section">Back</button>
-    <button class="sm alt" onclick="reset()" aria-label="Reset all answers">Reset</div>
-        </div>`;
+    <button class="sm alt" onclick="goB()">Back</button>
+    <button class="sm alt" onclick="reset()">Reset</button>
+  </div></div>`;
   app.innerHTML=html;}
 function renderResults(app,ps){
   const tot=ps.length+1;const d=calc();const sc=d.pct;
@@ -2099,45 +2223,43 @@ function renderResults(app,ps){
       </div>
     </div>`;
   }).join(""):`<p class="sub">No unprepared items recorded.</p>`;
-  app.innerHTML=`<div role="main"
+  app.innerHTML=`<div>
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
-      <div class="ringlabel" style="color:var(--text-primary);font-family:'Cinzel',serif;font-size:30px;">Readiness Score</div>
+      <div class="ringlabel" style="color:var(--accent-gold);font-family:'Cinzel',serif;font-size:30px;">Readiness Score</div>
       <div class="ring" style="border-color:${tierColor};box-shadow:0 0 24px ${tierColor}40;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
           <div class="scorenum" id="r7num" style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:32px;font-weight:bold;">0%</div>
-          <div class="scoresub">${d.rec} of ${d.eff} recorded</button>
-          </div>
+          <div class="scoresub">${d.rec} of ${d.eff} recorded</div>
         </div>
+      </div>
+    </div>
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86—100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71—85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61—70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0—60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</button>
-          </button>
-        </div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86â100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71â85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61â70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0â60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+    </div>
     <hr class="rule">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
     ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
     <hr class="rule">
     <div class="inputrow">
-      <div class="inputfield"><label>First Name</label><label for="s7fn" style="display:block;margin-bottom:8px;color:var(--text-primary);">Name (Optional)</label>
-          <input id="s7fn" placeholder="Optional"></div>
-      <div class="inputfield"><label>Email Address</label><label for="s7em" style="display:block;margin-bottom:8px;color:var(--text-primary);">Email (To receive your full report)</label>
-          <input id="s7em" type="email" placeholder="To receive your full report"></div>
+      <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
+      <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To receive your full report"></div>
     </div>
     <div id="s7al" class="alertmsg"></div>
     <button id="s7btn" onclick="submit()">Request Full Analysis Report</button>
     <div class="navrow">
-      <button class="sm alt" onclick="goB()" aria-label="Go back to previous section">Back</button>
-      <button class="sm alt" onclick="reset()" aria-label="Reset all answers">Reset</button>
+      <button class="sm alt" onclick="goB()">Back</button>
+      <button class="sm alt" onclick="reset()">Reset</button>
     </div>
-    <button class="sharelink" onclick="window.shareScore()" aria-label="Share your readiness score"><span style="color:var(--text-primary);">Share your readiness score</button>
+    <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
-    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check™ — Legacy Architect RVA</div>
+    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Checkâ¢ â Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);}
   window.scrollTo({top:0,behavior:'smooth'});
@@ -2156,13 +2278,14 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">✓</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">â</div>
     <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
     <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
-      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% — ${tierLabel}</div>
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% â ${tierLabel}</span>
+    </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
-    <button class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});" aria-label="Share your readiness score"><span style="color:var(--text-primary);">Share your readiness score</button>
+    <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
     <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
     <div class="footnote">Legacy Architect RVA</div>
