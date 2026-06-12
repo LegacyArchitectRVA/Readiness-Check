@@ -80,9 +80,7 @@
 }
 
 /* Smooth scrolling */
-html{
-  scroll-behavior:smooth;
-}
+html{font-size:22.3146px;background:var(--bg-dark);}
 
 /* Selection styling */
 ::selection{
@@ -100,31 +98,13 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 html{font-size:22.3146px;}
-body{
-  margin:0;
-  background:var(--bg-dark);
-  color:var(--text-primary);
-  font-family:'Cormorant Garamond',serif;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-  line-height:1.6;
-}
+body{margin:0;background:var(--bg-dark);color:#000000;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:hidden;line-height:1.6;}
 #wrap{
   max-width:1000px;
   margin:0 auto;
   padding:0;
 }
-.card{
-  background:rgba(255, 251, 240, 0.92);
-  border:1px solid rgba(31, 77, 58, 0.25);
-  border-radius:0;
-  padding:27px 18.9px 31.5px;
-  position:relative;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-  border-top: 1px solid rgba(31, 77, 58, 0.35);
-  border-bottom: 1px solid rgba(31, 77, 58, 0.35);
-  overflow: hidden;
-}
+.card{background:rgba(255, 251, 240, 0.92);border:1px solid rgba(31, 77, 58, 0.25);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);border-top: 1px solid rgba(31, 77, 58, 0.35);border-bottom: 1px solid rgba(31, 77, 58, 0.35);max-height:100vh;overflow-y:auto;}
 .card::before{
   content:"";
   position:absolute;
