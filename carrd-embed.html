@@ -1513,6 +1513,12 @@ html body, body, html body .card, html body #wrap {
   -webkit-text-stroke: 0 !important;
 }
 
+
+/* Forest green for titles and Roman numerals */
+.mark, .pillar-title, .pillar-title span, .pillar-title strong, .legname {
+  color: #1F4D3A !important;
+}
+
 </style>
 </head>
 <body>
@@ -1635,7 +1641,7 @@ function pick(key,val){
   if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
   const pi=step-1;const ps=aP();
   const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
-  render();
+  render(); window.scrollTo({top: 0, behavior: "smooth"});;
   if(done){
     const b=document.getElementById("cpbadge");
     if(b)b.style.display="flex";
@@ -1662,7 +1668,7 @@ function goN(){
       const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
       if(firstUnanswered !== -1){
         // Mark unanswered questions and stay on page
-        render();
+        render(); window.scrollTo({top: 0, behavior: "smooth"});;
         // Add unanswered class to unanswered toggles
         setTimeout(() => {
           const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
@@ -1679,16 +1685,16 @@ function goN(){
       }
     }
   }
-  step++;isBack=false;render();
+  step++;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});;
   trackNavigation('next', currentStep, step);
   setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);
 }
-function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
+function goB(){if(step>0){const currentStep = step;step--;isBack=true;render(); window.scrollTo({top: 0, behavior: "smooth"});;trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render();trackEvent('reset');}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});;trackEvent('reset');}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -1761,7 +1767,7 @@ function markAllAsNA(){
     ps[pi].i.forEach((_,ii)=>{
       ANS[pi+"_"+ii]="N";
     });
-    render();
+    render(); window.scrollTo({top: 0, behavior: "smooth"});;
     // Force show the badge
     setTimeout(() => {
       const b=document.getElementById("cpbadge");
@@ -2000,7 +2006,7 @@ function segs(tot,cur,allDone){
     return`<div class="${c}"></div>`;
   }).join("");
 }
-function render(){
+function render(); window.scrollTo({top: 0, behavior: "smooth"});{
   const app=document.getElementById("app");
   const ps=aP();
   if(step===0){renderIntro(app,ps);}
@@ -2259,10 +2265,10 @@ function renderResults(app,ps){
       <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61&mdash;70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
       <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0&mdash;60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
-    <hr class="rule">
+    <hr class="rule" style="display:none !important;">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
     ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
-    <hr class="rule">
+    <hr class="rule" style="display:none !important;">
     <div class="inputrow">
       <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
       <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To receive your full report"></div>
@@ -2409,7 +2415,7 @@ window.submit = function() {
 // ============================================
 // INITIALIZE
 // ============================================
-render();
+render(); window.scrollTo({top: 0, behavior: "smooth"});;
 </script>
 </body>
 </html>
