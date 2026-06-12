@@ -1481,6 +1481,38 @@ button.sm{
 body, html, p, strong, span, div, a, li, td, th {
   color: #000000 !important;
 }
+
+
+/* CARRD CSS OVERRIDE - Force dark text */
+html body, body, html body p, html body strong, html body span, 
+html body div, html body a, html body li, html body td, 
+html body th, html body .sub, html body .mark, html body .opt,
+html body .trow, html body .legname, html body .legtext,
+html body .legrow, html body .bkwrap, html body .bktitle,
+html body .pillar-title, html body .gap-title, html body .gapdesc,
+html body .successhead, html body .successscore span,
+html body .footnote, html body .share-modal-title,
+html body .share-modal-close, html body .back-to-site-btn {
+  color: #000000 !important;
+  font-family: 'Cormorant Garamond', serif !important;
+}
+
+/* Not Applicable - darker gray */
+html body p.sub strong[style*="#666666"] {
+  color: #666666 !important;
+}
+
+/* Force backgrounds */
+html body, body, html body .card, html body #wrap {
+  background: #FFFFFF !important;
+}
+
+/* Remove text effects */
+* {
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
 </style>
 </head>
 <body>
