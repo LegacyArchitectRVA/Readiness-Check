@@ -1,1 +1,975 @@
-[object Object]
+/* LA Digital Audit v19.3 - audit7.js
+   v19.3 changes:
+   - Added GA4 event tracking: audit_start, pillar_view, audit_complete, business_gate, email_submit, cta_click
+   Changes from v16:
+   - Results reordered: 52% stat -> pillar breakdown -> continuity score
+   - Removed all em dashes
+   - Removed section borders on results page
+   - Embedded Cal.com inline calendar (replaces schedule button)
+   - Added workbook CTA with promo image
+   - Removed Founding Families section (links to #pricing instead)
+   - Removed duplicate Schedule/Start Over buttons
+   - Life Manual bolded throughout, trademark on first mention only
+   - One link to #workbook, one to #pricing
+*/
+(function(){
+  if(window.__laLoaded)return; window.__laLoaded=true;
+  var lnk=document.createElement('link');
+  lnk.rel='stylesheet';
+  lnk.href='https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&display=swap';
+  document.head.appendChild(lnk);
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ responsive styles + keyframes ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  var sty=document.createElement('style');
+  sty.textContent='@keyframes la-spin{to{transform:rotate(360deg)}}'+
+    '@keyframes la-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}'+
+    '@keyframes la-pulse{0%{box-shadow:0 0 12px rgba(193,176,133,0.3)}50%{box-shadow:0 0 20px rgba(193,176,133,0.5)}100%{box-shadow:0 0 12px rgba(193,176,133,0.3)}}'+
+    '@keyframes la-shimmer{from{background-position:-200% 0}to{background-position:200% 0}}'+
+    '[id^="r"][id*="-"]:hover{background:rgba(193,176,133,0.04)!important;border-color:rgba(193,176,133,0.15)!important;}'+
+    'button:hover{filter:brightness(1.08);}'+
+    '#la-email:focus{border-color:#c1b085!important;box-shadow:0 0 12px rgba(193,176,133,0.2)!important;}'+
+    '@media(max-width:600px){[style*="letter-spacing:4px"]{letter-spacing:2px!important;font-size:12px!important;}'+
+      '#pg-rest,#pg1{padding:0 12px!important;}'+
+      '[style*="font-size:44px"]{font-size:34px!important;}'+
+      '[style*="font-size:32px"]{font-size:23px!important;}'+
+      '[style*="font-size:24px"]{font-size:19px!important;}'+
+      '[style*="letter-spacing:5px"]{letter-spacing:2px!important;}'+
+      '[style*="width:230px"]{width:170px!important;height:170px!important;}'+
+      '[style*="width:170px"][style*="flex-shrink"]{width:110px!important;}'+
+      '[style*="padding:13px 24px"]{padding:11px 16px!important;font-size:10px!important;}'+
+      '[style*="padding:14px 36px"]{padding:12px 20px!important;font-size:12px!important;}'+
+      '[style*="max-width:400px"]{max-width:100%!important;}'+
+      '[style*="max-width:360px"]{max-width:100%!important;}'+
+      '#la-cal-embed{min-height:400px!important;}'+
+      '[style*="display:flex"][style*="gap:10px"]{flex-direction:column!important;}'+
+      '[style*="display:flex"][style*="gap:10px"] input{width:100%!important;}'+
+      '[style*="display:flex"][style*="gap:10px"] button{width:100%!important;}'+
+    '}';
+  document.head.appendChild(sty);
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ Cal.com embed loader ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  var WORKBOOK_IMG='https://cdn.jsdelivr.net/gh/LegacyArchitectRVA/la-audit@main/workbook-promo.jpg';
+
+  (function(C,A,L){
+    var p=function(a,ar){a.q.push(ar);};
+    var d=C.document;
+    C.Cal=C.Cal||function(){
+      var cal=C.Cal;var ar=arguments;
+      if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement('script')).src=A;cal.loaded=true;}
+      if(ar[0]===L){var api=function(){p(api,arguments);};var ns=ar[1];api.q=api.q||[];if(typeof ns==='string'){cal.ns[ns]=cal.ns[ns]||api;p(cal.ns[ns],ar);p(cal,['initNamespace',ns]);}else p(cal,ar);return;}
+      p(cal,ar);
+    };
+  })(window,'https://app.cal.com/embed/embed.js','init');
+  Cal("init","legacyarchitectrva/discovery-call",{origin:"https://cal.com"});
+
+  var P=[
+    {n:'Digital Life',d:'Access and continuity for essential digital accounts, credentials, and archives.',i:['PRIMARY EMAIL ACCOUNT ACCESS','MASTER PASSWORD MANAGER VAULT','CLOUD STORAGE & PHOTO ARCHIVES','TWO-FACTOR AUTH (2FA) RECOVERY KEYS','SOCIAL MEDIA LEGACY CONTACTS','DIGITAL MEDIA ARCHIVES']},
+    {n:'Financial & Assets',d:'Documentation of all financial accounts, obligations, and automated payment systems.',i:['BANKING & CREDIT CARD ACCESS','INVESTMENT & RETIREMENT ACCOUNTS','CRYPTOCURRENCY WALLETS & KEYS','AUTOMATED BILL PAYMENTS LIST','TAX RETURNS & FINANCIAL RECORDS','DEBT & LOAN DOCUMENTATION']},
+    {n:'Household & Property',d:'Physical property records, access information, and household operational documentation.',i:['PROPERTY DEEDS & TITLES','VEHICLE REGISTRATIONS','HOME MAINTENANCE RECORDS','UTILITY ACCOUNT ACCESS','PHYSICAL ASSET INVENTORY','STORAGE UNIT KEYS & ACCESS']},
+    {n:'Health & Medical',d:'Medical history, healthcare directives, and emergency access information.',i:['HEALTH INSURANCE INFORMATION','MEDICAL RECORDS & HISTORY','PRESCRIPTION MEDICATIONS LIST','ADVANCE HEALTHCARE DIRECTIVE','ORGAN DONOR STATUS','EMERGENCY CONTACTS LIST']},
+    {n:'Legal & Estate',d:'Legal instruments, policy documentation, and estate planning records.',i:['LAST WILL & TESTAMENT','TRUST DOCUMENTATION','POWERS OF ATTORNEY','LIFE INSURANCE POLICIES','GUARDIANSHIP DESIGNATIONS','BUSINESS SUCCESSION PLAN']},
+    {n:'Business Continuity',d:'Operational documentation for business owners, including entity records, access, and transition planning.',i:['BUSINESS ENTITY DOCUMENTS','BUSINESS BANKING & CREDIT ACCESS','OPERATING OR PARTNERSHIP AGREEMENTS','BUSINESS INSURANCE POLICIES','KEY VENDOR & CLIENT CONTACTS','BUSINESS CONTINUITY INSTRUCTIONS']},
+    {n:'Legacy & Wishes',d:'Personal statements, end-of-life preferences, and enduring messages for those left behind.',i:['PERSONAL LETTERS & MESSAGES','ETHICAL WILL STATEMENT','FUNERAL PREFERENCES','OBITUARY INFORMATION','HEIRLOOM STORIES','CHARITABLE GIVING WISHES']}
+  ];
+
+  var ST=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
+  var NA=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
+  var OB=null;
+  var lastP1Cnt=-1;
+  var lastP1Na=-1;
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ GA4 event tracking ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  function gaEvt(name, params) {
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch(e) {}
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ helpers ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function scrollToAudit(){
+    var el=document.getElementById('la-wrap')||document.getElementById('pg-rest')||document.getElementById('pg1');
+    if(el){
+      var rect=el.getBoundingClientRect();
+      var scrollY=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;
+      var target=Math.max(0,rect.top+scrollY-10);
+      try{window.scrollTo({top:target,behavior:'smooth'});}catch(e){window.scrollTo(0,target);}
+    }else{
+      try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}
+    }
+  }
+
+  function getPg1State(){
+    for(var i=0;i<6;i++){
+      var cb=document.getElementById('c0-'+i);
+      ST[0][i]=(cb&&cb.checked)?1:0;
+      var naCb=document.getElementById('na0-'+i);
+      NA[0][i]=(naCb&&naCb.checked)?1:0;
+    }
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ pillar scoring helpers ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function pillarChecked(pi){
+    return ST[pi].reduce(function(a,v){return a+v;},0);
+  }
+
+  function pillarNa(pi){
+    return NA[pi].reduce(function(a,v){return a+v;},0);
+  }
+
+  function pillarMax(pi){
+    return 6-pillarNa(pi);
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ glowing counter ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function ctrStyles(cnt,mx){
+    var f=mx>0&&cnt===mx;
+    return {
+      border: f?'#c1b085': cnt>0?'rgba(193,176,133,'+(0.3+cnt*0.1).toFixed(1)+')':'#342a1c',
+      shadow: cnt>0?'0 0 '+(8+cnt*4)+'px rgba(193,176,133,'+(0.15+cnt*0.05).toFixed(2)+')'+(f?',0 0 32px rgba(193,176,133,0.3)':''):'none',
+      bg: 'rgba(193,176,133,'+(f?'0.06':'0.02')+')',
+      numColor: f?'#c1b085': cnt>0?'#b8984e':'#6b5a38',
+      numShadow: f?'0 0 16px rgba(193,176,133,0.5)':'none'
+    };
+  }
+
+  function counterHTML(pi){
+    var cnt=pillarChecked(pi);
+    var mx=pillarMax(pi);
+    var s=ctrStyles(cnt,mx);
+    return '<div id="la-ctr-'+pi+'" style="display:flex;align-items:center;justify-content:center;margin-bottom:32px;">'+
+      '<div style="display:inline-flex;align-items:baseline;gap:8px;padding:14px 32px;'+
+        'border:1px solid '+s.border+';border-radius:2px;'+
+        'background:'+s.bg+';'+
+        'box-shadow:'+s.shadow+';'+
+        'transition:border-color 0.3s,box-shadow 0.4s,background 0.3s;">'+
+        '<span id="la-ctr-num-'+pi+'" style="font-family:Cinzel,serif;font-size:29px;font-weight:700;color:'+s.numColor+';line-height:1;'+
+          'text-shadow:'+s.numShadow+';transition:color 0.3s,text-shadow 0.3s;">'+cnt+'</span>'+
+        '<span style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#8a7240;line-height:1;">of </span>'+
+        '<span id="la-ctr-mx-'+pi+'" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#8a7240;line-height:1;">'+mx+'</span>'+
+      '</div>'+
+    '</div>';
+  }
+
+  function updateCtr(pi){
+    var cnt=pillarChecked(pi);
+    var mx=pillarMax(pi);
+    var wrap=document.getElementById('la-ctr-'+pi);
+    if(!wrap)return;
+    var box=wrap.firstElementChild; if(!box)return;
+    var num=document.getElementById('la-ctr-num-'+pi);
+    var mxEl=document.getElementById('la-ctr-mx-'+pi);
+    var s=ctrStyles(cnt,mx);
+    box.style.borderColor=s.border;
+    box.style.boxShadow=s.shadow;
+    box.style.background=s.bg;
+    if(num){num.textContent=cnt;num.style.color=s.numColor;num.style.textShadow=s.numShadow;}
+    if(mxEl){mxEl.textContent=mx;}
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ progress bar ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function prog(active){
+    var h='<div style="display:flex;gap:6px;margin-bottom:52px;">';
+    for(var s=0;s<7;s++){
+      var bg=s<active?'#8a7030':s===active?'#c1b085':'#342a1c';
+      var sh=s===active?'0 0 8px rgba(193,176,133,0.6)':'none';
+      h+='<div style="height:3px;flex:1;background:'+(s<active?'linear-gradient(90deg,#8a7030,#c1b085)':bg)+';border-radius:2px;box-shadow:'+sh+';transition:background 0.4s;"></div>';
+    }
+    return h+'</div>';
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ N/A button style helpers ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function naStyle(isNa){
+    return 'display:inline-flex;align-items:center;justify-content:center;'+
+      'width:auto;min-width:42px;height:24px;padding:0 8px;flex-shrink:0;'+
+      'border:1px solid '+(isNa?'#c1b085':'#342a1c')+';border-radius:2px;cursor:pointer;'+
+      'background:'+(isNa?'rgba(193,176,133,0.08)':'transparent')+';'+
+      'box-shadow:'+(isNa?'0 0 12px rgba(193,176,133,0.5),0 0 24px rgba(193,176,133,0.2)':'none')+';'+
+      'transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;';
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ pillar page ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function pillarHTML(pi){
+    var pl=P[pi],isP5=pi===4,isLast=pi===6;
+    var rows='';
+    for(var ii=0;ii<6;ii++){
+      var on=ST[pi][ii];
+      var isNa=NA[pi][ii];
+      var rowOpacity=isNa?'0.35':'1';
+      rows+=
+        '<div id="r'+pi+'-'+ii+'" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid '+(on?'rgba(193,176,133,0.12)':'transparent')+';border-radius:2px;background:'+(on?'rgba(193,176,133,0.03)':'transparent')+';opacity:'+rowOpacity+';transition:opacity 0.25s,border-color 0.2s,background 0.2s;">'+
+          /* checkbox area */
+          '<div onclick="__la.t('+pi+','+ii+')" style="display:flex;align-items:center;gap:18px;flex:1;cursor:pointer;">'+
+            '<div id="sh'+pi+'-'+ii+'" style="width:24px;height:24px;flex-shrink:0;border:1px solid '+(on?'#c1b085':'#7A6842')+';border-radius:2px;display:flex;align-items:center;justify-content:center;box-shadow:'+(on?'0 0 12px rgba(193,176,133,0.6),0 0 24px rgba(193,176,133,0.25),inset 0 0 8px rgba(193,176,133,0.1)':'none')+';transition:border-color 0.2s,box-shadow 0.2s;">'+
+              '<svg id="mk'+pi+'-'+ii+'" width="14" height="11" viewBox="0 0 14 11" fill="none" style="opacity:'+(on?'1':'0')+';transform:'+(on?'scale(1)':'scale(0.6)')+';transition:opacity 0.2s,transform 0.2s;filter:drop-shadow(0 0 3px rgba(193,176,133,0.9));"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+            '</div>'+
+            '<div id="lb'+pi+'-'+ii+'" style="font-family:Cinzel,serif;font-size:17px;letter-spacing:2px;color:'+(on?'#c1b085':'#9a8d7a')+';'+(on?'text-shadow:0 0 12px rgba(193,176,133,0.3);':'')+'transition:color 0.2s,text-shadow 0.2s;">'+pl.i[ii]+'</div>'+
+          '</div>'+
+          /* N/A button */
+          '<div id="na'+pi+'-'+ii+'" onclick="__la.na('+pi+','+ii+')" style="'+naStyle(isNa)+'">'+
+            '<span style="font-family:Cinzel,serif;font-size:10px;letter-spacing:1.5px;font-weight:700;color:'+(isNa?'#b8984e':'#4a3d28')+';line-height:1;transition:color 0.2s;">N/A</span>'+
+          '</div>'+
+        '</div>';
+    }
+
+    /* business-owner gate on Pillar 5 */
+    var gate='';
+    if(isP5){
+      gate='<div style="margin-top:36px;padding-top:32px;border-top:1px solid #2a2218;margin-bottom:52px;">'+
+        '<div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:3px;color:#b8984e;margin-bottom:20px;">DO YOU OWN A BUSINESS?</div>'+
+        '<div style="display:flex;gap:12px;">'+
+          '<button id="by" onclick="__la.by()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===true?'#c1b085':'#4a3d28')+';background:'+(OB===true?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===true?'#c1b085':'#8a7240')+';cursor:pointer;border-radius:1px;box-shadow:'+(OB===true?'0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)':'none')+';transition:all 0.25s;">YES</button>'+
+          '<button id="bn" onclick="__la.bn()" style="font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:3px;padding:13px 32px;border:1px solid '+(OB===false?'#c1b085':'#4a3d28')+';background:'+(OB===false?'rgba(193,176,133,0.05)':'transparent')+';color:'+(OB===false?'#c1b085':'#8a7240')+';cursor:pointer;border-radius:1px;box-shadow:'+(OB===false?'0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)':'none')+';transition:all 0.25s;">NO</button>'+
+        '</div>'+
+        '<div id="bh" style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:'+(OB!==null?'#9a8d7a':'transparent')+';margin-top:14px;min-height:18px;">'+
+          (OB===true?'All 7 pillars will be included in your audit.':OB===false?'Your score will be calculated across 6 pillars.':'')+
+        '</div></div>';
+    }
+
+    /* nav buttons */
+    var nextBtn;
+    if(isP5){
+      nextBtn='<button onclick="__la.p5()" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);transition:box-shadow 0.3s,transform 0.15s;">CONTINUE</button>';
+    }else if(isLast){
+      nextBtn='<button onclick="__la.go(\'R\')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);transition:box-shadow 0.3s,transform 0.15s;">SEE RESULTS</button>';
+    }else{
+      nextBtn='<button onclick="__la.go('+(pi+2)+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;text-transform:uppercase;padding:15px 34px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.3);transition:box-shadow 0.3s,transform 0.15s;">NEXT PILLAR</button>';
+    }
+
+    var backTarget=pi===1?1:(pi===6&&OB===false)?5:pi;
+    var backBtn=pi===0?'':'<button onclick="__la.go('+backTarget+')" style="font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:3px;color:#6b5a38;background:none;border:none;cursor:pointer;text-transform:uppercase;padding:0;">BACK</button>';
+
+    return prog(pi)+
+      '<div style="font-family:Cinzel,serif;font-size:17px;letter-spacing:5px;color:#b8984e;margin-bottom:10px;">PILLAR '+(pi+1)+' OF 7</div>'+
+      '<div style="font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#c1b085;letter-spacing:2px;margin-bottom:12px;line-height:1.15;">'+pl.n.toUpperCase()+'</div>'+
+      '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#a09484;line-height:1.6;margin-bottom:20px;">'+pl.d+'</div>'+
+      '<div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;">'+
+        '<div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>'+
+        '<div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:#6b5a38;">\u2726</div>'+
+        '<div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>'+
+      '</div>'+
+      counterHTML(pi)+
+      '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:'+(isP5?'0':'52px')+';">'+rows+'</div>'+
+      gate+
+      '<div style="display:flex;justify-content:'+(pi===0?'flex-end':'space-between')+';align-items:center;">'+
+        backBtn+
+        nextBtn+
+      '</div>';
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ results page ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  /* Full item-by-item breakdown */
+  function detailHTML(){
+    var h='<div style="margin-bottom:24px;">'+
+      '<div style="font-family:Cinzel,serif;font-size:16px;letter-spacing:4px;color:#b8984e;margin-bottom:12px;">YOUR FULL BREAKDOWN</div>'+
+      '<div style="display:flex;align-items:center;gap:12px;">'+
+        '<div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>'+
+      '</div>'+
+    '</div>';
+    for(var pi=0;pi<7;pi++){
+      if(pi===5&&OB===false)continue;
+      var c=pillarChecked(pi);
+      var mx=pillarMax(pi);
+      h+='<div style="margin-bottom:28px;">'+
+        '<div style="font-family:Cinzel,serif;font-size:15px;letter-spacing:2px;color:#c1b085;margin-bottom:14px;">'+P[pi].n.toUpperCase()+' <span style="color:#8a7240;font-size:13px;margin-left:8px;">'+c+'/'+mx+'</span></div>';
+      for(var ii=0;ii<6;ii++){
+        var on=ST[pi][ii];
+        var isNa=NA[pi][ii];
+        if(isNa){
+          h+='<div style="display:flex;align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid #1a1610;opacity:0.35;">'+
+            '<div style="width:18px;height:18px;flex-shrink:0;border:1px solid #342a1c;border-radius:2px;display:flex;align-items:center;justify-content:center;">'+
+              '<span style="font-family:Cinzel,serif;font-size:8px;color:#4a3d28;font-weight:700;">N/A</span>'+
+            '</div>'+
+            '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:1.5px;color:#4a3d28;text-decoration:line-through;">'+P[pi].i[ii]+'</div>'+
+          '</div>';
+        }else{
+          h+='<div style="display:flex;align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid #1a1610;">'+
+            '<div style="width:18px;height:18px;flex-shrink:0;border:1px solid '+(on?'#c1b085':'#4a3d28')+';border-radius:2px;display:flex;align-items:center;justify-content:center;'+(on?'box-shadow:0 0 8px rgba(193,176,133,0.4);':'')+'">'+
+              (on?'<svg width="12" height="9" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="#c1b085" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':
+                   '<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="#4a3d28" stroke-width="1.2" stroke-linecap="round"/></svg>')+
+            '</div>'+
+            '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:1.5px;color:'+(on?'#c1b085':'#6b5a38')+';">'+P[pi].i[ii]+'</div>'+
+          '</div>';
+        }
+      }
+      h+='</div>';
+    }
+    return h;
+  }
+
+
+  var GD=[
+    [/* Digital Life */
+      "Email is the recovery method for nearly every other account. Without access, password resets fail across the board.",
+      "Without a centralized credential system, a successor would need to recover each account individually - a process that can take weeks or months, with some accounts lost permanently.",
+      "Family photos, documents, and personal files stored in the cloud can become permanently inaccessible if credentials are lost.",
+      "If 2FA is enabled without stored recovery keys, accounts become permanently inaccessible. This is the single most common cause of irreversible digital lockout.",
+      "Without designated legacy contacts, social media accounts may be memorialized, deleted, or hijacked - with no way to recover meaningful content.",
+      "Digital purchases, streaming libraries, and media collections are tied to accounts. Without access documentation, they disappear."
+    ],
+    [/* Financial & Assets */
+      "Without account documentation, a successor may not know which institutions to contact, leading to missed payments, penalties, and frozen funds.",
+      "Retirement and brokerage accounts each have different beneficiary and access requirements. Gaps here can mean months of legal process.",
+      "Cryptocurrency without documented recovery keys is permanently lost. There is no institution to call, no reset to request.",
+      "Automated payments continue after incapacitation or death. Without a list, successors discover them only when accounts overdraft or services are cut.",
+      "Tax history is required for estate settlement, insurance claims, and financial transfers. Missing records create delays and potential legal exposure.",
+      "Undocumented debts can lead to collection actions, credit damage, and unexpected liabilities for the estate."
+    ],
+    [/* Household & Property */
+      "Without accessible deeds, property transfers require title searches, legal fees, and significant delays.",
+      "Vehicle transfers require title documentation. Missing titles mean DMV processes, potential lien searches, and delays.",
+      "Warranty information, service contracts, and maintenance schedules prevent costly duplicate work and protect property value.",
+      "Utilities left unmanaged can result in service interruptions, damage to property, and unnecessary charges.",
+      "Without an inventory, valuable items can be overlooked, undervalued, or lost during estate settlement.",
+      "Storage units with unknown contents or lost access can result in forfeiture of personal property."
+    ],
+    [/* Health & Medical */
+      "Without insurance documentation, medical decisions may be delayed and coverage may lapse during a critical period.",
+      "A complete medical history is essential for treatment decisions. Gaps can lead to dangerous drug interactions or repeated procedures.",
+      "A current medication list prevents dangerous interactions and ensures continuity of care during transitions.",
+      "Without a directive, medical decisions may not reflect your wishes, and family members may face agonizing choices without guidance.",
+      "Documented preferences prevent confusion and ensure your wishes are honored in time-sensitive situations.",
+      "A clear emergency contact list ensures the right people are reached immediately - not hours or days later."
+    ],
+    [/* Legal & Estate */
+      "Without a will, state intestacy laws determine asset distribution - which may not align with your intentions.",
+      "Trusts without accessible documentation may not function as intended, potentially triggering probate for assets meant to avoid it.",
+      "Without a Power of Attorney, even a spouse may not have legal authority to act on financial, medical, or legal matters during incapacitation.",
+      "Undiscovered policies are more common than most people realize. Billions in life insurance go unclaimed every year.",
+      "Without documented guardianship preferences, courts decide who cares for your dependents.",
+      "A business without a succession plan risks operational collapse, employee displacement, and loss of client relationships."
+    ],
+    [/* Business Continuity */
+      "Articles of incorporation, EINs, and operating documents are required for continuity. Without them, basic business functions stall.",
+      "Business accounts often have different access requirements than personal. Without documentation, cash flow stops.",
+      "Operating agreements define authority. Without them, partners and successors may have no legal standing to act.",
+      "Business insurance lapses can expose the entity to liability during a transition period.",
+      "Relationships are assets. Without a contact list, critical vendor and client relationships may be lost.",
+      "Without operational documentation, institutional knowledge leaves with the owner."
+    ],
+    [/* Legacy & Wishes */
+      "Words left unsaid become the things people wish they had. Letters provide closure that no legal document can.",
+      "An ethical will captures values, beliefs, and life lessons - the intangible inheritance that matters most to many families.",
+      "Without documented preferences, families make difficult decisions under emotional pressure, often second-guessing themselves.",
+      "A prepared obituary ensures accuracy and reflects your life as you would want it told.",
+      "Objects carry meaning, but only if the stories behind them are preserved. Without documentation, heirlooms become just things.",
+      "Documented giving preferences ensure your philanthropic intentions continue."
+    ]
+  ];
+
+  var TP=[
+    {/* LEAN & READY */
+      t:"LEAN & READY",
+      p:[
+        "Your audit revealed <strong style=\"color:#c1b085;\">critical gaps</strong> across most pillars. This is not unusual. Most people have never been asked to think about continuity in structured terms.",
+        "What it means practically: if something happened to you tomorrow, the people you trust most would face significant confusion. Access to accounts, knowledge of obligations, location of key documents. These are the things that fall through the cracks when there is no system in place.",
+        "The gaps you have are common, and they are fixable. A foundational continuity plan would cover the highest-risk areas first: digital access, emergency contacts, and essential documents."
+      ]
+    },
+    {/* LEGACY AT RISK */
+      t:"LEGACY AT RISK",
+      p:[
+        "You have some documentation in place, but <strong style=\"color:#c1b085;\">significant gaps remain</strong>. The items you checked show awareness. The unchecked ones represent single points of failure.",
+        "This is the range where risk is most deceptive. You have enough organized that it feels manageable, but not enough that a successor could act without guesswork. Financial accounts without documented access pathways, insurance policies without location records, digital accounts without recovery options. These are the gaps that create months of confusion.",
+        "An expanded continuity plan would close these gaps systematically, covering not just the basics but the financial, legal, and household layers that hold everything together."
+      ]
+    },
+    {/* CRITICAL COMPLEXITY */
+      t:"CRITICAL COMPLEXITY",
+      p:[
+        "Your audit shows <strong style=\"color:#c1b085;\">multi-layered responsibilities</strong> across most pillars. You have significant documentation, but the complexity of your situation means the remaining gaps carry outsized risk.",
+        "At this level, the issue is not awareness but architecture. Individual items may be documented, but without a unified system that a successor can follow step by step, even well-organized people leave critical gaps. Cryptocurrency keys, business operating agreements, trust documentation, advanced healthcare directives. These are items where a single missing piece can mean permanent loss.",
+        "A comprehensive continuity plan would bring every pillar into a single, navigable system, including business operations if applicable."
+      ]
+    },
+    {/* WELL STRUCTURED */
+      t:"WELL STRUCTURED",
+      p:[
+        "You are <strong style=\"color:#c1b085;\">well organized</strong>. Your audit shows a strong foundation across most pillars, with only a few remaining gaps.",
+        "At this level, the value is not in building from scratch. It is in validation and completion. The items you have not checked may represent things you have not gotten to yet, or things you assumed were covered but are not. Either way, a focused review would identify exactly what is missing and ensure everything is accessible, current, and connected.",
+        "Most people at this level benefit from a structured review session rather than a full engagement."
+      ]
+    },
+    {/* COMPREHENSIVE */
+      t:"COMPREHENSIVE",
+      p:[
+        "Your documentation is <strong style=\"color:#c1b085;\">thorough</strong>. This is rare. Most people who take this audit score well below where you are.",
+        "The question at this level is not what is missing, but whether what exists is current, accessible, and structured in a way that a successor could actually use. Documents can exist without being findable. Accounts can be listed without access being transferable.",
+        "An annual review ensures nothing drifts out of date, and that the people who may need this information know where to find it."
+      ]
+    }
+  ];
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ scoring calculation ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function calcScore(){
+    getPg1State();
+    var tot=0,mx=0;
+    for(var i=0;i<7;i++){
+      if(i===5&&OB===false)continue;
+      tot+=pillarChecked(i);
+      mx+=pillarMax(i);
+    }
+    return {total:tot,max:mx,pct:mx>0?Math.round(tot/mx*100):0};
+  }
+
+  function getTier(tot,mx){
+    var pct=mx>0?Math.round(tot/mx*100):0;
+    if(pct<=25) return 0;
+    if(pct<=50) return 1;
+    if(pct<=70) return 2;
+    if(pct<=85) return 3;
+    return 4;
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ per-pillar tier labels & colors ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  var PTIER=[
+    {l:"Critical Gaps",     c:"#b8564e", bg:"rgba(184,86,78,0.06)", bc:"rgba(184,86,78,0.25)"},
+    {l:"Needs Attention",   c:"#b8984e", bg:"rgba(184,152,78,0.06)", bc:"rgba(184,152,78,0.25)"},
+    {l:"Nearly Complete",   c:"#8ab87a", bg:"rgba(138,184,122,0.06)", bc:"rgba(138,184,122,0.20)"},
+    {l:"Fully Documented",  c:"#c1b085", bg:"rgba(193,176,133,0.06)", bc:"rgba(193,176,133,0.25)"}
+  ];
+  function pillarTier(checked,mx){
+    if(mx===0) return PTIER[3];
+    var pct=checked/mx;
+    if(pct<=0.25) return PTIER[0];
+    if(pct<=0.5)  return PTIER[1];
+    if(pct<1)     return PTIER[2];
+    return PTIER[3];
+  }
+
+
+  function initCalEmbed(){
+    if(typeof Cal==='undefined')return;
+    try{
+      Cal.ns['private-conversation']('inline',{
+        elementOrSelector:'#la-cal-embed',
+        config:{layout:'month_view',useSlotsViewOnSmallScreen:'true'},
+        calLink:'legacyarchitectrva/discovery-call'
+      });
+      Cal.ns['private-conversation']('ui',{
+        cssVarsPerTheme:{light:{'cal-brand':'#292929'},dark:{'cal-brand':'#C4AB93'}},
+        hideEventTypeDetails:false,
+        layout:'month_view'
+      });
+    }catch(e){}
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ conversion-optimized results page ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  /* Full results (shown AFTER email submission) */
+  function fullResultsHTML(){
+    var sc=calcScore();
+    var tot=sc.total,mx=sc.max,pct=sc.pct;
+    var ti=getTier(tot,mx);
+    var tp=TP[ti];
+
+    var h='';
+
+    /* what your score means */
+    h+='<div style="font-family:Cinzel,serif;font-size:15px;letter-spacing:4px;color:#b8984e;padding-bottom:14px;border-bottom:1px solid #2a2218;margin-bottom:22px;">WHAT YOUR SCORE MEANS</div>';
+    for(var pp=0;pp<tp.p.length;pp++){
+      h+='<div style="font-family:Bodoni Moda,serif;font-size:18px;font-style:italic;color:#fdfcfa;line-height:1.8;margin-bottom:18px;">'+tp.p[pp]+'</div>';
+    }
+
+    /* key gaps */
+    var gaps=[];
+    var priority=[4,3,1,0,2,6,5];
+    for(var gi=0;gi<priority.length&&gaps.length<5;gi++){
+      var gp=priority[gi];
+      if(gp===5&&OB===false)continue;
+      for(var gj=0;gj<6&&gaps.length<5;gj++){
+        if(!ST[gp][gj]&&!NA[gp][gj]) gaps.push({pi:gp,ii:gj});
+      }
+    }
+
+    if(gaps.length>0){
+      h+='<div style="font-family:Cinzel,serif;font-size:15px;letter-spacing:4px;color:#b8984e;margin-top:40px;padding-bottom:14px;border-bottom:1px solid #2a2218;margin-bottom:22px;">YOUR KEY GAPS</div>';
+      h+='<div style="font-family:Bodoni Moda,serif;font-size:18px;font-style:italic;color:#fdfcfa;line-height:1.8;margin-bottom:24px;">Based on your responses, these are the areas with the highest impact if left unaddressed:</div>';
+      for(var gk=0;gk<gaps.length;gk++){
+        var g=gaps[gk];
+        h+='<div style="padding:14px 0;border-bottom:1px solid #1a1510;">'+
+          '<div style="font-family:Cinzel,serif;font-size:15px;letter-spacing:2px;color:#c1b085;margin-bottom:8px;">\u2717 '+P[g.pi].i[g.ii]+'</div>'+
+          '<div style="font-family:Bodoni Moda,serif;font-size:16px;color:#d4cfc7;line-height:1.7;">'+GD[g.pi][g.ii]+'</div>'+
+        '</div>';
+      }
+    }
+
+    /* full item-by-item breakdown */
+    h+='<div style="margin-top:44px;">'+detailHTML()+'</div>';
+
+    /* CTA ÃÂ¢ÃÂÃÂ tight, conversion-focused */
+    h+='<div style="padding:24px 0;margin-top:32px;text-align:center;">'+
+      '<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">'+
+        '<div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>'+
+        '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:4px;color:#b8984e;">YOUR RECOMMENDED NEXT STEP</div>'+
+        '<div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>'+
+      '</div>'+
+      /* Book a Call button ÃÂ¢ÃÂÃÂ right under heading */
+      '<div style="margin-bottom:20px;">'+
+        '<a href="#la-cal-embed" onclick="document.getElementById(\'la-cal-embed\').scrollIntoView({behavior:\'smooth\',block:\'start\'});return false;" style="text-decoration:none;display:inline-flex;align-items:center;gap:10px;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);padding:14px 32px;border-radius:2px;box-shadow:0 3px 16px rgba(193,176,133,0.35);transition:all 0.3s ease;" onmouseover="this.style.boxShadow=\'0 4px 20px rgba(193,176,133,0.5)\'" onmouseout="this.style.boxShadow=\'0 3px 16px rgba(193,176,133,0.35)\'">'+
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#100d0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>'+
+          'BOOK A CALL'+
+        '</a>'+
+      '</div>'+
+      '<div style="font-family:Bodoni Moda,serif;font-size:19px;color:#c1b085;line-height:1.5;margin-bottom:6px;">A <strong>Life Manual</strong>\u2122 closes these gaps before someone else has to.</div>'+
+      '<div style="font-family:Bodoni Moda,serif;font-size:16px;font-style:italic;color:#fdfcfa;line-height:1.6;">It does not replace a will or a trust. It makes them usable.</div>'+
+    '</div>';
+
+    /* Workbook CTA with image */
+    h+='<div style="text-align:center;margin-top:28px;padding-top:24px;border-top:1px solid #2a2218;">'+
+      '<div style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#fdfcfa;line-height:1.6;margin-bottom:16px;">Explore at your own pace:</div>'+
+      '<a href="https://legacyarchitectrva.com/#services" target="_blank" onclick="__la.ctaW()" style="text-decoration:none;display:inline-block;">'+
+        '<img src="'+WORKBOOK_IMG+'" alt="7-Pillar Continuity Workbook" style="max-width:360px;width:100%;border-radius:2px;margin-bottom:14px;">'+
+      '</a>'+
+      '<div style="margin-bottom:16px;"><a href="https://legacyarchitectrva.com/#services" target="_blank" onclick="__la.ctaW()" style="font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);text-decoration:none;display:inline-block;padding:14px 36px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.25);transition:box-shadow 0.3s;">GET THE 7-PILLAR WORKBOOK</a></div>'+
+      '<a href="https://legacyarchitectrva.com/#services" target="_blank" onclick="__la.ctaP()" style="font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#c1b085;text-decoration:none;padding:14px 36px;border:1px solid rgba(193,176,133,0.5);border-radius:2px;display:inline-block;transition:border-color 0.3s,box-shadow 0.3s;">VIEW PACKAGES & PRICING</a>'+
+    '</div>';
+
+    /* Cal.com inline embed */
+    h+='<div id="la-cal-section" style="margin-top:36px;padding-top:24px;border-top:1px solid #2a2218;">'+
+      '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:4px;color:#b8984e;text-align:center;margin-bottom:6px;">BOOK A PRIVATE CONVERSATION</div>'+
+      '<div style="font-family:Bodoni Moda,serif;font-size:15px;color:#c1b085;text-align:center;margin-bottom:16px;">No obligation. 100% confidential.</div>'+
+      '<div id="la-cal-embed" style="width:100%;min-height:500px;overflow:auto;"></div>'+
+    '</div>';
+
+    return h;
+  }
+
+  /* Pre-email results page */
+  function resultsHTML(){
+    var sc=calcScore();
+    var tot=sc.total,mx=sc.max,pct=sc.pct;
+    var ti=getTier(tot,mx);
+    var tp=TP[ti];
+
+    var desc=tot<=10?'Critical gaps identified':tot<=22?'Significant gaps remain':tot<=30?'Partially documented':tot<=36?'Well organized':'Strongly organized';
+
+    var h='';
+
+    /* 52% urgency stat - FIRST */
+    h+='<div id="la-stat52" style="padding:28px 24px;margin-bottom:32px;text-align:center;background:rgba(193,176,133,0.02);border:1px solid rgba(193,176,133,0.08);border-radius:2px;position:relative;">'+
+        '<div style="font-family:Cinzel,serif;font-size:44px;font-weight:700;color:#c1b085;line-height:1;margin-bottom:8px;">52%</div>'+
+        '<div style="font-family:Bodoni Moda,serif;font-size:18px;font-style:italic;color:#fdfcfa;line-height:1.6;">of adults have <strong style=\'color:#c1b085;\'>no plan</strong> for their digital assets. The gaps below show where your family would be left guessing.</div>'+
+      '</div>';
+
+    /* pillar breakdown bars - SECOND */
+    var brows='';
+    for(var idx=0;idx<7;idx++){
+      if(idx===5&&OB===false)continue;
+      var c=pillarChecked(idx);
+      var pmx=pillarMax(idx);
+      var w=pmx>0?Math.round(c/pmx*100):0;
+      var full=pmx>0&&c===pmx;
+      var pt=pillarTier(c,pmx);
+      brows+='<div style="padding:11px 0;border-bottom:1px solid #2a2218;">'+
+        '<div style="display:flex;align-items:center;gap:16px;">'+
+          '<div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:1.5px;color:#c1b085;width:170px;flex-shrink:0;">'+P[idx].n.toUpperCase()+'</div>'+
+          '<div style="flex:1;height:4px;background:#1a1610;border-radius:2px;position:relative;overflow:hidden;">'+
+            '<div class="lab" data-w="'+w+'" style="position:absolute;top:0;left:0;height:100%;width:0%;background:'+(full?'linear-gradient(90deg,#b8984e,#c1b085,#d4c4a0)':'linear-gradient(90deg,#6b5a38,#8a7030)')+';border-radius:2px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);box-shadow:'+(full?'0 0 10px rgba(193,176,133,0.6)':'0 0 6px rgba(138,112,48,0.4)')+';"></div>'+
+          '</div>'+
+          '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:'+(full?'#c1b085':'#b8984e')+';width:42px;text-align:right;flex-shrink:0;">'+c+'/'+pmx+'</div>'+
+        '</div>'+
+        '<div style="display:flex;justify-content:flex-end;margin-top:4px;">'+
+          '<div style="font-family:Bodoni Moda,serif;font-size:11px;font-style:italic;letter-spacing:1px;color:'+pt.c+';padding:2px 8px;background:'+pt.bg+';border:1px solid '+pt.bc+';border-radius:2px;">'+pt.l+'</div>'+
+        '</div>'+
+      '</div>';
+    }
+
+    h+='<div style="margin-bottom:32px;">'+
+      '<div style="margin-bottom:4px;">'+
+        '<div style="font-family:Cinzel,serif;font-size:16px;letter-spacing:4px;color:#b8984e;margin-bottom:10px;">PILLAR BREAKDOWN</div>'+
+        '<div style="height:1px;background:linear-gradient(90deg,#4a3d28,transparent);margin-bottom:8px;"></div>'+
+      '</div>'+
+      brows+
+    '</div>';
+
+    /* AUDIT COMPLETE + YOUR CONTINUITY SCORE headers */
+    h+='<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:5px;color:#b8984e;text-align:center;margin-bottom:14px;">AUDIT COMPLETE</div>'+
+      '<div style="font-family:Cinzel,serif;font-size:24px;font-weight:600;color:#fdfcfa;letter-spacing:3px;text-align:center;margin-bottom:36px;">YOUR CONTINUITY SCORE</div>';
+
+    /* animated score ring */
+    h+='<div style="display:flex;justify-content:center;margin-bottom:40px;">'+
+        '<div style="position:relative;width:230px;height:230px;">'+
+          '<div style="position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;animation:la-spin 2.8s linear infinite;filter:drop-shadow(0 0 6px rgba(193,176,133,0.15));">'+
+            '<div style="position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(193,176,133,0) 0deg,rgba(193,176,133,0.7) 80deg,rgba(253,252,250,1) 90deg,rgba(193,176,133,0.7) 100deg,rgba(193,176,133,0) 180deg);filter:blur(1px);"></div>'+
+          '</div>'+
+          '<div style="position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;border:1px solid #342a1c;"></div>'+
+          '<div style="position:absolute;top:4px;right:4px;bottom:4px;left:4px;border-radius:50%;background:#100d0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">'+
+            '<div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:5px;color:#b8984e;">CONTINUITY</div>'+
+            '<div style="display:flex;align-items:baseline;gap:3px;">'+
+              '<div style="font-family:Cinzel,serif;font-size:61px;font-weight:600;color:#c1b085;line-height:1;text-shadow:0 0 30px rgba(193,176,133,0.3);">'+pct+'</div>'+
+              '<div style="font-family:Cinzel,serif;font-size:23px;color:#b8984e;line-height:1;">%</div>'+
+            '</div>'+
+            '<div style="font-family:Bodoni Moda,serif;font-size:16px;color:#c1b085;text-align:center;padding:0 16px;margin-top:4px;">'+desc+'</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div style="text-align:center;margin-bottom:32px;">'+
+        '<div style="font-family:Cinzel,serif;font-size:15px;letter-spacing:3px;color:#c1b085;margin-bottom:8px;">'+tot+' OF '+mx+' POINTS</div>'+
+        '<div style="font-family:Cinzel,serif;font-size:21px;font-weight:700;color:#c1b085;letter-spacing:2px;margin-bottom:12px;">'+tp.t+'</div>'+
+      '</div>';
+
+    /* email gate - no outer border */
+    h+='<div style="padding:40px 32px;text-align:center;background:rgba(193,176,133,0.03);">'+
+        '<div id="la-email-sec">'+
+          '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;color:#c1b085;margin-bottom:12px;">GET YOUR FULL RESULTS</div>'+
+          '<div style="font-family:Bodoni Moda,serif;font-size:18px;font-style:italic;color:#fdfcfa;margin-bottom:8px;line-height:1.6;">Your score is above, but the real insight is in the details.</div>'+
+          '<div style="font-family:Bodoni Moda,serif;font-size:17px;color:#fdfcfa;margin-bottom:24px;line-height:1.6;">Enter your email to unlock your personalized gap analysis, risk explanations, and recommended next steps.</div>'+
+          '<div style="display:flex;gap:10px;max-width:400px;margin:0 auto;">'+
+            '<input id="la-email" type="email" placeholder="Email" style="flex:1;padding:14px 18px;background:rgba(16,13,10,0.6);border:1px solid #6b5a38;border-radius:2px;color:#c1b085;font-family:Bodoni Moda,serif;font-size:16px;outline:none;transition:border-color 0.3s,box-shadow 0.3s;">'+
+            '<button onclick="__la.sub()" style="font-family:Cinzel,serif;font-size:12px;font-weight:700;letter-spacing:2px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);border:none;cursor:pointer;padding:14px 26px;border-radius:2px;white-space:nowrap;box-shadow:0 2px 10px rgba(193,176,133,0.3);transition:box-shadow 0.3s;">UNLOCK RESULTS</button>'+
+          '</div>'+
+          '<div id="la-email-msg" style="font-family:Bodoni Moda,serif;font-size:15px;font-style:italic;color:#b8984e;margin-top:12px;min-height:20px;"></div>'+
+        '</div>'+
+      '</div>';
+
+    /* single back / start over */
+    h+='<div style="display:flex;justify-content:center;gap:32px;margin-top:28px;">'+
+      '<button onclick="__la.go(7)" style="font-family:Cinzel,serif;font-size:12px;font-weight:700;letter-spacing:3px;color:#b8984e;background:none;border:none;cursor:pointer;text-transform:uppercase;padding:0;">BACK</button>'+
+      '<div onclick="__la.rs()" style="font-family:Cinzel,serif;font-size:12px;letter-spacing:3px;color:#8a7240;cursor:pointer;">START OVER</div>'+
+    '</div>';
+
+    /* footer */
+    h+='<div style="border-top:1px solid #2a2218;margin-top:40px;padding-top:32px;text-align:center;">'+
+      '<div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:8px;">'+
+        '<div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>'+
+        '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#c1b085;line-height:1.6;">\u201COrder in Your Absence\u201D</div>'+
+        '<div style="width:40px;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>'+
+      '</div>'+
+      '<div style="font-family:Cinzel,serif;font-size:14px;color:#6b5a38;margin-top:16px;">Legacy Architect RVA</div>'+
+    '</div>';
+
+    return h;
+  }
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ DOM helpers ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  function showRest(html){
+    var el=document.getElementById('pg-rest');
+    if(!el)return;
+    el.innerHTML=html;
+    el.style.animation='none'; void el.offsetWidth; el.style.animation='la-in 0.4s ease';
+    setTimeout(function(){var b=document.querySelectorAll('.lab');for(var i=0;i<b.length;i++)b[i].style.width=b[i].getAttribute('data-w')+'%';},80);
+  }
+
+  function hidePg1(){var e=document.getElementById('pg1');if(e)e.style.display='none';}
+  function showPg1(){var e=document.getElementById('pg1');if(e)e.style.display='';}
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ public API ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+
+  window.__la={
+    go:function(n){
+      if(n===1){showPg1();showRest('');gaEvt('audit_start');}
+      else if(n==='R'){
+        getPg1State();hidePg1();showRest(resultsHTML());
+        var s=calcScore(),t=getTier(s.total,s.max);
+        gaEvt('audit_complete',{score:s.total,max_score:s.max,percent:s.pct,tier:t<4?TP[t].t:'',business_owner:OB?'yes':'no'});
+      }
+      else{
+        hidePg1();showRest(pillarHTML(n-1));
+        gaEvt('pillar_view',{pillar_number:n,pillar_name:P[n-2>=0?n-2:0].n});
+      }
+      scrollToAudit();
+    },
+
+    /* toggle checkbox ÃÂ¢ÃÂÃÂ also unsets N/A */
+    t:function(pi,ii){
+      if(NA[pi][ii]){return;} /* if N/A is active, clicking the checkbox does nothing */
+      ST[pi][ii]=ST[pi][ii]?0:1; var on=ST[pi][ii];
+      var r=document.getElementById('r'+pi+'-'+ii);
+      var s=document.getElementById('sh'+pi+'-'+ii);
+      var m=document.getElementById('mk'+pi+'-'+ii);
+      var l=document.getElementById('lb'+pi+'-'+ii);
+      if(r){r.style.borderColor=on?'rgba(193,176,133,0.12)':'transparent';r.style.background=on?'rgba(193,176,133,0.03)':'transparent';}
+      if(s){s.style.borderColor=on?'#c1b085':'#7A6842';s.style.boxShadow=on?'0 0 12px rgba(193,176,133,0.6),0 0 24px rgba(193,176,133,0.25),inset 0 0 8px rgba(193,176,133,0.1)':'none';}
+      if(m){m.style.opacity=on?'1':'0';m.style.transform=on?'scale(1)':'scale(0.6)';}
+      if(l){l.style.color=on?'#c1b085':'#9a8d7a';l.style.textShadow=on?'0 0 12px rgba(193,176,133,0.3)':'none';}
+      updateCtr(pi);
+    },
+
+    /* toggle N/A ÃÂ¢ÃÂÃÂ also unsets checkbox */
+    na:function(pi,ii){
+      NA[pi][ii]=NA[pi][ii]?0:1;
+      var isNa=NA[pi][ii];
+
+      /* if turning ON N/A, clear the checkbox */
+      if(isNa&&ST[pi][ii]){
+        ST[pi][ii]=0;
+        var s=document.getElementById('sh'+pi+'-'+ii);
+        var m=document.getElementById('mk'+pi+'-'+ii);
+        var l=document.getElementById('lb'+pi+'-'+ii);
+        if(s){s.style.borderColor='#7A6842';s.style.boxShadow='none';}
+        if(m){m.style.opacity='0';m.style.transform='scale(0.6)';}
+        if(l){l.style.color='#9a8d7a';l.style.textShadow='none';}
+      }
+
+      /* update row opacity */
+      var r=document.getElementById('r'+pi+'-'+ii);
+      if(r){
+        r.style.opacity=isNa?'0.35':'1';
+        r.style.borderColor='transparent';
+        r.style.background='transparent';
+      }
+
+      /* update N/A button style */
+      var naBtn=document.getElementById('na'+pi+'-'+ii);
+      if(naBtn){
+        naBtn.style.borderColor=isNa?'#c1b085':'#342a1c';
+        naBtn.style.background=isNa?'rgba(193,176,133,0.08)':'transparent';
+        naBtn.style.boxShadow=isNa?'0 0 12px rgba(193,176,133,0.5),0 0 24px rgba(193,176,133,0.2)':'none';
+        var span=naBtn.querySelector('span');
+        if(span) span.style.color=isNa?'#b8984e':'#4a3d28';
+      }
+
+      updateCtr(pi);
+    },
+
+    /* business owner: YES */
+    by:function(){
+      OB=true;gaEvt('business_gate',{answer:'yes'});
+      var y=document.getElementById('by'),n=document.getElementById('bn'),h=document.getElementById('bh');
+      if(y){y.style.borderColor='#c1b085';y.style.color='#c1b085';y.style.background='rgba(193,176,133,0.05)';y.style.boxShadow='0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)';}
+      if(n){n.style.borderColor='#4a3d28';n.style.color='#8a7240';n.style.background='transparent';n.style.boxShadow='none';}
+      if(h){h.textContent='All 7 pillars will be included in your audit.';h.style.color='#9a8d7a';}
+    },
+
+    /* business owner: NO ÃÂ¢ÃÂÃÂ now with matching gold glow */
+    bn:function(){
+      OB=false;gaEvt('business_gate',{answer:'no'});
+      var y=document.getElementById('by'),n=document.getElementById('bn'),h=document.getElementById('bh');
+      if(n){n.style.borderColor='#c1b085';n.style.color='#c1b085';n.style.background='rgba(193,176,133,0.05)';n.style.boxShadow='0 0 18px rgba(193,176,133,0.5),inset 0 0 12px rgba(193,176,133,0.08)';}
+      if(y){y.style.borderColor='#4a3d28';y.style.color='#8a7240';y.style.background='transparent';y.style.boxShadow='none';}
+      if(h){h.textContent='Your score will be calculated across 6 pillars.';h.style.color='#9a8d7a';}
+    },
+
+    p5:function(){if(OB===null){var h=document.getElementById('bh');if(h){h.textContent='Please answer before continuing.';h.style.color='#b8984e';}return;}window.__la.go(OB?6:7);},
+
+    /* GA CTA tracking */
+    ctaW:function(){gaEvt('cta_click',{destination:'workbook'});},
+    ctaP:function(){gaEvt('cta_click',{destination:'pricing'});},
+    ctaC:function(){gaEvt('cta_click',{destination:'book_call'});},
+
+    /* email submit ÃÂ¢ÃÂÃÂ now optional, results already visible */
+    sub:function(){
+      var em=document.getElementById('la-email');
+      var msg=document.getElementById('la-email-msg');
+      if(!em||!em.value){if(msg)msg.textContent='Please enter a valid email.';return;}
+      var eVal=em.value.trim().toLowerCase();
+      /* basic format check */
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(eVal)){if(msg)msg.textContent='Please enter a valid email address.';return;}
+      /* block disposable/temp email domains */
+      var dom=eVal.split('@')[1];
+      var blocked=['mailinator.com','guerrillamail.com','tempmail.com','throwaway.email','yopmail.com','sharklasers.com','guerrillamailblock.com','grr.la','dispostable.com','maildrop.cc','mailnesia.com','tempmailaddress.com','trashmail.com','fakeinbox.com','tempail.com','temp-mail.org','10minutemail.com','minutemail.com','emailondeck.com','binkmail.com','mailcatch.com','mohmal.com','discard.email','getnada.com','spamgourmet.com','mytemp.email','mailsac.com','inboxbear.com','33mail.com','mailnull.com','spamfree24.org','trash-mail.com','harakirimail.com','bugmenot.com','tmail.com','temp-mail.io'];
+      if(blocked.indexOf(dom)>=0){if(msg)msg.textContent='Please use a permanent email address.';return;}
+      /* block obvious fakes */
+      var local=eVal.split('@')[0];
+      if(local==='test'||local==='fake'||local==='asdf'||local==='abc'||local==='aaa'||dom==='test.com'||dom==='fake.com'||dom==='example.com'){if(msg)msg.textContent='Please enter your real email to receive your results.';return;}
+      var email=eVal;
+      if(msg)msg.textContent='Sending\u2026';
+
+      var sc=calcScore();
+      var tot=sc.total,mx=sc.max,pct=sc.pct;
+      var tier=getTier(tot,mx);
+      var tierName=TP[tier].t;
+      var rec=tier===0?'The Vault':tier===1?'The Archive':tier===2?'The Legacy':tier===3?'Focused session':'Annual review';
+
+      /* pillar totals */
+      var bd='';
+      for(var j=0;j<7;j++){
+        if(j===5&&OB===false)continue;
+        var c=pillarChecked(j);
+        var pmx=pillarMax(j);
+        bd+=P[j].n+': '+c+'/'+pmx+'\n';
+      }
+
+      /* item-level detail */
+      var detail='\nDETAILED ITEM BREAKDOWN\n';
+      for(var k=0;k<7;k++){
+        if(k===5&&OB===false)continue;
+        var pc=pillarChecked(k);
+        var pmx2=pillarMax(k);
+        detail+='\n'+P[k].n.toUpperCase()+': '+pc+'/'+pmx2+'\n';
+        for(var m2=0;m2<6;m2++){
+          if(NA[k][m2]){detail+='  - '+P[k].i[m2]+' (N/A)\n';}
+          else{detail+='  '+(ST[k][m2]?'\u2713':'\u2717')+' '+P[k].i[m2]+'\n';}
+        }
+      }
+
+      var body='DIGITAL LIFE AUDIT RESULTS\n\nScore: '+pct+'% ('+tot+' of '+mx+' points)\nTier: '+tierName+'\nBusiness Owner: '+(OB?'Yes':'No')+'\n\nPILLAR BREAKDOWN\n'+bd+'\nRecommended: '+rec+detail;
+
+      var xhr=new XMLHttpRequest();
+      xhr.open('POST','https://api.hsforms.com/submissions/v3/integration/submit/244990054/8def8d38-97f9-4c65-8c3e-fd5b4653c121');
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.onload=function(){
+        if(xhr.status>=200&&xhr.status<300){
+          gaEvt('email_submit',{tier:tierName,score:tot,percent:pct,business_owner:OB?'yes':'no'});
+          /* Fire-and-forget: send branded email via worker */
+          try{
+            var ePillars=[];
+            for(var ek=0;ek<7;ek++){
+              var ePc=pillarChecked(ek),ePmx=pillarMax(ek);
+              var eTier2=ePc===0?'Critical Gaps':ePc<ePmx*0.5?'Needs Attention':ePc<ePmx?'Nearly Complete':'Fully Documented';
+              var eItems=[];
+              for(var em2=0;em2<6;em2++){eItems.push({name:P[ek].i[em2],checked:!!ST[ek][em2],na:!!NA[ek][em2]});}
+              ePillars.push({name:P[ek].n,checked:ePc,max:ePmx,tier:eTier2,items:eItems});
+            }
+            var ePayload={email:email,score:tot,maxScore:mx,percent:pct,tier:tierName,businessOwner:OB,recommendation:rec,pillars:ePillars};
+            var ex=new XMLHttpRequest();
+            ex.open('POST','https://la-audit-email.craig-a51.workers.dev');
+            ex.setRequestHeader('Content-Type','application/json');
+            ex.send(JSON.stringify(ePayload));
+          }catch(eErr){console.log('email worker error',eErr);}
+          /* Replace entire results area with confirmation */
+          var rest=document.getElementById('pg-rest');
+          if(rest){
+            rest.innerHTML=
+              '<div style="text-align:center;padding:60px 24px;">'+
+              '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:5px;color:#b8984e;margin-bottom:20px;">AUDIT COMPLETE</div>'+
+              '<div style="font-family:Cinzel,serif;font-size:28px;font-weight:700;color:#fdfcfa;letter-spacing:2px;margin-bottom:20px;line-height:1.3;">Your Results Are On The Way</div>'+
+              '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#c1b085;line-height:1.6;margin-bottom:40px;">Check your inbox for your full gap analysis, risk breakdown, and personalized next steps.</div>'+
+              '<div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,#4a3d28,transparent);margin:0 auto 40px;"></div>'+
+              /* CTAs */
+              '<div style="margin-bottom:20px;">'+
+                '<a href="#la-cal-embed" onclick="initCalEmbed();setTimeout(function(){document.getElementById(\'la-cal-embed\').scrollIntoView({behavior:\'smooth\',block:\'start\'});},300);return false;" style="text-decoration:none;display:inline-flex;align-items:center;gap:10px;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);padding:14px 32px;border-radius:2px;box-shadow:0 3px 16px rgba(193,176,133,0.35);">'+
+                  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#100d0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>'+
+                  'BOOK A CALL'+
+                '</a>'+
+              '</div>'+
+              '<div style="font-family:Bodoni Moda,serif;font-size:19px;color:#c1b085;line-height:1.5;margin-bottom:6px;">A <strong>Life Manual</strong>\u2122 closes these gaps before someone else has to.</div>'+
+              '<div style="font-family:Bodoni Moda,serif;font-size:16px;font-style:italic;color:#fdfcfa;line-height:1.6;margin-bottom:40px;">It does not replace a will or a trust. It makes them usable.</div>'+
+              /* Workbook + pricing */
+              '<div style="border-top:1px solid #2a2218;padding-top:24px;">'+
+                '<div style="font-family:Bodoni Moda,serif;font-size:17px;font-style:italic;color:#fdfcfa;line-height:1.6;margin-bottom:16px;">Explore at your own pace:</div>'+
+                '<div style="margin-bottom:16px;"><a href="https://legacyarchitectrva.com/#services" target="_blank" onclick="__la.ctaW()" style="font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#100d0a;background:linear-gradient(135deg,#c1b085,#d4c4a0);text-decoration:none;display:inline-block;padding:14px 36px;border-radius:2px;box-shadow:0 2px 12px rgba(193,176,133,0.25);">GET THE 7-PILLAR WORKBOOK</a></div>'+
+                '<a href="https://legacyarchitectrva.com/#services" target="_blank" onclick="__la.ctaP()" style="font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:3px;color:#c1b085;text-decoration:none;padding:14px 36px;border:1px solid rgba(193,176,133,0.5);border-radius:2px;display:inline-block;">VIEW PACKAGES & PRICING</a>'+
+              '</div>'+
+              /* Cal embed */
+              '<div id="la-cal-section" style="margin-top:36px;padding-top:24px;border-top:1px solid #2a2218;">'+
+                '<div style="font-family:Cinzel,serif;font-size:14px;letter-spacing:4px;color:#b8984e;text-align:center;margin-bottom:6px;">BOOK A PRIVATE CONVERSATION</div>'+
+                '<div style="font-family:Bodoni Moda,serif;font-size:15px;color:#c1b085;text-align:center;margin-bottom:16px;">No obligation. 100% confidential.</div>'+
+                '<div id="la-cal-embed" style="width:100%;min-height:500px;overflow:auto;"></div>'+
+              '</div>'+
+              /* Footer */
+              '<div style="border-top:1px solid #2a2218;margin-top:40px;padding-top:32px;">'+
+                '<div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:8px;">'+
+                  '<div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>'+
+                  '<div style="font-family:Bodoni Moda,serif;font-size:19px;font-style:italic;color:#c1b085;line-height:1.6;">\u201COrder in Your Absence\u201D</div>'+
+                  '<div style="width:40px;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>'+
+                '</div>'+
+                '<div style="font-family:Cinzel,serif;font-size:14px;color:#6b5a38;margin-top:16px;">Legacy Architect RVA</div>'+
+              '</div>'+
+              '<div style="display:flex;justify-content:center;margin-top:28px;">'+
+                '<div onclick="__la.rs()" style="font-family:Cinzel,serif;font-size:12px;letter-spacing:3px;color:#8a7240;cursor:pointer;">START OVER</div>'+
+              '</div>'+
+            '</div>';
+            rest.style.animation='none'; void rest.offsetWidth; rest.style.animation='la-in 0.4s ease';
+            initCalEmbed();
+          }
+          var pr=document.getElementById('pg-rest');if(pr){pr.scrollIntoView({behavior:'smooth',block:'start'});}else{try{window.scrollTo({top:0,behavior:'smooth'});}catch(e2){window.scrollTo(0,0);}}
+        }else{
+          if(msg)msg.textContent='Something went wrong. Please try again.';
+        }
+      };
+      xhr.onerror=function(){if(msg)msg.textContent='Connection error. Please try again.';};
+      xhr.send(JSON.stringify({fields:[{name:'email',value:email},{name:'message',value:body},{name:'audit_tier',value:tierName},{name:'audit_score',value:String(tot)},{name:'audit_percent',value:String(pct)},{name:'business_owner',value:OB?'Yes':'No'}]}));
+    },
+
+    rs:function(){
+      ST=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
+      NA=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]];
+      OB=null; lastP1Cnt=-1; lastP1Na=-1;
+      showPg1(); showRest('');
+      /* reset page 1 checkboxes and N/A */
+      for(var i=0;i<6;i++){
+        var cb=document.getElementById('c0-'+i);if(cb)cb.checked=false;
+        var naCb=document.getElementById('na0-'+i);if(naCb)naCb.checked=false;
+        /* reset Page 1 N/A visual state via Carrd classes */
+        var wrap=document.querySelector('[data-item="'+i+'"]')||document.getElementById('r0-'+i);
+        if(wrap)wrap.classList.remove('is-na');
+      }
+      updateCtr(0);
+      scrollToAudit();
+    }
+  };
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ inject counter + divider into Carrd page 1 ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  (function injectP1Ctr(){
+    /* if our full counter (with la-ctr-num-0) already exists, done */
+    if(document.getElementById('la-ctr-num-0'))return;
+    var pg1=document.getElementById('pg1');
+    if(!pg1){setTimeout(injectP1Ctr,200);return;}
+    /* replace any existing shell counter (e.g. from Carrd) */
+    var old=document.getElementById('la-ctr-0');
+    if(old) old.remove();
+    /* find the first checkbox row to insert counter above it */
+    var firstCb=document.getElementById('c0-0');
+    var target=firstCb?firstCb.closest('[id^="r0-"]')||firstCb.parentElement.parentElement:null;
+    var ctrDiv=document.createElement('div');
+    ctrDiv.innerHTML=counterHTML(0);
+    if(target&&target.parentElement){target.parentElement.insertBefore(ctrDiv.firstElementChild,target);}
+    else{pg1.insertBefore(ctrDiv.firstElementChild,pg1.firstChild);}
+    /* inject ÃÂ¢ÃÂÃÂ¦ diamond divider between description and counter */
+    if(!document.getElementById('la-p1-divider')){
+      var desc=pg1.children[2]; /* description div */
+      if(desc&&desc.textContent.indexOf('Access and continuity')>=0){
+        var dv=document.createElement('div');
+        dv.id='la-p1-divider';
+        dv.style.cssText='display:flex;align-items:center;gap:16px;margin:20px 0 8px 0;';
+        dv.innerHTML='<div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#4a3d28);"></div>'
+          +'<div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:#6b5a38;">\u2726</div>'
+          +'<div style="flex:1;height:1px;background:linear-gradient(90deg,#4a3d28,transparent);"></div>';
+        desc.parentNode.insertBefore(dv,desc.nextSibling);
+      }
+    }
+    updateCtr(0);
+  })();
+
+  /* ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ polling: nav checkbox + page 1 counter ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ */
+  setInterval(function(){
+    var c=document.getElementById('la-go');
+    if(c&&c.checked){c.checked=false;getPg1State();window.__la.go(2);}
+
+    /* update page 1 counter when visible + mutual exclusion */
+    var pg1=document.getElementById('pg1');
+    if(pg1&&pg1.style.display!=='none'){
+      var cnt=0,naCnt=0;
+      for(var i=0;i<6;i++){
+        var cb=document.getElementById('c0-'+i);
+        var naCb=document.getElementById('na0-'+i);
+        var cbOn=cb&&cb.checked, naOn=naCb&&naCb.checked;
+        /* mutual exclusion: if both checked, the newer one wins */
+        if(cbOn&&naOn){
+          /* cb was just checked ÃÂ¢ÃÂÃÂ uncheck N/A */
+          if(!ST[0][i]){naCb.checked=false; naOn=false;}
+          /* na was just checked ÃÂ¢ÃÂÃÂ uncheck cb */
+          else if(!NA[0][i]){cb.checked=false; cbOn=false;}
+        }
+        if(cbOn)cnt++;
+        if(naOn)naCnt++;
+      }
+      if(cnt!==lastP1Cnt||naCnt!==lastP1Na){
+        lastP1Cnt=cnt;
+        lastP1Na=naCnt;
+        for(var j=0;j<6;j++){
+          var cb2=document.getElementById('c0-'+j);
+          ST[0][j]=(cb2&&cb2.checked)?1:0;
+          var naCb2=document.getElementById('na0-'+j);
+          NA[0][j]=(naCb2&&naCb2.checked)?1:0;
+          /* dim the Carrd row when N/A is active */
+          var row=cb2&&(cb2.closest('[id^="r0-"]')||cb2.parentElement.parentElement);
+          if(row) row.style.opacity=NA[0][j]?'0.35':'1';
+        }
+        updateCtr(0);
+      }
+    }
+  },150);
+
+})();
+
+
+
