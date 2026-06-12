@@ -1672,7 +1672,7 @@ function goN(){
         setTimeout(()=>{
           const unansweredElements = document.querySelectorAll('.toggle.unanswered');
           if(unansweredElements.length > 0){
-            unansweredElements[0].scrollIntoView({behavior:'smooth', block:'center'});
+            unansweredElements[0].scrollIntoView({behavior:'smooth', block:'start'});
           }
         }, 100);
         return;
@@ -1726,7 +1726,7 @@ function markAllAsNAAndScroll(){
     let btn = document.querySelector('button[onclick*="goN"]');
     if(!btn) btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'Continue');
     if(btn) {
-      btn.scrollIntoView({behavior:'smooth', block:'center'});
+      btn.scrollIntoView({behavior:'smooth', block:'start'});
       // Add visual highlight
       btn.style.boxShadow = '0 0 20px rgba(31, 77, 58, 0.6)';
       setTimeout(() => {
@@ -1743,7 +1743,7 @@ function focusNextToggle(currentKey, currentIndex, totalItems) {
       const nextKey = currentKey.split('_')[0] + '_' + (currentIndex + 1);
       const nextToggle = document.getElementById('toggle-' + nextKey);
       if (nextToggle) {
-        nextToggle.scrollIntoView({behavior: 'smooth', block: 'center'});
+        nextToggle.scrollIntoView({behavior: 'smooth', block: 'start'});
         // Add visual focus
         nextToggle.style.boxShadow = '0 0 0 2px rgba(31, 77, 58, 0.5)';
         setTimeout(() => {
@@ -2023,7 +2023,7 @@ function render(){
             el.style.backgroundColor = 'rgba(239, 68, 68, 0.05)';
           });
           if(unansweredToggles.length > 0){
-            unansweredToggles[0].scrollIntoView({behavior:'smooth', block:'center'});
+            unansweredToggles[0].scrollIntoView({behavior:'smooth', block:'start'});
           }
         }, 100);
         return;
