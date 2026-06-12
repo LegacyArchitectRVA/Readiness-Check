@@ -2006,7 +2006,8 @@ function segs(tot,cur,allDone){
     return`<div class="${c}"></div>`;
   }).join("");
 }
-function render(); window.scrollTo({top: 0, behavior: "smooth"});{
+function render() {
+  window.scrollTo({top: 0, behavior: "smooth"});
   const app=document.getElementById("app");
   const ps=aP();
   if(step===0){renderIntro(app,ps);}
