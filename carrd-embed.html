@@ -1511,24 +1511,19 @@ function pick(key,val){
 }
 function goN(){
   const currentStep = step;
-  // Check if all questions in current pillar are answered
   const pi=step-1;
   const ps=aP();
   if(pi >= 0 && pi < ps.length){
     const currentPillar = ps[pi];
     const allAnswered = currentPillar.i.every((_,ii)=>ANS[pi+"_"+ii]);
     if(!allAnswered){
-      // Find first unanswered question in this pillar
       const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
       if(firstUnanswered !== -1){
-        // Mark unanswered questions and stay on page
         render();
-        // Add unanswered class to unanswered toggles
         setTimeout(() => {
           const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
           unansweredToggles.forEach(el => el.classList.add('unanswered'));
         }, 50);
-        // Scroll to first unanswered
         setTimeout(()=>{
           const unansweredElements = document.querySelectorAll('.toggle.unanswered');
           if(unansweredElements.length > 0){
@@ -1542,9 +1537,19 @@ function goN(){
   step++;isBack=false;render();
   trackNavigation('next', currentStep, step);
   setTimeout(() => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    if(step <= ps.length){
+      const firstToggle = document.querySelector('.toggle:not(.aR):not(.aU):not(.aN)');
+      if(firstToggle){
+        firstToggle.scrollIntoView({behavior:'smooth', block:'start'});
+      } else {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+    } else {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
   }, 10);
 }
+
 function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
