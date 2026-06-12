@@ -1641,7 +1641,7 @@ function pick(key,val){
   if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
   const pi=step-1;const ps=aP();
   const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
-  render(); window.scrollTo({top: 0, behavior: "smooth"});;
+  render(); window.scrollTo({top: 0, behavior: "smooth"});
   if(done){
     const b=document.getElementById("cpbadge");
     if(b)b.style.display="flex";
@@ -1668,7 +1668,7 @@ function goN(){
       const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
       if(firstUnanswered !== -1){
         // Mark unanswered questions and stay on page
-        render(); window.scrollTo({top: 0, behavior: "smooth"});;
+        render(); window.scrollTo({top: 0, behavior: "smooth"});
         // Add unanswered class to unanswered toggles
         setTimeout(() => {
           const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
@@ -1685,16 +1685,16 @@ function goN(){
       }
     }
   }
-  step++;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});;
+  step++;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});
   trackNavigation('next', currentStep, step);
   setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);
 }
-function goB(){if(step>0){const currentStep = step;step--;isBack=true;render(); window.scrollTo({top: 0, behavior: "smooth"});;trackNavigation('back', currentStep, step);setTimeout(() => {
+function goB(){if(step>0){const currentStep = step;step--;isBack=true;render(); window.scrollTo({top: 0, behavior: "smooth"});trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});;trackEvent('reset');}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});trackEvent('reset');}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -1767,7 +1767,7 @@ function markAllAsNA(){
     ps[pi].i.forEach((_,ii)=>{
       ANS[pi+"_"+ii]="N";
     });
-    render(); window.scrollTo({top: 0, behavior: "smooth"});;
+    render(); window.scrollTo({top: 0, behavior: "smooth"});
     // Force show the badge
     setTimeout(() => {
       const b=document.getElementById("cpbadge");
@@ -2415,7 +2415,7 @@ window.submit = function() {
 // ============================================
 // INITIALIZE
 // ============================================
-render(); window.scrollTo({top: 0, behavior: "smooth"});;
+render(); window.scrollTo({top: 0, behavior: "smooth"});
 </script>
 </body>
 </html>
