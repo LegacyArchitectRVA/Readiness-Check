@@ -47,10 +47,10 @@ html{scroll-behavior:smooth;font-size:22.3146px;}
 body:not(.has-logo)::before,body:not(.has-logo)::after,.logo-container,.site-logo,img[src*="Logos/Correct.png"]:not(.company-logo),img[alt*="Legacy Architect"]:not(.company-logo){display:none !important;}
 body{margin:0;background:var(--bg-dark);color:var(--text-primary);font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:auto;line-height:1.6;}
 #wrap{max-width:1000px;margin:0 auto;padding:0;}
-.card{background:rgba(255, 251, 240, 0.92);border:1px solid rgba(31, 77, 58, 0.25);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 0 30px rgba(0, 0, 0, 0.6);border-top:1px solid rgba(31, 77, 58, 0.35);border-bottom:1px solid rgba(31, 77, 58, 0.35);overflow:visible;min-height:auto;}
+.card{background:rgba(255, 251, 240, 0.92);border:1px solid rgba(31, 77, 58, 0.25);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 0 30px rgba(0, 0, 0, 0.6);border-top:1px solid rgba(31, 77, 58, 0.35);border-bottom:1px solid rgba(31, 77, 58, 0.35);overflow:visible !important;min-height:auto;}
 .card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);opacity:0.3;}
 .card::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);opacity:0.3;}
-.company-logo{width:auto;height:40px;max-width:80%;max-height:40px;margin:0 auto 20px;display:block;opacity:0.9;}
+.company-logo{width:auto;height:40px !important;max-width:80%;max-height:40px;margin:0 auto 20px;display:block;opacity:0.9;transform:none !important;}
 .company-logo-mobile{display:none;}
 @media(max-width:768px){.company-logo{display:none;}.company-logo-mobile{display:block;width:auto;height:30px;max-width:80%;max-height:30px;margin:0 auto 20px;opacity:0.9;}.card{padding:12px 10px 20px;}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
