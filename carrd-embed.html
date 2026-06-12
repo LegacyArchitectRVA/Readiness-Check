@@ -1,3 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>7-Pillar Readiness Check - Legacy Architect RVA</title>
+<!-- Performance: Preload critical resources -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" as="image">
+<!-- Accessibility -->
+<meta name="theme-color" content="#F4ECDC">
 <style>
 :root{
   /* Cream/Forest Green Palette — matches zo.space */
@@ -940,7 +956,21 @@ button.sm{
   opacity:0.9;
   margin-bottom:12px;
 }
-.ring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;border:2px solid rgba(31, 77, 58, 0.4);background:#F5F5DC;margin:0 auto 10px;box-shadow:0 0 20px var(--ring-glow);animation:float 4s ease-in-out infinite, ringGlow 2s ease-in-out infinite;}
+.ring{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  border:2px solid rgba(31, 77, 58, 0.4);
+  background:#F5F5DC;
+  overflow:hidden;
+  margin:0 auto 10px;
+  box-shadow:0 0 20px var(--ring-glow);
+  animation:float 4s ease-in-out infinite, ringGlow 2s ease-in-out infinite;
+}
 .ring::after{
   content:"";
   position:absolute;
@@ -949,7 +979,7 @@ button.sm{
   border:1px solid rgba(31, 77, 58, 0.25);
   pointer-events:none;
 }
-.ringconic{position:absolute;inset:0;border-radius:50%;}
+.ringconic{position:absolute;inset:-42%;border-radius:50%;}
 .ringinner{position:relative;z-index:2;text-align:center;}
 .scorenum{
   font-family:'Cinzel',serif;
@@ -1497,19 +1527,24 @@ function pick(key,val){
 }
 function goN(){
   const currentStep = step;
+  // Check if all questions in current pillar are answered
   const pi=step-1;
   const ps=aP();
   if(pi >= 0 && pi < ps.length){
     const currentPillar = ps[pi];
     const allAnswered = currentPillar.i.every((_,ii)=>ANS[pi+"_"+ii]);
     if(!allAnswered){
+      // Find first unanswered question in this pillar
       const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
       if(firstUnanswered !== -1){
+        // Mark unanswered questions and stay on page
         render();
+        // Add unanswered class to unanswered toggles
         setTimeout(() => {
           const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
           unansweredToggles.forEach(el => el.classList.add('unanswered'));
         }, 50);
+        // Scroll to first unanswered
         setTimeout(()=>{
           const unansweredElements = document.querySelectorAll('.toggle.unanswered');
           if(unansweredElements.length > 0){
@@ -1523,19 +1558,9 @@ function goN(){
   step++;isBack=false;render();
   trackNavigation('next', currentStep, step);
   setTimeout(() => {
-    if(step <= ps.length){
-      const firstToggle = document.querySelector('.toggle:not(.aR):not(.aU):not(.aN)');
-      if(firstToggle){
-        firstToggle.scrollIntoView({behavior:'smooth', block:'start'});
-      } else {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      }
-    } else {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);
 }
-
 function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
@@ -1550,22 +1575,20 @@ function animRing(el,tgt,color="var(--btn-color)"){
   function f(ts){
     if(!st)st=ts;const p=Math.min((ts-st)/1500,1);const e=1-Math.pow(1-p,3);
     const a=Math.round(e*tgt*3.6);
-    // Convert CSS variable to RGB for conic gradient
     const colorMap = {
-      "var(--ch1)": "rgba(96, 165, 250, 0.9)",
-      "var(--ch2)": "rgba(248, 113, 113, 0.9)",
-      "var(--ch3)": "rgba(226, 232, 240, 0.9)",
-      "var(--ch4)": "rgba(52, 211, 153, 0.9)",
-      "var(--ch5)": "rgba(31, 77, 58, 0.9)",
-      "var(--ch6)": "rgba(148, 163, 184, 0.9)",
-      "var(--ch7)": "rgba(192, 132, 252, 0.9)",
-      "var(--btn-color)": "rgba(198, 168, 90, 0.9)"
+      "var(--ch1)": "rgba(31, 77, 58, 0.9)",
+      "var(--ch2)": "rgba(45, 106, 79, 0.9)",
+      "var(--ch3)": "rgba(91, 124, 110, 0.9)",
+      "var(--ch4)": "rgba(20, 51, 38, 0.9)",
+      "var(--ch5)": "rgba(194, 138, 42, 0.9)",
+      "var(--ch6)": "rgba(91, 106, 98, 0.9)",
+      "var(--ch7)": "rgba(122, 158, 139, 0.9)",
+      "var(--btn-color)": "rgba(31, 77, 58, 0.9)",
+      "#B22222": "rgba(178, 34, 34, 0.9)"
     };
-    const baseColor = colorMap[color] || "rgba(198, 168, 90, 0.9)";
-    const darkColor = baseColor.replace("0.9", "0.7");
-    const darkerColor = baseColor.replace("0.9", "0.5");
-    const darkestColor = baseColor.replace("0.9", "0.3");
-    el.style.background=`conic-gradient(${darkestColor} 0deg,${baseColor} ${a}deg,${darkerColor} ${a}deg,${darkestColor} 360deg)`;
+    const baseColor = colorMap[color] || "rgba(31, 77, 58, 0.9)";
+    const darkColor = baseColor.replace("0.9", "0.3");
+    el.style.background='conic-gradient(' + baseColor + ' 0deg ' + a + 'deg, ' + darkColor + ' ' + a + 'deg 360deg)';
     if(p<1)requestAnimationFrame(f);
   }
   requestAnimationFrame(f);
@@ -2249,3 +2272,5 @@ window.submit = function() {
 // ============================================
 render();
 </script>
+</body>
+</html>
