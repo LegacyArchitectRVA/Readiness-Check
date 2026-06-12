@@ -1564,24 +1564,8 @@ function goN(){
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }, 10);
-}, 50);
-        // Scroll to first unanswered
-        setTimeout(()=>{
-          const unansweredElements = document.querySelectorAll('.toggle.unanswered');
-          if(unansweredElements.length > 0){
-            unansweredElements[0].scrollIntoView({behavior:'smooth', block:'center'});
-          }
-        }, 100);
-        return;
-      }
-    }
-  }
-  step++;isBack=false;render();
-  trackNavigation('next', currentStep, step);
-  setTimeout(() => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }, 10);
 }
+
 function goB(){if(step>0){const currentStep = step;step--;isBack=true;render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
