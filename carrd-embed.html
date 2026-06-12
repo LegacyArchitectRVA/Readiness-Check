@@ -17,25 +17,25 @@
 <style>
 :root{
   /* Cream/Forest Green Palette &mdash; matches zo.space */
-  --bg-dark: #FFFFFF !important;
-  --card-bg: #FFFFFF !important;
-  --text-primary: #000000 !important;
-  --text-secondary: #000000 !important;
-  --text-muted: #000000 !important;
-  --text-gold: #000000 !important;
-  --accent-gold: #000000 !important;
-  --accent-gold-light: #000000 !important;
-  --accent-gold-dark: #000000 !important;
-  --ch1: #000000 !important;
-  --ch2: #000000 !important;
-  --ch3: #000000 !important;
-  --ch4: #000000 !important;
-  --ch5: #000000 !important;
-  --ch6: #000000 !important;
-  --ch7: #000000 !important;
-  --recorded: #000000 !important;
-  --missing: #000000 !important;
-  --na: #666666 !important;
+  --bg-dark: #F4ECDC;
+  --card-bg: #F4ECDC;
+  --text-primary: #1F4D3A;
+  --text-secondary: #1F4D3A;
+  --text-muted: #3a5a40;
+  --text-gold: #1F4D3A;
+  --accent-gold: #1F4D3A;
+  --accent-gold-light: #588157;
+  --accent-gold-dark: #0f2f1f;
+  --ch1: #1F4D3A;
+  --ch2: #1F4D3A;
+  --ch3: #1F4D3A;
+  --ch4: #1F4D3A;
+  --ch5: #1F4D3A;
+  --ch6: #1F4D3A;
+  --ch7: #1F4D3A;
+  --recorded: #1F4D3A;
+  --missing: #8B4513;
+  --na: #556B2F;
   --ring-glow: rgba(31, 77, 58, 0.25);
   --subtle-glow: rgba(31, 77, 58, 0.1);
   /* Footer/social colors kept distinct */
@@ -80,7 +80,7 @@
 }
 
 /* Smooth scrolling */
-html{font-size:22.3146px;background:#FFFFFF;}
+html{font-size:22.3146px;background:#F4ECDC;}
 
 /* Selection styling */
 ::selection{
@@ -98,13 +98,13 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 html{font-size:22.3146px;}
-body{margin:0;background:#FFFFFF;color:#000000;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:hidden;line-height:1.6;}
+body{margin:0;background:#F4ECDC;color:#1F4D3A;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:hidden;line-height:1.6;}
 #wrap{
   max-width:1000px;
   margin:0 auto;
   padding:0;
 }
-.card{background:#FFFFFF;border:1px solid rgba(31, 77, 58, 0.25);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);border-top: 1px solid rgba(31, 77, 58, 0.35);border-bottom: 1px solid rgba(31, 77, 58, 0.35);max-height:100vh;overflow-y:auto;}
+.card{background:#F4ECDC;border:1px solid rgba(31, 77, 58, 0.25);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);border-top: 1px solid rgba(31, 77, 58, 0.35);border-bottom: 1px solid rgba(31, 77, 58, 0.35);max-height:100vh;overflow-y:auto;}
 .card::before{
   content:"";
   position:absolute;
@@ -561,7 +561,7 @@ button:active{
 .trow{display:flex;flex-direction:column;gap:8px;align-items:center;padding:8px 0;}
 .tlabel{
   font-size:25px;
-  color:#000000;
+  color:#1F4D3A;
   line-height:1.6;
   text-align:center;
   width:100%;
@@ -571,7 +571,7 @@ button:active{
 }
 .roman-numeral{
   font-family:'Cinzel',serif;
-  color:#000000;
+  color:#1F4D3A;
   font-weight:700;
   margin-right:8px;
   font-size:22.5px;
@@ -680,7 +680,7 @@ button:active{
   bottom:100%;
   left:50%;
   transform:translateX(-50%);
-  background:#FFFFFF;
+  background:#F4ECDC;
   border:1px solid rgba(31, 77, 58, 0.3);
   border-radius:4px;
   padding:12px 14px;
@@ -1015,7 +1015,7 @@ button.start-btn{
   font-size:18.9px;
   padding:18.9px 24px;
   letter-spacing:4px;
-  color:#000000;
+  color:#1F4D3A;
 }
 button.sm{
   width:auto;
@@ -1074,13 +1074,13 @@ button.sm{
 .scorenum{
   font-family:'Cinzel',serif;
   font-size:64px;
-  color:#000000;
+  color:#1F4D3A;
   line-height:1;
   text-shadow:0 0 8px rgba(0,0,0,0.2);
 }
 .scoresub{
   font-size:13px;
-  color:#000000;
+  color:#1F4D3A;
   margin-top:2px;
   letter-spacing:1px;
   opacity:0.8;
@@ -1097,7 +1097,7 @@ button.sm{
 }
 .tR{color:#B22222;}
 .tD{color:#8B4513;}
-.tS{color:#000000;}
+.tS{color:#1F4D3A;}
 .tL{color:#008000;}
 /* LEGEND */
 .legblock{
@@ -2266,11 +2266,9 @@ function renderResults(app,ps){
       <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61&mdash;70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
       <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0&mdash;60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
-    <hr class="rule" style="display:none !important;">
-    <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
+        <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
     ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
-    <hr class="rule" style="display:none !important;">
-    <div class="inputrow">
+        <div class="inputrow">
       <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
       <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To receive your full report"></div>
     </div>
