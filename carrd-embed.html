@@ -45,6 +45,17 @@
   --instagram: #E4405F;
   --threads: #0E1410;
   --nextdoor: #00A36A;
+  /* Legacy variable aliases — map to current theme tokens */
+  --btn-color: var(--accent-gold);
+  --bronze: var(--accent-gold);
+  --gold: var(--accent-gold-light);
+  --success: var(--recorded);
+  --gap-red: var(--missing);
+  --vellum: var(--text-primary);
+  --bronze-light: var(--accent-gold-light);
+  --card: var(--card-bg);
+  --cream: var(--bg-dark);
+  --ink: var(--text-primary);
 }
 
 /* ============================================
@@ -1287,7 +1298,19 @@ button.sm{
 .pillar-item {
   margin: 0;
   padding: 0;
+  color: var(--text-primary);
 }
+.pillar-item .info-tooltip {
+  display: block;
+  font-size: 16.5px;
+  line-height: 1.575;
+  width: 100%;
+  text-align: left;
+  padding: 6px 0;
+  cursor: help;
+  color: var(--text-primary);
+}
+
 /* ============================================
    COMPREHENSIVE RESPONSIVE DESIGN
    ============================================ */
@@ -1925,32 +1948,54 @@ function renderIntro(app,ps){
     <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
     <div class="pillars-container">
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">01: Digital Life</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Credentials, accounts, and digital access.</p>
+        <span class="info-tooltip">
+          <span>01: Digital Life</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Credentials, accounts, and digital access.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">02: Financial & Assets</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Banking, investments, and financial records.</p>
+        <span class="info-tooltip">
+          <span>02: Financial & Assets</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Banking, investments, and financial records.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">03: Household & Property</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Property, vehicles, and household documentation.</p>
+        <span class="info-tooltip">
+          <span>03: Household & Property</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Property, vehicles, and household documentation.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">04: Health & Medical</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Insurance, records, and medical directives.</p>
+        <span class="info-tooltip">
+          <span>04: Health & Medical</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Insurance, records, and medical directives.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">05: Legal & Estate</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Wills, trusts, and legal authority.</p>
+        <span class="info-tooltip">
+          <span>05: Legal & Estate</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Wills, trusts, and legal authority.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">06: Business Continuity</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Operations, agreements, and succession.</p>
+        <span class="info-tooltip">
+          <span>06: Business Continuity</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Operations, agreements, and succession.</div>
+        </span>
       </div>
       <div class="pillar-item">
-        <span style="color:var(--text-primary);">07: Legacy & Wishes</span>
-        <p style="font-style:italic;font-size:14px;color:var(--text-secondary);margin:4px 0 0 0;">Personal instructions, history, and wishes.</p>
+        <span class="info-tooltip">
+          <span>07: Legacy & Wishes</span>
+          <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <div class="tooltip-content">Personal instructions, history, and wishes.</div>
+        </span>
+
       </div>
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
