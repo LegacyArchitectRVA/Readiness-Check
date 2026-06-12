@@ -16,26 +16,26 @@
 <meta name="theme-color" content="#F4ECDC">
 <style>
 :root{
-  /* Cream/Forest Green Palette â matches zo.space */
-  --bg-dark: #FFFFFF;
-  --card-bg: #FFFFFF;
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #000000;
-  --text-gold: #000000;
-  --accent-gold: #000000;
-  --accent-gold-light: #000000;
-  --accent-gold-dark: #000000;
-  --ch1: #000000;
-  --ch2: #000000;
-  --ch3: #000000;
-  --ch4: #000000;
-  --ch5: #000000;
-  --ch6: #000000;
-  --ch7: #000000;
-  --recorded: #000000;
-  --missing: #000000;
-  --na: #666666;
+  /* Cream/Forest Green Palette Ã¢ÂÂ matches zo.space */
+  --bg-dark: #FFFFFF !important;
+  --card-bg: #FFFFFF !important;
+  --text-primary: #000000 !important;
+  --text-secondary: #000000 !important;
+  --text-muted: #000000 !important;
+  --text-gold: #000000 !important;
+  --accent-gold: #000000 !important;
+  --accent-gold-light: #000000 !important;
+  --accent-gold-dark: #000000 !important;
+  --ch1: #000000 !important;
+  --ch2: #000000 !important;
+  --ch3: #000000 !important;
+  --ch4: #000000 !important;
+  --ch5: #000000 !important;
+  --ch6: #000000 !important;
+  --ch7: #000000 !important;
+  --recorded: #000000 !important;
+  --missing: #000000 !important;
+  --na: #666666 !important;
   --ring-glow: rgba(31, 77, 58, 0.25);
   --subtle-glow: rgba(31, 77, 58, 0.1);
   /* Footer/social colors kept distinct */
@@ -1176,7 +1176,7 @@ button.sm{
   text-align:right;
   flex-shrink:0;
 }
-/* GAPS â color coded by severity */
+/* GAPS Ã¢ÂÂ color coded by severity */
 .gapwrap{margin-top:24px;}
 .gaptitle{
   font-family:'Cinzel',serif;
@@ -1477,6 +1477,11 @@ button.sm{
     font-size: 12.5px !important;
   }
 }
+
+/* Global text color override for Carrd */
+body, html, p, strong, span, div, a, li, td, th {
+  color: #000000 !important;
+}
 </style>
 </head>
 <body>
@@ -1530,7 +1535,7 @@ const EXPL={
   "Medical History & Records":"A complete history enables informed decisions during crisis. Without it, care is provided blindly.",
   "Advance Healthcare Directives":"An advance directive removes impossible decisions from your family at the worst possible moment.",
   "Emergency Medical Instructions":"In a medical emergency, documented preferences ensure your wishes are honored when you cannot speak.",
-  "Last Will & Testament":"Without a will, assets distribute by state law â not your intentions.",
+  "Last Will & Testament":"Without a will, assets distribute by state law Ã¢ÂÂ not your intentions.",
   "Trust Documentation":"Trusts must be funded and properly administered. Undocumented structures may be incomplete or invalid.",
   "Financial Power of Attorney":"Without it, no one can legally manage your financial affairs while you are incapacitated.",
   "Healthcare Power of Attorney":"Without documented authority, healthcare decisions fall to the courts rather than someone you trust.",
@@ -1749,7 +1754,7 @@ function showShareModal(score, tierLabel, text, url) {
   const encodedUrl = encodeURIComponent(analysisUrl);
   const encodedText = encodeURIComponent(text);
   const encodedImage = encodeURIComponent(imageUrl);
-  const shareText = `I just took the 7-Pillar Readiness Check and scored ${score}% â ${tierLabel}. Check out your readiness at ${analysisUrl}`;
+  const shareText = `I just took the 7-Pillar Readiness Check and scored ${score}% Ã¢ÂÂ ${tierLabel}. Check out your readiness at ${analysisUrl}`;
   
   const modal = document.createElement('div');
   modal.className = 'share-modal-overlay';
@@ -1761,7 +1766,7 @@ function showShareModal(score, tierLabel, text, url) {
       </div>
       <div class="share-modal-content">
         <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="share-modal-logo">
-        <p class="share-score-display">${score}% â ${tierLabel}</p>
+        <p class="share-score-display">${score}% Ã¢ÂÂ ${tierLabel}</p>
         
         <!-- Custom share text -->
         <textarea class="share-custom-text" id="shareCustomText" placeholder="Customize your message...">${shareText}</textarea>
@@ -2094,9 +2099,9 @@ function renderIntro(app,ps){
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
-      <strong style="color:var(--recorded);">Recorded</strong> â It's documented and someone else could access it.<br>
-      <strong style="color:var(--missing);">Undocumented</strong> â It exists but isn't documented.<br>
-      <strong style="color:var(--na);">Not Applicable</strong> â It doesn't apply to your situation.
+      <strong style="color:#000000 !important;">Recorded</strong> Ã¢ÂÂ It's documented and someone else could access it.<br>
+      <strong style="color:#000000 !important;">Undocumented</strong> Ã¢ÂÂ It exists but isn't documented.<br>
+      <strong style="color:#666666 !important;">Not Applicable</strong> Ã¢ÂÂ It doesn't apply to your situation.
     </p>
     
     <!-- Social proof -->
@@ -2218,10 +2223,10 @@ function renderResults(app,ps){
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:'Cinzel',serif;font-size:24px;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
     <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86â100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71â85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61â70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0â60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86Ã¢ÂÂ100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71Ã¢ÂÂ85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61Ã¢ÂÂ70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0Ã¢ÂÂ60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
     </div>
     <hr class="rule">
     <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
@@ -2239,7 +2244,7 @@ function renderResults(app,ps){
     </div>
     <div class="sharelink" onclick="window.shareScore()"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
-    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Checkâ¢ â Legacy Architect RVA</div>
+    <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness CheckÃ¢ÂÂ¢ Ã¢ÂÂ Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);}
   window.scrollTo({top:0,behavior:'smooth'});
@@ -2258,11 +2263,11 @@ function renderSuccess(){
   };
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
-    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">â</div>
+    <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">Ã¢ÂÂ</div>
     <div class="successhead" style="font-family:'Cinzel',serif;font-size:24px;">Report Requested</div>
     <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
-      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% â ${tierLabel}</span>
+      <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% Ã¢ÂÂ ${tierLabel}</span>
     </div>
     <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
     <div class="sharelink" onclick="window.shareScore();window.scrollTo({top:0,behavior:'smooth'});"><span style="color:var(--accent-gold);">Share your readiness score</span></div>
@@ -2377,3 +2382,4 @@ render();
 </script>
 </body>
 </html>
+
