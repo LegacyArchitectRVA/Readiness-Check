@@ -2,109 +2,56 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>7-Pillar Readiness Check - Legacy Architect RVA</title>
-<!-- Performance: Preload critical resources -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-<link rel="preload" href="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" as="image">
-<!-- Accessibility -->
-<meta name="theme-color" content="#F4ECDC">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7-Pillar Readiness Check - Preview</title>
 <style>
 :root{
-  /* Cream/Forest Green Palette &mdash; matches zo.space */
   --bg-dark: #F4ECDC;
   --card-bg: #F4ECDC;
   --text-primary: #1F4D3A;
   --text-secondary: #1F4D3A;
   --text-muted: #3a5a40;
-  --text-gold: #1F4D3A;
   --accent-gold: #1F4D3A;
   --accent-gold-light: #588157;
   --accent-gold-dark: #0f2f1f;
-  --ch1: #1F4D3A;
-  --ch2: #1F4D3A;
-  --ch3: #1F4D3A;
-  --ch4: #1F4D3A;
-  --ch5: #1F4D3A;
-  --ch6: #1F4D3A;
-  --ch7: #1F4D3A;
-  --recorded: #1F4D3A;
-  --missing: #8B4513;
-  --na: #556B2F;
   --ring-glow: rgba(31, 77, 58, 0.25);
   --subtle-glow: rgba(31, 77, 58, 0.1);
-  /* Footer/social colors kept distinct */
-  --linkedin: #0A66C2;
-  --facebook: #1877F2;
-  --x-black: #0E1410;
-  --instagram: #E4405F;
-  --threads: #0E1410;
-  --nextdoor: #00A36A;
 }
 
-/* ============================================
-   PERFORMANCE & ACCESSIBILITY BASE STYLES
-   ============================================ */
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
-/* Focus visible for keyboard navigation */
-:focus-visible{
-  outline:2px solid var(--accent-gold);
-  outline-offset:2px;
-}
-
-/* Skip link for accessibility */
-.skip-link{
-  position:absolute;
-  top:-40px;
-  left:0;
-  background:var(--accent-gold);
-  color:var(--bg-dark);
-  padding:8px 16px;
-  z-index:10000;
-  text-decoration:none;
-  font-family:'Montserrat',sans-serif;
-  font-size:14px;
-  font-weight:600;
-}
-.skip-link:focus{
-  top:0;
-}
-
-/* Smooth scrolling */
 html{font-size:22.3146px;background:#F4ECDC;}
 
-/* Selection styling */
-::selection{
-  background:rgba(31, 77, 58, 0.3);
-  color:var(--text-primary);
+body{
+  margin:0;
+  background:#F4ECDC;
+  color:#1F4D3A;
+  font-family:Georgia, serif;
+  font-size:16px;
+  line-height:1.6;
+  padding:20px;
 }
 
-/* Hide Carrd's parent logo on landing page */
-body:not(.has-logo)::before,
-body:not(.has-logo)::after,
-.logo-container,
-.site-logo,
-img[src*="Logos/Correct.png"]:not(.company-logo),
-img[alt*="Legacy Architect"]:not(.company-logo) {
-  display: none !important;
-}
-html{font-size:22.3146px;}
-body{margin:0;background:#F4ECDC;color:#1F4D3A;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:hidden;line-height:1.6;}
 #wrap{
   max-width:1000px;
   margin:0 auto;
-  padding:0;
 }
-.card{background:#F4ECDC;border:1px solid rgba(31, 77, 58, 0.25);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);border-top: 1px solid rgba(31, 77, 58, 0.35);border-bottom: 1px solid rgba(31, 77, 58, 0.35);max-height:100vh;overflow-y:auto;}
+
+.card{
+  background:#F4ECDC;
+  border:1px solid rgba(31, 77, 58, 0.25);
+  border-radius:0;
+  padding:27px 18.9px 31.5px;
+  position:relative;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(31, 77, 58, 0.35);
+  border-bottom: 1px solid rgba(31, 77, 58, 0.35);
+  max-height:100vh;
+  overflow-y:auto;
+}
+
 .card::before{
   content:"";
   position:absolute;
@@ -115,6 +62,7 @@ body{margin:0;background:#F4ECDC;color:#1F4D3A;font-family:'Cormorant Garamond',
   background:linear-gradient(90deg,transparent,var(--accent-gold),transparent);
   opacity:0.3;
 }
+
 .card::after{
   content:"";
   position:absolute;
@@ -126,272 +74,228 @@ body{margin:0;background:#F4ECDC;color:#1F4D3A;font-family:'Cormorant Garamond',
   opacity:0.3;
 }
 
-/* ============================================
-   MOBILE UX & STICKY NAVIGATION
-   ============================================ */
-
-
-
-/* Touch target improvements */
-.toggle{
-  min-height:56px;
-  padding:16px 0;
+.mark{
+  font-family:Georgia, serif;
+  font-size:24px;
+  font-weight:600;
+  color:#1F4D3A;
+  margin:0 0 12px 0;
+  text-align:center;
 }
-.trow{
-  padding:8px 0;
+
+.sub{
+  font-family:Georgia, serif;
+  font-size:16px;
+  color:#1F4D3A;
+  margin:0 0 18px 0;
+  text-align:center;
 }
-.opt{
-  min-width:88px;
-  min-height:44px;
+
+.pillars-container{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:20px 0;
+}
+
+.pillar-item{
+  background:rgba(31, 77, 58, 0.05);
+  border:1px solid rgba(31, 77, 58, 0.2);
   padding:12px 16px;
-  font-size:14px;
-  transition:all var(--transition-normal);
-}
-.opt:hover,
-.opt:focus{
-  transform:translateY(-1px);
-  box-shadow:0 2px 8px rgba(31, 77, 58, 0.2);
-}
-.opt:active{
-  transform:translateY(0);
-}
-
-/* Form input improvements for mobile */
-.inputfield input{
-  min-height:48px;
+  border-radius:4px;
+  color:#1F4D3A;
+  font-family:Georgia, serif;
   font-size:15px;
-  padding:14px 16px;
-}
-.inputfield input:focus{
-  outline:none;
-  border-color:var(--accent-gold);
-  box-shadow:0 0 0 3px rgba(31, 77, 58, 0.15);
 }
 
-/* Button touch targets */
-button{
-  min-height:48px;
-  min-width:140px;
-  transition:all var(--transition-normal);
-}
-button:active{
-  transform:scale(0.98);
+.toggle{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  margin:24px 0;
+  flex-wrap:wrap;
 }
 
-/* Progress indicator */
-.progress-container{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  height:4px;
+.opt{
+  min-width:120px;
+  padding:12px 24px;
   background:rgba(31, 77, 58, 0.1);
-  z-index:1000;
-  display:none;
-}
-.progress-container.visible{
-  display:block;
-}
-.progress-bar{
-  height:100%;
-  background:linear-gradient(90deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
-  width:0%;
-  transition:width var(--transition-slow);
+  border:1px solid rgba(31, 77, 58, 0.3);
+  border-radius:4px;
+  color:#1F4D3A;
+  font-family:Georgia, serif;
+  font-size:14px;
+  cursor:pointer;
+  transition:all 0.2s ease;
 }
 
-/* STEP MARKS - Elegant */
+.opt:hover{
+  background:rgba(31, 77, 58, 0.15);
+  border-color:rgba(31, 77, 58, 0.5);
+}
+
+button{
+  padding:14px 28px;
+  background:#1F4D3A;
+  color:#F4ECDC;
+  border:none;
+  border-radius:4px;
+  font-family:Georgia, serif;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.2s ease;
+}
+
+button:hover{
+  background:#0f2f1f;
+}
+
+button.sm{
+  padding:10px 20px;
+  font-size:14px;
+}
+
+button.alt{
+  background:transparent;
+  color:#1F4D3A;
+  border:1px solid rgba(31, 77, 58, 0.4);
+}
+
+button.alt:hover{
+  background:rgba(31, 77, 58, 0.08);
+}
+
+.footnote{
+  font-family:Georgia, serif;
+  font-size:12px;
+  color:#3a5a40;
+  text-align:center;
+  margin-top:30px;
+  padding-top:20px;
+  border-top:1px solid rgba(31, 77, 58, 0.2);
+}
+
 .stepbar{
   display:flex;
   gap:6px;
-  margin-bottom:30px;
+  margin:30px auto;
+  max-width:400px;
   height:2px;
 }
+
 .seg{
   flex:1;
   height:100%;
-  background:var(--text-muted);
+  background:#3a5a40;
   border-radius:1px;
-  transition:all 0.4s ease;
 }
+
 .seg.done{
-  background:var(--accent-gold);
-  box-shadow:0 0 8px var(--subtle-glow);
+  background:#1F4D3A;
+  box-shadow:0 0 8px rgba(31, 77, 58, 0.1);
 }
+
 .seg.active{
-  background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-light),var(--accent-gold));
+  background:linear-gradient(90deg,#1F4D3A,#588157,#1F4D3A);
   background-size:200% 100%;
   animation:shimmer 3s linear infinite;
-  box-shadow:0 0 12px var(--subtle-glow);
 }
-/* ANIMATIONS - Subtle & Elegant */
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-@keyframes barRise{from{transform:scaleX(0);opacity:0;}to{transform:scaleX(1);opacity:1;}}
-@keyframes ringGlow{0%,100%{box-shadow:0 0 10px var(--ring-glow);}50%{box-shadow:0 0 20px var(--ring-glow),0 0 30px var(--ring-glow);}}
-@keyframes btnHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-@keyframes modalFadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes modalSlideIn{from{transform:translateY(-20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 
-/* SHARE MODAL - Premium Design */
-.share-modal-overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:rgba(0, 0, 0, 0.98);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:10000;
-  animation:modalFadeIn 0.3s ease;
+@keyframes shimmer{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
 }
-.share-modal{
-  background:rgba(26, 26, 46, 0.98);
-  border:1px solid rgba(31, 77, 58, 0.35);
-  border-radius:0;
-  width:90%;
-  max-width:480px;
-  max-height:90vh;
-  overflow-y:auto;
-  animation:modalSlideIn 0.3s ease;
-  box-shadow:0 0 40px rgba(0, 0, 0, 0.8);
-  opacity:0;
-  transform:translateY(-20px);
-}
-.share-modal-visible{
-  opacity:1;
-  transform:translateY(0);
-}
-.share-modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 20px;
-  border-bottom:1px solid rgba(31, 77, 58, 0.25);
-}
-.share-modal-title{
-  font-family:'Playfair Display',serif;
-  font-size:17px;
-  color:var(--accent-gold);
-  margin:0;
-  font-weight:500;
-  font-style:italic;
-}
-.share-modal-close{
-  font-family:'Montserrat',sans-serif;
-  font-size:22px;
-  color:var(--text-gold);
+
+.sharelink{
+  text-align:center;
+  margin:20px 0;
   cursor:pointer;
-  line-height:1;
-  transition:color 0.2s ease;
-}
-.share-modal-close:hover{
-  color:var(--accent-gold);
+  color:#1F4D3A;
+  font-family:Georgia, serif;
+  font-size:14px;
 }
 
-/* Close/Back to Site Button */
+.sharelink:hover{
+  color:#0f2f1f;
+}
+
 .back-to-site-btn{
   width:100%;
   padding:14px 20px;
   background:transparent;
   border:1px solid rgba(31, 77, 58, 0.4);
   border-radius:0;
-  font-family:'Montserrat',sans-serif;
+  font-family:Georgia, serif;
   font-weight:500;
-  letter-spacing:2px;
+  letter-spacing:1px;
   margin-top:20px;
   cursor:pointer;
-  font-size:12px;
+  font-size:13px;
   text-transform:uppercase;
-  color:var(--text-gold);
+  color:#1F4D3A;
   transition:all 0.2s ease;
 }
+
 .back-to-site-btn:hover{
   background:rgba(31, 77, 58, 0.08);
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
+  border-color:#1F4D3A;
+  color:#1F4D3A;
 }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div class="card">
+    <p class="mark">7-Pillar Readiness Check</p>
+    <p class="sub">After completing this short readiness check you will see the exact gaps your family will face, and the next steps to provide instant clarity.</p>
+    <p class="sub"><strong>You will review seven pillars:</strong></p>
+    
+    <div class="pillars-container">
+      <div class="pillar-item">Pillar 1: Financial Preparedness</div>
+      <div class="pillar-item">Pillar 2: Legal Documentation</div>
+      <div class="pillar-item">Pillar 3: Family Communication</div>
+      <div class="pillar-item">Pillar 4: Digital Assets</div>
+      <div class="pillar-item">Pillar 5: Healthcare Directives</div>
+      <div class="pillar-item">Pillar 6: Property & Possessions</div>
+      <div class="pillar-item">Pillar 7: Final Wishes</div>
+    </div>
 
-/* Company Logo */
-.company-logo{
-  width:auto;
-  height:auto;
-  max-width:30%;
-  max-height:30%;
-  margin:0 auto 20px;
-  display:block;
-  opacity:0.9;
-  transform:scale(0.3);
-  transform-origin:center;
-}
-.company-logo-mobile{
-  display:none;
-}
-@media(max-width:768px){
-  .company-logo{
-    display:none;
-  }
-  .company-logo-mobile{
-    display:block;
-    width:auto;
-    height:auto;
-    max-width:30%;
-    max-height:30%;
-    margin:0 auto 20px;
-    opacity:0.9;
-    transform:scale(0.3);
-    transform-origin:center;
-  }
-}
+    <div class="stepbar">
+      <div class="seg done"></div>
+      <div class="seg done"></div>
+      <div class="seg done"></div>
+      <div class="seg active"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+      <div class="seg"></div>
+    </div>
 
-/* ============================================
-   ENHANCED SHARE MODAL FEATURES
-   ============================================ */
+    <div class="toggle">
+      <div class="opt">Yes</div>
+      <div class="opt">No</div>
+      <div class="opt">Unsure</div>
+    </div>
 
-/* QR Code for sharing */
-.share-qr-container{
-  margin:16px 0;
-  text-align:center;
-}
-.share-qr-code{
-  width:120px;
-  height:120px;
-  background:#fff;
-  padding:8px;
-  border-radius:var(--radius-sm);
-  margin:0 auto;
-  box-shadow:0 4px 12px rgba(0,0,0,0.3);
-}
-.share-qr-label{
-  font-family:'Montserrat',sans-serif;
-  font-size:11px;
-  color:var(--text-secondary);
-  margin-top:8px;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-}
+    <div style="display:flex;justify-content:center;gap:16px;margin:24px 0;">
+      <button class="sm alt">Back</button>
+      <button class="sm alt">Reset</button>
+    </div>
 
-/* Custom share text */
-.share-custom-text{
-  width:100%;
-  padding:12px 14px;
-  background:rgba(31, 77, 58, 0.03);
-  border:1px solid rgba(31, 77, 58, 0.2);
-  border-radius:var(--radius-sm);
-  font-family:'Cormorant Garamond',serif;
-  font-size:14px;
-  color:var(--text-gold);
-  margin:12px 0;
-  resize:none;
-  min-height:80px;
-  transition:all var(--transition-normal);
-}
-.share-custom-text:focus{
-  outline:none;
-  border-color:var(--accent-gold);
-  box-shadow:0 0 0 2px rgba(31, 77, 58, 0.15);
+    <div class="sharelink">Share your readiness score</div>
+    
+    <button class="back-to-site-btn">See your next steps</button>
+    
+    <div class="footnote">
+      Informational purposes only. Not legal or financial advice.<br>
+      7-Pillar Readiness Check&trade; &mdash; Legacy Architect RVA
+    </div>
+  </div>
+</div>
+</body>
+</html>
+.15);
 }
 .share-custom-text::placeholder{
   color:var(--text-muted);
