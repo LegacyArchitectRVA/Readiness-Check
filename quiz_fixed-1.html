@@ -16,16 +16,20 @@
 <meta name="theme-color" content="#F4ECDC">
 <style>
 :root{
-  /* Cream/Forest Green Palette &mdash; matches zo.space */
-  --bg-dark: #F4ECDC;
-  --card-bg: #F4ECDC;
-  --text-primary: #1F4D3A;
-  --text-secondary: #1F4D3A;
-  --text-muted: #3a5a40;
-  --text-gold: #1F4D3A;
-  --accent-gold: #1F4D3A;
-  --accent-gold-light: #588157;
-  --accent-gold-dark: #0f2f1f;
+  --bg-dark: #F2EDE3;
+  --card-bg: #FDFAF5;
+  --text-primary: #1A3A2A;
+  --text-secondary: #2C5040;
+  --text-muted: #4A6858;
+  --text-gold: #8A6A20;
+  --gold: #8A6A20;
+  --accent-gold: #B8922A;
+  --accent-gold-light: #D4AF37;
+  --accent-gold-dark: #7A5C18;
+  --forest: #1F4D3A;
+  --forest-mid: #2E6B50;
+  --forest-light: #3A8A63;
+  --forest-pale: rgba(31,77,58,0.08);
   --ch1: #1F4D3A;
   --ch2: #1F4D3A;
   --ch3: #1F4D3A;
@@ -33,18 +37,24 @@
   --ch5: #1F4D3A;
   --ch6: #1F4D3A;
   --ch7: #1F4D3A;
-  --recorded: #1F4D3A;
-  --missing: #8B4513;
-  --na: #556B2F;
-  --ring-glow: rgba(31, 77, 58, 0.25);
-  --subtle-glow: rgba(31, 77, 58, 0.1);
-  /* Footer/social colors kept distinct */
+  --recorded: #1A7A4A;
+  --missing: #B83232;
+  --na: #2E6B50;
+  --border-default: rgba(31,77,58,0.2);
+  --ring-glow: rgba(31,77,58,0.2);
+  --subtle-glow: rgba(31,77,58,0.06);
+  --gold-glow: rgba(184,146,42,0.15);
+  --shadow-card: 0 2px 16px rgba(26,58,42,0.08),0 1px 4px rgba(26,58,42,0.04);
+  --shadow-hover: 0 6px 24px rgba(26,58,42,0.14),0 2px 8px rgba(26,58,42,0.08);
   --linkedin: #0A66C2;
   --facebook: #1877F2;
   --x-black: #0E1410;
   --instagram: #E4405F;
-  --threads: #0E1410;
+  --threads: #101010;
   --nextdoor: #00A36A;
+  --transition-normal: 0.2s ease;
+  --radius-sm: 4px;
+  --radius-md: 6px;
 }
 
 /* ============================================
@@ -80,7 +90,7 @@
 }
 
 /* Smooth scrolling */
-html{font-size:22.3146px;background:#F4ECDC;}
+html{font-size:22.3146px;background:#F2EDE3;}
 
 /* Selection styling */
 ::selection{
@@ -98,13 +108,13 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 html{font-size:22.3146px;}
-body{margin:0;background:#F5F0E8;color:#1A3A2A;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:hidden;line-height:1.6;}
+body{margin:0;background:#F2EDE3;color:#1A3A2A;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:hidden;line-height:1.6;}
 #wrap{
   max-width:1000px;
   margin:0 auto;
   padding:0;
 }
-.card{background:#FDFAF5;border:1px solid rgba(31,77,58,0.2);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 4px 32px rgba(26,58,42,0.12),0 1px 6px rgba(26,58,42,0.06);border-top:3px solid #B8922A;border-bottom:1px solid rgba(31,77,58,0.15);max-height:100vh;overflow-y:auto;}
+.card{background:#FDFAF5;border:1px solid rgba(31,77,58,0.2);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 4px 32px rgba(26,58,42,0.12),0 1px 6px rgba(26,58,42,0.06);border-top:3px solid #B8922A;border-bottom:none;max-height:100vh;overflow-y:auto;}
 .card::before{
   content:"";
   position:absolute;
@@ -135,8 +145,15 @@ body{margin:0;background:#F5F0E8;color:#1A3A2A;font-family:'Cormorant Garamond',
 /* Touch target improvements */
 .toggle{
   min-height:56px;
-  padding:16px 0;
+  padding:14px 10px;
+  margin-bottom:10px;
+  border-radius:6px;
+  background:#FDFAF5;
+  border:1px solid rgba(31,77,58,0.12);
+  box-shadow:0 1px 4px rgba(26,58,42,0.05);
+  transition:border-color 0.2s ease;
 }
+.toggle:last-child{margin-bottom:0;}
 .trow{
   padding:8px 0;
 }
@@ -161,10 +178,12 @@ body{margin:0;background:#F5F0E8;color:#1A3A2A;font-family:'Cormorant Garamond',
 }
 
 /* Form input improvements for mobile */
-.inputfield input{
+..inputfield input{
   min-height:48px;
   font-size:15px;
   padding:14px 16px;
+  background:#FFFFFF !important;
+  color:var(--text-primary) !important;
 }
 .inputfield input:focus{
   outline:none;
@@ -217,10 +236,7 @@ button:active{
   border-radius:1px;
   transition:all 0.4s ease;
 }
-.seg.done{
-  background:var(--accent-gold);
-  box-shadow:0 0 8px var(--subtle-glow);
-}
+.seg.done{background:var(--forest);}
 .seg.active{
   background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-light),var(--accent-gold));
   background-size:200% 100%;
@@ -238,29 +254,18 @@ button:active{
 @keyframes modalSlideIn{from{transform:translateY(-20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 
 /* SHARE MODAL - Premium Design */
-.share-modal-overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:rgba(0, 0, 0, 0.98);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:10000;
-  animation:modalFadeIn 0.3s ease;
-}
+..share-modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,42,34,0.6);backdrop-filter:blur(3px);z-index:1000;align-items:center;justify-content:center;}
 .share-modal{
-  background:rgba(26, 26, 46, 0.98);
-  border:1px solid rgba(31, 77, 58, 0.35);
-  border-radius:0;
+  background:#FDFAF5;
+  border:1px solid rgba(31,77,58,0.25);
+  border-top:3px solid #B8922A;
+  border-radius:4px;
   width:90%;
   max-width:480px;
   max-height:90vh;
   overflow-y:auto;
   animation:modalSlideIn 0.3s ease;
-  box-shadow:0 0 40px rgba(0, 0, 0, 0.8);
+  box-shadow:0 8px 40px rgba(26,58,42,0.18);
   opacity:0;
   transform:translateY(-20px);
 }
@@ -268,21 +273,8 @@ button:active{
   opacity:1;
   transform:translateY(0);
 }
-.share-modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 20px;
-  border-bottom:1px solid rgba(31, 77, 58, 0.25);
-}
-.share-modal-title{
-  font-family:'Playfair Display',serif;
-  font-size:17px;
-  color:var(--accent-gold);
-  margin:0;
-  font-weight:500;
-  font-style:italic;
-}
+.share-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(31,77,58,0.15);}
+.share-modal-title{font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--forest);font-weight:600;margin:0;}
 .share-modal-close{
   font-family:'Montserrat',sans-serif;
   font-size:22px;
@@ -298,25 +290,22 @@ button:active{
 /* Close/Back to Site Button */
 .back-to-site-btn{
   width:100%;
-  padding:14px 20px;
-  background:transparent;
-  border:1px solid rgba(31, 77, 58, 0.4);
-  border-radius:0;
+  padding:16px 20px;
+  background:var(--forest);
+  border:2px solid var(--forest);
+  border-radius:3px;
   font-family:'Montserrat',sans-serif;
-  font-weight:500;
-  letter-spacing:2px;
+  font-weight:600;
+  letter-spacing:3px;
   margin-top:20px;
   cursor:pointer;
   font-size:12px;
   text-transform:uppercase;
-  color:var(--text-gold);
+  color:#FDFAF5;
   transition:all 0.2s ease;
+  box-shadow:0 2px 12px rgba(31,77,58,0.3);
 }
-.back-to-site-btn:hover{
-  background:rgba(31, 77, 58, 0.08);
-  border-color:var(--accent-gold);
-  color:var(--accent-gold);
-}
+.back-to-site-btn:hover{background:var(--forest-mid);border-color:var(--forest-mid);box-shadow:0 4px 16px rgba(31,77,58,0.4);transform:translateY(-1px);}
 
 /* Company Logo */
 .company-logo{
@@ -427,19 +416,8 @@ button:active{
 }
 
 /* Share modal content */
-.share-modal-content{
-  padding:20px;
-  text-align:center;
-}
-.share-score-display{
-  font-family:'Playfair Display',serif;
-  font-size:17px;
-  color:var(--accent-gold);
-  text-align:center;
-  margin:0 0 16px;
-  font-style:italic;
-  font-weight:500;
-}
+.share-modal-content{padding:16px 20px 20px;}
+.share-score-display{text-align:center;padding:16px 24px 12px;font-family:Cinzel,serif;font-size:18px;color:var(--forest);letter-spacing:2px;border-bottom:1px solid rgba(31,77,58,0.1);}
 /* Official Logo in Share Modal */
 .share-modal-logo{
   width:auto;
@@ -517,12 +495,13 @@ button:active{
 /* TYPOGRAPHY - Refined */
 .mark{
   font-family:Cinzel,serif;
-  font-size:32px;
-  letter-spacing:4.4px;
+  font-size:30px;
+  letter-spacing:5px;
   text-transform:uppercase;
   color:var(--accent-gold);
-  opacity:0.7;
-  font-weight:500;
+  opacity:1;
+  font-weight:600;
+  text-shadow:0 1px 8px rgba(184,146,42,0.25);
 }
 .heading{
   font-family:Cinzel,serif;
@@ -540,8 +519,8 @@ button:active{
 }
 .rule{
   border:none;
-  border-top:1px solid rgba(31, 77, 58, 0.2);
-  margin:25px 0;
+  border-top:none;
+  margin:20px 0;
 }
 /* ITEM TOGGLES - Elegant */
 .toggle{
@@ -590,15 +569,10 @@ button:active{
   opacity:0.7;
   vertical-align:middle;
 }
-.tlabel .tooltip-content{
-  font-size:13px;
-  max-width:240px;
-  min-width:160px;
-  text-align:center;
-  left:50%;
-  right:auto;
-  transform:translateX(-50%);
-}
+.tlabel /* tooltip-content base removed for consolidation */
+.info-tooltip{position:relative;}
+.info-tooltip:hover .tooltip-content,
+.info-tooltip:focus 
 .opts{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:center;}
 
 /* Mobile spacing fix for landing page - remove gap where logo was */
@@ -678,33 +652,9 @@ button:active{
   position:relative;
   display:inline-block;
 }
-.info-tooltip .tooltip-content{
-  visibility:hidden;
-  position:absolute;
-  bottom:100%;
-  left:50%;
-  transform:translateX(-50%);
-  background:#F4ECDC;
-  border:1px solid rgba(31, 77, 58, 0.3);
-  border-radius:4px;
-  padding:12px 14px;
-  width:280px;
-  max-width:90vw;
-  font-size:14px;
-  line-height:1.5;
-  color:var(--text-gold);
-  box-shadow:0 4px 20px rgba(0, 0, 0, 0.6);
-  white-space:normal;
-  word-wrap:break-word;
-  opacity:0;
-  transition:opacity 0.2s ease, visibility 0.2s ease;
-  font-family:'Cormorant Garamond',serif;
-}
+.info-tooltip /* tooltip-content consolidated */
 .info-tooltip:hover .tooltip-content,
-.info-tooltip:focus .tooltip-content{
-  visibility:visible;
-  opacity:1;
-}
+.info-tooltip:focus 
 .info-tooltip .tooltip-content::before{
   content:"";
   position:absolute;
@@ -712,19 +662,19 @@ button:active{
   left:50%;
   transform:translateX(-50%);
   border:6px solid transparent;
-  border-top-color:rgba(31, 77, 58, 0.3);
+  border-top-color:#1A3A2A;
 }
 
 /* All items addressed badge - more standout */
 .cpbadge{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--accent-gold);
+  color:#7A5C18;
   font-family:'Montserrat',sans-serif;
   font-weight:600;
   padding:12px 16px;
-  background:rgba(31, 77, 58, 0.1);
-  border:1px solid rgba(31, 77, 58, 0.4);
+  background:rgba(184,146,42,0.15);
+  border:1px solid rgba(184,146,42,0.5);
   border-radius:var(--radius-sm);
 }
 .cpdot{
@@ -790,11 +740,11 @@ button:active{
   background:var(--missing);
   box-shadow:0 2px 8px rgba(192, 57, 43, 0.3);
 }
-.opt.oN{
-  border-color:var(--na);
+..opt.oN{
+  border-color:#2E6B50;
   color:#fff;
-  background:var(--na);
-  box-shadow:0 2px 8px rgba(122, 106, 58, 0.3);
+  background:#2E6B50;
+  box-shadow:0 2px 8px rgba(46,107,80,0.35);
 }
 /* COUNTER CIRCLE - Elegant */
 .counter{text-align:center;margin:16px 0 24px;}
@@ -1164,9 +1114,15 @@ button.sm{
 .prow{
   display:flex;
   align-items:center;
-  gap:8px;
-  margin-bottom:8px;
+  gap:10px;
+  margin-bottom:12px;
+  padding:12px 16px;
+  background:#FDFAF5;
+  border-radius:6px;
+  border:1px solid rgba(31,77,58,0.1);
+  box-shadow:0 1px 3px rgba(26,58,42,0.04);
 }
+.prow:last-child{margin-bottom:0;}
 .pname{
   font-size:16px;
   color:var(--accent-gold);
@@ -1185,10 +1141,10 @@ button.sm{
 }
 .pfill{
   height:100%;
-  background:linear-gradient(90deg, var(--btn-color), #fff, var(--btn-color));
+  background:linear-gradient(90deg, #B8922A, #D4AF37, #B8922A);
   background-size:200% 100%;
   transform-origin:left;
-  animation:barRise .85s cubic-bezier(.22,1,.36,1) forwards, shimmer 2s linear infinite;
+  animation:barRise .85s cubic-bezier(.22,1,.36,1) forwards, shimmer 2.5s linear infinite;
   border-radius:2px;
 }
 .ppct{
@@ -1258,14 +1214,14 @@ button.sm{
   width:100%;
   padding:11px 13px;
   margin-top:5px;
-  background:rgba(10, 10, 15, 0.7);
+  background:#FFFFFF;
   border:1px solid rgba(31, 77, 58, 0.2);
-  color:var(--accent-gold);
+  color:var(--text-primary);
   border-radius:6px;
   font-size:14px;
   font-family:'Lora',serif;
 }
-.inputfield input::placeholder{color:var(--text-muted);}
+.inputfield input::placeholder{color:#8A9E94;opacity:1;}
 .inputfield input:focus{
   outline:none;
   border-color:var(--gold);
@@ -1550,7 +1506,7 @@ html body, body, html body .card, html body #wrap {
   margin-bottom:16px;
 }
 .seg.done{background:var(--forest-mid);}
-.seg.active{background:var(--accent-gold) !important;box-shadow:0 0 8px rgba(184,146,42,0.45);}
+.seg.active{background:#B8922A !important;box-shadow:0 0 8px rgba(184,146,42,0.5);}
 .counter-circle{
   border:1px solid rgba(184,146,42,0.4);
   background:rgba(184,146,42,0.06);
@@ -1570,6 +1526,45 @@ html body, body, html body .card, html body #wrap {
 .opt.oR .opt-label,.opt.oR{color:#fff !important;}
 .opt.oU .opt-label,.opt.oU{color:#fff !important;}
 .opt.oN .opt-label,.opt.oN{color:#fff !important;}
+
+/* ── Consolidated tooltip ── */
+.tooltip-content{
+  visibility:hidden;
+  opacity:0;
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%);
+  background:#1A3A2A;
+  color:#FDFAF5;
+  font-size:12px;
+  line-height:1.5;
+  padding:8px 12px;
+  border-radius:4px;
+  max-width:220px;
+  min-width:140px;
+  text-align:center;
+  z-index:9999;
+  pointer-events:none;
+  transition:opacity 0.2s ease, visibility 0.2s ease;
+  white-space:normal;
+}
+.tooltip-content::after{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:5px solid transparent;
+  border-top-color:#1A3A2A;
+}
+.info-tooltip{position:relative;display:inline-block;}
+.info-tooltip:hover .tooltip-content,
+.info-tooltip:focus-within .tooltip-content,
+.info-tooltip.active .tooltip-content{
+  visibility:visible;
+  opacity:1;
+}
 </style>
 </head>
 <body>
@@ -1692,10 +1687,40 @@ function pick(key,val){
   if(ANS[key]===val){delete ANS[key];}else{ANS[key]=val;}
   const pi=step-1;const ps=aP();
   const done=ps[pi].i.every((_,ii)=>ANS[pi+"_"+ii]);
-  render(); window.scrollTo({top: 0, behavior: "smooth"});
+  render(); // re-render in place — NO scroll to top
   if(done){
+    // All answered: show badge and scroll to Continue button
     const b=document.getElementById("cpbadge");
     if(b)b.style.display="flex";
+    setTimeout(()=>{
+      const btn=Array.from(document.querySelectorAll('button')).find(b=>b.textContent.trim()==='Continue');
+      if(btn){
+        btn.scrollIntoView({behavior:'smooth',block:'nearest'});
+        try{
+          const card=document.querySelector('.card');
+          if(card){const bRect=btn.getBoundingClientRect();const cRect=card.getBoundingClientRect();if(bRect.bottom>cRect.bottom){card.scrollTop+=bRect.bottom-cRect.bottom+20;}}
+        }catch(e){}
+        btn.style.boxShadow='0 0 0 3px #B8922A, 0 4px 16px rgba(184,146,42,0.4)';
+        btn.style.background='var(--forest)';
+        btn.style.color='#FDFAF5';
+        btn.style.borderColor='var(--forest)';
+      }
+    },80);
+  } else {
+    // Not all answered: scroll to next unanswered item
+    setTimeout(()=>{
+      const keyParts=key.split('_');
+      const currentIdx=parseInt(keyParts[keyParts.length-1]);
+      const nextKey=pi+'_'+(currentIdx+1);
+      const nextToggle=document.getElementById('toggle-'+nextKey);
+      if(nextToggle){
+        nextToggle.scrollIntoView({behavior:'smooth',block:'nearest'});
+        try{
+          const card=document.querySelector('.card');
+          if(card){const tRect=nextToggle.getBoundingClientRect();const cRect=card.getBoundingClientRect();if(tRect.bottom>cRect.bottom||tRect.top<cRect.top){card.scrollTop+=tRect.top-cRect.top-20;}}
+        }catch(e){}
+      }
+    },80);
   }
   
   // Track answer selection
@@ -1719,7 +1744,7 @@ function goN(){
       const firstUnanswered = currentPillar.i.findIndex((_,ii)=>!ANS[pi+"_"+ii]);
       if(firstUnanswered !== -1){
         // Mark unanswered questions and stay on page
-        render(); window.scrollTo({top: 0, behavior: "smooth"});
+        scrollToTop();render();
         // Add unanswered class to unanswered toggles
         setTimeout(() => {
           const unansweredToggles = document.querySelectorAll('.toggle:not(.aR):not(.aU):not(.aN)');
@@ -1736,16 +1761,16 @@ function goN(){
       }
     }
   }
-  step++;isBack=false;window.scrollTo({top:0,behavior:"smooth"});render();
+  step++;isBack=false;scrollToTop();render();
   trackNavigation('next', currentStep, step);
   setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);
 }
-function goB(){if(step>0){const currentStep = step;step--;isBack=true;render(); window.scrollTo({top: 0, behavior: "smooth"});trackNavigation('back', currentStep, step);setTimeout(() => {
+function goB(){if(step>0){const currentStep = step;step--;isBack=true;scrollToTop();render();trackNavigation('back', currentStep, step);setTimeout(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }, 10);}}
-function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;render(); window.scrollTo({top: 0, behavior: "smooth"});trackEvent('reset');}
+function reset(){for(const k in ANS)delete ANS[k];step=0;biz=false;isBack=false;scrollToTop();render();trackEvent('reset');}
 function animNum(el,tgt){
   let st=null;
   function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1400,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt)+"%";if(p<1)requestAnimationFrame(f);}
@@ -1783,9 +1808,14 @@ function markAllAsNAAndScroll(){
     let btn = document.querySelector('button[onclick*="goN"]');
     if(!btn) btn = Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'Continue');
     if(btn) {
-      btn.scrollIntoView({behavior:'smooth', block:'start'});
-      // Add visual highlight
-      btn.style.boxShadow = '0 0 20px rgba(31, 77, 58, 0.6)';
+      btn.scrollIntoView({behavior:'smooth', block:'nearest'});
+      // Also scroll card container
+      try{const card=document.querySelector('.card');if(card){const bRect=btn.getBoundingClientRect();const cRect=card.getBoundingClientRect();card.scrollTop+=bRect.bottom-cRect.bottom+20;}}catch(e){}
+      // Gold ring highlight
+      btn.style.boxShadow='0 0 0 3px #B8922A, 0 4px 16px rgba(184,146,42,0.4)';
+      btn.style.background='var(--forest)';
+      btn.style.color='#FDFAF5';
+      btn.style.borderColor='var(--forest)';
       setTimeout(() => {
         btn.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
       }, 1000);
@@ -1818,7 +1848,7 @@ function markAllAsNA(){
     ps[pi].i.forEach((_,ii)=>{
       ANS[pi+"_"+ii]="N";
     });
-    render(); window.scrollTo({top: 0, behavior: "smooth"});
+    scrollToTop();render();
     // Force show the badge
     setTimeout(() => {
       const b=document.getElementById("cpbadge");
@@ -1883,7 +1913,7 @@ function showShareModal(score, tierLabel, text, url) {
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodeURIComponent(shareText)}" 
              target="_blank" class="share-btn threads" onclick="trackShare('threads')" aria-label="Share on Threads">
-            <img src="https://static.cdninstagram.com/rsrc.php/v3/y7/r/wCHLMCLPDCQ.png" alt="Threads" class="share-icon" style="width:20px;height:20px;object-fit:contain;filter:invert(1);">
+            <img src="https://static.cdninstagram.com/rsrc.php/v3/y7/r/wCHLMCLPDCQ.png" alt="Threads" class="share-icon" style="width:20px;height:20px;object-fit:contain;filter:invert(0) brightness(0);">
             <span>Threads</span>
           </a>
           <a href="https://nextdoor.com/share?url=${encodedUrl}&title=7-Pillar%20Continuity%20Analysis&description=${encodeURIComponent(shareText)}" 
@@ -2085,16 +2115,28 @@ function submit(){
     : '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Right now, if someone had to step in for you, they would have questions you have not answered yet. Not because you have not thought about it, but because there has not been a structured place to put it all.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session is the starting point. It identifies every gap across all seven pillars and produces a clear priority map. The Continuity Workbook and Life Manual tiers give you two paths to document everything so your successor has one place to go, in the order they would need it.</p>';
   const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",answers:ANS,recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk,riskLevel,situationBorderColor,riskPosition,situationTitle,situationText,highestRiskPillar,formattedGaps,formattedPillars,conversionBlock};
   fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
-  .then(r=>r.json().catch(()=>({})))
+  .then(r=>{
+    if(r.ok || r.status===200 || r.status===202 || r.status===204){
+      return r.text().catch(()=>'ok');
+    }
+    throw new Error('Network response was not ok: '+r.status);
+  })
   .then(()=>{
     trackEvent('submit_success', { score: sc, tier: tl });
     renderSuccess();
   })
-  .catch(()=>{
+  .catch((err)=>{
+    // Make webhooks sometimes return text/plain "Accepted" which r.json() rejects
+    // Treat as success if we got any response at all
+    if(err && err.message && err.message.includes('JSON')){
+      trackEvent('submit_success', { score: sc, tier: tl });
+      renderSuccess();
+      return;
+    }
     trackEvent('submit_error');
     btn.disabled=false;
     btn.innerText="Try Again";
-    if(ae)ae.textContent="Something went wrong. Please try again.";
+    if(ae)ae.textContent="Something went wrong. Please check your connection and try again.";
   });
 }
 function segs(tot,cur,allDone){
@@ -2105,6 +2147,25 @@ function segs(tot,cur,allDone){
     return`<div class="${c}"></div>`;
   }).join("");
 }
+// Scroll to top — works inside Carrd iframe and standalone
+function scrollToTop(){
+  // Scroll the card container (Carrd clips here)
+  try{
+    const card=document.querySelector('.card');
+    if(card){card.scrollTop=0;}
+    const wrap=document.getElementById('wrap');
+    if(wrap){wrap.scrollTop=0;}
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+    window.scrollTo(0,0);
+    // Post message to Carrd parent frame
+    if(window.parent && window.parent!==window){
+      window.parent.postMessage({action:'scrollToTop'},'*');
+      window.parent.scrollTo(0,0);
+    }
+  }catch(e){}
+}
+
 function render() {
   window.scrollTo({top: 0, behavior: "smooth"});
   const app=document.getElementById("app");
@@ -2186,7 +2247,7 @@ function renderIntro(app,ps){
     <div class="pillars-container">
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:#ffffff;">01: Digital Life</span>
+          <span style="color:var(--forest);">01: Digital Life</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Credentials, accounts, and digital access.</div>
         </span>
@@ -2221,7 +2282,7 @@ function renderIntro(app,ps){
       </div>
       <div class="pillar-item">
         <span class="info-tooltip">
-          <span style="color:#ffffff;">06: Business Continuity</span>
+          <span style="color:var(--forest);">06: Business Continuity</span>
           <svg class="info-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           <div class="tooltip-content">Operations, agreements, and succession.</div>
         </span>
@@ -2236,9 +2297,9 @@ function renderIntro(app,ps){
     </div>
     <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
     <p class="sub" style="margin-bottom:16px;line-height:1.8;">
-      <strong style="color:#000000 !important;">Recorded</strong> &mdash; It's documented and someone else could access it.<br>
-      <strong style="color:#000000 !important;">Undocumented</strong> &mdash; It exists but isn't documented.<br>
-      <strong style="color:#666666 !important;">Not Applicable</strong> &mdash; It doesn't apply to your situation.
+      <strong style="color:var(--recorded);font-weight:600;">Recorded</strong> &mdash; It's documented and someone else could access it.<br>
+      <strong style="color:var(--missing);font-weight:600;">Undocumented</strong> &mdash; It exists but isn't documented.<br>
+      <strong style="color:#2E6B50;font-weight:600;">Not Applicable</strong> &mdash; It doesn't apply to your situation.
     </p>
     
     <!-- Social proof -->
@@ -2513,8 +2574,7 @@ window.submit = function() {
 // ============================================
 // INITIALIZE
 // ============================================
-render(); window.scrollTo({top: 0, behavior: "smooth"});
+scrollToTop();render();
 </script>
 </body>
 </html>
-
