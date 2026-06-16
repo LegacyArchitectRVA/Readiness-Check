@@ -2293,7 +2293,7 @@ function loadState() {
     if (savedState) {
       const state = JSON.parse(savedState);
       // Only load in-progress data (step < 7, not completed)
-      if (state.step !== undefined && state.step < 7) {
+      if (state.step !== undefined && state.step <= 7) {
         // Restore answers
         if (state.answers) {
           Object.assign(ANS, state.answers);
