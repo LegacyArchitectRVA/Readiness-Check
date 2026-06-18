@@ -2236,16 +2236,24 @@ function submit(){
   const formattedPillars = bk.map(p => {
     if (p.na === 6) return '';
     const color = p.pct >= 71 ? '#52D399' : p.pct >= 40 ? '#D4AF37' : '#F87171';
+    const label = p.pct >= 71 ? 'STRONG' : p.pct >= 40 ? 'MODERATE' : 'AT RISK';
     const total = p.r + p.u;
-    return '<div style="margin-bottom:20px; padding:16px; background:#111111; border-radius:6px; border-left:3px solid ' + color + ';">'
-      + '<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">'
-      + '<div style="font-family:Cinzel,serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#e0d8c8;">' + p.nm + '</div>'
-      + '<div style="font-family:Cinzel,serif; font-size:16px; font-weight:700; color:' + color + ';">' + p.pct + '%</div>'
+    return '<div style="margin-bottom:14px; padding:14px 16px; background:#141414; border-radius:6px; border:1px solid #2a2a2a; border-left:4px solid ' + color + ';">'
+      + '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;">'
+      + '<tr>'
+      + '<td style="font-family:Cinzel,serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#e0d8c8; font-weight:600; vertical-align:middle;">' + p.nm + '</td>'
+      + '<td align="right" style="font-family:Cinzel,serif; font-size:16px; font-weight:700; color:' + color + '; vertical-align:middle; white-space:nowrap; padding-left:8px;">' + p.pct + '%</td>'
+      + '</tr>'
+      + '</table>'
+      + '<div style="height:10px; width:100%; background:#2a2a2a; border-radius:5px; margin-bottom:10px; overflow:hidden;">'
+      + '<div style="height:10px; width:' + p.pct + '%; background:' + color + '; border-radius:5px; display:block;"></div>'
       + '</div>'
-      + '<div style="height:4px; width:100%; background:#2a2a2a; border-radius:2px; margin-bottom:10px;">'
-      + '<div style="height:100%; border-radius:2px; width:' + p.pct + '%; background:' + color + ';"></div>'
-      + '</div>'
-      + '<div style="font-size:12px; color:#8a7d6e;">' + p.r + ' of ' + total + ' items documented &nbsp;&bull;&nbsp; ' + p.u + ' gap' + (p.u === 1 ? '' : 's') + ' remaining</div>'
+      + '<table width="100%" cellpadding="0" cellspacing="0" border="0">'
+      + '<tr>'
+      + '<td style="font-size:11px; color:#8a7d6e; vertical-align:middle;">' + p.r + ' of ' + total + ' documented &nbsp;&bull;&nbsp; ' + p.u + ' gap' + (p.u === 1 ? '' : 's') + ' remaining</td>'
+      + '<td align="right" style="font-family:Cinzel,serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:' + color + '; font-weight:700; vertical-align:middle; white-space:nowrap; padding-left:8px;">' + label + '</td>'
+      + '</tr>'
+      + '</table>'
       + '</div>';
   }).join('');
   const conversionBlock = tl === 'Continuity Legend'
