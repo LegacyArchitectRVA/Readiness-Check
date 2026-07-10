@@ -1412,9 +1412,9 @@ button.sm{
 
 /* PILLAR ITEMS - Consistent sizing and spacing */
 .pillars-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   margin-bottom: 16px;
 }
 .pillar-item {
@@ -2316,37 +2316,30 @@ function submit(){
     : '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Right now, if someone had to step in for you, they would have questions you have not answered yet. Not because you have not thought about it, but because there has not been a structured place to put it all.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session is the starting point. It identifies every gap across all seven pillars and produces a clear priority map. The Just-In-Case Plan and the Life Manual tiers give you two paths to document everything so your successor has one place to go, in the order they would need it.</p>';
   const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk,riskLevel,situationBorderColor,riskPosition,situationTitle,situationText,highestRiskPillar,formattedGaps,formattedPillars,conversionBlock};
 
-  // Reliable delivery from inside a Carrd iframe.
-  // sendBeacon survives cross-origin + navigation and is not blocked like a readable fetch.
-  // no-cors fetch is the fallback. Make's gateway accepts an opaque POST either way.
-  function deliver(){
-    var body = JSON.stringify(payload);
-    var sent = false;
-    try{
-      if(navigator.sendBeacon){
-        var blob = new Blob([body], {type:'application/json'});
-        sent = navigator.sendBeacon(WH, blob);
-      }
-    }catch(e){ sent = false; }
-    if(!sent){
-      try{
-        fetch(WH,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:body,keepalive:true});
-        sent = true;
-      }catch(e){ sent = false; }
+  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  .then(r=>{
+    if(r.ok || r.status===200 || r.status===202 || r.status===204){
+      return r.text().catch(()=>'ok');
     }
-    return sent;
-  }
-
-  var delivered = deliver();
-  if(delivered){
+    throw new Error('Network response was not ok: '+r.status);
+  })
+  .then(()=>{
     trackEvent('submit_success', { score: sc, tier: tl });
     renderSuccess();
-  }else{
+  })
+  .catch((err)=>{
+    // Make webhooks sometimes return text/plain "Accepted" which r.json() rejects
+    // Treat as success if we got any response at all
+    if(err && err.message && err.message.includes('JSON')){
+      trackEvent('submit_success', { score: sc, tier: tl });
+      renderSuccess();
+      return;
+    }
     trackEvent('submit_error');
     btn.disabled=false;
     btn.innerText="Try Again";
     if(ae)ae.textContent="Something went wrong. Please check your connection and try again.";
-  }
+  });
 }
 function segs(tot,cur,allDone){
   return Array.from({length:tot},(_,i)=>{
@@ -2358,23 +2351,15 @@ function segs(tot,cur,allDone){
 }
 // Scroll to top — works inside Carrd iframe and standalone
 function scrollToTop(){
-  // Instant — no smooth animation, card appears at top immediately
+  // Reset scroll to the very top WITHOUT scrollIntoView.
+  // scrollIntoView on an element inside an iframe forces the parent page to
+  // reposition the iframe, which was jumping the view down to the start button.
   const card = document.querySelector('.card');
   const wrap = document.getElementById('wrap') || document.getElementById('app');
-  const target = card || wrap;
-  if(target){
-    target.scrollTop = 0;
-    try { target.scrollIntoView({behavior:'instant', block:'start'}); } catch(e){
-      try { target.scrollIntoView(true); } catch(e2){}
-    }
-  }
+  if(card) card.scrollTop = 0;
+  if(wrap) wrap.scrollTop = 0;
   try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
   try { window.scrollTo(0, 0); } catch(e){}
-  try {
-    if(window.parent && window.parent !== window){
-      window.parent.scrollTo(0, 0);
-    }
-  } catch(e){}
 }
 
 function render() {
@@ -2648,7 +2633,7 @@ function renderSuccess(){
     <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services','_blank')">See all services</button>
 
     <div class="sharerow" style="margin-top:22px;padding-top:16px;border-top:1px solid var(--border-default);">
-      <p class="sub" style="margin-bottom:8px;">Who came to mind when you took this? Send it their way.</p>
+      <p class="sub" style="margin-bottom:8px;">Know someone who'd fail this? Send it their way.</p>
       <div style="text-align:center;"><div class="sharelink" onclick="window.shareScore()" role="button" aria-label="Share your score" style="display:inline-flex;">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4c49a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
