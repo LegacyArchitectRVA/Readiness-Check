@@ -9,43 +9,44 @@
 <title>7-Pillar Readiness Check - Legacy Architect RVA</title>
 <!-- Performance: Preload critical resources -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" href="https://pub-ed4a5f336ecd42e69f9cebfdbbcd368c.r2.dev/Logos/Correct.png" as="image">
 <!-- Accessibility -->
 <meta name="theme-color" content="#F4ECDC">
 <style>
 :root{
-  --bg-dark: #F2EDE3;
-  --card-bg: #FDFAF5;
-  --text-primary: #1A3A2A;
-  --text-secondary: #2C5040;
-  --text-muted: #4A6858;
-  --text-gold: #8A6A20;
-  --gold: #8A6A20;
-  --accent-gold: #B8922A;
-  --accent-gold-light: #D4AF37;
-  --accent-gold-dark: #7A5C18;
-  --forest: #1F4D3A;
-  --forest-mid: #2E6B50;
-  --forest-light: #3A8A63;
-  --forest-pale: rgba(31,77,58,0.08);
-  --ch1: #1F4D3A;
-  --ch2: #1F4D3A;
-  --ch3: #1F4D3A;
-  --ch4: #1F4D3A;
-  --ch5: #1F4D3A;
-  --ch6: #1F4D3A;
-  --ch7: #1F4D3A;
-  --recorded: #1A7A4A;
-  --missing: #B83232;
-  --na: #B8922A;
-  --border-default: rgba(31,77,58,0.2);
-  --ring-glow: rgba(31,77,58,0.2);
-  --subtle-glow: rgba(31,77,58,0.06);
-  --gold-glow: rgba(184,146,42,0.15);
-  --shadow-card: 0 2px 16px rgba(26,58,42,0.08),0 1px 4px rgba(26,58,42,0.04);
-  --shadow-hover: 0 6px 24px rgba(26,58,42,0.14),0 2px 8px rgba(26,58,42,0.08);
+  /* Reskinned to Legacy Architect obsidian + gold to match legacyarchitectrva.com */
+  --bg-dark: #0f0c08;
+  --card-bg: #1c1712;
+  --text-primary: #efe9df;
+  --text-secondary: #c9c0b1;
+  --text-muted: #9a8f7c;
+  --text-gold: #c1b085;
+  --gold: #c1b085;
+  --accent-gold: #c1b085;
+  --accent-gold-light: #d4c49a;
+  --accent-gold-dark: #877044;
+  --forest: #c1b085;
+  --forest-mid: #d4c49a;
+  --forest-light: #d4c49a;
+  --forest-pale: rgba(193,176,133,0.08);
+  --ch1: #c1b085;
+  --ch2: #c1b085;
+  --ch3: #c1b085;
+  --ch4: #c1b085;
+  --ch5: #c1b085;
+  --ch6: #c1b085;
+  --ch7: #c1b085;
+  --recorded: #7fae7a;
+  --missing: #c77b6b;
+  --na: #b9a06a;
+  --border-default: rgba(193,176,133,0.22);
+  --ring-glow: rgba(193,176,133,0.25);
+  --subtle-glow: rgba(193,176,133,0.06);
+  --gold-glow: rgba(193,176,133,0.18);
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.4),0 1px 4px rgba(0,0,0,0.3);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.5),0 2px 8px rgba(0,0,0,0.35);
   --linkedin: #0A66C2;
   --facebook: #1877F2;
   --x-black: #0E1410;
@@ -81,7 +82,7 @@
   padding:8px 16px;
   z-index:10000;
   text-decoration:none;
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-size:14px;
   font-weight:600;
 }
@@ -90,7 +91,7 @@
 }
 
 /* Smooth scrolling */
-html{font-size:22.3146px;background:#F2EDE3;}
+html{font-size:22.3146px;background:#0f0c08;}
 
 /* Selection styling */
 ::selection{
@@ -108,13 +109,13 @@ img[alt*="Legacy Architect"]:not(.company-logo) {
   display: none !important;
 }
 html{font-size:22.3146px;}
-body{margin:0;background:#FFFFFF;color:#000000;font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:visible;line-height:1.6;}
+body{margin:0;background:#0f0c08;color:#efe9df;font-family:'Lora',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-y:visible;line-height:1.6;}
 #wrap{
   max-width:1000px;
   margin:0 auto;
   padding:0;
 }
-.card{background:#FDFAF5;border:1px solid rgba(31,77,58,0.2);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 4px 32px rgba(26,58,42,0.12),0 1px 6px rgba(26,58,42,0.06);border-top:3px solid #B8922A;border-bottom:none;scroll-margin-top:0;}
+.card{background:#1c1712;border:1px solid rgba(31,77,58,0.2);border-radius:0;padding:27px 18.9px 31.5px;position:relative;box-shadow:0 4px 32px rgba(26,58,42,0.12),0 1px 6px rgba(26,58,42,0.06);border-top:3px solid #B8922A;border-bottom:none;scroll-margin-top:0;}
 .card::before{
   content:"";
   position:absolute;
@@ -148,7 +149,7 @@ body{margin:0;background:#FFFFFF;color:#000000;font-family:'Cormorant Garamond',
   padding:14px 10px;
   margin-bottom:10px;
   border-radius:6px;
-  background:#FDFAF5;
+  background:#1c1712;
   border:1px solid rgba(31,77,58,0.12);
   box-shadow:0 1px 4px rgba(26,58,42,0.05);
   transition:border-color 0.2s ease;
@@ -165,7 +166,7 @@ body{margin:0;background:#FFFFFF;color:#000000;font-family:'Cormorant Garamond',
   transition:all var(--transition-normal);
   border:2px solid #1A1A1A !important;
   border-radius:3px;
-  background:#FDFAF5;
+  background:#1c1712;
   font-weight:500;
 }
 .opt:hover,
@@ -182,7 +183,7 @@ body{margin:0;background:#FFFFFF;color:#000000;font-family:'Cormorant Garamond',
   min-height:48px;
   font-size:15px;
   padding:14px 16px;
-  background:#FFFFFF !important;
+  background:#1c1712 !important;
   color:var(--text-primary) !important;
 }
 .inputfield input:focus{
@@ -257,7 +258,7 @@ button:active{
 /* SHARE MODAL - Premium Design */
 .share-modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,42,34,0.6);backdrop-filter:blur(3px);z-index:1000;align-items:center;justify-content:center;}
 .share-modal{
-  background:#FDFAF5;
+  background:#1c1712;
   border:1px solid rgba(31,77,58,0.25);
   border-top:3px solid #B8922A;
   border-radius:4px;
@@ -277,7 +278,7 @@ button:active{
 .share-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(31,77,58,0.15);}
 .share-modal-title{font-family:Cinzel,serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--forest);font-weight:600;margin:0;}
 .share-modal-close{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-size:22px;
   color:var(--text-gold);
   cursor:pointer;
@@ -295,7 +296,7 @@ button:active{
   background:var(--forest);
   border:2px solid var(--forest);
   border-radius:3px;
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-weight:600;
   letter-spacing:3px;
   margin-top:20px;
@@ -353,13 +354,23 @@ button:active{
   width:120px;
   height:120px;
   background:#fff;
-  padding:8px;
-  border-radius:var(--radius-sm);
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(193,176,133,0.4);
   margin:0 auto;
-  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  box-shadow:0 4px 14px rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.share-qr-code img, .share-qr-code canvas{
+  display:block;
+  width:100% !important;
+  height:100% !important;
 }
 .share-qr-label{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-size:11px;
   color:var(--text-secondary);
   margin-top:8px;
@@ -374,7 +385,7 @@ button:active{
   background:rgba(31, 77, 58, 0.03);
   border:1px solid rgba(31, 77, 58, 0.2);
   border-radius:var(--radius-sm);
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Lora',serif;
   font-size:14px;
   color:var(--text-gold);
   margin:12px 0;
@@ -411,13 +422,13 @@ button:active{
   justify-content:center;
   gap:9px;
   padding:16px 8px;
-  background:#FAF6EE;
-  border:1px solid rgba(31,77,58,0.2);
+  background:#171310;
+  border:1px solid rgba(193,176,133,0.3);
   border-radius:6px;
   cursor:pointer;
   text-decoration:none;
-  color:#1A3A2A !important;
-  font-family:'Montserrat',sans-serif;
+  color:var(--accent-gold-light) !important;
+  font-family:'Cinzel',serif;
   font-size:12px;
   font-weight:600;
   letter-spacing:0.5px;
@@ -425,15 +436,15 @@ button:active{
   -webkit-tap-highlight-color:transparent;
 }
 .share-tile:hover,.share-tile:active{
-  background:rgba(31,77,58,0.1);
-  border-color:#B8922A;
+  background:rgba(193,176,133,0.12);
+  border-color:#c1b085;
   transform:translateY(-1px);
 }
 .share-tile span{
-  color:#1A3A2A !important;
+  color:var(--accent-gold-light) !important;
   font-size:12px;
   font-weight:600;
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
 }
 
 /* Official Logo in Share Modal */
@@ -467,8 +478,8 @@ button:active{
   cursor:pointer;
   transition:all 0.2s ease;
   text-decoration:none;
-  color:#1A3A2A !important;
-  font-family:'Montserrat',sans-serif;
+  color:#efe9df !important;
+  font-family:'Cinzel',serif;
   font-size:12px;
   font-weight:600;
   letter-spacing:0.5px;
@@ -490,9 +501,9 @@ button:active{
 }
 .share-btn span,
 .share-action-btn span{
-  color:#1A3A2A !important;
+  color:#efe9df !important;
   font-size:12px !important;
-  font-family:'Montserrat',sans-serif !important;
+  font-family:'Cinzel',serif !important;
   font-weight:600 !important;
   letter-spacing:0.5px !important;
   text-transform:none !important;
@@ -522,7 +533,7 @@ button:active{
   text-transform:uppercase;
   color:var(--accent-gold);
   opacity:1;
-  font-weight:600;
+  font-weight:400;
   text-shadow:0 1px 8px rgba(184,146,42,0.25);
 }
 .heading{
@@ -530,14 +541,14 @@ button:active{
   font-size:32px;
   margin:0 0 14px;
   color:var(--accent-gold);
-  font-weight:500;
+  font-weight:400;
   font-style:normal;
 }
 .sub{
-  color:#000000;
+  color:var(--text-secondary);
   line-height:2.0;
   font-size:21px;
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Lora',serif;
 }
 .rule{
   border:none;
@@ -605,7 +616,7 @@ button:active{
   background:linear-gradient(145deg, #F4ECDC, #EADFC6, #F4ECDC);
   border:1px solid #8A6E2A;
   border-radius:var(--radius-sm);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-weight:600;
   letter-spacing:1.5px;
   margin:20px auto;
@@ -674,7 +685,7 @@ button:active{
   left:50%;
   transform:translateX(-50%);
   border:6px solid transparent;
-  border-top-color:#1A3A2A;
+  border-top-color:#efe9df;
 }
 
 /* All items addressed badge - more standout */
@@ -682,7 +693,7 @@ button:active{
   display:flex;align-items:center;gap:8px;margin-top:25px;
   font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
   color:#7A5C18;
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-weight:600;
   padding:12px 16px;
   background:rgba(184,146,42,0.15);
@@ -701,7 +712,7 @@ button:active{
   border:1px solid rgba(31, 77, 58, 0.4);
   cursor:pointer;
   border-radius:var(--radius-sm);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-size:14px;
   letter-spacing:1.5px;
   text-transform:uppercase;
@@ -725,14 +736,14 @@ button:active{
   transform:translateY(0);
 }
 .opt{
-  border:2px solid #1A1A1A;
+  border:1px solid rgba(193,176,133,0.35);
   border-radius:4px;
-  background:#FDFAF6;
-  color:var(--text-primary);
+  background:#171310;
+  color:var(--accent-gold-light);
   font-weight:500;
   letter-spacing:0.5px;
   transition:all 0.18s ease;
-  box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
 }
 .opt:hover,.opt:focus{
   border-color:var(--forest);
@@ -769,7 +780,7 @@ button:active{
   background:rgba(31, 77, 58, 0.05);
   border:1px solid rgba(31, 77, 58, 0.4);
   border-radius:var(--radius-sm);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-size:14px;
   color:var(--accent-gold);
   letter-spacing:1.5px;
@@ -794,7 +805,7 @@ button:active{
   display:flex;align-items:center;gap:8px;margin-top:20px;
   font-size:13px;letter-spacing:2px;text-transform:uppercase;
   color:var(--accent-gold);
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-weight:500;
 }
 .cpdot{
@@ -873,7 +884,7 @@ button.alt:hover{
   margin:22px 0;
   font-style:italic;
   font-size:20.4px;
-  color:#1A3A2A;
+  color:#efe9df;
 }
 
 /* Trust badges */
@@ -889,7 +900,7 @@ button.alt:hover{
   align-items:center;
   gap:8px;
   font-size:16.5px;
-  color:#1A3A2A;
+  color:#efe9df;
 }
 .trust-badge-icon{
   width:18.9px;
@@ -1053,7 +1064,7 @@ button.sm{
   justify-content:center;
   position:relative;
   border:none;
-  background:#F5F5DC;
+  background:#1c1712;
   overflow:hidden;
   margin:0;
   box-shadow:none;
@@ -1123,7 +1134,7 @@ button.sm{
 }
 .legtext{
   font-size:14px;
-  color:#1A3A2A;
+  color:#efe9df;
   line-height:1.7;
 }
 /* PILLAR BARS */
@@ -1145,7 +1156,7 @@ button.sm{
   gap:10px;
   margin-bottom:12px;
   padding:12px 16px;
-  background:#FDFAF5;
+  background:#1c1712;
   border-radius:6px;
   border:1px solid rgba(31,77,58,0.1);
   box-shadow:0 1px 3px rgba(26,58,42,0.04);
@@ -1209,7 +1220,7 @@ button.sm{
 .gapitem:hover{background:rgba(31, 77, 58, 0.06);}
 .gapname{
   font-size:15px;
-  color:#000000 !important;
+  color:#efe9df !important;
   margin-bottom:4px;
   flex:1;
 }
@@ -1242,7 +1253,7 @@ button.sm{
   width:100%;
   padding:11px 13px;
   margin-top:5px;
-  background:#FFFFFF;
+  background:#1c1712;
   border:1px solid rgba(31, 77, 58, 0.2);
   color:var(--text-primary);
   border-radius:6px;
@@ -1303,9 +1314,9 @@ button.sm{
 }
 .sharelink:hover svg{ transform:scale(1.12); }
 .sharelink span{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Cinzel',serif;
   font-size:11px;
-  color:#000000 !important;
+  color:var(--accent-gold-light) !important;
   letter-spacing:2.5px;
   text-transform:uppercase;
   font-weight:600;
@@ -1401,14 +1412,15 @@ button.sm{
 
 /* PILLAR ITEMS - Consistent sizing and spacing */
 .pillars-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 14px;
   margin-bottom: 16px;
 }
 .pillar-item {
   margin: 0;
   padding: 0;
+  font-size: 14px;
 }
 .pillar-item .info-tooltip {
   display: block;
@@ -1504,29 +1516,31 @@ button.sm{
    White background, black text, gold accents.
    ============================================ */
 
-/* Force light colour scheme on the document */
-html { color-scheme: only light; }
+/* Force dark colour scheme — Legacy Architect obsidian + gold */
+html { color-scheme: only dark; }
 
-/* White background scoped to every quiz container */
+/* Obsidian background scoped to every quiz container */
 #wrap, #app, .card,
 #wrap *, #app * {
   box-sizing: border-box;
 }
 #wrap, #app {
-  background: #FFFFFF !important;
+  background: #0f0c08 !important;
 }
 .card {
-  background: #FFFFFF !important;
+  background: #1c1712 !important;
 }
 .toggle {
-  background: #FAFAFA !important;
+  background: #171310 !important;
 }
 input, textarea {
-  background: #FFFFFF !important;
-  color: #000000 !important;
+  background: #171310 !important;
+  color: #efe9df !important;
+  border-color: rgba(193,176,133,0.25) !important;
 }
+input::placeholder, textarea::placeholder { color: #9a8f7c !important; }
 
-/* Body text: black */
+/* Body text: warm paper */
 #wrap p, #app p,
 #wrap label, #app label,
 #wrap li, #app li,
@@ -1535,7 +1549,7 @@ input, textarea {
 .sub, .tlabel, .legtext, .footnote,
 .item-name, .item-desc,
 .share-modal-title {
-  color: #000000 !important;
+  color: #c9c0b1 !important;
 }
 
 /* Gold accents stay gold */
@@ -1544,37 +1558,37 @@ input, textarea {
 .legrange,
 .roman-numeral,
 .pname, .ppct, .cpbadge {
-  color: #B8922A !important;
+  color: #c1b085 !important;
 }
 
-/* Pillar titles: forest green */
-.mark, .pillar-title, .pillar-title span,
+/* Pillar titles + legend names: bright gold on dark */
+.pillar-title, .pillar-title span,
 .pillar-title strong, .legname {
-  color: #1F4D3A !important;
+  color: #d4c49a !important;
 }
 
-/* White text only on coloured button states */
+/* Dark text only sits on gold-filled buttons */
 .opt.oR, .opt.oR span,
 .opt.oU, .opt.oU span,
-.opt.oN, .opt.oN span,
-.back-to-site-btn { color: #fff !important; }
+.opt.oN, .opt.oN span { color: #fff !important; }
+.back-to-site-btn { color: #191307 !important; }
 
 /* Remove Carrd text effects */
 * { text-shadow: none !important; -webkit-text-stroke: 0 !important; }
 
-/* Dark mode: same white/black inside quiz containers */
-@media (prefers-color-scheme: dark) {
-  #wrap, #app, .card { background: #FFFFFF !important; }
-  .toggle:not(.aR):not(.aU):not(.aN) { background: #F5F5F5 !important; border-color: rgba(31,77,58,0.25) !important; }
-  .opt:not(.oR):not(.oU):not(.oN) { background: #FFFFFF !important; border-color: #333 !important; color: #000000 !important; }
-  input, textarea { background: #FFFFFF !important; color: #000000 !important; }
-  /* Selected button states preserved */
-  .opt.oR { background: var(--recorded) !important; border-color: var(--recorded) !important; color: #fff !important; box-shadow: 0 0 0 2px var(--recorded), 0 0 18px rgba(26,122,74,0.6) !important; }
-  .opt.oU { background: var(--missing) !important; border-color: var(--missing) !important; color: #fff !important; box-shadow: 0 0 0 2px var(--missing), 0 0 18px rgba(184,50,50,0.6) !important; }
-  .opt.oN { background: #B8922A !important; border-color: #B8922A !important; color: #fff !important; box-shadow: 0 0 0 2px #B8922A, 0 0 18px rgba(184,146,42,0.6) !important; }
-  .toggle.aR { background: rgba(31,122,82,0.08) !important; border-left-color: var(--recorded) !important; }
-  .toggle.aU { background: rgba(192,57,43,0.06) !important; border-left-color: var(--missing) !important; }
-  .toggle.aN { background: rgba(184,146,42,0.08) !important; border-left-color: #B8922A !important; }
+/* Keep it dark even when the OS is in light mode */
+@media (prefers-color-scheme: light) {
+  #wrap, #app { background: #0f0c08 !important; }
+  .card { background: #1c1712 !important; }
+  .toggle:not(.aR):not(.aU):not(.aN) { background: #171310 !important; border-color: rgba(193,176,133,0.25) !important; }
+  .opt:not(.oR):not(.oU):not(.oN) { background: #171310 !important; border-color: rgba(193,176,133,0.25) !important; color: #c9c0b1 !important; }
+  input, textarea { background: #171310 !important; color: #efe9df !important; }
+  .opt.oR { background: var(--recorded) !important; border-color: var(--recorded) !important; color: #fff !important; box-shadow: 0 0 0 2px var(--recorded), 0 0 18px rgba(127,174,122,0.5) !important; }
+  .opt.oU { background: var(--missing) !important; border-color: var(--missing) !important; color: #fff !important; box-shadow: 0 0 0 2px var(--missing), 0 0 18px rgba(199,123,107,0.5) !important; }
+  .opt.oN { background: #c1b085 !important; border-color: #c1b085 !important; color: #191307 !important; box-shadow: 0 0 0 2px #c1b085, 0 0 18px rgba(193,176,133,0.5) !important; }
+  .toggle.aR { background: rgba(127,174,122,0.1) !important; border-left-color: var(--recorded) !important; }
+  .toggle.aU { background: rgba(199,123,107,0.1) !important; border-left-color: var(--missing) !important; }
+  .toggle.aN { background: rgba(193,176,133,0.1) !important; border-left-color: #c1b085 !important; }
 }
 
 
@@ -1604,7 +1618,7 @@ input, textarea {
 /* Opt label text color when selected */
 .opt.oR .opt-label,.opt.oR{color:#fff !important;}
 .opt.oU .opt-label,.opt.oU{color:#fff !important;}
-.opt.oN .opt-label,.opt.oN{border-color:#B8922A;color:#fff !important;background:#B8922A;box-shadow:0 0 0 2px #B8922A, 0 0 16px rgba(184,146,42,0.55);transform:translateY(-1px);}
+.opt.oN .opt-label,.opt.oN{border-color:#c1b085;color:#fff !important;background:#c1b085;box-shadow:0 0 0 2px #c1b085, 0 0 16px rgba(193,176,133,0.55);transform:translateY(-1px);}
 
 /* tooltips removed */
 
@@ -1628,11 +1642,18 @@ input, textarea {
   font-weight:500;
   line-height:1.4;
 }
+.item-what{
+  font-size:14.5px;
+  color:var(--text-secondary);
+  line-height:1.5;
+  margin:0 0 4px 0;
+  padding-left:2px;
+}
 .item-desc{
   font-style:italic;
-  font-size:15px;
+  font-size:14px;
   color:var(--text-muted);
-  line-height:1.55;
+  line-height:1.5;
   margin:0 0 10px 0;
   padding-left:2px;
 }
@@ -1665,6 +1686,50 @@ const PILLARS=[
   {n:"07: Legacy & Wishes",d:"Personal instructions, history, and wishes.",i:["Personal Letters","Family History & Stories","Ethical Will","Funeral Preferences","Obituary Information","Personal Wishes & Instructions"]}
 ];
 const PILLAR_COLORS={"Digital Life":"var(--ch1)","Financial & Assets":"var(--ch2)","Household & Property":"var(--ch4)","Health & Medical":"var(--ch5)","Legal & Estate":"var(--ch6)","Business Continuity":"var(--ch7)","Legacy & Wishes":"var(--ch3)"};
+const DESC={
+  "Primary Email Access":"Your main email account and how to log into it.",
+  "Password Manager":"The app or list that holds all your passwords.",
+  "Cloud Storage":"Files and photos kept in Google Drive, iCloud, Dropbox, or similar.",
+  "2-Factor Authentication Recovery":"Backup codes and recovery methods for accounts with two-step login.",
+  "Social Media Accounts":"Your profiles on Facebook, Instagram, LinkedIn, and the rest.",
+  "Digital Archive":"Older files, downloads, and digital records worth keeping.",
+  "Banking Accounts":"Checking, savings, and where the money actually sits.",
+  "Credit Accounts":"Credit cards, lines of credit, and their balances.",
+  "Investment & Retirement Accounts":"Brokerage, 401(k), IRA, and pension accounts.",
+  "Life Insurance Policies":"Policies you hold and which company issued them.",
+  "Cryptocurrency & Digital Assets":"Crypto wallets, keys, and any digital holdings.",
+  "Recurring Bills & Subscriptions":"Auto-pay bills and monthly subscriptions.",
+  "Property Deeds & Titles":"Ownership papers for your home and land.",
+  "Vehicle Titles & Registration":"Titles and registration for your cars.",
+  "Home Maintenance Records":"Service history, warranties, and repair records for the house.",
+  "Utility Accounts":"Electric, gas, water, internet, and phone accounts.",
+  "Security Systems & Access Codes":"Alarm codes, smart locks, and entry access.",
+  "Household Inventory Documentation":"A record of what you own inside the home.",
+  "Health Insurance Information":"Your health plan, policy numbers, and coverage.",
+  "Medical Providers & Contacts":"Your doctors, specialists, and how to reach them.",
+  "Prescription Information":"Medications, dosages, and pharmacies.",
+  "Medical History & Records":"Your conditions, history, and where records live.",
+  "Advance Healthcare Directives":"Your written wishes for care if you can't speak for yourself.",
+  "Emergency Medical Instructions":"What responders and family should know in a crisis.",
+  "Last Will & Testament":"The document that says who gets what.",
+  "Trust Documentation":"Any trust you've set up and its paperwork.",
+  "Financial Power of Attorney":"Who can manage your money if you can't.",
+  "Healthcare Power of Attorney":"Who makes medical decisions if you can't.",
+  "Beneficiary Designations":"Who's named to receive accounts and policies.",
+  "Estate Planning Documents":"The broader set of documents for settling your estate.",
+  "Entity Formation Documents":"The papers that legally created your business.",
+  "Business Banking Access":"Business accounts and who can reach them.",
+  "Operating Agreements":"The rules for how your business is owned and run.",
+  "Key Vendor Relationships":"The suppliers and contractors the business depends on.",
+  "Client & Contract Records":"Your clients, contracts, and commitments.",
+  "Succession & Continuity Planning":"The plan for who runs things if you step away.",
+  "Personal Letters":"Notes or letters written for specific people.",
+  "Family History & Stories":"The family stories and history you carry.",
+  "Ethical Will":"Your values and lessons for the next generation.",
+  "Funeral Preferences":"How you want your service and arrangements handled.",
+  "Obituary Information":"The biographical details for your obituary.",
+  "Personal Wishes & Instructions":"Sentimental instructions no legal form covers."
+};
 const EXPL={
   "Primary Email Access":"The master key to all account recovery. Without it, nothing downstream is retrievable by those acting on your behalf.",
   "Password Manager":"Every credential lives here. If undocumented, critical accounts become permanently inaccessible.",
@@ -1774,7 +1839,7 @@ function pick(key,val){
         }catch(e){}
         btn.style.boxShadow='0 0 0 3px #B8922A, 0 4px 16px rgba(184,146,42,0.4)';
         btn.style.background='var(--forest)';
-        btn.style.color='#FDFAF5';
+        btn.style.color='#1c1712';
         btn.style.borderColor='var(--forest)';
       }
     },80);
@@ -1885,7 +1950,7 @@ function markAllAsNAAndScroll(){
       // Gold ring highlight
       btn.style.boxShadow='0 0 0 3px #B8922A, 0 4px 16px rgba(184,146,42,0.4)';
       btn.style.background='var(--forest)';
-      btn.style.color='#FDFAF5';
+      btn.style.color='#1c1712';
       btn.style.borderColor='var(--forest)';
       setTimeout(() => {
         btn.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
@@ -1962,16 +2027,16 @@ function showShareModal(score, tierLabel, text, url) {
       </div>
       <div class="share-modal-content" style="padding:16px;">
         <p class="share-score-display" style="text-align:center;font-family:Cinzel,serif;font-size:16px;color:#1F4D3A;letter-spacing:2px;margin:0 0 14px;">${score}% \u2014 ${tierLabel}</p>
-        <div id="shareCopiedMsg" style="display:none;background:rgba(31,77,58,0.1);border:1px solid rgba(31,77,58,0.3);border-radius:4px;padding:8px 12px;font-family:Montserrat,sans-serif;font-size:11px;color:#1F4D3A;text-align:center;margin-bottom:10px;letter-spacing:1px;">
+        <div id="shareCopiedMsg" style="display:none;background:rgba(31,77,58,0.1);border:1px solid rgba(31,77,58,0.3);border-radius:4px;padding:8px 12px;font-family:'Cinzel',serif;font-size:11px;color:#1F4D3A;text-align:center;margin-bottom:10px;letter-spacing:1px;">
           TEXT COPIED \u2014 PASTE INTO YOUR POST
         </div>
         <div class="share-all-grid">
           <a href="https://x.com/intent/post?text=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="trackShare('x')">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="#000000"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#efe9df"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
             <span>X</span>
           </a>
           <a href="https://www.threads.net/intent/post?text=${encodedText}" target="_blank" rel="noopener" class="share-tile" onclick="trackShare('threads')">
-            <svg width="26" height="26" viewBox="0 0 192 192" fill="#000000"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.035l13.78 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.25.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.244-15.224-1.626-23.68-1.14-23.82 1.372-39.134 15.265-38.105 34.569.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.452-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.352-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C57.053 24.425 74.303 17.11 97.113 16.94c22.95.17 40.526 7.52 52.26 21.845 5.78 7.017 10.007 15.75 12.605 25.88l16.248-4.333c-3.19-12.545-8.6-23.493-16.177-32.602C147.3 10.645 125.202 1.205 97.17 1h-.255C68.946 1.205 47.042 10.68 32.77 27.222 19.936 42.018 13.19 63.04 12.996 96c.194 32.96 6.94 53.982 19.774 68.778C46.767 181.319 68.67 190.794 96.915 191h.255c24.817-.176 42.36-6.68 56.805-21.114 18.713-18.694 18.178-42.084 12.01-56.422-4.442-10.355-12.994-18.669-24.448-23.476zm-38.697 37.083c-10.438.583-21.256-4.098-21.795-14.084-.398-7.455 5.308-15.788 22.44-16.771 1.962-.113 3.893-.169 5.795-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.668-23.811 29.259z"/></svg>
+            <svg width="26" height="26" viewBox="0 0 192 192" fill="#efe9df"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.035l13.78 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.25.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.244-15.224-1.626-23.68-1.14-23.82 1.372-39.134 15.265-38.105 34.569.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.452-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.352-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C57.053 24.425 74.303 17.11 97.113 16.94c22.95.17 40.526 7.52 52.26 21.845 5.78 7.017 10.007 15.75 12.605 25.88l16.248-4.333c-3.19-12.545-8.6-23.493-16.177-32.602C147.3 10.645 125.202 1.205 97.17 1h-.255C68.946 1.205 47.042 10.68 32.77 27.222 19.936 42.018 13.19 63.04 12.996 96c.194 32.96 6.94 53.982 19.774 68.778C46.767 181.319 68.67 190.794 96.915 191h.255c24.817-.176 42.36-6.68 56.805-21.114 18.713-18.694 18.178-42.084 12.01-56.422-4.442-10.355-12.994-18.669-24.448-23.476zm-38.697 37.083c-10.438.583-21.256-4.098-21.795-14.084-.398-7.455 5.308-15.788 22.44-16.771 1.962-.113 3.893-.169 5.795-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.668-23.811 29.259z"/></svg>
             <span>Threads</span>
           </a>
           <a href="#" class="share-tile" onclick="silentCopyAndOpen(window._shareText,'https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}');trackShare('linkedin');return false;">
@@ -1991,11 +2056,11 @@ function showShareModal(score, tierLabel, text, url) {
             <span>Instagram</span>
           </a>
           <a href="#" class="share-tile" onclick="copyToClipboard('https://legacyarchitectrva.com/#analysis',this);return false;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="#1F4D3A"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#d4c49a"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
             <span>Copy Link</span>
           </a>
           <a href="mailto:?subject=${mailSubject}&body=${mailBody}" class="share-tile" onclick="trackShare('email')">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="#1F4D3A"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#d4c49a"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Email</span>
           </a>
         </div>
@@ -2125,7 +2190,7 @@ function copyToClipboard(text, btn) {
   function showCopied(target) {
     if(!target) return;
     const orig = target.innerHTML;
-    target.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#1F4D3A"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
+    target.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" fill="#d4c49a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span>Copied!</span>';
     setTimeout(()=>{ target.innerHTML = orig; }, 2000);
   }
   function execFallback() {
@@ -2156,8 +2221,8 @@ function generateQRCode(url, elementId) {
       text: url,
       width: 120,
       height: 120,
-      colorDark: '#1F4D3A',
-      colorLight: '#FDFAF5',
+      colorDark: '#0f0c08',
+      colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.M
     });
   } catch(e) {
@@ -2179,7 +2244,8 @@ function submit(){
   const fn=(document.getElementById("s7fn")||{}).value?.trim()||"";
   const em=(document.getElementById("s7em")||{}).value?.trim()||"";
   if(ae)ae.textContent="";
-  if(!em){if(ae)ae.textContent="An email address is required to receive your report.";return;}
+  if(!em){if(ae)ae.textContent="An email address is required to unlock your full results.";return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){if(ae)ae.textContent="Please enter a valid email address.";return;}
   
   const d=calc();const sc=d.pct;const tl=tLabel(sc);
   
@@ -2244,35 +2310,43 @@ function submit(){
   const conversionBlock = tl === 'Continuity Legend'
     ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">You have done serious work here. Your documents are in place, your successor has what they need, and the people you care about will not be left searching for answers at the worst possible moment.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">What tends to erode readiness at this level is time. Accounts change. Policies renew. People move. An annual review keeps everything current without starting over.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Legacy Architect annual review takes roughly an hour and costs less than a single missed insurance claim. Schedule one before anything in your life changes.</p>'
     : tl === 'Continuity Steward'
-    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">You are further along than most. The foundation is solid. The gaps that remain are exactly the kind that surface at the worst time: a hospitalization, an unexpected death, a family member trying to locate account numbers at midnight.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Your lowest scoring pillar is the place where a successor would stall. One missing document in Legal &amp; Estate can freeze an estate for months. One undocumented account can mean a permanent loss.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session identifies every remaining gap and maps a clear path to closing them. From there, the Continuity Workbook gives you a self-guided path to document everything on your own, or a Life Manual tier handles the full facilitation so everything lands in one place a successor can act on immediately.</p>'
+    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">You are further along than most. The foundation is solid. The gaps that remain are exactly the kind that surface at the worst time: a hospitalization, an unexpected death, a family member trying to locate account numbers at midnight.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Your lowest scoring pillar is the place where a successor would stall. One missing document in Legal &amp; Estate can freeze an estate for months. One undocumented account can mean a permanent loss.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session identifies every remaining gap and maps a clear path to closing them. From there, the Just-In-Case Plan is a simple starting point to document the essentials yourself, or a Life Manual tier handles the full facilitation so everything lands in one place a successor can act on immediately.</p>'
     : tl === 'Continuity Builder'
-    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">The gaps in your current readiness are real. Not every one will cause a problem, but some of them will, and there is no way to know in advance which ones. Families who face this without documentation spend months untangling what should take days.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Frozen accounts. Insurance claims with no policy number. A family locked out of a house because no one knew where the deed was. These are not edge cases. They are what happens when nothing is written down.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session maps every gap, assigns a priority, and produces a clear picture of what needs to happen next. The Continuity Workbook and Life Manual tiers are how you close those gaps completely, each at a different level of support.</p>'
-    : '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Right now, if someone had to step in for you, they would have questions you have not answered yet. Not because you have not thought about it, but because there has not been a structured place to put it all.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session is the starting point. It identifies every gap across all seven pillars and produces a clear priority map. The Continuity Workbook and Life Manual tiers give you two paths to document everything so your successor has one place to go, in the order they would need it.</p>';
+    ? '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">The gaps in your current readiness are real. Not every one will cause a problem, but some of them will, and there is no way to know in advance which ones. Families who face this without documentation spend months untangling what should take days.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Frozen accounts. Insurance claims with no policy number. A family locked out of a house because no one knew where the deed was. These are not edge cases. They are what happens when nothing is written down.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session maps every gap, assigns a priority, and produces a clear picture of what needs to happen next. The Just-In-Case Plan and the Life Manual tiers are how you close those gaps, each at a different level of support.</p>'
+    : '<p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0 0 14px;">Right now, if someone had to step in for you, they would have questions you have not answered yet. Not because you have not thought about it, but because there has not been a structured place to put it all.</p><p style="font-size:14px; color:#c8b8a8; line-height:1.8; margin:0;">A Blueprint Session is the starting point. It identifies every gap across all seven pillars and produces a clear priority map. The Just-In-Case Plan and the Life Manual tiers give you two paths to document everything so your successor has one place to go, in the order they would need it.</p>';
   const payload={firstName:fn,email:em,score:sc,maxScore:d.eff,recordedItems:d.rec,percent:sc,tier:tl,businessOwner:biz?"Yes":"No",recommendation:rec(sc),pillarSummary:aP().map(p=>p.n).join(", "),strengths:str,gaps,pillarBreakdown:bk,riskLevel,situationBorderColor,riskPosition,situationTitle,situationText,highestRiskPillar,formattedGaps,formattedPillars,conversionBlock};
-  fetch(WH,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
-  .then(r=>{
-    if(r.ok || r.status===200 || r.status===202 || r.status===204){
-      return r.text().catch(()=>'ok');
+
+  // Reliable delivery from inside a Carrd iframe.
+  // sendBeacon survives cross-origin + navigation and is not blocked like a readable fetch.
+  // no-cors fetch is the fallback. Make's gateway accepts an opaque POST either way.
+  function deliver(){
+    var body = JSON.stringify(payload);
+    var sent = false;
+    try{
+      if(navigator.sendBeacon){
+        var blob = new Blob([body], {type:'application/json'});
+        sent = navigator.sendBeacon(WH, blob);
+      }
+    }catch(e){ sent = false; }
+    if(!sent){
+      try{
+        fetch(WH,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:body,keepalive:true});
+        sent = true;
+      }catch(e){ sent = false; }
     }
-    throw new Error('Network response was not ok: '+r.status);
-  })
-  .then(()=>{
+    return sent;
+  }
+
+  var delivered = deliver();
+  if(delivered){
     trackEvent('submit_success', { score: sc, tier: tl });
     renderSuccess();
-  })
-  .catch((err)=>{
-    // Make webhooks sometimes return text/plain "Accepted" which r.json() rejects
-    // Treat as success if we got any response at all
-    if(err && err.message && err.message.includes('JSON')){
-      trackEvent('submit_success', { score: sc, tier: tl });
-      renderSuccess();
-      return;
-    }
+  }else{
     trackEvent('submit_error');
     btn.disabled=false;
     btn.innerText="Try Again";
     if(ae)ae.textContent="Something went wrong. Please check your connection and try again.";
-  });
+  }
 }
 function segs(tot,cur,allDone){
   return Array.from({length:tot},(_,i)=>{
@@ -2377,61 +2451,24 @@ function renderIntro(app,ps){
   const tot=ps.length+1;
   app.innerHTML=`
 <div>
-    <p class="mark" style="margin-bottom:12px;color:#B8922A !important;text-shadow:0 1px 8px rgba(184,146,42,0.2);">7-Pillar Readiness Check</p>
-    <p class="sub" style="margin-bottom:18.9px;">After completing this short readiness check you will see the exact gaps your family will face, and the next steps to provide instant clarity.</p>
-    <p class="sub" style="margin-bottom:8px;"><strong>You will review seven pillars:</strong></p>
-    <div class="pillars-container">
-      <div class="pillar-item">
-        <span style="color:var(--forest);">01: Digital Life</span>
-      </div>
-      <div class="pillar-item">
-        <span style="color:var(--forest);">02: Financial & Assets</span>
-      </div>
-      <div class="pillar-item">
-        <span style="color:var(--forest);">03: Household & Property</span>
-      </div>
-      <div class="pillar-item">
-        <span style="color:var(--forest);">04: Health & Medical</span>
-      </div>
-      <div class="pillar-item">
-        <span style="color:var(--forest);">05: Legal & Estate</span>
-      </div>
-      <div class="pillar-item">
-        <span style="color:var(--forest);">06: Business Continuity</span>
-      </div>
-      <div class="pillar-item">
-        <span style="color:var(--forest);">07: Legacy & Wishes</span>
-      </div>
+    <p class="mark" style="margin-bottom:10px;color:#B8922A !important;text-shadow:0 1px 8px rgba(184,146,42,0.2);">7-Pillar Readiness Check</p>
+    <p class="sub" style="margin-bottom:14px;">See the exact gaps your family would face, and the next steps to close them. A few minutes, seven pillars.</p>
+    <div class="pillars-container" style="margin-bottom:14px;">
+      <div class="pillar-item"><span style="color:var(--forest);">01: Digital Life</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">02: Financial &amp; Assets</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">03: Household &amp; Property</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">04: Health &amp; Medical</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">05: Legal &amp; Estate</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">06: Business Continuity</span></div>
+      <div class="pillar-item"><span style="color:var(--forest);">07: Legacy &amp; Wishes</span></div>
     </div>
-    <p class="sub" style="margin-bottom:8px;"><strong>For each item, simply select one of the following:</strong></p>
-    <p class="sub" style="margin-bottom:16px;line-height:1.8;">
-      <strong style="color:var(--recorded);font-weight:600;">Recorded</strong> &mdash; It's documented and someone else could access it.<br>
-      <strong style="color:var(--missing);font-weight:600;">Undocumented</strong> &mdash; It exists but isn't documented.<br>
-      <strong style="color:#B8922A !important;font-weight:600;">Not Applicable</strong> &mdash; It doesn't apply to your situation.
+    <p class="sub" style="margin-bottom:14px;line-height:1.7;font-size:14px;">
+      For each item, mark <strong style="color:var(--recorded);font-weight:600;">Recorded</strong>, <strong style="color:var(--missing);font-weight:600;">Undocumented</strong>, or <strong style="color:#B8922A !important;font-weight:600;">Not Applicable</strong>.
     </p>
-    
-    <!-- Social proof -->
-    <div class="social-proof">
-      Most households score between 40-65% on their first pass. Find the gaps in a few minutes
-    </div>
-    
-    <!-- Trust badges -->
-    <div class="trust-badges">
-      <div class="trust-badge">
-        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span>Zero-Knowledge Standard</span>
-      </div>
-      <div class="trust-badge">
-        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-        <span>Secure & Confidential</span>
-      </div>
-      <div class="trust-badge">
-        <svg class="trust-badge-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span>Free Analysis</span>
-      </div>
-    </div>
-    
     <button onclick="trackEvent('start_analysis');goN()" class="start-btn">Start Checking</button>
+    <div class="social-proof" style="margin-top:14px;">
+      Most households score between 40-65% on their first pass. Free and confidential.
+    </div>
   </div>`;
 }function renderQ(app,ps){
   const p=ps[step-1];const pi=step-1;const tot=ps.length+1;
@@ -2458,6 +2495,7 @@ function renderIntro(app,ps){
     const key=pi+"_"+idx;const val=ANS[key]||"";
     const tc=val==="R"?"aR":val==="U"?"aU":"";
     const expl=EXPL[item]||"";
+    const desc=DESC[item]||"";
     const romanNumeral = toRoman(idx + 1);
     html+=`<div class="toggle ${tc}" id="toggle-${key}">
       <div class="trow">
@@ -2466,6 +2504,7 @@ function renderIntro(app,ps){
             <span class="roman-numeral">${romanNumeral}.</span>
             <span class="item-name">${item}</span>
           </div>
+          ${desc ? `<p class="item-what">${desc}</p>` : ''}
           ${expl ? `<p class="item-desc">${expl}</p>` : ''}
         </div>
         <div class="opts">
@@ -2518,7 +2557,7 @@ function renderResults(app,ps){
     <div class="stepbar">${segs(tot,tot,true)}</div>
     <div class="ringwrap">
       <div class="ringlabel" style="color:var(--accent-gold);font-family:Cinzel,serif;font-size:30px;">Readiness Score</div>
-      <div class="ring-glow-outer"><div class="ring" style="background:#F5F5DC;">
+      <div class="ring-glow-outer"><div class="ring" style="background:#1c1712;">
         <div id="r7conic" class="ringconic"></div>
         <div class="ringinner">
           <div class="scorenum" id="r7num" style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:32px;font-weight:bold;">0%</div>
@@ -2528,32 +2567,39 @@ function renderResults(app,ps){
     </div>
     <div class="tierbadge ${tCls(sc)}" style="color:${tierColor};font-family:Cinzel,serif;font-size:23px;font-weight:700;">${tLabel(sc)}</div>
     <p class="sub" style="text-align:center;">Most households score between 40 and 65% on their first pass.</p>
-    <div class="legblock">
-      <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86&mdash;100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
-      <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71&mdash;85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
-      <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61&mdash;70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
-      <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0&mdash;60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+
+    <!-- PARTIAL TEASE: gap count only, full detail gated below -->
+    <div class="gapcount" style="text-align:center;font-family:'Lora',Georgia,serif;font-size:22px;color:var(--text-primary);margin:18px auto 4px;max-width:420px;line-height:1.35;">
+      ${gaps.length?`You have <b style="color:var(--missing);font-style:italic;">${getGaps().length} gap${getGaps().length===1?'':'s'}</b> across your seven pillars.`:`Remarkable. You're more prepared than almost anyone.`}
     </div>
-        <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
-    ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
-        <div class="inputrow">
-      <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
-      <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To receive your full report"></div>
+
+    <!-- EMAIL GATE -->
+    <div class="gatewrap" id="s7gate">
+      <div class="gatehead" style="font-family:Cinzel,serif;font-size:17px;color:var(--accent-gold);text-align:center;letter-spacing:1px;margin:20px 0 6px;">SEE EXACTLY WHERE YOUR GAPS ARE</div>
+      <p class="sub" style="text-align:center;max-width:420px;margin:0 auto 14px;">Your pillar-by-pillar breakdown, the specific gaps, and your next steps are one click away.</p>
+      <div class="inputrow">
+        <div class="inputfield"><label>First Name</label><input id="s7fn" placeholder="Optional"></div>
+        <div class="inputfield"><label>Email Address</label><input id="s7em" type="email" placeholder="To unlock your full results"></div>
+      </div>
+      <div id="s7al" class="alertmsg"></div>
+      <button id="s7btn" onclick="submit()">Unlock My Full Results</button>
+      <div class="navrow">
+        <button class="sm alt" onclick="goB()">Back</button>
+        <button class="sm alt" onclick="reset()">Reset</button>
+      </div>
     </div>
-    <div id="s7al" class="alertmsg"></div>
-    <button id="s7btn" onclick="submit()">Request Full Analysis Report</button>
-    <div class="navrow">
-      <button class="sm alt" onclick="goB()">Back</button>
-      <button class="sm alt" onclick="reset()">Reset</button>
+
+    <!-- FULL RESULTS: hidden until email submitted, revealed by renderSuccess flow -->
+    <div class="fullresults" id="s7full" style="display:none;">
+      <div class="bkwrap"><div class="bktitle">Pillar Breakdown</div>${barsH}</div>
+      ${gaps.length?`<div class="gapwrap"><div class="gaptitle">Priority Gaps</div>${gapsH}</div>`:""}
+      <div class="legblock">
+        <div class="legrow"><div class="legname tL">Continuity Legend</div><div class="legrange">86&mdash;100%</div><div class="legtext">Documented, accessible, and resilient. Others can carry on with minimal friction.</div></div>
+        <div class="legrow"><div class="legname tS">Continuity Steward</div><div class="legrange">71&mdash;85%</div><div class="legtext">Most essentials are in place. Focused effort closes the remaining gaps.</div></div>
+        <div class="legrow"><div class="legname tD">Continuity Builder</div><div class="legrange">61&mdash;70%</div><div class="legtext">A foundation exists but details are scattered. Continuity remains fragile.</div></div>
+        <div class="legrow" style="margin-bottom:0;"><div class="legname tR">Continuity Sentinel</div><div class="legrange">0&mdash;60%</div><div class="legtext">Important information lives mostly in your head. Others would struggle to step in.</div></div>
+      </div>
     </div>
-    <div style="text-align:center;"><div class="sharelink" onclick="window.shareScore()" role="button" aria-label="Share your score" style="display:inline-flex;">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-  </svg>
-  <span>Share your score</span>
-</div></div>
-    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank')">See your next steps</button>
     <div class="footnote">Informational purposes only. Not legal or financial advice.<br>7-Pillar Readiness Check&trade; &mdash; Legacy Architect RVA</div>
   </div>`;
   setTimeout(()=>{const n=document.getElementById("r7num");const c=document.getElementById("r7conic");if(n)animNum(n,sc);if(c)animRing(c,sc,tierColor);},90);
@@ -2575,22 +2621,46 @@ function renderSuccess(){
   const glowColor = colorMap[tierColor] || "rgba(198, 168, 90, 0.4)";
   document.getElementById("app").innerHTML=`<div class="successwrap">
     <div class="successmark" style="border-color:${tierColor};box-shadow:0 0 20px ${glowColor};">&check;</div>
-    <div class="successhead" style="font-family:Cinzel,serif;font-size:24px;">Report Requested</div>
-    <p class="sub" style="font-size:19.8px;max-width:400px;margin:0 auto 20px;">Your personalized analysis is on its way. Review your inbox for your full breakdown and guidance on next steps.</p>
+    <div class="successhead" style="font-family:Cinzel,serif;font-size:24px;">Your Full Results Are Unlocked</div>
+    <p class="sub" style="font-size:18px;max-width:400px;margin:0 auto 16px;">We've also sent a copy to your inbox. Here's where you stand, and the fastest way to close your gaps.</p>
     <div class="successscore" style="border:none;box-shadow:none;">
       <span style="color:${tierColor};text-shadow:0 0 8px ${tierColor}80;font-size:25.08px;">${d.pct}% &mdash; ${tierLabel}</span>
     </div>
-    <button style="margin-top:20px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
-    <div style="text-align:center;"><div class="sharelink" onclick="window.shareScore()" role="button" aria-label="Share your score" style="display:inline-flex;">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-  </svg>
-  <span>Share your score</span>
-</div></div>
-    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services', '_blank');window.scrollTo({top:0,behavior:'smooth'});">See your next steps</button>
+
+    <!-- NEXT STEPS: the two offers -->
+    <div class="offerwrap" style="margin:26px auto 0;max-width:440px;text-align:left;">
+      <div class="offercard" style="background:linear-gradient(160deg,var(--card-bg),#0f0c08);border:1px solid var(--border-default);border-radius:14px;padding:18px;margin-bottom:14px;">
+        <div style="font-family:Inter,sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-gold-dark);font-weight:600;">Start here</div>
+        <div style="font-family:Cinzel,serif;font-size:19px;color:var(--text-primary);margin:5px 0 2px;">The Just-In-Case Plan</div>
+        <div style="font-family:Cinzel,serif;font-size:15px;color:var(--accent-gold-light);margin-bottom:8px;">$29</div>
+        <p style="font-family:'Lora',Georgia,serif;font-size:15.5px;color:var(--text-secondary);line-height:1.4;margin-bottom:14px;">The fastest way to close your most urgent gaps. A guided starting point your family could actually use tomorrow.</p>
+        <button class="back-to-site-btn" style="margin:0;width:100%;" onclick="window.open('https://jicplan.legacyarchitectrva.com','_blank')">Get the Just-In-Case Plan</button>
+      </div>
+      <div class="offercard" style="background:linear-gradient(160deg,var(--card-bg),#0f0c08);border:1px solid var(--border-default);border-radius:14px;padding:18px;margin-bottom:14px;">
+        <div style="font-family:Inter,sans-serif;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent-gold-dark);font-weight:600;">Go deeper</div>
+        <div style="font-family:Cinzel,serif;font-size:19px;color:var(--text-primary);margin:5px 0 2px;">The Blueprint Session</div>
+        <div style="font-family:Cinzel,serif;font-size:15px;color:var(--accent-gold-light);margin-bottom:8px;">$249</div>
+        <p style="font-family:'Lora',Georgia,serif;font-size:15.5px;color:var(--text-secondary);line-height:1.4;margin-bottom:14px;">We map your whole picture together and build a prioritized 72-hour action plan. You leave knowing exactly what to do next.</p>
+        <button class="back-to-site-btn" style="margin:0;width:100%;" onclick="window.open('https://buy.stripe.com/7sY8wR0HQ4a2c5PaR75Rm03','_blank')">Book a Blueprint Session</button>
+      </div>
+    </div>
+
+    <button class="back-to-site-btn" onclick="window.open('https://legacyarchitectrva.com/#services','_blank')">See all services</button>
+
+    <div class="sharerow" style="margin-top:22px;padding-top:16px;border-top:1px solid var(--border-default);">
+      <p class="sub" style="margin-bottom:8px;">Know someone who'd fail this? Send it their way.</p>
+      <div style="text-align:center;"><div class="sharelink" onclick="window.shareScore()" role="button" aria-label="Share your score" style="display:inline-flex;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4c49a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        <span>Share the Readiness Check</span>
+      </div></div>
+    </div>
+
+    <button style="margin-top:18px;" onclick="reset();window.scrollTo({top:0,behavior:'smooth'});">Complete another Check</button>
     <img src="https://legacyarchitectrva.com/assets/images/image15.png?v=5b3db499" alt="Legacy Architect RVA" class="company-logo" style="margin-top:20px;transform:scale(0.9);">
-    <div class="footnote">Legacy Architect RVA</div>
+    <div class="footnote" style="font-family:Cinzel,serif;font-style:italic;color:var(--accent-gold-dark);">Order in Your Absence</div>
   </div>`;
   window.scrollTo({top:0,behavior:'smooth'});}
 window.pick=pick;
