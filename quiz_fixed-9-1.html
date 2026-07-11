@@ -15,8 +15,8 @@
 <style>
 :root{
   /* Reskinned to Legacy Architect obsidian + gold to match legacyarchitectrva.com */
-  --bg-dark: #000000;
-  --card-bg: #000000;
+  --bg-dark: #0f0c08;
+  --card-bg: #1c1712;
   --text-primary: #efe9df;
   --text-secondary: #c9c0b1;
   --text-muted: #9a8f7c;
@@ -144,8 +144,8 @@ body{margin:0;background:#0f0c08;color:#efe9df;font-family:'Lora',serif;-webkit-
 /* Touch target improvements */
 .toggle{
   min-height:auto;
-  padding:11px 10px;
-  margin-bottom:8px;
+  padding:9px 12px;
+  margin-bottom:7px;
   border-radius:6px;
   background:#1c1712;
   border:1px solid rgba(31,77,58,0.12);
@@ -555,13 +555,12 @@ button:active{
 }
 /* ITEM TOGGLES - Elegant */
 .toggle{
-  border:1px solid #1F4D3A;
-  padding:16px 18.9px;
-  margin:8px 0;
-  background:#FBF6EA;
+  border:1px solid rgba(193,176,133,0.14);
+  padding:9px 12px;
+  margin:7px 0;
+  background:#1c1712;
   border-radius:6px;
   transition:all var(--transition-normal);
-  min-height:56px;
   width:100%;
 }
 .toggle:hover{background:rgba(31, 77, 58, 0.03);}
@@ -1623,9 +1622,9 @@ input::placeholder, textarea::placeholder { color: #9a8f7c !important; }
 /* ── Item heading + italic description (replaced tooltips) ── */
 .item-heading{
   display:flex;
-  align-items:baseline;
+  align-items:center;
   gap:6px;
-  margin-bottom:6px;
+  margin-bottom:0;
 }
 .roman-numeral{
   font-family:'Cinzel',serif;
@@ -1654,6 +1653,17 @@ input::placeholder, textarea::placeholder { color: #9a8f7c !important; }
   line-height:1.4;
   margin:0 0 8px 0;
   padding-left:2px;
+}
+}
+/* Elegant segmented answer control — replaces the stacked boxes */
+.seg{
+  display:flex;
+  width:100%;
+  margin-top:10px;
+  border:1px solid rgba(193,176,133,0.28);
+  border-radius:8px;
+  overflow:hidden;
+  background:#141009;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -1979,8 +1989,6 @@ const LA_SHARE_IMAGE = 'https://pub-edbffba3e85240eabfa80aa13a1b8169.r2.dev/Site
 function saveShareImage(btn){
   var orig = btn ? btn.textContent : '';
   if (btn) btn.textContent = 'Preparing...';
-  // Fetch the hosted card and trigger a download. Fall back to opening it
-  // in a new tab (long-press to save) if the download is blocked in the iframe.
   fetch(LA_SHARE_IMAGE, { mode: 'cors' })
     .then(function(r){ return r.blob(); })
     .then(function(blob){
